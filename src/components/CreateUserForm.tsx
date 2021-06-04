@@ -51,7 +51,6 @@ function CreateUserForm() {
               type="text"
               name="firstName"
               id="firstName"
-              value={firstname}
               onChange={(e) => setFirstname(e.target.value)}
             />
           </div>
