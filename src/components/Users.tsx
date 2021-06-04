@@ -1,6 +1,7 @@
 import React from "react";
 import { useQuery } from "react-query";
 import { Link } from "react-router-dom";
+import CreateUserForm from "./CreateUserForm";
 
 interface Data {
   id: number;
@@ -33,6 +34,7 @@ function Users() {
             );
           })}
         </div>
+        <CreateUserForm />
       </div>
     );
 }
