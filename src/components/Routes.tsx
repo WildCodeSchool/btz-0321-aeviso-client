@@ -1,8 +1,9 @@
-import React from "react";
-import { Route } from "react-router-dom";
-import User from "./User";
-import Users from "./Users";
-import Vite from "./Vite";
+import React from 'react';
+import { Route } from 'react-router-dom';
+import Projects from './project/projects';
+import User from './User';
+import Users from './Users';
+import Vite from './Vite';
 
 function Routes() {
   return (
@@ -12,6 +13,7 @@ function Routes() {
       </Route>
       <Route path="/users" component={Users} />
       <Route path="/user/:id" component={User} />
+      <Route path="/project" component={Projects} />
     </>
   );
 }
