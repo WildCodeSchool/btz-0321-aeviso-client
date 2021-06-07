@@ -1,4 +1,4 @@
-import React, { useState } from "react";
+import React, { FormEvent, useState } from "react";
 import { useMutation, useQuery } from "react-query";
 
 interface User {
@@ -26,7 +26,8 @@ function CreateUserForm() {
       .then((json) => console.log(json))
   );
 
-  const handleSubmit = (e: Event) => {
+  const handleSubmit = (e: FormEvent<HTMLFormElement>) => {
+    e.preventDefault();
     const newUser = {
       firstname,
       lastname,

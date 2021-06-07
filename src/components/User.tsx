@@ -15,21 +15,21 @@ function User() {
 
   const [isModal, setIsModal] = useState(false);
 
-  const { isLoading, error, data } = useQuery<User, Error>("user", () =>
-    fetch(`http://localhost:5000/api/v1/users/${id}`).then((res) =>
-      res.json().then((data) => {
-        setFirstname(data.firstname);
-        setLastName(data.lastname);
-        setEmail(data.email);
-        setProfession(data.profession);
-      })
-    )
-  );
+  const { isLoading, error, data } = useQuery<User, Error>("user", async () => {
+    const user = await (
+      await fetch(`http://localhost:5000/api/v1/users/${id}`)
+    ).json();
+    setFirstname(user.firstName);
+    setLastName(user.lastName);
+    setEmail(user.email);
+    setProfession(user.profession);
+    return user;
+  });
 
-  const [firstname, setFirstname] = useState<string>("");
-  const [lastname, setLastName] = useState<string>("");
-  const [email, setEmail] = useState<string>("");
-  const [profession, setProfession] = useState<string>("");
+  const [firstname, setFirstname] = useState<string>(data?.firstname || "");
+  const [lastname, setLastName] = useState<string>(data?.lastname || "");
+  const [email, setEmail] = useState<string>(data?.email || "");
+  const [profession, setProfession] = useState<string>(data?.profession || "");
 
   const [message, setMessage] = useState<string>("");
 
@@ -54,8 +54,7 @@ function User() {
       .then((json) => console.log(json))
   );
 
-  const handleSubmit = (e: Event) => {
-    e.preventDefault();
+  const handleSubmit = () => {
     const newUser = {
       firstname,
       lastname,

@@ -3,7 +3,7 @@ import { useQuery } from "react-query";
 import { Link } from "react-router-dom";
 import CreateUserForm from "./CreateUserForm";
 
-interface Data {
+interface User {
   id: number;
   firstname: string;
   lastname: string;
@@ -12,7 +12,7 @@ interface Data {
 }
 
 function Users() {
-  const { isLoading, error, data } = useQuery<Data[], Error>("users", () =>
+  const { isLoading, error, data } = useQuery<User[], Error>("users", () =>
     fetch("http://localhost:5000/api/v1/users").then((res) => res.json())
   );
   if (isLoading) return "Loading...";
