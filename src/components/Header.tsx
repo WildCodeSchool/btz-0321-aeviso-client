@@ -1,5 +1,5 @@
-import React from "react";
-import { Link } from "react-router-dom";
+import React from 'react';
+import { Link } from 'react-router-dom';
 
 function Header() {
   return (
@@ -10,6 +10,10 @@ function Header() {
 
       <Link to="/users">
         <span className="border-r border-black">Test users</span>
+      </Link>
+
+      <Link to="/companies">
+        <span className="border-r border-black">Test companies</span>
       </Link>
     </div>
   );
