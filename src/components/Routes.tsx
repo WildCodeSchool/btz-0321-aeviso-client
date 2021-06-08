@@ -1,5 +1,6 @@
 import React from "react";
 import { Route } from "react-router-dom";
+import Professions from "../professions/Professions";
 import User from "./User";
 import Users from "./Users";
 import Vite from "./Vite";
@@ -12,6 +13,9 @@ function Routes() {
       </Route>
       <Route path="/users" component={Users} />
       <Route path="/user/:id" component={User} />
+      <Route path="/Professions">
+        <Professions />
+        </Route>
     </>
   );
 }

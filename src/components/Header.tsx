@@ -8,8 +8,12 @@ function Header() {
         <span className="border-r border-black">Ae Viso </span>
       </Link>
 
+      
       <Link to="/users">
         <span className="border-r border-black">Test users</span>
+      </Link>
+      <Link to ="/Professions">
+      <span className="border-r border-black">Test Professions</span>
       </Link>
     </div>
   );
