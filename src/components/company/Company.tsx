@@ -1,22 +1,16 @@
 import React from "react";
 import { useQuery } from "react-query";
 import { useParams } from "react-router-dom";
-import axios, { AxiosResponse } from "axios";
+import { AxiosError } from "axios";
 import UpdateCompany from "./UpdateCompany";
-
-interface Data {
-  id: number;
-  name: string;
-  zipCode: string;
-  city: string;
-}
+import { companies } from "../../API/requests";
 
 function Company() {
   const { id }: { id: string } = useParams();
 
-  const { isLoading, error, data } = useQuery<AxiosResponse<Data>, Error>(
+  const { isLoading, error, data } = useQuery<Company, AxiosError>(
     ["company", id],
-    () => axios(`http://localhost:5000/api/v1/companies/${id}`)
+    () => companies.getOne(id)
   );
 
   if (isLoading) {
@@ -34,12 +28,11 @@ function Company() {
         <>
           <h3 className="mb-6">Test User</h3>
           <div className="border border-black mb-2">
-            <p>{data!.data.id}</p>
-            <p>{data!.data.name}</p>
-            <p>{data!.data.zipCode}</p>
-            <p>{data!.data.city}</p>
+            <p>{data!.id}</p>
+            <p>{data!.name}</p>
+            <p>{data!.zipCode}</p>
+            <p>{data!.city}</p>
           </div>
-          <button>UPDATE</button>
           <UpdateCompany />
         </>
       )}

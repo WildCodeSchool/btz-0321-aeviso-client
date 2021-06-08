@@ -1,48 +1,32 @@
 import React, { useState } from "react";
-import axios, { AxiosError } from "axios";
+import { useMutation } from "react-query";
+import { AxiosError } from "axios";
 import { useForm } from "react-hook-form";
 import { useParams } from "react-router";
-import { useQueryClient } from "react-query";
-
-interface Data {
-  id: number;
-  name: string;
-  zipCode: string;
-  city: string;
-}
-interface APIData extends Data {
-  id: string;
-  createdAt: string;
-  updatedAt: string;
-}
+import { companies } from "../../API/requests";
 
 function UpdateCompany() {
+  const { register, handleSubmit } = useForm<Company>();
   const { id }: { id: string } = useParams();
   const [error, setError] = useState<AxiosError | null>(null);
-  const queryClient = useQueryClient();
 
-  const updateCompany = async (data: Data) => {
-    const res = await axios.put<Data>(
-      `http://localhost:5000/api/v1/companies/${id}`,
-      {
-        name: data.name,
-        zipCode: data.zipCode,
-        city: data.city,
-      }
-    );
-    return res.data;
-  };
+  const { mutate } = useMutation(companies.put, {
+    onSuccess: () => {
+      console.log("Update done");
+    },
+    onError: (error: AxiosError) => {
+      console.log(error);
+      setError(error);
+    },
+  });
 
-  // const mutation = useMutation(updateCompany, {
-  //   onSuccess: (data: Data) => {
-  //     queryClient.updateCompany(["todo", { id: 5 }], data);
-  //   },
-  // });
-
-  // mutation.mutate({
-  //   id: 5,
-  //   name: "Do the laundry",
-  // });
+  const { mutateAsync } = useMutation(() => companies.delete(id), {
+    onSuccess: () => console.log("ok done"),
+    onError: (error: AxiosError) => {
+      console.log(error);
+      setError(error);
+    },
+  });
 
   if (error) {
     return (
@@ -54,20 +38,34 @@ function UpdateCompany() {
 
   return (
     <div>
+      <p>Do you want to delete this company</p>
+      <button
+        type="submit"
+        onClick={() => mutateAsync()}
+        className="border border-black mb-2 bg-red-500"
+      >
+        DELETE{" "}
+      </button>
+
       <h3>Please update the Company</h3>
-      <form action="">
+      <form
+        action=""
+        className="flex flex-col"
+        onSubmit={handleSubmit((data) => mutate({ id, data }))}
+      >
         <label>
           Name :
-          <input type="text" />
+          <input type="text" {...register("name")} />
         </label>
         <label>
           Zip Code :
-          <input type="text" />
+          <input type="text" {...register("zipCode")} />
         </label>
         <label>
           City:
-          <input type="text" />
+          <input type="text" {...register("city")} />
         </label>
+        <button type="submit">Update</button>
       </form>
     </div>
   );

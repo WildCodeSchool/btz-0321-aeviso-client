@@ -8,7 +8,7 @@ function Company({ setCompaniesList }: { setCompaniesList: Function }) {
   const { register, handleSubmit } = useForm<Company>();
   const [error, setError] = useState<AxiosError | null>(null);
 
-  const { mutate } = useMutation(companies.getOne, {
+  const { mutate } = useMutation(companies.post, {
     onSuccess: (data: Company) => {
       setCompaniesList((companies: any) => [...companies, data]);
     },
