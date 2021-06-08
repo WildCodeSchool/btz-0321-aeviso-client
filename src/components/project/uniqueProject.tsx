@@ -10,15 +10,9 @@ interface Params {
 }
 
 function UniqueProject() {
-  const [name, setName] = useState<string>();
-  const [description, setDescription] = useState<string>();
+  const { register, handleSubmit } = useForm<Project>();
   const { id } = useParams<Params>();
   const history = useHistory();
-
-  const dataChange = {
-    name,
-    description,
-  };
 
   const { isLoading: projectLoading, error: projectError, data } = useQuery<Project>(['project', id], () => project.getOne(id));
 
@@ -28,7 +22,7 @@ function UniqueProject() {
     mutateAsync,
   } = useMutation(() => project.delete(id), { onSuccess: () => history.push('/projects') });
 
-  const { isLoading: updateLoading, error: updateError, mutate } = useMutation(() => project.put(id, dataChange));
+  const { isLoading: updateLoading, error: updateError, mutate } = useMutation(project.put, { onSuccess: () => history.push('/projects') });
 
   const loading = projectLoading || mutationLoading || updateLoading;
   const error = projectError || mutationError || updateError;
@@ -50,22 +44,16 @@ function UniqueProject() {
       </div>
       <div className="w-6/12 ml-28">
         <h1 className="font-bold">Update this Project</h1>
-        <form className="flex flex-col">
+        <form onSubmit={handleSubmit((data) => mutate({ data, id }))} className="flex flex-col">
           <label className="mt-5" htmlFor="">
             Name
           </label>
-          <input className="p-2 mt-2 border border-black" type="text" value={name} onChange={(e) => setName(e.target.value)} />
+          <input className="p-2 mt-2 border border-black" {...register('name')} type="text" />
           <label className="mt-5" htmlFor="">
             Description
           </label>
-          <textarea
-            className="h-28 p-2 mt-2 border border-black"
-            name="Description"
-            value={description}
-            onChange={(e) => setDescription(e.target.value)}></textarea>
-          <button onClick={() => mutate()} className="w-40 mt-5 border border-black px-5 ">
-            Update
-          </button>
+          <textarea className="h-28 p-2 mt-2 border border-black" {...register('description')}></textarea>
+          <input type="submit" />
         </form>
       </div>
     </div>
