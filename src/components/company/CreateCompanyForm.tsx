@@ -1,6 +1,7 @@
 import React, { useState } from "react";
-import { useQuery } from "react-query";
-import axios, { AxiosResponse } from "axios";
+import { useMutation } from "react-query";
+import axios, { AxiosError } from "axios";
+import { useForm } from "react-hook-form";
 
 interface Data {
   name: string;
@@ -10,47 +11,68 @@ interface Data {
 
 interface APIData extends Data {
   id: string;
+  createdAt: string;
+  updatedAt: string;
 }
 
-function Company() {
-  const [name, setName] = useState<string>("");
-  const [zipCode, setZipCode] = useState<string>("");
-  const [city, setCity] = useState<string>("");
+function Company({ setCompanies }: { setCompanies: Function }) {
+  const { register, handleSubmit } = useForm();
+  const [error, setError] = useState<AxiosError | null>(null);
 
-  const { isLoading, error, data } = useQuery<AxiosResponse<Data>, Error>(
-    ["company", { method: "POST" }],
-    () =>
-      axios.post(`http://localhost:5000/api/v1/companies`, {
-        body: JSON.stringify({
-          name,
-          zipCode,
-          city,
-        } as Data),
-      })
-  );
+  const createCompany = async (data: Data) => {
+    const res = await axios.post<Data>(
+      `http://localhost:5000/api/v1/companies`,
+      {
+        name: data.name,
+        zipCode: data.zipCode,
+        city: data.city,
+      }
+    );
 
-  if (isLoading) return "Loading...";
+    return res.data;
+  };
 
-  if (error) return "An error has occurred: " + error.message;
+  const { mutate, data } = useMutation(createCompany, {
+    onSuccess: (data: Data) => {
+      setCompanies((companies: any) => [...companies, data]);
+    },
+    onError: (error: AxiosError) => {
+      console.log(error);
+      setError(error);
+    },
+  });
+
+  if (error)
+    return (
+      <p>
+        An error has occurred: {error.message}. Error code: {error.code}
+      </p>
+    );
 
   return (
     <div>
       <h3 className="mb-6">Create Company</h3>
       <div className="border border-black mb-2" />
 
-      <form action="">
+      <form
+        action=""
+        className="flex flex-col"
+        onSubmit={handleSubmit((data: Data) => mutate(data))}
+      >
         <label>
           Name:
-          <input type="text" defaultValue={data!.data.name} />
+          <input type="text" {...register("name")} />
         </label>
         <label>
           Zip Code:
-          <input type="text" defaultValue={data!.data.zipCode} />
+          <input type="text" {...register("zipCode")} />
         </label>
         <label>
           City:
-          <input type="text" defaultValue={data!.data.city} />
+          <input type="text" {...register("city")} />
         </label>
+
+        <button type="submit">Submit</button>
       </form>
     </div>
   );
