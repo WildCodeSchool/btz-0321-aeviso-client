@@ -12,7 +12,7 @@ function Header() {
         <span className="border-r border-black">Test users</span>
       </Link>
 
-      <Link className="border-r border-black" to="/project">
+      <Link to="/projects" className="border-r border-black">
         <span>Test projects</span>
       </Link>
     </div>
