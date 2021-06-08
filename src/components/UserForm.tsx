@@ -1,44 +1,53 @@
-import React, { useState } from "react";
-import { useMutation, useQuery } from "react-query";
+import axios from "axios";
+import React, { FormEvent, useEffect, useState } from "react";
+import { useMutation } from "react-query";
+import { useParams } from "react-router";
 
-interface User {
-  firstname: string;
-  lastname: string;
-  email: string;
-  profession: string | null;
+interface IProps {
+  initFirstname?: string;
+  initLastname?: string;
+  initEmail?: string;
+  initProfession?: string | null;
+  mutationFn: (variables: { user: User; id?: string }) => Promise<any>;
 }
 
-function CreateUserForm() {
-  const [firstname, setFirstname] = useState<string>("");
-  const [lastname, setLastName] = useState<string>("");
-  const [email, setEmail] = useState<string>("");
-  const [profession, setProfession] = useState<string>("");
+function userForm({
+  initFirstname,
+  initLastname,
+  initEmail,
+  initProfession,
+  mutationFn,
+}: IProps) {
+  const [firstname, setFirstname] = useState("");
+  const [lastname, setLastName] = useState("");
+  const [email, setEmail] = useState("");
+  const [profession, setProfession] = useState("");
 
-  const mutation = useMutation((user: User) =>
-    fetch("http://localhost:5000/api/v1/users", {
-      method: "POST",
-      headers: {
-        "Content-type": "application/json; charset=UTF-8",
-      },
-      body: JSON.stringify(user),
-    })
-      .then((response) => response.json())
-      .then((json) => console.log(json))
-  );
+  useEffect(() => {
+    setFirstname(initFirstname!);
+    setLastName(initLastname!);
+    setEmail(initEmail!);
+    setProfession(initProfession!);
+  }, [initFirstname, initLastname, initEmail, initProfession]);
 
-  const handleSubmit = (e: Event) => {
-    const newUser = {
+  const { mutate, isLoading, error, isSuccess } = useMutation(mutationFn);
+
+  const { id } = useParams<{ id: string }>();
+
+  const handleSubmit = (e: FormEvent<HTMLFormElement>) => {
+    e.preventDefault();
+    const user = {
       firstname,
       lastname,
       email,
       profession,
     };
-    mutation.mutate(newUser);
+    mutate({ user, id });
   };
 
-  if (mutation.isLoading) return <p>Sending User...</p>;
-  if (mutation.error) return <p>An error has occurred</p>;
-  if (mutation.isSuccess) return <p>User successfuly added</p>;
+  if (isLoading) return <p>Sending User...</p>;
+  if (error) return <p>An error has occurred</p>;
+  if (isSuccess) return <p>User successfuly added</p>;
 
   return (
     <div>
@@ -51,6 +60,7 @@ function CreateUserForm() {
               type="text"
               name="firstName"
               id="firstName"
+              value={firstname}
               onChange={(e) => setFirstname(e.target.value)}
             />
           </div>
@@ -60,6 +70,7 @@ function CreateUserForm() {
               type="text"
               name="lastName"
               id="lastName"
+              value={lastname}
               onChange={(e) => setLastName(e.target.value)}
             />
           </div>
@@ -69,6 +80,7 @@ function CreateUserForm() {
               type="email"
               name="email"
               id="email"
+              value={email}
               onChange={(e) => setEmail(e.target.value)}
             />
           </div>
@@ -78,11 +90,12 @@ function CreateUserForm() {
               type="job"
               name="job"
               id="job"
+              value={profession}
               onChange={(e) => setProfession(e.target.value)}
             />
           </div>
           <div className="form-example">
-            <input type="submit" value="Create new user" />
+            <input type="submit" value="Mettre à jour" />
           </div>
         </form>
       </div>
@@ -90,4 +103,4 @@ function CreateUserForm() {
   );
 }
 
-export default CreateUserForm;
+export default userForm;

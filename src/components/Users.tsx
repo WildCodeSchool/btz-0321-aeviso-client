@@ -1,42 +1,38 @@
 import React from "react";
 import { useQuery } from "react-query";
 import { Link } from "react-router-dom";
-import CreateUserForm from "./CreateUserForm";
+import { user } from "../API/requests";
+import UserForm from "./UserForm";
 
-interface Data {
-  id: number;
-  firstname: string;
-  lastname: string;
-  email: string;
-  profession: string | null;
-}
-
-function Users() {
-  const { isLoading, error, data } = useQuery<Data[], Error>("users", () =>
-    fetch("http://localhost:5000/api/v1/users").then((res) => res.json())
+function Users(): JSX.Element {
+  const { isLoading, error, data } = useQuery<User[], Error>(
+    "users",
+    user.getAll
   );
-  if (isLoading) return "Loading...";
-  if (error) return "An error has occurred: " + error.message;
-  if (data)
-    return (
+
+  if (isLoading) return <p>Loading...</p>;
+
+  if (error) return <p>An error has occurred: {error.message}</p>;
+
+  return (
+    <div>
+      <h3 className="mb-6">Users test</h3>
       <div>
-        <h3 className="mb-6">Users test</h3>
-        <div>
-          {data?.map((user) => {
-            return (
-              <div key={user.id} className="border border-black mb-2">
-                <Link to={`/user/${user.id}`}>
-                  <p>
-                    {user.firstname} {user.lastname}
-                  </p>
-                </Link>
-              </div>
-            );
-          })}
-        </div>
-        <CreateUserForm />
+        {data?.map((user) => {
+          return (
+            <div key={user.id} className="border border-black mb-2">
+              <Link to={`/user/${user.id}`}>
+                <p>
+                  {user.firstname} {user.lastname}
+                </p>
+              </Link>
+            </div>
+          );
+        })}
       </div>
-    );
+      <UserForm mutationFn={user.create} />
+    </div>
+  );
 }
 
 export default Users;
