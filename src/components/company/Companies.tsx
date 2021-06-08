@@ -1,27 +1,18 @@
 import React, { useState } from "react";
 import { Link } from "react-router-dom";
 import { useQuery } from "react-query";
-import axios, { AxiosResponse } from "axios";
-
+import { companies } from "../../API/requests";
 import CreateCompanyForm from "./CreateCompanyForm";
-
-interface Data {
-  id: number;
-  name: string;
-  city: string;
-  zipCode: string;
-}
+import { AxiosError } from "axios";
 
 function Companies() {
-  const [companies, setCompanies] = useState<Data[]>([]);
+  const [companiesList, setCompaniesList] = useState<Company[]>([]);
 
-  console.log({ companies });
-
-  const { isLoading, error, data } = useQuery<AxiosResponse<Data[]>, Error>(
+  const { isLoading, error, data } = useQuery<Company[], AxiosError>(
     "companies",
-    () => axios.get("http://localhost:5000/api/v1/companies"),
+    () => companies.getAll(),
     {
-      onSuccess: (data: AxiosResponse<Data[]>) => setCompanies(data.data),
+      onSuccess: (data) => setCompaniesList(data),
     }
   );
 
@@ -39,7 +30,7 @@ function Companies() {
         <>
           <h3 className="mb-6">Companies test</h3>
           <div>
-            {companies.map((company) => {
+            {companiesList.map((company) => {
               return (
                 <div key={company.id} className="border border-black mb-2">
                   <Link to={`/companies/${company.id}`}>
@@ -51,7 +42,7 @@ function Companies() {
               );
             })}
           </div>
-          <CreateCompanyForm setCompanies={setCompanies} />
+          <CreateCompanyForm setCompaniesList={setCompaniesList} />
         </>
       )}
     </div>

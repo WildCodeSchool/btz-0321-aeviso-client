@@ -2,6 +2,7 @@ import React from "react";
 import { useQuery } from "react-query";
 import { useParams } from "react-router-dom";
 import axios, { AxiosResponse } from "axios";
+import UpdateCompany from "./UpdateCompany";
 
 interface Data {
   id: number;
@@ -38,6 +39,8 @@ function Company() {
             <p>{data!.data.zipCode}</p>
             <p>{data!.data.city}</p>
           </div>
+          <button>UPDATE</button>
+          <UpdateCompany />
         </>
       )}
     </div>

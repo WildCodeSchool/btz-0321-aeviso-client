@@ -1,40 +1,16 @@
 import React, { useState } from "react";
 import { useMutation } from "react-query";
-import axios, { AxiosError } from "axios";
+import { AxiosError } from "axios";
 import { useForm } from "react-hook-form";
+import { companies } from "../../API/requests";
 
-interface Data {
-  name: string;
-  zipCode: string;
-  city: string;
-}
-
-interface APIData extends Data {
-  id: string;
-  createdAt: string;
-  updatedAt: string;
-}
-
-function Company({ setCompanies }: { setCompanies: Function }) {
-  const { register, handleSubmit } = useForm();
+function Company({ setCompaniesList }: { setCompaniesList: Function }) {
+  const { register, handleSubmit } = useForm<Company>();
   const [error, setError] = useState<AxiosError | null>(null);
 
-  const createCompany = async (data: Data) => {
-    const res = await axios.post<Data>(
-      `http://localhost:5000/api/v1/companies`,
-      {
-        name: data.name,
-        zipCode: data.zipCode,
-        city: data.city,
-      }
-    );
-
-    return res.data;
-  };
-
-  const { mutate, data } = useMutation(createCompany, {
-    onSuccess: (data: Data) => {
-      setCompanies((companies: any) => [...companies, data]);
+  const { mutate } = useMutation(companies.getOne, {
+    onSuccess: (data: Company) => {
+      setCompaniesList((companies: any) => [...companies, data]);
     },
     onError: (error: AxiosError) => {
       console.log(error);
@@ -57,7 +33,7 @@ function Company({ setCompanies }: { setCompanies: Function }) {
       <form
         action=""
         className="flex flex-col"
-        onSubmit={handleSubmit((data: Data) => mutate(data))}
+        onSubmit={handleSubmit((data) => mutate(data))}
       >
         <label>
           Name:
