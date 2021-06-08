@@ -41,7 +41,15 @@ function Company() {
       <form action="">
         <label>
           Name:
-          <input type="text" defaultValue={name} />
+          <input type="text" defaultValue={data!.data.name} />
+        </label>
+        <label>
+          Zip Code:
+          <input type="text" defaultValue={data!.data.zipCode} />
+        </label>
+        <label>
+          City:
+          <input type="text" defaultValue={data!.data.city} />
         </label>
       </form>
     </div>
