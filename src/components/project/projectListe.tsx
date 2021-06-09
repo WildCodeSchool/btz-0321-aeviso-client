@@ -8,7 +8,7 @@ function ProjectList() {
   const { register, handleSubmit } = useForm<Project>();
   const history = useHistory();
   const { isLoading: projectLoading, error: projectError, data } = useQuery<Project[]>('projects', project.getAll);
-  const { isLoading: postLoading, error: postError, mutate } = useMutation(project.post, { onSuccess: () => history.push('/projects') });
+  const { isLoading: postLoading, error: postError, mutate } = useMutation(project.post, { onSuccess: () => window.location.reload() });
 
   const loading = projectLoading || postLoading;
   const error = postError || projectError;
@@ -47,7 +47,7 @@ function ProjectList() {
             Description
           </label>
           <textarea className="h-28 p-2 mt-2 border border-black" {...register('description')}></textarea>
-          <input type="submit" />
+          <input className="mt-5 py-1 border border-black" type="submit" />
         </form>
       </div>
     </div>
