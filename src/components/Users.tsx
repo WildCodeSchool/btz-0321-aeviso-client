@@ -2,10 +2,13 @@ import React, { useState } from 'react';
 import { useQuery } from 'react-query';
 import { Link } from 'react-router-dom';
 import { user } from '../API/requests';
+import Modal from './Modal';
 import UserForm from './UserForm';
 
 function Users(): JSX.Element {
   const [users, setUsers] = useState<User[]>([]);
+  const [isModal, setIsModal] = useState<Boolean>(false);
+  const [message, setMessage] = useState<string>('');
   const { isLoading, error, data } = useQuery<User[], Error>(
     'users',
     user.getAll,
@@ -15,6 +18,14 @@ function Users(): JSX.Element {
   if (isLoading) return <p>Loading...</p>;
 
   if (error) return <p>An error has occurred: {error.message}</p>;
+
+  if (isModal)
+    return (
+      <Modal
+        message={message}
+        handleClick={() => setIsModal((prevState) => !prevState)}
+      />
+    );
 
   return (
     <div>
@@ -32,7 +43,11 @@ function Users(): JSX.Element {
           );
         })}
       </div>
-      <UserForm mutationFn={user.create} />
+      <UserForm
+        mutationFn={user.create}
+        setIsModal={setIsModal}
+        setMessage={setMessage}
+      />
     </div>
   );
 }

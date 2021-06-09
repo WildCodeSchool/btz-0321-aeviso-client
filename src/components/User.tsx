@@ -6,14 +6,15 @@ import UserForm from './UserForm';
 import { user } from '../API/requests';
 
 function User(): JSX.Element {
-  const [isModal, setIsModal] = useState(false);
-  const [message, setMessage] = useState('');
+  const [isModal, setIsModal] = useState<Boolean>(false);
+  const [message, setMessage] = useState<string>('');
 
-  const history = useHistory();
   const { id }: { id: string } = useParams();
 
-  const { isLoading, error, data } = useQuery<User, Error>('user', () =>
-    user.getOne(id)
+  const { isLoading, error, data } = useQuery<User, Error>(
+    ['user', id],
+    () => user.getOne(id),
+    { cacheTime: 0 }
   );
 
   const { mutate } = useMutation(() => user.delete({ id }), {
@@ -25,7 +26,10 @@ function User(): JSX.Element {
 
   if (isModal) {
     return (
-      <Modal message={message} handleClick={() => history.push('/users')} />
+      <Modal
+        message={message}
+        handleClick={() => setIsModal((prevState) => !prevState)}
+      />
     );
   }
   if (isLoading) return <p>Loading...</p>;
@@ -38,6 +42,8 @@ function User(): JSX.Element {
         initLastname={data!.lastname}
         initEmail={data!.email}
         initProfession={data!.profession}
+        setIsModal={setIsModal}
+        setMessage={setMessage}
       />
       <button onClick={() => mutate()}>Supprimer</button>
     </div>

@@ -2,14 +2,18 @@ import React, { Dispatch, SetStateAction, useEffect, useState } from 'react';
 import { useMutation } from 'react-query';
 import { useParams } from 'react-router';
 import { SubmitHandler, useForm } from 'react-hook-form';
-import Modal from './Modal';
 
-interface IProps {
-  initFirstname?: string;
-  initLastname?: string;
-  initEmail?: string;
-  initProfession?: string | null;
+interface BaseIProps {
   mutationFn: (variables: { user: User; id?: string }) => Promise<any>;
+  setIsModal: Dispatch<SetStateAction<Boolean>>;
+  setMessage: Dispatch<SetStateAction<string>>;
+}
+
+interface UserIProps extends BaseIProps {
+  initFirstname: string;
+  initLastname: string;
+  initEmail: string;
+  initProfession: string | null;
 }
 
 interface IFormInput {
@@ -19,28 +23,36 @@ interface IFormInput {
   profession: string;
 }
 
-function userForm({
-  initFirstname,
-  initLastname,
-  initEmail,
-  initProfession,
-  mutationFn,
-}: IProps) {
-  const [firstname, setFirstname] = useState('');
-  const [lastname, setLastName] = useState('');
-  const [email, setEmail] = useState('');
-  const [profession, setProfession] = useState('');
+function userForm(props: UserIProps | BaseIProps) {
+  const {
+    initFirstname,
+    initLastname,
+    initEmail,
+    initProfession,
+    mutationFn,
+    setIsModal,
+    setMessage,
+  } = props as UserIProps;
 
-  const { register, handleSubmit } = useForm();
+  const [user, setUser] = useState({
+    firstname: initFirstname,
+    lastname: initLastname,
+    email: initEmail,
+    profession: initProfession,
+  });
 
-  useEffect(() => {
-    setFirstname(initFirstname!);
-    setLastName(initLastname!);
-    setEmail(initEmail!);
-    setProfession(initProfession!);
-  }, [initFirstname, initLastname, initEmail, initProfession]);
+  const { register, handleSubmit, watch } = useForm();
 
-  const { mutate, isLoading, error, isSuccess } = useMutation(mutationFn);
+  const { mutate, isLoading, error, isSuccess } = useMutation(mutationFn, {
+    onSuccess: (data) => {
+      console.log(data);
+      setUser({
+        ...data,
+      });
+      setMessage('Utilisateur correctement créé/ajouté');
+      setIsModal((prevState) => !prevState);
+    },
+  });
 
   const { id } = useParams<{ id: string }>();
 
@@ -61,13 +73,6 @@ function userForm({
 
   if (isLoading) return <p>Envoie dans la base de données</p>;
   if (error) return <p>Une erreur est survenue...</p>;
-  if (isSuccess)
-    return (
-      <Modal
-        message="Utilisateur correctement ajouté/modifié"
-        handleClick={() => window.location.reload()}
-      />
-    );
 
   return (
     <div>
@@ -76,19 +81,22 @@ function userForm({
         <form onSubmit={handleSubmit(onSubmit)}>
           <div className="form-firstname">
             <label htmlFor="firstName">Prénom: </label>
-            <input defaultValue={firstname} {...register('firstname')} />
+            <input defaultValue={user.firstname} {...register('firstname')} />
           </div>
           <div className="form-lastname">
             <label htmlFor="lastName">Nom: </label>
-            <input defaultValue={lastname} {...register('lastname')} />
+            <input defaultValue={user.lastname} {...register('lastname')} />
           </div>
           <div className="form-mail">
             <label htmlFor="email">Email: </label>
-            <input defaultValue={email} {...register('email')} />
+            <input defaultValue={user.email} {...register('email')} />
           </div>
           <div className="form-job">
             <label htmlFor="profession">Fonction: </label>
-            <input defaultValue={profession} {...register('profession')} />
+            <input
+              defaultValue={user.profession as string}
+              {...register('profession')}
+            />
           </div>
           <div className="form-submit">
             <input type="submit" value="Envoyer" />
