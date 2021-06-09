@@ -1,8 +1,8 @@
-import React from "react";
-import { Route } from "react-router-dom";
-import User from "./User";
-import Users from "./Users";
-import Vite from "./Vite";
+import React from 'react';
+import { Route } from 'react-router-dom';
+import User from './User';
+import Users from './Users';
+import Vite from './Vite';
 
 function Routes() {
   return (
