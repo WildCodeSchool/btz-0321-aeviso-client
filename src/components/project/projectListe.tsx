@@ -1,4 +1,4 @@
-import React from 'react';
+import React, { useState } from 'react';
 import { useForm } from 'react-hook-form';
 import { useMutation, useQuery } from 'react-query';
 import { Link, useHistory } from 'react-router-dom';
@@ -6,9 +6,18 @@ import { project } from '../../API/requests';
 
 function ProjectList() {
   const { register, handleSubmit } = useForm<Project>();
+  const [listProject, setListProject] = useState<Project[]>([]);
   const history = useHistory();
   const { isLoading: projectLoading, error: projectError, data } = useQuery<Project[]>('projects', project.getAll);
-  const { isLoading: postLoading, error: postError, mutate } = useMutation(project.post, { onSuccess: () => window.location.reload() });
+  const {
+    isLoading: postLoading,
+    error: postError,
+    mutate,
+  } = useMutation(project.post, {
+    onSuccess: (data: Project) => {
+      setListProject((project) => [...project, data]);
+    },
+  });
 
   const loading = projectLoading || postLoading;
   const error = postError || projectError;
@@ -38,7 +47,6 @@ function ProjectList() {
       <div className="w-6/12">
         <h1 className=" text-2xl font-bold">Post a new project</h1>
         <form onSubmit={handleSubmit((data) => mutate({ data }))} className="flex flex-col">
-          {' '}
           <label className="mt-5" htmlFor="">
             Name
           </label>
