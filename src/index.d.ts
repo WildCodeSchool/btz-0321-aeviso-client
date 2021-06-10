@@ -5,3 +5,9 @@ interface User {
   email: string;
   profession: string | null;
 }
+
+interface Professions {
+  id?: number;
+  name: string;
+  profession: string | null;
+}
