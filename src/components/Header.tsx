@@ -8,10 +8,6 @@ function Header() {
         <span className="">Ae Viso </span>
       </Link>
 
-      <Link to="/users">
-        <span className="">Test users</span>
-      </Link>
-
       <Link to="/projects" className="">
         <span>Test projects</span>
       </Link>
