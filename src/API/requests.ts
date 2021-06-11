@@ -28,7 +28,7 @@ export const user = {
   },
 };
 
-export const profession = {
+export const jobs = {
   getAll: () =>
     axios
       .get("http://localhost:5000/api/v1/professions")
@@ -41,22 +41,20 @@ export const profession = {
 
   delete: ({ id }: { id: string }) =>
     axios
-      .delete(`http://localhost:5000/api/v1/users/${id}`)
+      .delete(`http://localhost:5000/api/v1/professions/${id}`)
       .then((res) => res.data),
 
-  create: ({ user }: { user: User }) => {
-    console.log({ user });
+  create: (job: Job) => {
+    console.log({ job });
 
     return axios
-      .post("http://localhost:5000/api/v1/users", user)
+      .post("http://localhost:5000/api/v1/professions", job)
       .then((res) => res.data);
   },
 
-  update: ({ user, id }: { user: User; id?: string }) => {
-    console.log({ user, id });
-    if (!id) throw new Error("Id can't be undefined");
+  update: ({ job, id }: { job: Job; id?: string }) => {
     return axios
-      .put(`http://localhost:5000/api/v1/users/${id}`, user)
+      .put(`http://localhost:5000/api/v1/professions/${id}`, job)
       .then((res) => res.data);
   },
 };

@@ -6,8 +6,8 @@ interface User {
   profession: string | null;
 }
 
-interface Professions {
-  id?: number;
+interface Job {
+  id?: string;
   name: string;
   profession: string | null;
 }
