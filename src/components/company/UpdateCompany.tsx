@@ -1,20 +1,16 @@
-import React, { Dispatch, SetStateAction } from "react";
-import { useMutation } from "react-query";
-import { AxiosError } from "axios";
-import { useForm } from "react-hook-form";
-import { useHistory, useParams } from "react-router";
-import { companies } from "../../API/requests";
+import React, { Dispatch, SetStateAction } from 'react';
+import { useMutation } from 'react-query';
+import { AxiosError } from 'axios';
+import { useForm } from 'react-hook-form';
+import { useParams } from 'react-router';
+import { companies } from '../../API/requests';
 
 interface Data {
   id: string;
   data: Company;
 }
 
-function UpdateCompany({
-  setCompany,
-}: {
-  setCompany: Dispatch<SetStateAction<Company | null>>;
-}) {
+function UpdateCompany({ setCompany }: { setCompany: Dispatch<SetStateAction<Company | null>> }) {
   const { register, handleSubmit } = useForm<Company>();
   const { id }: { id: string } = useParams();
 
@@ -47,15 +43,15 @@ function UpdateCompany({
       >
         <label>
           Name :
-          <input type="text" {...register("name")} />
+          <input type="text" {...register('name')} />
         </label>
         <label>
           Zip Code :
-          <input type="text" {...register("zipCode")} />
+          <input type="text" {...register('zipCode')} />
         </label>
         <label>
           City:
-          <input type="text" {...register("city")} />
+          <input type="text" {...register('city')} />
         </label>
         <button type="submit">Update</button>
       </form>

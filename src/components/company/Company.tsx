@@ -1,27 +1,23 @@
-import React, { useState } from "react";
-import { useQuery } from "react-query";
-import { useParams } from "react-router-dom";
-import { AxiosError } from "axios";
-import UpdateCompany from "./UpdateCompany";
-import { companies } from "../../API/requests";
-import DeleteCompany from "./DeleteCompany";
+import React, { useState } from 'react';
+import { useQuery } from 'react-query';
+import { useParams } from 'react-router-dom';
+import { AxiosError } from 'axios';
+import UpdateCompany from './UpdateCompany';
+import { companies } from '../../API/requests';
+import DeleteCompany from './DeleteCompany';
 
 function Company() {
   const { id }: { id: string } = useParams();
 
   const [company, setCompany] = useState<Company | null>(null);
 
-  const { isLoading, error } = useQuery<Company, AxiosError>(
-    ["company", id],
-    () => companies.getOne(id),
-    {
-      onSuccess: (data) => {
-        console.log(company);
-        setCompany(data);
-      },
-      staleTime: Infinity,
-    }
-  );
+  const { isLoading, error } = useQuery<Company, AxiosError>(['company', id], () => companies.getOne(id), {
+    onSuccess: (data) => {
+      console.log(company);
+      setCompany(data);
+    },
+    staleTime: Infinity,
+  });
   console.log(company);
 
   if (isLoading) {

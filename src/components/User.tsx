@@ -1,34 +1,51 @@
-import React from "react";
-import { useQuery } from "react-query";
-import { useParams } from "react-router-dom";
+import React, { useState } from 'react';
+import { useMutation, useQuery } from 'react-query';
+import { useParams, useHistory } from 'react-router-dom';
+import Modal from './Modal';
+import UserForm from './UserForm';
+import { user } from '../API/requests';
 
-interface Data {
-  id: number;
-  firstname: string;
-  lastname: string;
-  email: string;
-  profession: string | null;
-}
+function User(): JSX.Element {
+  const [isModal, setIsModal] = useState<Boolean>(false);
+  const [message, setMessage] = useState<string>('');
 
-function User() {
   const { id }: { id: string } = useParams();
-  const { isLoading, error, data } = useQuery<Data, Error>("user", () =>
-    fetch(`http://localhost:5000/api/v1/users/${id}`).then((res) => res.json())
+
+  const { isLoading, error, data } = useQuery<User, Error>(
+    ['user', id],
+    () => user.getOne(id),
+    { cacheTime: 0 }
   );
 
-  if (isLoading) return "Loading...";
-  if (error) return "An error has occurred: " + error.message;
+  const { mutate } = useMutation(() => user.delete({ id }), {
+    onSuccess: () => {
+      setMessage('Utilisateur supprimé');
+      setIsModal((prevState) => !prevState);
+    },
+  });
+
+  if (isModal) {
+    return (
+      <Modal
+        message={message}
+        handleClick={() => setIsModal((prevState) => !prevState)}
+      />
+    );
+  }
+  if (isLoading) return <p>Loading...</p>;
+  if (error) return <p>An error has occurred: {error.message}</p>;
   return (
     <div>
-      <h3 className="mb-6">Test User</h3>
-      <div className="border border-black mb-2">
-        <p>{data?.id}</p>
-        <p>
-          {data?.firstname} {data?.lastname}
-        </p>
-        <p>{data?.email}</p>
-        <p>{data?.profession}</p>
-      </div>
+      <UserForm
+        mutationFn={user.update}
+        initFirstname={data!.firstname}
+        initLastname={data!.lastname}
+        initEmail={data!.email}
+        initProfession={data!.profession}
+        setIsModal={setIsModal}
+        setMessage={setMessage}
+      />
+      <button onClick={() => mutate()}>Supprimer</button>
     </div>
   );
 }

@@ -1,8 +1,8 @@
-import React, { useState } from "react";
-import { useMutation } from "react-query";
-import { AxiosError } from "axios";
-import { useForm } from "react-hook-form";
-import { companies } from "../../API/requests";
+import React, { useState } from 'react';
+import { useMutation } from 'react-query';
+import { AxiosError } from 'axios';
+import { useForm } from 'react-hook-form';
+import { companies } from '../../API/requests';
 
 function Company({ setCompaniesList }: { setCompaniesList: Function }) {
   const { register, handleSubmit } = useForm<Company>();
@@ -30,22 +30,18 @@ function Company({ setCompaniesList }: { setCompaniesList: Function }) {
       <h3 className="mb-6">Create Company</h3>
       <div className="border border-black mb-2" />
 
-      <form
-        action=""
-        className="flex flex-col"
-        onSubmit={handleSubmit((data) => mutate(data))}
-      >
+      <form action="" className="flex flex-col" onSubmit={handleSubmit((data) => mutate(data))}>
         <label>
           Name:
-          <input type="text" {...register("name")} />
+          <input type="text" {...register('name')} />
         </label>
         <label>
           Zip Code:
-          <input type="text" {...register("zipCode")} />
+          <input type="text" {...register('zipCode')} />
         </label>
         <label>
           City:
-          <input type="text" {...register("city")} />
+          <input type="text" {...register('city')} />
         </label>
 
         <button type="submit">Submit</button>

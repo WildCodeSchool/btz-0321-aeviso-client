@@ -1,19 +1,28 @@
-import React from "react";
-import { Route } from "react-router-dom";
-import Vite from "./Vite";
-import Users from "./Users";
-import User from "./User";
-import Companies from "./company/Companies";
-import Company from "./company/Company";
+import React from 'react';
+import { Route } from 'react-router-dom';
+import Vite from './Vite';
+import Users from './Users';
+import User from './User';
+import Companies from './company/Companies';
+import Company from './company/Company';
+
+import Professions from './professions/Professions';
+import ProjectList from './project/ProjectList';
+import UniqueProject from './project/UniqueProject';
 
 function Routes() {
   return (
     <>
-      <Route exact path="/" component={Vite} />
-      <Route path="/users" component={Users} />
-      <Route path="/user/:id" component={User} />
+      <Route exact path="/">
+        <Vite />
+      </Route>
       <Route exact path="/companies" component={Companies} />
       <Route path="/companies/:id" component={Company} />
+      <Route exact path="/projects" component={ProjectList} />
+      <Route path="/projects/:id" component={UniqueProject} />
+      <Route exact path="/users" component={Users} />
+      <Route path="/users/:id" component={User} />
+      <Route path="/professions" component={Professions} />
     </>
   );
 }

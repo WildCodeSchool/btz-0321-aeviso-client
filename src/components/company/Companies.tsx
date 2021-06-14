@@ -1,20 +1,16 @@
-import React, { useState } from "react";
-import { Link } from "react-router-dom";
-import { useQuery } from "react-query";
-import { companies } from "../../API/requests";
-import CreateCompanyForm from "./CreateCompanyForm";
-import { AxiosError } from "axios";
+import React, { useState } from 'react';
+import { Link } from 'react-router-dom';
+import { useQuery } from 'react-query';
+import { companies } from '../../API/requests';
+import CreateCompanyForm from './CreateCompanyForm';
+import { AxiosError } from 'axios';
 
 function Companies() {
   const [companiesList, setCompaniesList] = useState<Company[]>([]);
 
-  const { isLoading, error, data } = useQuery<Company[], AxiosError>(
-    "companies",
-    () => companies.getAll(),
-    {
-      onSuccess: (data) => setCompaniesList(data),
-    }
-  );
+  const { isLoading, error, data } = useQuery<Company[], AxiosError>('companies', () => companies.getAll(), {
+    onSuccess: (data) => setCompaniesList(data),
+  });
 
   if (isLoading) {
     return <p>Loading...</p>;
