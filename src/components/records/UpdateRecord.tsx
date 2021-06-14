@@ -37,7 +37,6 @@ function UpdateRecord({ setRecord }: { setRecord: Dispatch<SetStateAction<Record
         action=""
         className="flex flex-col"
         onSubmit={handleSubmit((data) => {
-          console.log(data);
           mutate({ id, data });
         })}
       >

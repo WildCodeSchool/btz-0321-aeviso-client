@@ -13,7 +13,6 @@ function RecordsForm({ setRecordsList }: { setRecordsList: Function }) {
       setRecordsList((records: any) => [...records, data]);
     },
     onError: (error: AxiosError) => {
-      console.log(error);
       setError(error);
     },
   });
