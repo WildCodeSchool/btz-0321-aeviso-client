@@ -5,6 +5,13 @@ interface User {
   email: string;
   profession: string | null;
 }
+
+interface Job {
+  id?: string;
+  name: string;
+  profession: string | null;
+}
+
 interface Project {
   id: number;
   name: string;

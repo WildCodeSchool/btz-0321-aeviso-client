@@ -3,6 +3,7 @@ import { Route } from 'react-router-dom';
 
 import User from './User';
 import Users from './Users';
+import Professions from './professions/Professions';
 import ProjectList from './project/ProjectList';
 import UniqueProject from './project/UniqueProject';
 import Vite from './Vite';
@@ -17,6 +18,7 @@ function Routes() {
       <Route path="/projects/:id" component={UniqueProject} />
       <Route exact path="/users" component={Users} />
       <Route path="/users/:id" component={User} />
+      <Route path="/professions" component={Professions} />
     </>
   );
 }
