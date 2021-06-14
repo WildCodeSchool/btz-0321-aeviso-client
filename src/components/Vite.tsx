@@ -1,5 +1,5 @@
-import React, { useState } from "react";
-import logo from "../logo.svg";
+import React, { useState } from 'react';
+import logo from '../logo.svg';
 
 function Vite() {
   const [count, setCount] = useState(0);
@@ -24,7 +24,7 @@ function Vite() {
         >
           Learn React
         </a>
-        {" | "}
+        {' | '}
         <a
           className="App-link"
           href="https://vitejs.dev/guide/features.html"

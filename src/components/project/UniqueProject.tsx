@@ -32,7 +32,7 @@ function UniqueProject() {
     isLoading: updateLoading,
     error: updateError,
     mutate,
-  } = useMutation(project.put, { onSuccess: () => history.push('/projects') });
+  } = useMutation(project.update, { onSuccess: () => history.push('/projects') });
 
   const loading = projectLoading || mutationLoading || updateLoading;
   const error = projectError || mutationError || updateError;
