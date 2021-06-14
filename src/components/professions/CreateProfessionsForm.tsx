@@ -1,22 +1,14 @@
-import React, { Dispatch, SetStateAction, useEffect, useState } from "react";
-import { useMutation } from "react-query";
-import { useParams } from "react-router";
-import { SubmitHandler, useForm } from "react-hook-form";
-import { jobs } from "../API/requests";
-import { AxiosError } from "axios";
+import React, { Dispatch, SetStateAction, useEffect, useState } from 'react';
+import { useMutation } from 'react-query';
+import { useParams } from 'react-router';
+import { SubmitHandler, useForm } from 'react-hook-form';
+import { jobs } from '../../API/requests';
+import { AxiosError } from 'axios';
 
-function CreateProfessionsForm({
-  setJobList,
-}: {
-  setJobList: Dispatch<SetStateAction<Job[]>>;
-}) {
+function CreateProfessionsForm({ setJobList }: { setJobList: Dispatch<SetStateAction<Job[]>> }) {
   const { register, handleSubmit } = useForm();
 
-  const { mutate, isLoading, error, isSuccess } = useMutation<
-    Job,
-    AxiosError,
-    Job
-  >((data) => jobs.create(data), {
+  const { mutate, isLoading, error, isSuccess } = useMutation<Job, AxiosError, Job>((data) => jobs.create(data), {
     onSuccess: (data) => {
       setJobList((prevState) => [...prevState, data]);
     },
@@ -32,7 +24,7 @@ function CreateProfessionsForm({
       <div className="border border-black mb-2">
         <form onSubmit={handleSubmit((data: Job) => mutate(data))}>
           <label>Enter job name:</label>
-          <input type="text" {...register("name")} />
+          <input type="text" {...register('name')} />
 
           <input type="submit" />
         </form>

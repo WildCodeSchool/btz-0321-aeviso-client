@@ -11,3 +11,9 @@ interface Job {
   name: string;
   profession: string | null;
 }
+
+interface Project {
+  id: number;
+  name: string;
+  description: string;
+}

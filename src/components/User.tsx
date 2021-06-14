@@ -1,28 +1,37 @@
-import React, { useState } from "react";
-import { useMutation, useQuery } from "react-query";
-import { useParams } from "react-router-dom";
-import Modal from "./Modal";
-import UserForm from "./UserForm";
-import { user } from "../API/requests";
+import React, { useState } from 'react';
+import { useMutation, useQuery } from 'react-query';
+import { useParams, useHistory } from 'react-router-dom';
+import Modal from './Modal';
+import UserForm from './UserForm';
+import { user } from '../API/requests';
 
 function User(): JSX.Element {
-  const [isModal, setIsModal] = useState(false);
+  const [isModal, setIsModal] = useState<Boolean>(false);
+  const [message, setMessage] = useState<string>('');
 
-  const [message, setMessage] = useState("");
   const { id }: { id: string } = useParams();
 
-  const { isLoading, error, data } = useQuery<User, Error>("user", () =>
-    user.getOne(id)
+  const { isLoading, error, data } = useQuery<User, Error>(
+    ['user', id],
+    () => user.getOne(id),
+    { cacheTime: 0 }
   );
 
   const { mutate } = useMutation(() => user.delete({ id }), {
-    onSuccess: (data) => {
-      setMessage(data);
+    onSuccess: () => {
+      setMessage('Utilisateur supprimé');
       setIsModal((prevState) => !prevState);
     },
   });
 
-  if (isModal) return <Modal message={message} />;
+  if (isModal) {
+    return (
+      <Modal
+        message={message}
+        handleClick={() => setIsModal((prevState) => !prevState)}
+      />
+    );
+  }
   if (isLoading) return <p>Loading...</p>;
   if (error) return <p>An error has occurred: {error.message}</p>;
   return (
@@ -33,6 +42,8 @@ function User(): JSX.Element {
         initLastname={data!.lastname}
         initEmail={data!.email}
         initProfession={data!.profession}
+        setIsModal={setIsModal}
+        setMessage={setMessage}
       />
       <button onClick={() => mutate()}>Supprimer</button>
     </div>

@@ -1,9 +1,12 @@
-import React from "react";
-import { Route } from "react-router-dom";
-import Professions from "../professions/Professions";
-import User from "./User";
-import Users from "./Users";
-import Vite from "./Vite";
+import React from 'react';
+import { Route } from 'react-router-dom';
+
+import User from './User';
+import Users from './Users';
+import Professions from './professions/Professions';
+import ProjectList from './project/ProjectList';
+import UniqueProject from './project/UniqueProject';
+import Vite from './Vite';
 
 function Routes() {
   return (
@@ -11,11 +14,11 @@ function Routes() {
       <Route exact path="/">
         <Vite />
       </Route>
-      <Route path="/users" component={Users} />
-      <Route path="/user/:id" component={User} />
-      <Route path="/Professions">
-        <Professions />
-        </Route>
+      <Route exact path="/projects" component={ProjectList} />
+      <Route path="/projects/:id" component={UniqueProject} />
+      <Route exact path="/users" component={Users} />
+      <Route path="/users/:id" component={User} />
+      <Route path="/professions" component={Professions} />
     </>
   );
 }

@@ -1,16 +1,13 @@
-import React from "react";
-import { useHistory } from "react-router";
+import React, { Dispatch, SetStateAction } from 'react';
+import { useHistory } from 'react-router';
 
 interface Iprops {
   message: string;
+  handleClick: () => void;
 }
 
-function Modal(message: Iprops): JSX.Element {
+function Modal({ message, handleClick }: Iprops): JSX.Element {
   const history = useHistory();
-
-  const handleClick = () => {
-    history.push("/users");
-  };
 
   return (
     <div>
