@@ -26,3 +26,11 @@ interface Project {
   name: string;
   description: string;
 }
+
+interface Records {
+  id: number;
+  user_id: number;
+  project_id: number;
+  step_id: number;
+  time_slot: string;
+}

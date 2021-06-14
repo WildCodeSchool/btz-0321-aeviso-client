@@ -15,6 +15,7 @@ function Header() {
       <Link to="/Professions" className="border-r border-black">
         Test Professions
       </Link>
+      <Link to="/records">Test Records</Link>
     </div>
   );
 }

@@ -5,10 +5,11 @@ import Users from './Users';
 import User from './User';
 import Companies from './company/Companies';
 import Company from './company/Company';
-
 import Professions from './professions/Professions';
 import ProjectList from './project/ProjectList';
 import UniqueProject from './project/UniqueProject';
+import Records from './records/Records';
+import OneRecord from './records/OneRecord';
 
 function Routes() {
   return (
@@ -23,6 +24,8 @@ function Routes() {
       <Route exact path="/users" component={Users} />
       <Route path="/users/:id" component={User} />
       <Route path="/professions" component={Professions} />
+      <Route exact path="/records" component={Records} />
+      <Route path="/records/:id" component={OneRecord} />
     </>
   );
 }

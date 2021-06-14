@@ -59,3 +59,16 @@ export const companies = {
 
   delete: (id: string) => axios.delete(`${API_URL}/companies/${id}`).then((res) => res.data),
 };
+
+export const records = {
+  getAll: () => axios.get(`${API_URL}/records`).then((res) => res.data),
+
+  getOne: (id: string) => axios.get(`${API_URL}/records/${id}`).then((res) => res.data),
+
+  post: (data: Records) => axios.post(`${API_URL}/records`, data).then((res) => res.data),
+
+  put: ({ id, data }: { id: string; data: Records }) =>
+    axios.put(`${API_URL}/records/${id}`, data).then((res) => res.data),
+
+  delete: (id: string) => axios.delete(`${API_URL}/records/${id}`).then((res) => res.data),
+};
