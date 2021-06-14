@@ -24,7 +24,6 @@ module.exports = {
     "plugin:prettier/recommended", // Make this the last element so prettier config overrides other formatting rules
   ],
   rules: {
-    "react/react-in-jsx-scope": "off",
     "prettier/prettier": ["error", {}, { usePrettierrc: true }], // Use our .prettierrc file as source
     "react/function-component-definition": [
       2,
