@@ -16,4 +16,6 @@ interface Project {
   id: number;
   name: string;
   description: string;
+  code: string;
+  taxation: string;
 }
