@@ -26,7 +26,7 @@ function SideBar({ sideBarClass, setIsIsSidebarVisible }: sideBarProps) {
           </div>
           {width < 640 ? (
             <button onClick={handleClose}>
-              <img className="h-7 w-7" src={Cross} alt="CloseButton" />{' '}
+              <img className="h-5 w-5" src={Cross} alt="CloseButton" />{' '}
             </button>
           ) : (
             ''
