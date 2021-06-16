@@ -1,6 +1,6 @@
 import React, { useState, useEffect } from 'react';
 import { BrowserRouter as Router, Switch } from 'react-router-dom';
-import useWindowDimensions from '../custom/useWindowDimension';
+import useWindowDimensions from '../Hook/useWindowDimension';
 import Head from './head';
 import Routes from './Routes';
 import SideBar from './sideBar';

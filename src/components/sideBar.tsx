@@ -3,7 +3,7 @@ import Home from '../../media/icons/Home.svg';
 import Client from '../../media/icons/Client.svg';
 import Rapport from '../../media/icons/folder.svg';
 import Réglages from '../../media/icons/Settings.svg';
-import useWindowDimensions from '../custom/useWindowDimension';
+import useWindowDimensions from '../Hook/useWindowDimension';
 import Cross from '../../media/icons/Cross.svg';
 
 interface sideBarProps {
