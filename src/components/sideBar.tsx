@@ -8,13 +8,13 @@ import Cross from '../../media/icons/Cross.svg';
 
 interface sideBarProps {
   sideBarClass: string;
-  setIsIsSidebarVisible: Dispatch<SetStateAction<Boolean>>;
+  setIsSidebarVisible: Dispatch<SetStateAction<boolean>>;
 }
 
-function SideBar({ sideBarClass, setIsIsSidebarVisible }: sideBarProps) {
+function SideBar({ sideBarClass, setIsSidebarVisible }: sideBarProps): JSX.Element {
   const { width } = useWindowDimensions();
   const handleClose = () => {
-    setIsIsSidebarVisible(false);
+    setIsSidebarVisible(false);
   };
   return (
     <div className={sideBarClass}>

@@ -5,7 +5,7 @@ import Layout from './components/Layout';
 
 const queryClient = new QueryClient();
 
-function App() {
+function App(): JSX.Element {
   return (
     <div className="">
       <QueryClientProvider client={queryClient}>

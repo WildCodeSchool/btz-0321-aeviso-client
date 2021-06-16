@@ -10,7 +10,7 @@ import UniqueProject from './project/UniqueProject';
 import Records from './records/Records';
 import OneRecord from './records/OneRecord';
 
-function Routes() {
+function Routes(): JSX.Element {
   return (
     <>
       <Route exact path="/" />

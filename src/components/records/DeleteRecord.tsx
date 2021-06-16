@@ -4,7 +4,7 @@ import { AxiosError } from 'axios';
 import { useHistory, useParams } from 'react-router';
 import { records } from '../../API/requests';
 
-function DeleteRecord() {
+function DeleteRecord(): JSX.Element {
   const { id }: { id: string } = useParams();
   const history = useHistory();
 

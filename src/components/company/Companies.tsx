@@ -5,7 +5,7 @@ import { companies } from '../../API/requests';
 import CreateCompanyForm from './CreateCompanyForm';
 import { AxiosError } from 'axios';
 
-function Companies() {
+function Companies(): JSX.Element {
   const [companiesList, setCompaniesList] = useState<Company[]>([]);
 
   const { isLoading, error, data } = useQuery<Company[], AxiosError>('companies', () => companies.getAll(), {

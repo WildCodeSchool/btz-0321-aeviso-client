@@ -9,17 +9,15 @@ interface Data {
   id: string;
   data: Company;
 }
-
-function UpdateCompany({ setCompany }: { setCompany: Dispatch<SetStateAction<Company | null>> }) {
+interface IProps {
+  setCompany: Dispatch<SetStateAction<Company[]>>;
+}
+function UpdateCompany({ setCompany }: IProps): JSX.Element {
   const { register, handleSubmit } = useForm<Company>();
   const { id }: { id: string } = useParams();
 
-  const {
-    mutate,
-    error,
-    data: sentData,
-  } = useMutation<Company, AxiosError, Data>((data) => companies.put(data), {
-    onSuccess: (data) => setCompany(data),
+  const { mutate, error } = useMutation<Company, AxiosError, Data>((data) => companies.put(data), {
+    onSuccess: (data) => setCompany((prev) => [...prev, data]),
   });
 
   if (error) {
@@ -37,7 +35,6 @@ function UpdateCompany({ setCompany }: { setCompany: Dispatch<SetStateAction<Com
         action=""
         className="flex flex-col"
         onSubmit={handleSubmit((data) => {
-          console.log(data);
           mutate({ id, data });
         })}
       >

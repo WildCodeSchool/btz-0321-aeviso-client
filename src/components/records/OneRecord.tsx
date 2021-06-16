@@ -6,7 +6,7 @@ import { records } from '../../API/requests';
 import UpdateRecord from './UpdateRecord';
 import DeleteRecord from './DeleteRecord';
 
-function Record() {
+function Record(): JSX.Element {
   const { id }: { id: string } = useParams();
 
   const [record, setRecord] = useState<Records | null>(null);
@@ -37,11 +37,11 @@ function Record() {
         <>
           <h3 className="mb-6">Test User</h3>
           <div className="border border-black mb-2">
-            <p>{record!.id}</p>
-            <p>{record!.user_id}</p>
-            <p>{record!.project_id}</p>
-            <p>{record!.step_id}</p>
-            <p>{record!.time_slot}</p>
+            <p>{record.id}</p>
+            <p>{record.user_id}</p>
+            <p>{record.project_id}</p>
+            <p>{record.step_id}</p>
+            <p>{record.time_slot}</p>
           </div>
           <UpdateRecord setRecord={setRecord} />
           <DeleteRecord />
