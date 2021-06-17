@@ -40,11 +40,11 @@ export const project = {
   delete: (id: string) => axios.delete(`${API_URL}/projects/${id}`).then((res) => res.data),
 
   // TODO: create a real interface here
-  update: ({ id, data }: { id: string; data: any }) =>
+  update: ({ id, data }: { id: string; data: Project }) =>
     axios.put(`${API_URL}/projects/${id}`, data).then((res) => res.data),
 
   // TODO: create a real interface here
-  create: ({ data }: { data: any }) => axios.post(`${API_URL}/projects/`, data).then((res) => res.data),
+  create: ({ data }: { data: Project }) => axios.post(`${API_URL}/projects/`, data).then((res) => res.data),
 };
 
 export const companies = {
