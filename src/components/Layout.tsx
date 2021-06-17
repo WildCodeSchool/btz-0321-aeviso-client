@@ -4,6 +4,8 @@ import useWindowDimensions from '../Hook/useWindowDimension';
 import Head from './head';
 import Routes from './Routes';
 import SideBar from './sideBar';
+import CardTitle from './CardTitle';
+import Records from './records/Records';
 
 function Layout(): JSX.Element {
   const [isSidebarVisible, setIsSidebarVisible] = useState<boolean>(false);
@@ -39,8 +41,13 @@ function Layout(): JSX.Element {
           <div className="sm:col-start-1 sm:row-start-2 sm:row-end-3 bg-black rounded-xl shadow-mainShadow sm:ml-5">
             Component1
           </div>
-          <div className="mt-5 sm:m-0 sm:col-start-2 sm:row-start-2 sm:row-end-3 bg-black rounded-xl shadow-mainShadow">
-            Component2
+          <div
+            style={{
+              backgroundColor: '#0E0E0E',
+            }}
+            className="mt-5 sm:m-0 sm:col-start-2 sm:row-start-2 sm:row-end-3 bg-black rounded-xl shadow-mainShadow"
+          >
+            <Records />
           </div>
           <div className="mt-5 sm:mx-0 sm:mt-5 sm:col-start-1 sm:col-end-3 sm:row-start-3 sm:row-end-5 bg-black rounded-xl shadow-mainShadow sm:ml-5">
             Component3
