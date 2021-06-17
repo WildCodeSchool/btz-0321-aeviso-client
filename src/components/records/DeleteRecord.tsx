@@ -8,7 +8,7 @@ function DeleteRecord(): JSX.Element {
   const { id }: { id: string } = useParams();
   const history = useHistory();
 
-  const { mutate, error } = useMutation<void, AxiosError>(() => records.delete(id), {
+  const { mutate, error } = useMutation<unknown, AxiosError>(() => records.delete(id), {
     onSuccess: () => history.push(`/records`),
   });
 

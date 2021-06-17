@@ -10,14 +10,14 @@ interface Data {
   data: Company;
 }
 interface IProps {
-  setCompany: Dispatch<SetStateAction<Company[]>>;
+  setCompany: Dispatch<SetStateAction<Company | null | undefined>>;
 }
 function UpdateCompany({ setCompany }: IProps): JSX.Element {
   const { register, handleSubmit } = useForm<Company>();
   const { id }: { id: string } = useParams();
 
   const { mutate, error } = useMutation<Company, AxiosError, Data>((data) => companies.put(data), {
-    onSuccess: (data) => setCompany((prev) => [...prev, data]),
+    onSuccess: (data) => setCompany(data),
   });
 
   if (error) {
