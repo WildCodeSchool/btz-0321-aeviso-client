@@ -24,7 +24,7 @@ function SideBar({ sideBarClass, setIsSidebarVisible }: sideBarProps): JSX.Eleme
             <h1 className="text-5xl font-bold">aeviso</h1>
             <h2 className="text-xs">Expert Comptable.audit.conseil</h2>
           </div>
-          {width < 640 ? (
+          {width < 900 ? (
             <button onClick={handleClose}>
               <img className="h-5 w-5" src={Cross} alt="CloseButton" />{' '}
             </button>
