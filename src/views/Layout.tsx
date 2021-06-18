@@ -9,11 +9,12 @@ function Layout(): JSX.Element {
   const [isSidebarVisible, setIsSidebarVisible] = useState<boolean>(false);
   const { width } = useWindowDimensions();
   const [sideBarClass, setSideBarClass] = useState(
-    'flex flex-col bg-black w-3/12  h-screen text-white font-roboto justify-between'
+    'flex flex-col bg-black w-full h-full rounded-xl text-white font-roboto justify-between'
   );
+  console.log();
 
   useEffect(() => {
-    if (width < 640) {
+    if (width < 900) {
       setIsSidebarVisible(false);
     } else {
       setIsSidebarVisible(true);
@@ -21,30 +22,22 @@ function Layout(): JSX.Element {
   }, [width]);
 
   return (
-    <div
-      className="flex"
-      style={{
-        background: 'linear-gradient(298.31deg, #232323 0%, rgba(22, 22, 22, 0.78) 84.83%)',
-      }}
-    >
-      {isSidebarVisible ? <SideBar setIsSidebarVisible={setIsSidebarVisible} sideBarClass={sideBarClass} /> : ''}
+    <div className="grid sm:grid-rows-desktop sm:grid-cols-desktop grid-cols-phone grid-rows-mobile sm:gap-x-5 z-screen h-screen  sm:p-5">
+      <div className="sm:col-start-1 sm:col-end-2 sm:row-start-2 row-end-6">
+        {isSidebarVisible ? <SideBar setIsSidebarVisible={setIsSidebarVisible} sideBarClass={sideBarClass} /> : ''}
+      </div>
+      <div className="sm:row-start-1 sm:row-end-2 sm:col-start-1 sm:mb-2 sm:col-end-4 items-end sm:pr-2 text-white font-roboto sm:flex justify-between">
+        <Head setSideBarClass={setSideBarClass} setIsSidebarVisible={setIsSidebarVisible} />
+      </div>
 
-      {/* <Header /> */}
-
-      <div className="grid sm:grid-rows-desktop sm:grid-cols-desktop grid-cols-phone grid-rows-mobile sm:gap-x-5 mx-3 w-full sm:w-9/12 pb-5 overflow-y-auto">
-        <div className="w-full sm:col-start-1 sm:mb-2 sm:col-end-4 items-end sm:pr-2 text-white font-roboto sm:flex pt-3 px-2 justify-between">
-          <Head setSideBarClass={setSideBarClass} setIsSidebarVisible={setIsSidebarVisible} />
-        </div>
-
-        <div className="sm:col-start-1 sm:row-start-2 sm:row-end-3 bg-black rounded-xl shadow-mainShadow sm:ml-5">
-          Component1
-        </div>
-        <div className="mt-5 sm:m-0 sm:col-start-2 sm:row-start-2 sm:row-end-3 bg-black rounded-xl shadow-mainShadow">
-          Component2
-        </div>
-        <div className="mt-5 sm:mx-0 sm:mt-5 sm:col-start-1 sm:col-end-3 sm:row-start-3 sm:row-end-5 bg-black rounded-xl shadow-mainShadow sm:ml-5">
-          Component3
-        </div>
+      <div className="sm:col-start-2 sm:row-start-2 sm:row-end-3 bg-black rounded-xl shadow-mainShadow sm:ml-5">
+        Component1
+      </div>
+      <div className="mt-5 sm:m-0 sm:col-start-3 sm:row-start-2 sm:row-end-3 bg-black rounded-xl shadow-mainShadow">
+        Component2
+      </div>
+      <div className="mt-5 sm:mx-0 sm:mt-5 sm:col-start-2 sm:col-end-4 sm:row-start-3 sm:row-end-5 bg-black rounded-xl shadow-mainShadow sm:ml-5">
+        Component3
       </div>
     </div>
   );

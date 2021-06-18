@@ -14,11 +14,12 @@ function Head({ setIsSidebarVisible, setSideBarClass }: IProps): JSX.Element {
   };
   return (
     <div className="flex justify-between w-full items-start">
-      <div className="sm:flex w-full justify-between">
-        <h1 className="sm:text-4xl text-3xl pr-16 flex-col justify-between font-bold sm:ml-5">
-          Bonjour, Maxime Savoie
-        </h1>
-        <h2 className="mt-4  text-lg sm:mr-8">{today()}</h2>
+      <div className="sm:flex w-full justify-between items-end">
+        <div className="flex-col pl-2">
+          <h1 className="text-5xl font-bold">aeviso</h1>
+          <h2 className="text-xs">Expert Comptable.audit.conseil</h2>
+        </div>
+        <h2 className="text-lg">{today()}</h2>
       </div>
       <button onClick={handleSidebar} className="mt-3 sm:hidden">
         <img className="h-10  w-10" src={Burger} alt="" />
