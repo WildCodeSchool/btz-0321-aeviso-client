@@ -4,6 +4,7 @@ import useWindowDimensions from '../Hook/useWindowDimension';
 import Head from '../components/head';
 
 import SideBar from '../components/sideBar';
+import Records from '../components/records/Records';
 
 function Layout(): JSX.Element {
   const [isSidebarVisible, setIsSidebarVisible] = useState<boolean>(false);
@@ -40,7 +41,7 @@ function Layout(): JSX.Element {
           Component1
         </div>
         <div className="mt-5 sm:m-0 sm:col-start-2 sm:row-start-2 sm:row-end-3 bg-black rounded-xl shadow-mainShadow">
-          Component2
+          <Records />
         </div>
         <div className="mt-5 sm:mx-0 sm:mt-5 sm:col-start-1 sm:col-end-3 sm:row-start-3 sm:row-end-5 bg-black rounded-xl shadow-mainShadow sm:ml-5">
           Component3
