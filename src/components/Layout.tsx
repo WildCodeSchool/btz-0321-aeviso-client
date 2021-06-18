@@ -4,7 +4,6 @@ import useWindowDimensions from '../Hook/useWindowDimension';
 import Head from './head';
 import Routes from './Routes';
 import SideBar from './sideBar';
-import CardTitle from './CardTitle';
 import Records from './records/Records';
 
 function Layout(): JSX.Element {

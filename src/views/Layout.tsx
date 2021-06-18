@@ -5,6 +5,7 @@ import Head from '../components/head';
 
 import SideBar from '../components/sideBar';
 import Records from '../components/records/Records';
+import Companies from '../components/companies/Companies';
 
 function Layout(): JSX.Element {
   const [isSidebarVisible, setIsSidebarVisible] = useState<boolean>(false);
@@ -29,7 +30,6 @@ function Layout(): JSX.Element {
       }}
     >
       {isSidebarVisible ? <SideBar setIsSidebarVisible={setIsSidebarVisible} sideBarClass={sideBarClass} /> : ''}
-
       {/* <Header /> */}
 
       <div className="grid sm:grid-rows-desktop sm:grid-cols-desktop grid-cols-phone grid-rows-mobile sm:gap-x-5 mx-3 w-full sm:w-9/12 pb-5 overflow-y-auto">
@@ -38,7 +38,7 @@ function Layout(): JSX.Element {
         </div>
 
         <div className="sm:col-start-1 sm:row-start-2 sm:row-end-3 bg-black rounded-xl shadow-mainShadow sm:ml-5">
-          Component1
+          <Companies />
         </div>
         <div className="mt-5 sm:m-0 sm:col-start-2 sm:row-start-2 sm:row-end-3 bg-black rounded-xl shadow-mainShadow">
           <Records />
