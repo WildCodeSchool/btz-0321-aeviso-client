@@ -40,7 +40,6 @@ export const project = {
 
   delete: (id: string): Promise<null> => axios.delete(`${API_URL}/projects/${id}`).then((res) => res.data),
 
-  // TODO: create a real interface here
   update: ({ id, data }: { id: string; data: Project }): Promise<null> =>
     axios.put(`${API_URL}/projects/${id}`, data).then((res) => res.data),
 
