@@ -10,7 +10,7 @@ import { SearchCircleIcon } from '@heroicons/react/solid';
 import RecordPreview from './RecordPreview';
 
 function Records(): JSX.Element {
-  const { isLoading, error, data } = useQuery<IRecord[], AxiosError>('records', records.getAll);
+  const { isLoading, error, data } = useQuery<IRecord[], AxiosError>('records', () => records.getAll(5));
 
   if (isLoading) {
     return <p className="text-white">Loading...</p>;

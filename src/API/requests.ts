@@ -62,13 +62,14 @@ export const companies = {
 };
 
 export const records = {
-  getAll: (): Promise<Records[]> => axios.get(`${API_URL}/records`).then((res) => res.data),
+  getAll: (limit?: number): Promise<IRecord[]> =>
+    axios.get(`${API_URL}/records${limit ? `?limit=${limit}` : ''}`).then((res) => res.data),
 
-  getOne: (id: string): Promise<Records> => axios.get(`${API_URL}/records/${id}`).then((res) => res.data),
+  getOne: (id: string): Promise<IRecord> => axios.get(`${API_URL}/records/${id}`).then((res) => res.data),
 
-  post: (data: Records): Promise<Records> => axios.post(`${API_URL}/records`, data).then((res) => res.data),
+  post: (data: IRecord): Promise<IRecord> => axios.post(`${API_URL}/records`, data).then((res) => res.data),
 
-  put: ({ id, data }: { id: string; data: Records }): Promise<null> =>
+  put: ({ id, data }: { id: string; data: IRecord }): Promise<null> =>
     axios.put(`${API_URL}/records/${id}`, data).then((res) => res.data),
 
   delete: (id: string): Promise<null> => axios.delete(`${API_URL}/records/${id}`).then((res) => res.data),
