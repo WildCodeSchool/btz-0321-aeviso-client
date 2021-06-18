@@ -13,6 +13,7 @@ function HomePage(): JSX.Element {
         backgroundImage: `url(${BG})`,
         backgroundRepeat: 'no-repeat',
         backgroundColor: 'black',
+        backgroundSize: 'cover',
       }}
     >
       <div className="text-white font-roboto">
