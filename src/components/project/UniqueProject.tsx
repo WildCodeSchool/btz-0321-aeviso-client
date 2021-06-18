@@ -9,7 +9,7 @@ interface Params {
   id: string;
 }
 
-function UniqueProject() {
+function UniqueProject(): JSX.Element {
   const { register, handleSubmit } = useForm<Project>();
   const { id } = useParams<Params>();
   const history = useHistory();
@@ -46,8 +46,8 @@ function UniqueProject() {
   return (
     <div className="flex font-roboto mx-10 my-10">
       <div className="w-4/12">
-        <h1 className="text-3xl font-medium">{data!.name}</h1>
-        <p className="mt-2">{data!.description}</p>
+        <h1 className="text-3xl font-medium">{data?.name}</h1>
+        <p className="mt-2">{data?.description}</p>
         <button className="w-40 mt-5 border border-black px-5 " onClick={() => mutateAsync()}>
           Delete
         </button>
@@ -55,11 +55,11 @@ function UniqueProject() {
       <div className="w-6/12 ml-28">
         <h1 className="font-bold">Update this Project</h1>
         <form onSubmit={handleSubmit((data) => mutate({ data, id }))} className="flex flex-col">
-          <label className="mt-5" htmlFor="">
+          <label className="mt-5" htmlFor="name">
             Name
           </label>
           <input className="p-2 mt-2 border border-black" {...register('name')} type="text" />
-          <label className="mt-5" htmlFor="">
+          <label className="mt-5" htmlFor="description">
             Description
           </label>
           <textarea className="h-28 p-2 mt-2 border border-black" {...register('description')} />

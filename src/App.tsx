@@ -5,12 +5,14 @@ import Layout from './components/Layout';
 
 const queryClient = new QueryClient();
 
-function App() {
+function App(): JSX.Element {
   return (
-    <QueryClientProvider client={queryClient}>
-      <Layout />
-      <ReactQueryDevtools initialIsOpen={false} />
-    </QueryClientProvider>
+    <div className="">
+      <QueryClientProvider client={queryClient}>
+        <Layout />
+        <ReactQueryDevtools initialIsOpen={false} />
+      </QueryClientProvider>
+    </div>
   );
 }
 

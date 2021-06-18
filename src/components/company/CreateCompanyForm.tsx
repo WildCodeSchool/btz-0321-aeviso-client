@@ -1,19 +1,22 @@
-import React, { useState } from 'react';
+import React, { Dispatch, SetStateAction, useState } from 'react';
 import { useMutation } from 'react-query';
 import { AxiosError } from 'axios';
 import { useForm } from 'react-hook-form';
 import { companies } from '../../API/requests';
 
-function Company({ setCompaniesList }: { setCompaniesList: Function }) {
+interface IProps {
+  setCompaniesList: Dispatch<SetStateAction<Company[]>>;
+}
+
+function Company({ setCompaniesList }: IProps): JSX.Element {
   const { register, handleSubmit } = useForm<Company>();
   const [error, setError] = useState<AxiosError | null>(null);
 
   const { mutate } = useMutation(companies.post, {
     onSuccess: (data: Company) => {
-      setCompaniesList((companies: any) => [...companies, data]);
+      setCompaniesList((companies) => [...companies, data]);
     },
     onError: (error: AxiosError) => {
-      console.log(error);
       setError(error);
     },
   });

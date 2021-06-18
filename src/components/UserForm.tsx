@@ -1,11 +1,11 @@
-import React, { Dispatch, SetStateAction, useEffect, useState } from 'react';
+import React, { Dispatch, SetStateAction, useState } from 'react';
 import { useMutation } from 'react-query';
 import { useParams } from 'react-router';
 import { SubmitHandler, useForm } from 'react-hook-form';
 
 interface BaseIProps {
   mutationFn: (variables: { user: User; id?: string }) => Promise<any>;
-  setIsModal: Dispatch<SetStateAction<Boolean>>;
+  setIsModal: Dispatch<SetStateAction<boolean>>;
   setMessage: Dispatch<SetStateAction<string>>;
 }
 
@@ -23,16 +23,9 @@ interface IFormInput {
   profession: string;
 }
 
-function userForm(props: UserIProps | BaseIProps) {
-  const {
-    initFirstname,
-    initLastname,
-    initEmail,
-    initProfession,
-    mutationFn,
-    setIsModal,
-    setMessage,
-  } = props as UserIProps;
+function userForm(props: UserIProps | BaseIProps): JSX.Element {
+  const { initFirstname, initLastname, initEmail, initProfession, mutationFn, setIsModal, setMessage } =
+    props as UserIProps;
 
   const [user, setUser] = useState({
     firstname: initFirstname,
@@ -41,11 +34,10 @@ function userForm(props: UserIProps | BaseIProps) {
     profession: initProfession,
   });
 
-  const { register, handleSubmit, watch } = useForm();
+  const { register, handleSubmit } = useForm();
 
-  const { mutate, isLoading, error, isSuccess } = useMutation(mutationFn, {
+  const { mutate, isLoading, error } = useMutation(mutationFn, {
     onSuccess: (data) => {
-      console.log(data);
       setUser({
         ...data,
       });
@@ -56,12 +48,7 @@ function userForm(props: UserIProps | BaseIProps) {
 
   const { id } = useParams<{ id: string }>();
 
-  const onSubmit: SubmitHandler<IFormInput> = ({
-    firstname,
-    lastname,
-    email,
-    profession,
-  }) => {
+  const onSubmit: SubmitHandler<IFormInput> = ({ firstname, lastname, email, profession }) => {
     const user = {
       firstname,
       lastname,
@@ -93,10 +80,7 @@ function userForm(props: UserIProps | BaseIProps) {
           </div>
           <div className="form-job">
             <label htmlFor="profession">Fonction: </label>
-            <input
-              defaultValue={user.profession as string}
-              {...register('profession')}
-            />
+            <input defaultValue={user.profession as string} {...register('profession')} />
           </div>
           <div className="form-submit">
             <input type="submit" value="Envoyer" />

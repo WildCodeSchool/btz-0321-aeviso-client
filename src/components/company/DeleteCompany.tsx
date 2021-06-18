@@ -4,7 +4,7 @@ import { AxiosError } from 'axios';
 import { useHistory, useParams } from 'react-router';
 import { companies } from '../../API/requests';
 
-function DeleteCompany() {
+function DeleteCompany(): JSX.Element {
   const { id }: { id: string } = useParams();
   const history = useHistory();
 
