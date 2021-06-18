@@ -9,11 +9,14 @@ import ProjectList from './project/ProjectList';
 import UniqueProject from './project/UniqueProject';
 import Records from './records/Records';
 import OneRecord from './records/OneRecord';
+import HomePage from '../views/HomePage';
+import Layout from '../views/Layout';
 
 function Routes(): JSX.Element {
   return (
     <>
-      <Route exact path="/" />
+      <Route exact path="/" component={Layout} />
+      <Route exact path="/home" component={HomePage} />
       <Route exact path="/companies" component={Companies} />
       <Route path="/companies/:id" component={Company} />
       <Route exact path="/projects" component={ProjectList} />
