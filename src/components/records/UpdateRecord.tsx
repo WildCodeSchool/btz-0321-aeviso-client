@@ -10,15 +10,11 @@ interface Data {
   data: Records;
 }
 
-function UpdateRecord({ setRecord }: { setRecord: Dispatch<SetStateAction<Records | null>> }) {
+function UpdateRecord({ setRecord }: { setRecord: Dispatch<SetStateAction<Records | null>> }): JSX.Element {
   const { register, handleSubmit } = useForm<Records>();
   const { id }: { id: string } = useParams();
 
-  const {
-    mutate,
-    error,
-    data: sentData,
-  } = useMutation<Records, AxiosError, Data>((data) => records.put(data), {
+  const { mutate, error } = useMutation<null, AxiosError, Data>((data) => records.put(data), {
     onSuccess: (data) => setRecord(data),
   });
 

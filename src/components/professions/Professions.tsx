@@ -1,4 +1,4 @@
-import axios, { AxiosError } from 'axios';
+import { AxiosError } from 'axios';
 import React, { useState } from 'react';
 import { useQuery } from 'react-query';
 import { Link } from 'react-router-dom';
@@ -7,7 +7,7 @@ import CreateProfessionsForm from './CreateProfessionsForm';
 
 function Jobs(): JSX.Element {
   const [jobList, setJobList] = useState<Job[]>([]);
-  const { isLoading, error, data } = useQuery<Job[], AxiosError>('jobs', jobs.getAll, {
+  const { isLoading, error } = useQuery<Job[], AxiosError>('jobs', jobs.getAll, {
     onSuccess: (data) => setJobList(data),
   });
 

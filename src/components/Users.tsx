@@ -1,3 +1,4 @@
+import { AxiosError } from 'axios';
 import React, { useState } from 'react';
 import { useQuery } from 'react-query';
 import { Link } from 'react-router-dom';
@@ -7,25 +8,18 @@ import UserForm from './UserForm';
 
 function Users(): JSX.Element {
   const [users, setUsers] = useState<User[]>([]);
-  const [isModal, setIsModal] = useState<Boolean>(false);
+  const [isModal, setIsModal] = useState(false);
   const [message, setMessage] = useState<string>('');
-  const { isLoading, error, data } = useQuery<User[], Error>(
-    'users',
-    user.getAll,
-    { onSuccess: (data) => setUsers(data) }
-  );
+
+  const { isLoading, error } = useQuery<User[], AxiosError>('users', user.getAll, {
+    onSuccess: (data) => setUsers(data),
+  });
 
   if (isLoading) return <p>Loading...</p>;
 
   if (error) return <p>An error has occurred: {error.message}</p>;
 
-  if (isModal)
-    return (
-      <Modal
-        message={message}
-        handleClick={() => setIsModal((prevState) => !prevState)}
-      />
-    );
+  if (isModal) return <Modal message={message} handleClick={() => setIsModal((prevState) => !prevState)} />;
 
   return (
     <div>
@@ -43,11 +37,7 @@ function Users(): JSX.Element {
           );
         })}
       </div>
-      <UserForm
-        mutationFn={user.create}
-        setIsModal={setIsModal}
-        setMessage={setMessage}
-      />
+      <UserForm mutationFn={user.create} setIsModal={setIsModal} setMessage={setMessage} />
     </div>
   );
 }

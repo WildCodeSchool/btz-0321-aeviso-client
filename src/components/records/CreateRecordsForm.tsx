@@ -4,13 +4,17 @@ import { AxiosError } from 'axios';
 import { useForm } from 'react-hook-form';
 import { records } from '../../API/requests';
 
-function RecordsForm({ setRecordsList }: { setRecordsList: Function }) {
+interface IProps {
+  setRecordsList: React.Dispatch<React.SetStateAction<Records[]>>;
+}
+
+function RecordsForm({ setRecordsList }: IProps): JSX.Element {
   const { register, handleSubmit } = useForm<Records>();
   const [error, setError] = useState<AxiosError | null>(null);
 
   const { mutate } = useMutation(records.post, {
     onSuccess: (data: Records) => {
-      setRecordsList((records: any) => [...records, data]);
+      setRecordsList((records) => [...records, data]);
     },
     onError: (error: AxiosError) => {
       setError(error);

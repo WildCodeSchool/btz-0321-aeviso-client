@@ -1,6 +1,5 @@
 import React from 'react';
 import { Route } from 'react-router-dom';
-import Vite from './Vite';
 import Users from './Users';
 import User from './User';
 import Companies from './company/Companies';
@@ -11,12 +10,10 @@ import UniqueProject from './project/UniqueProject';
 import Records from './records/Records';
 import OneRecord from './records/OneRecord';
 
-function Routes() {
+function Routes(): JSX.Element {
   return (
     <>
-      <Route exact path="/">
-        <Vite />
-      </Route>
+      <Route exact path="/" />
       <Route exact path="/companies" component={Companies} />
       <Route path="/companies/:id" component={Company} />
       <Route exact path="/projects" component={ProjectList} />

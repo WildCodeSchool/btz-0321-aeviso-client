@@ -5,7 +5,7 @@ import { records } from '../../API/requests';
 import CreateRecordsForm from './CreateRecordsForm';
 import { AxiosError } from 'axios';
 
-function Records() {
+function Records(): JSX.Element {
   const [recordsList, setRecordsList] = useState<Records[]>([]);
 
   const { isLoading, error, data } = useQuery<Records[], AxiosError>('records', () => records.getAll(), {

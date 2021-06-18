@@ -1,7 +1,7 @@
 import React from 'react';
 import { Link } from 'react-router-dom';
 
-function Header() {
+function Header(): JSX.Element {
   return (
     <div className="border py-4 flex justify-around border-black mb-3">
       <Link to="/">Ae Viso</Link>
