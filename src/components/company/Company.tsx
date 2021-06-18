@@ -9,7 +9,7 @@ import DeleteCompany from './DeleteCompany';
 function Company(): JSX.Element {
   const { id }: { id: string } = useParams();
 
-  const [company, setCompany] = useState<Company | null>(null);
+  const [company, setCompany] = useState<Company | null>();
 
   const { isLoading, error } = useQuery<Company, AxiosError>(['company', id], () => companies.getOne(id), {
     onSuccess: (data) => {

@@ -9,9 +9,11 @@ module.exports = {
       },
       colors: {
         darkGray: '#3E3E3E',
+        input: '#404040',
       },
       boxShadow: {
         mainShadow: '10px 10px 20px rgba(0, 0, 0, 0.50)',
+        inputShadow: '5px 5px 20px rgba(0, 0, 0, 0.8)',
       },
       gridTemplateRows: {
         desktop: '1fr 4fr 5fr',

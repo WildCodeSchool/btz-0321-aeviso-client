@@ -8,7 +8,7 @@ function DeleteCompany(): JSX.Element {
   const { id }: { id: string } = useParams();
   const history = useHistory();
 
-  const { mutate, error } = useMutation<void, AxiosError>(() => companies.delete(id), {
+  const { mutate, error } = useMutation<unknown, AxiosError>(() => companies.delete(id), {
     onSuccess: () => history.push('/companies'),
   });
 
