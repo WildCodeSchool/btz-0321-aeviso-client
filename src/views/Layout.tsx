@@ -1,5 +1,5 @@
 import React, { useState, useEffect } from 'react';
-
+import Records from '../components/records/records1/Records';
 import useWindowDimensions from '../Hook/useWindowDimension';
 import Head from '../components/head';
 
@@ -33,7 +33,7 @@ function Layout(): JSX.Element {
         Component1
       </div>
       <div className="mt-5 sm:m-0 sm:col-start-3 sm:row-start-2 sm:row-end-3 row-start-3 col-start-1 bg-black rounded-xl shadow-mainShadow mx-4 sm:mx-0">
-        Component2
+        <Records />
       </div>
       <div className="mt-5 sm:m-0 sm:mt-5 sm:col-start-2 sm:col-end-4 sm:row-start-3 sm:row-end-5 row-end-5 col-start-1 bg-black rounded-xl shadow-mainShadow mx-4 mb-5">
         Component3
