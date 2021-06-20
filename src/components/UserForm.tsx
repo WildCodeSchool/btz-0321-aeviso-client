@@ -4,7 +4,7 @@ import { useParams } from 'react-router';
 import { SubmitHandler, useForm } from 'react-hook-form';
 
 interface BaseIProps {
-  mutationFn: (variables: { user: User; id?: string }) => Promise<any>;
+  mutationFn: (variables: { user: User; id?: string }) => Promise<User>;
   setIsModal: Dispatch<SetStateAction<boolean>>;
   setMessage: Dispatch<SetStateAction<string>>;
 }
