@@ -23,6 +23,9 @@ module.exports = {
         desktop: '350px 3fr 3fr',
         phone: '1fr',
       },
+      screens: {
+        sm: '1100px',
+      },
     },
   },
   variants: {

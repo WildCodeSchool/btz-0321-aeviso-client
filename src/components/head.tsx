@@ -15,9 +15,9 @@ function Head({ setIsSidebarVisible, setSideBarClass }: IProps): JSX.Element {
   return (
     <div className="flex justify-between w-full h-full items-start">
       <div className="sm:flex w-full justify-between h-full items-end">
-        <div className="flex-col sm:pl-2 ">
-          <h1 className="text-5xl font-bold">aeviso</h1>
-          <h2 className="text-xs">Expert Comptable.audit.conseil</h2>
+        <div className="flex-col">
+          <h1 className="text-6xl font-bold">aeviso</h1>
+          <h2 className="text-sm">Expert Comptable.audit.conseil</h2>
         </div>
         <h2 className="text-lg mt-4">{today()}</h2>
       </div>

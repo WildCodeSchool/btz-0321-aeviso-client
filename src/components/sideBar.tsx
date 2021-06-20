@@ -20,7 +20,7 @@ function SideBar({ sideBarClass, setIsSidebarVisible }: sideBarProps): JSX.Eleme
     <div className={sideBarClass}>
       <div className="py-8 px-8 ">
         <div className="flex justify-between">
-          {width < 900 ? (
+          {width < 1100 ? (
             <button className="focus:outline-none" onClick={handleClose}>
               <img className="h-5 w-5" src={Cross} alt="CloseButton" />{' '}
             </button>
