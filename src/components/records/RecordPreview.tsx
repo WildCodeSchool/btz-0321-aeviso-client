@@ -30,19 +30,21 @@ function RecordPreview({ record, isLastElement }: IProps): JSX.Element {
   }
 
   return (
-    <Link to={`/records/${record.id}`} className="group">
-      <p className="group-hover:bg-gray-800 group-hover:bg-opacity-30">
-        {formatDate(new Date(record.date))} <span className="font-bold">{data?.role}</span> - {data?.firstName}{' '}
-        {data?.lastName}
-      </p>
-      <p
-        className={`truncate ${
-          isLastElement ? '' : 'pb-1 border-b border-gray-600'
-        } group-hover:bg-gray-800 group-hover:bg-opacity-30`}
-      >
-        {record.comment}
-      </p>
-    </Link>
+    <div>
+      <Link to={`/records/${record.id}`} className="group">
+        <p className="group-hover:bg-gray-800 group-hover:bg-opacity-30">
+          {formatDate(new Date(record.date))} <span className="font-bold">{data?.role}</span> - {data?.firstName}{' '}
+          {data?.lastName}
+        </p>
+        <p
+          className={`truncate ${
+            isLastElement ? '' : 'pb-1 border-b border-gray-600'
+          } group-hover:bg-gray-800 group-hover:bg-opacity-30`}
+        >
+          {record.comment}
+        </p>
+      </Link>
+    </div>
   );
 }
 
