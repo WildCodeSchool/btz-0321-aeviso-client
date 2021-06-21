@@ -11,6 +11,7 @@ import Records from './records/Records';
 import OneRecord from './records/OneRecord';
 import HomePage from '../views/HomePage';
 import Layout from '../views/Layout';
+import FormResult from './records/records1/FormResult';
 
 function Routes(): JSX.Element {
   return (
@@ -26,6 +27,7 @@ function Routes(): JSX.Element {
       <Route path="/professions" component={Professions} />
       <Route exact path="/records" component={Records} />
       <Route path="/records/:id" component={OneRecord} />
+      <Route path="/exportéunrapport" component={FormResult} />
     </>
   );
 }

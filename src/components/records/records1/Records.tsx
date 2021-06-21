@@ -1,6 +1,6 @@
 import React, { useState } from 'react';
 import Form1 from './Form1';
-import Form2 from './Form2';
+
 // import Form from './Form';
 
 function Records(): JSX.Element {
@@ -9,6 +9,7 @@ function Records(): JSX.Element {
   const handleClick = () => {
     setIsForm(true);
   };
+
   return (
     <div className="text-white font-roboto p-5">
       <div className="flex justify-between">
@@ -22,7 +23,7 @@ function Records(): JSX.Element {
         )}
       </div>
 
-      {isForm ? <Form1 setIsForm={setIsForm} /> : <Form2 />}
+      <Form1 />
       {/* <Form /> */}
     </div>
   );

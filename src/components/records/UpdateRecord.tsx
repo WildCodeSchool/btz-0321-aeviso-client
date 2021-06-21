@@ -7,11 +7,11 @@ import { records } from '../../API/requests';
 
 interface Data {
   id: string;
-  data: Records;
+  data: IRecord;
 }
 
-function UpdateRecord({ setRecord }: { setRecord: Dispatch<SetStateAction<Records | null>> }): JSX.Element {
-  const { register, handleSubmit } = useForm<Records>();
+function UpdateRecord({ setRecord }: { setRecord: Dispatch<SetStateAction<IRecord | null>> }): JSX.Element {
+  const { register, handleSubmit } = useForm<IRecord>();
   const { id }: { id: string } = useParams();
 
   const { mutate, error } = useMutation<null, AxiosError, Data>((data) => records.put(data), {
@@ -38,7 +38,7 @@ function UpdateRecord({ setRecord }: { setRecord: Dispatch<SetStateAction<Record
       >
         <label>
           TIME SLOT
-          <input type="text" {...register('time_slot')} />
+          <input type="text" {...register('timeslot')} />
         </label>
 
         <button type="submit">Update</button>
