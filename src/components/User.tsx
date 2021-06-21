@@ -1,21 +1,17 @@
 import React, { useState } from 'react';
 import { useMutation, useQuery } from 'react-query';
-import { useParams, useHistory } from 'react-router-dom';
+import { useParams } from 'react-router-dom';
 import Modal from './Modal';
 import UserForm from './UserForm';
 import { user } from '../API/requests';
 
 function User(): JSX.Element {
-  const [isModal, setIsModal] = useState<Boolean>(false);
-  const [message, setMessage] = useState<string>('');
+  const [isModal, setIsModal] = useState(false);
+  const [message, setMessage] = useState('');
 
   const { id }: { id: string } = useParams();
 
-  const { isLoading, error, data } = useQuery<User, Error>(
-    ['user', id],
-    () => user.getOne(id),
-    { cacheTime: 0 }
-  );
+  const { isLoading, error, data } = useQuery<User, Error>(['user', id], () => user.getOne(id), { cacheTime: 0 });
 
   const { mutate } = useMutation(() => user.delete({ id }), {
     onSuccess: () => {
@@ -25,12 +21,7 @@ function User(): JSX.Element {
   });
 
   if (isModal) {
-    return (
-      <Modal
-        message={message}
-        handleClick={() => setIsModal((prevState) => !prevState)}
-      />
-    );
+    return <Modal message={message} handleClick={() => setIsModal((prevState) => !prevState)} />;
   }
   if (isLoading) return <p>Loading...</p>;
   if (error) return <p>An error has occurred: {error.message}</p>;
@@ -38,10 +29,10 @@ function User(): JSX.Element {
     <div>
       <UserForm
         mutationFn={user.update}
-        initFirstname={data!.firstname}
-        initLastname={data!.lastname}
-        initEmail={data!.email}
-        initProfession={data!.profession}
+        initFirstname={data?.firstname}
+        initLastname={data?.lastname}
+        initEmail={data?.email}
+        initProfession={data?.profession}
         setIsModal={setIsModal}
         setMessage={setMessage}
       />

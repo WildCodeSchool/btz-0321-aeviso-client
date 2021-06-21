@@ -1,14 +1,16 @@
 import React, { useState } from 'react';
 import { useForm } from 'react-hook-form';
 import { useMutation, useQuery } from 'react-query';
-import { Link, useHistory } from 'react-router-dom';
+import { Link } from 'react-router-dom';
 import { project } from '../../API/requests';
 
-function ProjectList() {
+function ProjectList(): JSX.Element {
   const { register, handleSubmit } = useForm<Project>();
-  const [_, setListProject] = useState<Project[]>([]);
+  const [projectList, setListProject] = useState<Project[]>([]);
 
-  const { isLoading: projectLoading, error: projectError, data } = useQuery<Project[]>('projects', project.getAll);
+  const { isLoading: projectLoading, error: projectError } = useQuery<Project[]>('projects', project.getAll, {
+    onSuccess: (data) => setListProject(data),
+  });
 
   const {
     isLoading: postLoading,
@@ -33,7 +35,7 @@ function ProjectList() {
     <div className="flex font-roboto mx-10 my-10">
       <div className="w-6/12">
         <h1 className="text-4xl font-bold">Project List</h1>
-        {data!.map((project) => {
+        {projectList.map((project) => {
           return (
             <div className=" mr-10 mt-8" key={project.id}>
               <h1 className="text-xl font-medium">{project.name}</h1>
@@ -48,11 +50,11 @@ function ProjectList() {
       <div className="w-6/12">
         <h1 className=" text-2xl font-bold">Post a new project</h1>
         <form onSubmit={handleSubmit((data) => mutate({ data }))} className="flex flex-col">
-          <label className="mt-5" htmlFor="">
+          <label className="mt-5" htmlFor="name">
             Name
           </label>
           <input className="p-2 mt-2 border border-black" {...register('name')} type="text" />
-          <label className="mt-5" htmlFor="">
+          <label className="mt-5" htmlFor="description">
             Description
           </label>
           <textarea className="h-28 p-2 mt-2 border border-black" {...register('description')}></textarea>
