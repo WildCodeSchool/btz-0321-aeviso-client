@@ -8,7 +8,7 @@ import { Link } from 'react-router-dom';
 import RecordPreview from './RecordPreview';
 
 function Records(): JSX.Element {
-  const { isLoading, error, data } = useQuery<IRecord[], AxiosError>('records', () => records.getAll(5));
+  const { isLoading, error, data } = useQuery<IRecord[], AxiosError>('records', () => records.getAll(10));
 
   if (isLoading) {
     return <p className="text-white">Loading...</p>;
@@ -20,7 +20,7 @@ function Records(): JSX.Element {
 
   return (
     <div className=" text-white font-roboto">
-      <div className="p-4 text-lg font-bold flex justify-between items-center bg-black sticky top-0">
+      <div className="py-3 px-5 text-lg font-bold flex justify-between items-center bg-black sticky top-0">
         <CardTitle>Derniers rapports</CardTitle>
 
         <Link to="/records" className="p-2 bg-blue rounded-md text-xs font-light">

@@ -49,7 +49,8 @@ export const project = {
 };
 
 export const companies = {
-  getAll: (): Promise<Company[]> => axios.get(`${API_URL}/companies`).then((res) => res.data),
+  getAll: (limit?: number): Promise<Company[]> =>
+    axios.get(`${API_URL}/companies/${limit ? `?limit=${limit}` : ''}`).then((res) => res.data),
 
   getOne: (id: string): Promise<Company> => axios.get(`${API_URL}/companies/${id}`).then((res) => res.data),
 
