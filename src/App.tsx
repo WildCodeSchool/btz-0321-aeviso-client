@@ -9,7 +9,12 @@ const queryClient = new QueryClient();
 
 function App(): JSX.Element {
   return (
-    <div className="">
+    <div
+      className="m-auto"
+      style={{
+        maxWidth: 1440,
+      }}
+    >
       <QueryClientProvider client={queryClient}>
         <Router>
           <Switch>
