@@ -10,6 +10,8 @@ module.exports = {
       colors: {
         darkGray: '#3E3E3E',
         input: '#404040',
+        blue: '#5A73A3',
+        green: '#58926F',
       },
       boxShadow: {
         mainShadow: '10px 10px 20px rgba(0, 0, 0, 0.50)',

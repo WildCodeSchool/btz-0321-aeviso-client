@@ -2,24 +2,41 @@ import React from 'react';
 import { Link } from 'react-router-dom';
 import { useQuery } from 'react-query';
 import { AxiosError } from 'axios';
-import { user } from '../../API/requests';
+import { companies, user } from '../../API/requests';
 
 interface IProps {
   record: IRecord;
   isLastElement: boolean;
+  isFirstElement: boolean;
 }
 
-function RecordPreview({ record, isLastElement }: IProps): JSX.Element {
+function RecordPreview({ record, isLastElement, isFirstElement }: IProps): JSX.Element {
   const formatDate = (date: Date): string => {
     return `${(date.getMonth() + 1).toString().padStart(2, '0')}/${date.getFullYear()}`;
   };
 
-  const { isLoading, error, data } = useQuery<User, AxiosError>(['users', record.userId], () =>
-    user.getOne(record.userId)
+  const {
+    isLoading: userIsLoading,
+    error: userError,
+    data: userData,
+  } = useQuery<User, AxiosError>(['users', record.userId], () => user.getOne(record.userId));
+
+  const {
+    isLoading: companyIsLoading,
+    error: companyError,
+    data: companyData,
+  } = useQuery<Company, AxiosError>(
+    ['companies', userData?.companyId],
+    () => companies.getOne(userData?.companyId as string),
+    {
+      enabled: !!userData,
+    }
   );
-  if (isLoading) {
+
+  if (companyIsLoading || userIsLoading) {
     return <p>Loading...</p>;
   }
+  const error = companyError || userError;
 
   if (error) {
     return (
@@ -30,17 +47,12 @@ function RecordPreview({ record, isLastElement }: IProps): JSX.Element {
   }
 
   return (
-    <div>
+    <div className="mx-3 mb-3 mt-1  sm:mx-5 text-white font-roboto">
       <Link to={`/records/${record.id}`} className="group">
-        <p className="group-hover:bg-gray-800 group-hover:bg-opacity-30">
-          {formatDate(new Date(record.date))} <span className="font-bold">{data?.role}</span> - {data?.firstName}{' '}
-          {data?.lastName}
+        <p className={` font-bold text-sm ${isFirstElement ? '' : 'font-bold text-sm sm:mt-4'} `}>
+          {formatDate(new Date(record.date))} - {userData?.firstName} {userData?.lastName} - {companyData?.name}
         </p>
-        <p
-          className={`truncate ${
-            isLastElement ? '' : 'pb-1 border-b border-gray-600'
-          } group-hover:bg-gray-800 group-hover:bg-opacity-30`}
-        >
+        <p className={`truncate text-xs text-gray-400 ${isLastElement ? '' : 'pb-1 border-b border-white'}`}>
           {record.comment}
         </p>
       </Link>

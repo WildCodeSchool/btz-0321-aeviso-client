@@ -19,17 +19,22 @@ function Records(): JSX.Element {
   }
 
   return (
-    <div className=" text-white">
-      <div className="p-2 flex justify-between items-center bg-black sticky top-0">
+    <div className=" text-white font-roboto">
+      <div className="p-4 text-lg font-bold flex justify-between items-center bg-black sticky top-0">
         <CardTitle>Derniers rapports</CardTitle>
 
-        <Link to="/records" className="p-2 bg-blue rounded-md">
+        <Link to="/records" className="p-2 bg-blue rounded-md text-xs font-light">
           Tous les rapports
         </Link>
       </div>
 
       {data?.map((record: IRecord, index) => (
-        <RecordPreview key={record.id} record={record} isLastElement={index === data?.length - 1} />
+        <RecordPreview
+          key={record.id}
+          record={record}
+          isFirstElement={index === 0}
+          isLastElement={index === data?.length - 1}
+        />
       ))}
     </div>
   );

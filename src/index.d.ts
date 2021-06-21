@@ -37,6 +37,7 @@ interface IRecord {
   id: string;
   userId: string;
   projectId: string;
+  companyId: string;
   date: string;
   timeslot: 'MORNING' | 'AFTERNOON';
   comment: string;
