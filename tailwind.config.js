@@ -16,12 +16,15 @@ module.exports = {
         inputShadow: '5px 5px 20px rgba(0, 0, 0, 0.8)',
       },
       gridTemplateRows: {
-        desktop: '1fr 4fr 5fr',
+        desktop: '10% 40% 50%',
         mobile: '130px 200px 250px 400px',
       },
       gridTemplateColumns: {
-        desktop: '48% 48%',
+        desktop: '350px 3fr 3fr',
         phone: '1fr',
+      },
+      screens: {
+        sm: '1100px',
       },
     },
   },
