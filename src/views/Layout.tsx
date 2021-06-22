@@ -11,7 +11,7 @@ function Layout(): JSX.Element {
   const [isSidebarVisible, setIsSidebarVisible] = useState<boolean>(false);
   const { width } = useWindowDimensions();
   const [sideBarClass, setSideBarClass] = useState(
-    'flex flex-col bg-black w-full h-full rounded-xl text-white font-roboto justify-between'
+    'flex flex-col bg-black w-full h-full rounded-xl text-white font-roboto justify-between shadow-mainShadow'
   );
 
   useEffect(() => {
