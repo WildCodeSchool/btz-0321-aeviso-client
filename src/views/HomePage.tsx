@@ -81,9 +81,7 @@ function HomePage(): JSX.Element {
           type="password"
           {...register('password', { required: true })} // { required: true } second argument
         />
-        {/* <Link to="/"> */}
         <input className="bg-input py-1 bg-opacity-50 rounded-lg w-6/12 mt-8 shadow-inputShadow" type="submit" />
-        {/* </Link> */}
       </form>
     </div>
   );
