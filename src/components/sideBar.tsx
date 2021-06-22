@@ -5,6 +5,7 @@ import Rapport from '../../media/icons/folder.svg';
 import Réglages from '../../media/icons/Settings.svg';
 import useWindowDimensions from '../Hook/useWindowDimension';
 import Cross from '../../media/icons/Cross.svg';
+import { Link } from 'react-router-dom';
 
 interface sideBarProps {
   sideBarClass: string;
@@ -38,10 +39,12 @@ function SideBar({ sideBarClass, setIsSidebarVisible }: sideBarProps): JSX.Eleme
             <img src={Client} className="mr-3  mb-1" alt="homesvg" />
             Clients
           </li>
-          <li className="flex text-lg  pl-5 mt-5 items-center h-14">
-            <img src={Rapport} className="mr-3 mb-1" alt="homesvg" />
-            Rapport
-          </li>
+          <Link to="/ExportAReport">
+            <li className="flex text-lg  pl-5 mt-5 items-center h-14">
+              <img src={Rapport} className="mr-3 mb-1" alt="homesvg" />
+              Rapport
+            </li>
+          </Link>
           <li className="flex  text-lg  pl-5 mt-5 items-center h-14">
             <img src={Réglages} className="mr-3 mb-1" alt="homesvg" />
             Réglages
