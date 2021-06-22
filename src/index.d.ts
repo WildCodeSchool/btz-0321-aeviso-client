@@ -8,11 +8,15 @@ interface Company {
 }
 
 interface User {
-  id?: number;
-  firstname: string;
-  lastname: string;
+  id: string;
+  firstName: string;
+  lastName: string;
+  role: 'USER' | 'ADMIN' | 'SUPERADMIN';
   email: string;
-  profession: string | null;
+  password?: string;
+  weeklyBasis: 'h35' | 'h39';
+  jobId: string;
+  companyId: string;
 }
 
 interface Job {
@@ -29,10 +33,12 @@ interface Project {
   taxation: string;
 }
 
-interface Records {
-  id: number;
-  user_id: number;
-  project_id: number;
-  step_id: number;
-  time_slot: string;
+interface IRecord {
+  id: string;
+  userId: string;
+  projectId: string;
+  companyId: string;
+  date: string;
+  timeslot: 'MORNING' | 'AFTERNOON';
+  comment: string;
 }

@@ -10,6 +10,8 @@ module.exports = {
       colors: {
         darkGray: '#3E3E3E',
         input: '#404040',
+        blue: '#5A73A3',
+        green: '#58926F',
       },
       boxShadow: {
         mainShadow: '10px 10px 20px rgba(0, 0, 0, 0.50)',
@@ -20,7 +22,7 @@ module.exports = {
         mobile: '130px 200px 250px 400px',
       },
       gridTemplateColumns: {
-        desktop: '350px 3fr 3fr',
+        desktop: '350px 500px 500px',
         phone: '1fr',
       },
       screens: {

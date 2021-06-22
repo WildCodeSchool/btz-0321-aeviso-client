@@ -1,46 +1,41 @@
-import React, { useState } from 'react';
-import { Link } from 'react-router-dom';
+import React from 'react';
 import { useQuery } from 'react-query';
-import { records } from '../../API/requests';
-import CreateRecordsForm from './CreateRecordsForm';
 import { AxiosError } from 'axios';
+import { records } from '../../API/requests';
+
+import CardTitle from '../CardTitle';
+import { Link } from 'react-router-dom';
+import RecordPreview from './RecordPreview';
 
 function Records(): JSX.Element {
-  const [recordsList, setRecordsList] = useState<Records[]>([]);
-
-  const { isLoading, error, data } = useQuery<Records[], AxiosError>('records', () => records.getAll(), {
-    onSuccess: (data) => setRecordsList(data),
-  });
+  const { isLoading, error, data } = useQuery<IRecord[], AxiosError>('records', () => records.getAll(10));
 
   if (isLoading) {
-    return <p>Loading...</p>;
+    return <p className="text-white">Loading...</p>;
   }
 
   if (error) {
-    return <p>An error occurred: {error.message}</p>;
+    return <p className="text-white">An error occurred: {error.message}</p>;
   }
 
   return (
-    <div>
-      {data && (
-        <>
-          <h3 className="mb-6">Companies test</h3>
-          <div>
-            {recordsList.map((record) => {
-              return (
-                <div key={record.id} className="border border-black mb-2">
-                  <Link to={`/records/${record.id}`}>
-                    <p>
-                      {record.user_id} {record.project_id} {record.step_id} {record.time_slot}
-                    </p>
-                  </Link>
-                </div>
-              );
-            })}
-          </div>
-          <CreateRecordsForm setRecordsList={setRecordsList} />
-        </>
-      )}
+    <div className=" text-white font-roboto">
+      <div className="py-3 px-5 text-lg font-bold flex justify-between items-center bg-black sticky top-0">
+        <CardTitle>Derniers rapports</CardTitle>
+
+        <Link to="/records" className="p-2 bg-blue rounded-md text-xs font-light">
+          Tous les rapports
+        </Link>
+      </div>
+
+      {data?.map((record: IRecord, index) => (
+        <RecordPreview
+          key={record.id}
+          record={record}
+          isFirstElement={index === 0}
+          isLastElement={index === data?.length - 1}
+        />
+      ))}
     </div>
   );
 }
