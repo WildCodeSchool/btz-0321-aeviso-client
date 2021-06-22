@@ -3,9 +3,9 @@ import { Switch } from 'react-router-dom';
 import Routes from '../../src/components/Routes';
 
 import useWindowDimensions from '../Hook/useWindowDimension';
-import Head from '../components/head';
+import Head from '../components/Head';
 
-import SideBar from '../components/sideBar';
+import SideBar from '../components/SideBar';
 
 function Layout(): JSX.Element {
   const [isSidebarVisible, setIsSidebarVisible] = useState<boolean>(false);
@@ -21,8 +21,6 @@ function Layout(): JSX.Element {
       setIsSidebarVisible(true);
     }
   }, [width]);
-
-  console.log(width)
 
   return (
     <div className="grid sm:grid-rows-desktop sm:grid-cols-desktop grid-cols-phone grid-rows-mobile sm:gap-x-5  min-h-screen sm:max-h-screen  sm:p-5">
