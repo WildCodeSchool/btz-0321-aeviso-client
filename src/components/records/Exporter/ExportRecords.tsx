@@ -5,6 +5,9 @@ import { AxiosError } from 'axios';
 import { companies } from '../../../API/requests';
 import { useLocation, useHistory } from 'react-router-dom';
 import FormResult from './FormResult';
+import SelectCompany from './SelectCompany';
+import SelectProject from './SelectProject';
+import SelectDate from './SelectDate';
 
 function ExportRecords(): JSX.Element {
   const query = new URLSearchParams(useLocation().search);
@@ -48,7 +51,7 @@ function ExportRecords(): JSX.Element {
       {query.has('companyId') ? (
         <FormResult query={query} />
       ) : (
-        <div className="bg-black h-full w-full text-white font-roboto rounded-xl shadow-mainShadow py-5 px-8">
+        <div className="bg-black h-full sm:w-full text-white font-roboto rounded-xl shadow-mainShadow mx-4 sm:mx-0  py-5 sm:px-10 p-5">
           <form
             onSubmit={handleSubmit((data) => {
               const start = new Date(data.start).toISOString();
@@ -58,67 +61,11 @@ function ExportRecords(): JSX.Element {
             className="flex flex-col"
             action="sumbit"
           >
-            <h1 className="text-3xl font-bold">Exporter un Projet</h1>
-            <div className="flex flex-col">
-              <label className="mt-5 font-bold text-lg" htmlFor="select">
-                1. Sélectionner une entreprise
-              </label>
-              <select
-                {...register('company')}
-                className="focus:outline-none text-gray-300 text-sm bg-black border-b pt-1 pb-2 border-white"
-              >
-                {companiesData?.map((company: Company) => {
-                  return (
-                    <option value={company.id} key={company.id}>
-                      {company.name}
-                    </option>
-                  );
-                })}
-              </select>
-            </div>
-
-            <div className="flex flex-col">
-              {' '}
-              <label className="mt-5 font-bold text-lg" htmlFor="select">
-                2. Sélectionner une projet
-              </label>
-              <select
-                {...register('project', { value: projectData?.[0]?.id || '' })}
-                className="focus:outline-none text-gray-300 text-sm bg-black border-b pt-1 pb-2 border-white"
-              >
-                {projectData?.map((project) => {
-                  return (
-                    <option value={project.id} key={project.id}>
-                      {project.name}
-                    </option>
-                  );
-                })}
-              </select>
-            </div>
-
-            <div className="flex flex-col">
-              <label className="mt-5 font-bold text-lg" htmlFor="select">
-                3. Sélectionner une date de début
-              </label>
-              <input
-                {...register('start', { required: true })}
-                className="focus:outline-none text-gray-300 text-sm bg-black border-b pt-1 pb-2 border-white"
-                type="date"
-              />
-            </div>
-
-            <div className="flex flex-col">
-              {' '}
-              <label className="mt-5 font-bold text-lg" htmlFor="select">
-                4. Sélectionner une date de fin
-              </label>
-              <input
-                {...register('end', { required: true })}
-                className="focus:outline-none text-gray-300 text-sm bg-black border-b pt-1 pb-2 border-white"
-                type="date"
-              />
-              <input type="submit" className="focus:outline-none mt-5 w-4/12 rounded-sm bg-green" />
-            </div>
+            <h1 className="sm:text-3xl  text-2xl font-bold">Exporter un Rapport</h1>
+            <h2 className="sm:text-xl mt-3">{`Attention vous devez obligatoirement remplir tous les champs afin d'exporter un rapport`}</h2>
+            <SelectCompany register={register} companiesData={companiesData} />
+            <SelectProject register={register} projectData={projectData} />
+            <SelectDate register={register} />
           </form>
         </div>
       )}

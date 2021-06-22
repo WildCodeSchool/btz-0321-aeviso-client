@@ -20,7 +20,7 @@ module.exports = {
       },
       gridTemplateRows: {
         desktop: '1fr 5fr 5fr',
-        mobile: '130px 200px 250px 400px',
+        mobile: '130px 200px 250px 300px',
       },
       gridTemplateColumns: {
         desktop: '350px 1000px',

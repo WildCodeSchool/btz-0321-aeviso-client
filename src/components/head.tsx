@@ -19,7 +19,7 @@ function Head({ setIsSidebarVisible, setSideBarClass }: IProps): JSX.Element {
           <h1 className="sm:text-5xl text-5xl  font-bold">aeviso</h1>
           <h2 className="text-sm">Expert Comptable.audit.conseil</h2>
         </div>
-        <h2 className="text-lg">{today()}</h2>
+        <h2 className="text-base sm:text-lg">{today()}</h2>
       </div>
       <button onClick={handleSidebar} className="mt-3 sm:hidden focus:outline-none">
         <img className="h-10  w-10" src={Burger} alt="" />

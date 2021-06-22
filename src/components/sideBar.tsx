@@ -15,16 +15,26 @@ interface sideBarProps {
 function SideBar({ sideBarClass, setIsSidebarVisible }: sideBarProps): JSX.Element {
   const { width } = useWindowDimensions();
   const handleClose = () => {
-    setIsSidebarVisible(false);
+    if (width < 1200) {
+      setIsSidebarVisible(false);
+    } else {
+      setIsSidebarVisible(true);
+    }
   };
   return (
     <div className={sideBarClass}>
       <div className="py-8 px-8 ">
         <div className="flex justify-between">
           {width < 1200 ? (
-            <button className="focus:outline-none" onClick={handleClose}>
-              <img className="h-5 w-5" src={Cross} alt="CloseButton" />{' '}
-            </button>
+            <div className="flex justify-between w-full">
+              <div className="flex-col h-full">
+                <h1 className="sm:text-5xl text-5xl  font-bold">aeviso</h1>
+                <h2 className="text-sm">Expert Comptable.audit.conseil</h2>
+              </div>
+              <button className="focus:outline-none" onClick={handleClose}>
+                <img className="h-5 w-5" src={Cross} alt="CloseButton" />{' '}
+              </button>
+            </div>
           ) : (
             ''
           )}
@@ -34,22 +44,30 @@ function SideBar({ sideBarClass, setIsSidebarVisible }: sideBarProps): JSX.Eleme
           <Link to="/">
             <li className="flex text-lg  items-center pl-5 h-14 rounded-xl">
               <img src={Home} className="mr-3 mb-1" alt="homesvg" />
-              Accueil
+              <button className="focus:outline-none" onClick={handleClose}>
+                Accueil
+              </button>
             </li>
           </Link>
           <li className="flex text-lg pl-5 mt-5 items-center h-14 ">
             <img src={Client} className="mr-3  mb-1" alt="homesvg" />
-            Clients
+            <button className="focus:outline-none" onClick={handleClose}>
+              Clients
+            </button>
           </li>
           <Link to="/export">
             <li className="flex text-lg  pl-5 mt-5 items-center h-14">
               <img src={Rapport} className="mr-3 mb-1" alt="homesvg" />
-              Rapport
+              <button className="focus:outline-none" onClick={handleClose}>
+                Rapport
+              </button>
             </li>
           </Link>
           <li className="flex  text-lg  pl-5 mt-5 items-center h-14">
             <img src={Réglages} className="mr-3 mb-1" alt="homesvg" />
-            Réglages
+            <button className="focus:outline-none" onClick={handleClose}>
+              Réglages
+            </button>
           </li>
         </nav>
       </div>

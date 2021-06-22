@@ -23,8 +23,8 @@ function Records(): JSX.Element {
       <div className="py-3 px-5 text-lg font-bold flex justify-between items-center bg-black">
         <CardTitle>Derniers rapports</CardTitle>
 
-        <Link to="/records" className="p-2 bg-blue rounded-md text-xs font-light">
-          Tous les rapports
+        <Link to="/export" className="p-2 bg-blue rounded-md text-xs font-light">
+          Exporter un rapport
         </Link>
       </div>
 
