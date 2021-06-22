@@ -78,7 +78,7 @@ function HomePage(): JSX.Element {
         </label>
         <input
           className="focus:outline-none mt-2 p-3 h-14 bg-input bg-opacity-50 rounded-lg shadow-inputShadow"
-          type="text"
+          type="password"
           {...register('password', { required: true })} // { required: true } second argument
         />
         {/* <Link to="/"> */}
