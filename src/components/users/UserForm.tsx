@@ -59,7 +59,7 @@ function userForm(props: UserIProps | BaseIProps): JSX.Element {
 
   const [listOfJobs, setListOfJobs] = useState<SelectItem[]>([]);
 
-  const jobReq = useQuery<Job[], AxiosError>('jobs', jobs.getAll, {
+  useQuery<Job[], AxiosError>('jobs', jobs.getAll, {
     onSuccess: (data) => {
       const jobs = data.map((job) => {
         return { value: job.id, text: job.label };
@@ -102,8 +102,7 @@ function userForm(props: UserIProps | BaseIProps): JSX.Element {
       weeklyBasis,
       password,
     };
-    console.log(user);
-    // mutate({ user, id });
+    mutate({ user, id });
   };
 
   if (isLoading) return <p>Envoie dans la base de données</p>;
