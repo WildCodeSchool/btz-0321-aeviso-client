@@ -1,9 +1,9 @@
 import React, { useState } from 'react';
 import { useMutation, useQuery } from 'react-query';
 import { useParams } from 'react-router-dom';
-import Modal from './Modal';
+import Modal from '../../Modal';
 import UserForm from './UserForm';
-import { user } from '../API/requests';
+import { user } from '../../../API/requests';
 
 function User(): JSX.Element {
   const [isModal, setIsModal] = useState(false);
@@ -29,10 +29,10 @@ function User(): JSX.Element {
     <div>
       <UserForm
         mutationFn={user.update}
-        initFirstname={data?.firstname}
-        initLastname={data?.lastname}
+        initFirstname={data?.firstName}
+        initLastname={data?.lastName}
         initEmail={data?.email}
-        initProfession={data?.profession}
+        initProfession={data?.jobId}
         setIsModal={setIsModal}
         setMessage={setMessage}
       />

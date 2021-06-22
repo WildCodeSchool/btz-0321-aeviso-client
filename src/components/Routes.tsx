@@ -1,7 +1,7 @@
 import React from 'react';
 import { Route } from 'react-router-dom';
-import Users from './Users';
-import User from './User';
+import Users from '../components/frontTestRoads/user/Users';
+import User from './frontTestRoads/user/User';
 import Companies from './company/Companies';
 import Company from './company/Company';
 import Professions from './professions/Professions';

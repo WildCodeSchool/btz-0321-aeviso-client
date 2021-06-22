@@ -5,7 +5,7 @@ import Routes from '../../src/components/Routes';
 import useWindowDimensions from '../Hook/useWindowDimension';
 import Head from '../components/Head';
 
-import SideBar from '../components/sideBar';
+import SideBar from '../components/SideBar';
 
 function Layout(): JSX.Element {
   const [isSidebarVisible, setIsSidebarVisible] = useState<boolean>(false);

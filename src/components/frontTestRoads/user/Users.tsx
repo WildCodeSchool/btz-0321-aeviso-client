@@ -2,8 +2,8 @@ import { AxiosError } from 'axios';
 import React, { useState } from 'react';
 import { useQuery } from 'react-query';
 import { Link } from 'react-router-dom';
-import { user } from '../API/requests';
-import Modal from './Modal';
+import { user } from '../../../API/requests';
+import Modal from '../../Modal';
 import UserForm from './UserForm';
 
 function Users(): JSX.Element {
@@ -30,7 +30,7 @@ function Users(): JSX.Element {
             <div key={user.id} className="border border-black mb-2">
               <Link to={`/user/${user.id}`}>
                 <p>
-                  {user.firstname} {user.lastname}
+                  {user.firstName} {user.lastName}
                 </p>
               </Link>
             </div>

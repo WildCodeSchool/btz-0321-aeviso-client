@@ -31,10 +31,12 @@ function SideBar({ sideBarClass, setIsSidebarVisible }: sideBarProps): JSX.Eleme
         </div>
 
         <nav className="list-none pt-5">
-          <li className="flex text-lg  items-center pl-5 h-14 bg-darkGray rounded-xl">
-            <img src={Home} className="mr-3 mb-1" alt="homesvg" />
-            Accueil
-          </li>
+          <Link to="/">
+            <li className="flex text-lg  items-center pl-5 h-14 rounded-xl">
+              <img src={Home} className="mr-3 mb-1" alt="homesvg" />
+              Accueil
+            </li>
+          </Link>
           <li className="flex text-lg pl-5 mt-5 items-center h-14 ">
             <img src={Client} className="mr-3  mb-1" alt="homesvg" />
             Clients
