@@ -26,8 +26,8 @@ function Routes(): JSX.Element {
       <Route path="/users/:id" component={User} />
       <Route path="/professions" component={Professions} />
       <Route exact path="/records" component={Records} />
+      <Route exact path="/export" component={ExportRecords} />
       <Route path="/records/:id" component={OneRecord} />
-      <Route path="/ExportAReport" component={ExportRecords} />
     </>
   );
 }

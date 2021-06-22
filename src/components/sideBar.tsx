@@ -41,7 +41,7 @@ function SideBar({ sideBarClass, setIsSidebarVisible }: sideBarProps): JSX.Eleme
             <img src={Client} className="mr-3  mb-1" alt="homesvg" />
             Clients
           </li>
-          <Link to="/ExportAReport">
+          <Link to="/export">
             <li className="flex text-lg  pl-5 mt-5 items-center h-14">
               <img src={Rapport} className="mr-3 mb-1" alt="homesvg" />
               Rapport

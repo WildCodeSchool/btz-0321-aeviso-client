@@ -1,5 +1,5 @@
 interface Company {
-  id: number;
+  id: string;
   name: string;
   city: string;
   zipCode: string;
@@ -26,7 +26,7 @@ interface Job {
 }
 
 interface Project {
-  id: number;
+  id: string;
   name: string;
   description: string;
   code: string;
@@ -41,4 +41,11 @@ interface IRecord {
   date: string;
   timeslot: 'MORNING' | 'AFTERNOON';
   comment: string;
+}
+
+interface IExportRecordQuery {
+  companyId: string;
+  projectId: string;
+  start: string;
+  end: string;
 }
