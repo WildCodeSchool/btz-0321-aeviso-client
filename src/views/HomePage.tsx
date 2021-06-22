@@ -28,9 +28,10 @@ function HomePage(): JSX.Element {
     },
   });
 
-  const onSubmit: SubmitHandler<IFormInput> = ({ email }) => {
+  const onSubmit: SubmitHandler<IFormInput> = ({ email, password }) => {
     const user = {
       email,
+      password,
     };
     mutate(user);
   };
@@ -78,7 +79,7 @@ function HomePage(): JSX.Element {
         <input
           className="focus:outline-none mt-2 p-3 h-14 bg-input bg-opacity-50 rounded-lg shadow-inputShadow"
           type="text"
-          {...register('passWord')} // { required: true } second argument
+          {...register('password', { required: true })} // { required: true } second argument
         />
         {/* <Link to="/"> */}
         <input className="bg-input py-1 bg-opacity-50 rounded-lg w-6/12 mt-8 shadow-inputShadow" type="submit" />
