@@ -8,6 +8,7 @@ interface IProps {
 
 function RecordPreview({ company, isFirstElement }: IProps): JSX.Element {
   return (
+    <div>
     <Link to={`/companies/${company.id}`} className="group">
       <p
         className={` font-bold text-base py-2 border-b border-white ${
@@ -17,6 +18,7 @@ function RecordPreview({ company, isFirstElement }: IProps): JSX.Element {
         <span className="font-bold">{company.name}</span>
       </p>
     </Link>
+  </div>
   );
 }
 

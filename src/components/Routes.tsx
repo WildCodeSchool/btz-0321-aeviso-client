@@ -10,12 +10,12 @@ import UniqueProject from './project/UniqueProject';
 import Records from './records/Records';
 import OneRecord from './records/OneRecord';
 import HomePage from '../views/HomePage';
-import Layout from '../views/Layout';
+import SuperAdmin from './home/SuperAdmin';
 
 function Routes(): JSX.Element {
   return (
     <>
-      <Route exact path="/" component={Layout} />
+      <Route exact path="/" component={SuperAdmin} />
       <Route exact path="/home" component={HomePage} />
       <Route exact path="/companies" component={Companies} />
       <Route path="/companies/:id" component={Company} />

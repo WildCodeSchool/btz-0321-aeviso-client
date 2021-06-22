@@ -20,7 +20,7 @@ function Companies(): JSX.Element {
 
   return (
     <div className="text-white">
-      <div className="py-3 px-5 text-lg font-bold flex justify-between items-center bg-black sticky top-0">
+      <div className="py-3 px-5 text-lg font-bold flex justify-between items-center bg-black ">
         <CardTitle>Clients</CardTitle>
 
         <Link to="/records" className="p-2 bg-blue rounded-md text-xs font-light">

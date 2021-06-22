@@ -1,7 +1,8 @@
 import React from 'react';
 import { QueryClient, QueryClientProvider } from 'react-query';
-import { BrowserRouter as Router, Switch } from 'react-router-dom';
-import Routes from '../src/components/Routes';
+import { BrowserRouter as Router } from 'react-router-dom';
+
+import Layout from './views/Layout';
 
 import { ReactQueryDevtools } from 'react-query/devtools';
 
@@ -17,9 +18,7 @@ function App(): JSX.Element {
     >
       <QueryClientProvider client={queryClient}>
         <Router>
-          <Switch>
-            <Routes />
-          </Switch>
+          <Layout />
         </Router>
         <ReactQueryDevtools initialIsOpen={false} />
       </QueryClientProvider>

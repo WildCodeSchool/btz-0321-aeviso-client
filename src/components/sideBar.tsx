@@ -20,7 +20,7 @@ function SideBar({ sideBarClass, setIsSidebarVisible }: sideBarProps): JSX.Eleme
     <div className={sideBarClass}>
       <div className="py-8 px-8 ">
         <div className="flex justify-between">
-          {width < 1100 ? (
+          {width < 1200 ? (
             <button className="focus:outline-none" onClick={handleClose}>
               <img className="h-5 w-5" src={Cross} alt="CloseButton" />{' '}
             </button>
@@ -32,7 +32,7 @@ function SideBar({ sideBarClass, setIsSidebarVisible }: sideBarProps): JSX.Eleme
         <nav className="list-none pt-5">
           <li className="flex text-lg  items-center pl-5 h-14 bg-darkGray rounded-xl">
             <img src={Home} className="mr-3 mb-1" alt="homesvg" />
-            Acceuil
+            Accueil
           </li>
           <li className="flex text-lg pl-5 mt-5 items-center h-14 ">
             <img src={Client} className="mr-3  mb-1" alt="homesvg" />

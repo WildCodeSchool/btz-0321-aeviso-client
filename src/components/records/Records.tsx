@@ -20,7 +20,7 @@ function Records(): JSX.Element {
 
   return (
     <div className=" text-white font-roboto">
-      <div className="py-3 px-5 text-lg font-bold flex justify-between items-center bg-black sticky top-0">
+      <div className="py-3 px-5 text-lg font-bold flex justify-between items-center bg-black">
         <CardTitle>Derniers rapports</CardTitle>
 
         <Link to="/records" className="p-2 bg-blue rounded-md text-xs font-light">
