@@ -7,7 +7,7 @@ import { companies } from '../../../API/requests';
 function FormResult({ query }: { query: URLSearchParams }): JSX.Element {
   const [company, setCompany] = useState<Company | null>();
   const companyId = query.get('companyId');
-  const { isLoading, error } = useQuery<Company, AxiosError>(
+  const { isLoading: companyLoading, error: companyError } = useQuery<Company, AxiosError>(
     ['company', companyId],
     () => companies.getOne(companyId),
     {
@@ -16,8 +16,9 @@ function FormResult({ query }: { query: URLSearchParams }): JSX.Element {
       },
     }
   );
+  const error = companyError;
 
-  if (isLoading) {
+  if (companyLoading) {
     return <p>Loading...</p>;
   }
 
