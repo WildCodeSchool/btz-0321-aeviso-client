@@ -6,9 +6,16 @@ import { companies } from '../../API/requests';
 import CardTitle from '../CardTitle';
 import { Link } from 'react-router-dom';
 import CompanyPreview from './CompanyPreview';
+import Spinner from '../Spinner';
 
 function Companies(): JSX.Element {
   const { isLoading, error, data } = useQuery<Company[], AxiosError>('companies', () => companies.getAll(10));
+
+  const loggedIn = true;
+
+  if (loggedIn) {
+    return <Spinner />;
+  }
 
   if (isLoading) {
     return <p className="text-white">Loading...</p>;
