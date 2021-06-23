@@ -1,9 +1,9 @@
 import React from 'react';
-import { FieldValues } from 'react-hook-form';
+import { FieldValues, UseFormRegister } from 'react-hook-form';
 
 interface ISelectCompany {
   companiesData: Company[] | undefined;
-  register: FieldValues | any;
+  register: UseFormRegister<FieldValues>;
 }
 
 function SelectCompany({ companiesData, register }: ISelectCompany): JSX.Element {

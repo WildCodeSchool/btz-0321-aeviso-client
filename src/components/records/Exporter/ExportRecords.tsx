@@ -62,7 +62,7 @@ function ExportRecords(): JSX.Element {
             action="sumbit"
           >
             <h1 className="sm:text-3xl  text-2xl font-bold">Exporter un Rapport</h1>
-            <h2 className="sm:text-xl mt-3">{`Attention vous devez obligatoirement remplir tous les champs afin d'exporter un rapport`}</h2>
+            <h2 className="sm:text-xl text-sm mt-3">{`Attention vous devez obligatoirement remplir tous les champs afin d'exporter un rapport`}</h2>
             <SelectCompany register={register} companiesData={companiesData} />
             <SelectProject register={register} projectData={projectData} />
             <SelectDate register={register} />

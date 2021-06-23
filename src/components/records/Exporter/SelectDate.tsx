@@ -1,7 +1,7 @@
 import React from 'react';
-import { FieldValues } from 'react-hook-form';
+import { FieldValues, UseFormRegister } from 'react-hook-form';
 
-export default function SelectDate({ register }: { register: FieldValues | any }): JSX.Element {
+export default function SelectDate({ register }: { register: UseFormRegister<FieldValues> }): JSX.Element {
   return (
     <div>
       <div className="flex flex-col mt-5">
