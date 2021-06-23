@@ -12,12 +12,14 @@ import OneRecord from './records/OneRecord';
 import HomePage from '../views/HomePage';
 import SuperAdmin from './home/SuperAdmin';
 import ExportRecords from './records/Exporter/ExportRecords';
+import ListsCompanies from './companies/ListsCompanies';
 
 function Routes(): JSX.Element {
   return (
     <>
       <Route exact path="/" component={SuperAdmin} />
       <Route exact path="/home" component={HomePage} />
+      <Route exact path="/clients" component={ListsCompanies} />
       <Route exact path="/companies" component={Companies} />
       <Route path="/companies/:id" component={Company} />
       <Route exact path="/projects" component={ProjectList} />

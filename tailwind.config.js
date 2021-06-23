@@ -23,7 +23,7 @@ module.exports = {
         mobile: '130px 200px 250px 300px',
       },
       gridTemplateColumns: {
-        desktop: '350px 1000px',
+        desktop: '350px 1fr',
         phone: '1fr',
       },
       screens: {

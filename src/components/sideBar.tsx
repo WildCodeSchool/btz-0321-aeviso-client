@@ -49,12 +49,14 @@ function SideBar({ sideBarClass, setIsSidebarVisible }: sideBarProps): JSX.Eleme
               </button>
             </li>
           </Link>
-          <li className="flex text-lg pl-5 mt-5 items-center h-14 ">
-            <img src={Client} className="mr-3  mb-1" alt="homesvg" />
-            <button className="focus:outline-none" onClick={handleClose}>
-              Clients
-            </button>
-          </li>
+          <Link to="/clients">
+            <li className="flex text-lg pl-5 mt-5 items-center h-14 ">
+              <img src={Client} className="mr-3  mb-1" alt="homesvg" />
+              <button className="focus:outline-none" onClick={handleClose}>
+                Clients
+              </button>
+            </li>
+          </Link>
           <Link to="/export">
             <li className="flex text-lg  pl-5 mt-5 items-center h-14">
               <img src={Rapport} className="mr-3 mb-1" alt="homesvg" />
