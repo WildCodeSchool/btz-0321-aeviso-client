@@ -51,18 +51,18 @@ function ExportRecords(): JSX.Element {
       {query.has('companyId') ? (
         <FormResult query={query} />
       ) : (
-        <div className="bg-black h-full sm:w-full text-white font-roboto rounded-xl shadow-mainShadow mx-4 sm:mx-0  py-5 sm:px-10 p-5">
+        <div className="bg-black h-full sm:w-full text-white font-roboto rounded-xl shadow-mainShadow mx-4 sm:mx-0 py-6 sm:px-10 p-5">
           <form
             onSubmit={handleSubmit((data) => {
               const start = new Date(data.start).toISOString();
               const end = new Date(data.end).toISOString();
               history.push(`/export?companyId=${data.company}&projectId=${data.project}&start=${start}&end=${end}`);
             })}
-            className="flex flex-col"
+            className="flex flex-col pb-2"
             action="sumbit"
           >
             <h1 className="sm:text-3xl  text-2xl font-bold">Exporter un Rapport</h1>
-            <h2 className="sm:text-xl text-sm mt-3">{`Attention vous devez obligatoirement remplir tous les champs afin d'exporter un rapport`}</h2>
+            <h2 className="sm:text-base text-sm mt-3">{`Attention vous devez obligatoirement remplir tous les champs afin d'exporter un rapport`}</h2>
             <SelectCompany register={register} companiesData={companiesData} />
             <SelectProject register={register} projectData={projectData} />
             <SelectDate register={register} />

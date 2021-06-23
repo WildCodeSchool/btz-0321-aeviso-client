@@ -3,9 +3,9 @@ import { Switch } from 'react-router-dom';
 import Routes from '../../src/components/Routes';
 
 import useWindowDimensions from '../Hook/useWindowDimension';
-import Head from '../components/Head';
+import Head from '../components/head';
 
-import SideBar from '../components/SideBar';
+import SideBar from '../components/sideBar';
 
 function Layout(): JSX.Element {
   const [isSidebarVisible, setIsSidebarVisible] = useState<boolean>(false);

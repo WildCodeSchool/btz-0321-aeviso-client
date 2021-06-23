@@ -45,6 +45,9 @@ export const project = {
   // TODO: create a real interface here
   create: ({ data }: { data: Project }): Promise<Project> =>
     axios.post(`${API_URL}/projects/`, data).then((res) => res.data),
+
+  getRecords: (projectId: string, start: string, end: string): Promise<IRecord[]> =>
+    axios.get(`${API_URL}/projects/${projectId}/records?start=${start}&end=${end}`),
 };
 
 export const companies = {
