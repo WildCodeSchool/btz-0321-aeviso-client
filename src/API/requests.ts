@@ -20,17 +20,16 @@ export const user = {
 };
 
 export const jobs = {
-  getAll: (): Promise<Job[]> => axios.get(`${API_URL}/professions`).then((res) => res.data),
+  getAll: (): Promise<Job[]> => axios.get(`${API_URL}/jobs`).then((res) => res.data),
 
-  getOne: (id: string): Promise<Job> => axios.get(`${API_URL}/professions/${id}`).then((res) => res.data),
+  getOne: (id: string): Promise<Job> => axios.get(`${API_URL}/jobs/${id}`).then((res) => res.data),
 
-  delete: ({ id }: { id: string }): Promise<null> =>
-    axios.delete(`${API_URL}/professions/${id}`).then((res) => res.data),
+  delete: ({ id }: { id: string }): Promise<null> => axios.delete(`${API_URL}/jobs/${id}`).then((res) => res.data),
 
-  create: (job: Job): Promise<Job> => axios.post(`${API_URL}/professions`, job).then((res) => res.data),
+  create: (job: Job): Promise<Job> => axios.post(`${API_URL}/jobs`, job).then((res) => res.data),
 
   update: ({ job, id }: { job: Job; id?: string }): Promise<null> =>
-    axios.put(`${API_URL}/professions/${id}`, job).then((res) => res.data),
+    axios.put(`${API_URL}/jobs/${id}`, job).then((res) => res.data),
 };
 
 export const project = {
@@ -63,6 +62,8 @@ export const companies = {
     axios.put(`${API_URL}/companies/${id}`, data).then((res) => res.data),
 
   delete: (id: string): Promise<null> => axios.delete(`${API_URL}/companies/${id}`).then((res) => res.data),
+
+  getAdmin: (id: string): Promise<User> => axios.get(`${API_URL}/companies/${id}/admin`).then((res) => res.data),
 };
 
 export const records = {

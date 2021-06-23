@@ -20,9 +20,8 @@ interface User {
 }
 
 interface Job {
-  id?: string;
-  name: string;
-  profession: string | null;
+  id: string;
+  label: string | null;
 }
 
 interface Project {
