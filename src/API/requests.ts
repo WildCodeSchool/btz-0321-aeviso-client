@@ -46,8 +46,8 @@ export const project = {
   create: ({ data }: { data: Project }): Promise<Project> =>
     axios.post(`${API_URL}/projects/`, data).then((res) => res.data),
 
-  getRecords: (projectId: string, start: string, end: string): Promise<IRecord[]> =>
-    axios.get(`${API_URL}/projects/${projectId}/records?start=${start}&end=${end}`),
+  getUsers: (projectId: string, start: string, end: string): Promise<IResultRecord[]> =>
+    axios.get(`${API_URL}/projects/${projectId}/users?start=${start}&end=${end}`).then((res) => res.data),
 };
 
 export const companies = {

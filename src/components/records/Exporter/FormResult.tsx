@@ -7,7 +7,7 @@ import { companies, project } from '../../../API/requests';
 function FormResult({ query }: { query: URLSearchParams }): JSX.Element {
   const [company, setCompany] = useState<Company>();
   const [prjt, setPrjt] = useState<Project>();
-  const [records, setRecords] = useState<IRecord[]>([]);
+  const [users, setUsers] = useState<IResultRecord[]>([]);
   const companyId = query.get('companyId') as string;
   const projectId = query.get('projectId') as string;
   const start = new Date(query.get('start') as string);
@@ -32,12 +32,12 @@ function FormResult({ query }: { query: URLSearchParams }): JSX.Element {
     }
   );
 
-  const { isLoading: recordLoading, error: recordError } = useQuery<IRecord[], AxiosError>(
-    'record',
-    () => project.getRecords(projectId, start.toISOString(), end.toISOString()),
+  const { isLoading: recordLoading, error: recordError } = useQuery<IResultRecord[], AxiosError>(
+    'users',
+    () => project.getUsers(projectId, start.toISOString(), end.toISOString()),
     {
       onSuccess: (data) => {
-        setRecords(data);
+        setUsers(data);
       },
     }
   );
@@ -55,7 +55,6 @@ function FormResult({ query }: { query: URLSearchParams }): JSX.Element {
     );
   }
 
-  console.log(records);
   return (
     <div className="bg-black h-full sm:w-full text-white font-roboto rounded-xl shadow-mainShadow mx-4 sm:mx-0  py-8 sm:px-10 p-5">
       <div className="flex justify-between items-center">
@@ -69,6 +68,16 @@ function FormResult({ query }: { query: URLSearchParams }): JSX.Element {
       <h1 className="text-base sm:text-xl mt-5 mb-10">
         Rapport du {start.toLocaleDateString()} au {end.toLocaleDateString()}
       </h1>
+      {users.map((user) => {
+        return (
+          <div className="text-white flex" key={user.id}>
+            <p>{user.records.length} demi journée</p>
+            <p>{user.firstName} </p>
+            <p>{user.lastName}</p>
+            <p>{user.job.label}</p>
+          </div>
+        );
+      })}
     </div>
   );
 }

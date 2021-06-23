@@ -53,3 +53,12 @@ interface SelectItem {
   value: string;
   text: string;
 }
+
+interface IResultRecord {
+  id: string;
+  firstName: string;
+  lastName: string;
+  weeklyBasis: string;
+  job: { label: string };
+  records: [{ id: string }];
+}
