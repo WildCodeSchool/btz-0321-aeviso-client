@@ -1,7 +1,7 @@
 import React from 'react';
 
 interface IProps {
-  children: string;
+  children: React.ReactNode;
 }
 
 function CardTitle({ children }: IProps): JSX.Element {

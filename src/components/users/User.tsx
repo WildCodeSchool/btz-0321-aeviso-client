@@ -1,9 +1,15 @@
 import React, { useState } from 'react';
 import { useMutation, useQuery } from 'react-query';
 import { useParams } from 'react-router-dom';
+<<<<<<< HEAD:src/components/frontTestRoads/user/User.tsx
 import Modal from '../../Modal';
 import UserForm from './UserForm';
 import { user } from '../../../API/requests';
+=======
+import Modal from '../Modal';
+import UserForm from './UserForm';
+import { user } from '../../API/requests';
+>>>>>>> dev:src/components/users/User.tsx
 
 function User(): JSX.Element {
   const [isModal, setIsModal] = useState(false);
@@ -29,6 +35,12 @@ function User(): JSX.Element {
     <div>
       <UserForm
         mutationFn={user.update}
+<<<<<<< HEAD:src/components/frontTestRoads/user/User.tsx
+        initFirstname={data?.firstName}
+        initLastname={data?.lastName}
+        initEmail={data?.email}
+        initProfession={data?.jobId}
+=======
         initFirstname={data?.firstName || ''}
         initLastname={data?.lastName || ''}
         initEmail={data?.email || ''}
@@ -36,6 +48,7 @@ function User(): JSX.Element {
         initCompanyId={data?.companyId || ''}
         initRole={data?.role || 'USER'}
         initWeeklyBasis={data?.weeklyBasis || 'h35'}
+>>>>>>> dev:src/components/users/User.tsx
         setIsModal={setIsModal}
         setMessage={setMessage}
       />
