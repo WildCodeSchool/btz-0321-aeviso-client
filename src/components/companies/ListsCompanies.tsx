@@ -5,6 +5,7 @@ import { AxiosError } from 'axios';
 import { companies } from '../../API/requests';
 import { useForm } from 'react-hook-form';
 import CompanyDetails from './CompanyDetails';
+import Plus from '../../../media/icons/Plus.svg';
 
 function ListsCompanies(): JSX.Element {
   const { isLoading, error, data } = useQuery<Company[], AxiosError>('companies', () => companies.getAll());
@@ -26,7 +27,10 @@ function ListsCompanies(): JSX.Element {
       <h1 className="sm:text-3xl text-white text-2xl font-bold">Liste de tous les clients</h1>
       <div className="flex justify-between items-center">
         <SearchInput register={register} name="search" />
-        <p>Créer Nouveau (à LINKER)</p>
+        <div className="flex justify-between items-center">
+          <button className="focus:outline-none">Créer Nouveau</button>
+          <img src={Plus} alt="Icône plus" className="ml-4" />
+        </div>
       </div>
 
       {data
