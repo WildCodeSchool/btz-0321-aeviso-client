@@ -13,7 +13,7 @@ function Head({ setIsSidebarVisible, setSideBarClass }: IProps): JSX.Element {
     setSideBarClass('flex flex-col bg-black w-screen fixed  h-screen text-white font-roboto justify-between');
   };
   return (
-    <div className="flex justify-between w-full h-full items-start px-2">
+    <div className="flex justify-between w-full h-full items-start px-2git">
       <div className="flex sm:flex-row flex-col w-full justify-between h-full sm:items-end">
         <div className="flex-col h-full">
           <h1 className="sm:text-4xl text-5xl  font-bold">aeviso</h1>
