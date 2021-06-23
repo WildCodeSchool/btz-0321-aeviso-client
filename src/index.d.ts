@@ -8,21 +8,20 @@ interface Company {
 }
 
 interface User {
-  id: string;
+  id?: string;
   firstName: string;
   lastName: string;
-  role: 'USER' | 'ADMIN' | 'SUPERADMIN';
+  role?: 'USER' | 'ADMIN' | 'SUPERADMIN';
   email: string;
   password?: string;
-  weeklyBasis: 'h35' | 'h39';
+  weeklyBasis?: 'h35' | 'h39';
   jobId: string;
-  companyId: string;
+  companyId?: string;
 }
 
 interface Job {
-  id?: string;
-  name: string;
-  profession: string | null;
+  id: string;
+  label: string;
 }
 
 interface Project {
@@ -41,4 +40,9 @@ interface IRecord {
   date: string;
   timeslot: 'MORNING' | 'AFTERNOON';
   comment: string;
+}
+
+interface SelectItem {
+  value: string;
+  text: string;
 }

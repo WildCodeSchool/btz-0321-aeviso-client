@@ -1,6 +1,6 @@
 import axios from 'axios';
 
-const API_URL = import.meta.env.VITE_API_URL || 'http://localhost:5000/api/v1';
+const API_URL = import.meta.env.VITE_API_URL; //  || 'http://localhost:5000/api/v1'
 
 export const user = {
   getAll: (): Promise<User[]> => axios.get(`${API_URL}/users`).then((res) => res.data),
@@ -13,24 +13,23 @@ export const user = {
     return axios.post(`${API_URL}/users`, user).then((res) => res.data);
   },
 
-  update: ({ user, id }: { user: User; id?: string }): Promise<null> => {
+  update: ({ user, id }: { user: User; id?: string }): Promise<User> => {
     if (!id) throw new Error("Id can't be undefined");
     return axios.put(`${API_URL}/users/${id}`, user).then((res) => res.data);
   },
 };
 
 export const jobs = {
-  getAll: (): Promise<Job[]> => axios.get(`${API_URL}/professions`).then((res) => res.data),
+  getAll: (): Promise<Job[]> => axios.get(`${API_URL}/jobs`).then((res) => res.data),
 
-  getOne: (id: string): Promise<Job> => axios.get(`${API_URL}/professions/${id}`).then((res) => res.data),
+  getOne: (id: string): Promise<Job> => axios.get(`${API_URL}/jobs/${id}`).then((res) => res.data),
 
-  delete: ({ id }: { id: string }): Promise<null> =>
-    axios.delete(`${API_URL}/professions/${id}`).then((res) => res.data),
+  delete: ({ id }: { id: string }): Promise<null> => axios.delete(`${API_URL}/jobs/${id}`).then((res) => res.data),
 
-  create: (job: Job): Promise<Job> => axios.post(`${API_URL}/professions`, job).then((res) => res.data),
+  create: (job: Job): Promise<Job> => axios.post(`${API_URL}/jobs`, job).then((res) => res.data),
 
   update: ({ job, id }: { job: Job; id?: string }): Promise<null> =>
-    axios.put(`${API_URL}/professions/${id}`, job).then((res) => res.data),
+    axios.put(`${API_URL}/jobs/${id}`, job).then((res) => res.data),
 };
 
 export const project = {
