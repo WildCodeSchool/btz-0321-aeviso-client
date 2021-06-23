@@ -23,7 +23,7 @@ function Jobs(): JSX.Element {
           return (
             <div key={profession.id} className="border border-black mb-2">
               <Link to={`/profession/${profession.id}`}>
-                {profession.name} {profession.name}
+                {profession.label} {profession.label}
               </Link>
             </div>
           );
