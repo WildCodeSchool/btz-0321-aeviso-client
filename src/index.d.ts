@@ -53,3 +53,10 @@ interface SelectItem {
   value: string;
   text: string;
 }
+
+interface INavAdmin {
+  handleClose: () => void;
+  Home: string;
+  Rapport: string;
+  Réglages: string;
+}
