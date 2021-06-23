@@ -3,11 +3,12 @@ import { Link } from 'react-router-dom';
 import { useQuery } from 'react-query';
 import { AxiosError } from 'axios';
 import { companies, project } from '../../../API/requests';
+import OneUser from './OneUser';
 
 function FormResult({ query }: { query: URLSearchParams }): JSX.Element {
   const [company, setCompany] = useState<Company>();
   const [prjt, setPrjt] = useState<Project>();
-  const [users, setUsers] = useState<IResultRecord[]>([]);
+  const [users, setUsers] = useState<IResultUser[]>([]);
   const companyId = query.get('companyId') as string;
   const projectId = query.get('projectId') as string;
   const start = new Date(query.get('start') as string);
@@ -32,9 +33,9 @@ function FormResult({ query }: { query: URLSearchParams }): JSX.Element {
     }
   );
 
-  const { isLoading: recordLoading, error: recordError } = useQuery<IResultRecord[], AxiosError>(
+  const { isLoading: recordLoading, error: recordError } = useQuery<IResultUser[], AxiosError>(
     'users',
-    () => project.getUsers(projectId, start.toISOString(), end.toISOString()),
+    () => project.getUsers(projectId),
     {
       onSuccess: (data) => {
         setUsers(data);
@@ -57,24 +58,30 @@ function FormResult({ query }: { query: URLSearchParams }): JSX.Element {
 
   return (
     <div className="bg-black h-full sm:w-full text-white font-roboto rounded-xl shadow-mainShadow mx-4 sm:mx-0  py-8 sm:px-10 p-5">
-      <div className="flex justify-between items-center">
-        <h1 className="sm:text-4xl">
+      <div className="flex justify-between items-start">
+        <h1 className="sm:text-4xl text-xl">
           {company?.name} / {prjt?.name}{' '}
         </h1>
         <Link to="/">
           <button className="focus:outline-none  w-12/12 py-2 px-5 rounded-sm bg-blue">Retour</button>
         </Link>
       </div>
-      <h1 className="text-base sm:text-xl mt-5 mb-10">
+      <h1 className="text-base sm:text-xl mt-8 sm:mb-10">
         Rapport du {start.toLocaleDateString()} au {end.toLocaleDateString()}
       </h1>
+
       {users.map((user) => {
         return (
-          <div className="text-white flex" key={user.id}>
-            <p>{user.records.length} demi journée</p>
-            <p>{user.firstName} </p>
-            <p>{user.lastName}</p>
-            <p>{user.job.label}</p>
+          <div className="text-white flex w-full" key={user.id}>
+            <OneUser
+              firstName={user.firstName}
+              lastName={user.lastName}
+              projectId={projectId}
+              userId={user.id}
+              job={user.jobId}
+              start={start}
+              end={end}
+            />
           </div>
         );
       })}
