@@ -13,6 +13,10 @@ function ListsCompanies(): JSX.Element {
 
   const searchInput = watch('search');
 
+  const handleClick = () => {
+    console.log('je clique');
+  };
+
   if (isLoading) return <p>Loading ...</p>;
 
   if (error)
@@ -27,10 +31,9 @@ function ListsCompanies(): JSX.Element {
       <h1 className="sm:text-3xl text-white text-2xl font-bold">Liste de tous les clients</h1>
       <div className="flex justify-between items-center">
         <SearchInput register={register} name="search" />
-        <div className="flex justify-between items-center">
-          <button className="focus:outline-none">Créer Nouveau</button>
-          <img src={Plus} alt="Icône plus" className="ml-4" />
-        </div>
+        <button className="focus:outline-none flex items-center" onClick={handleClick}>
+          Créer Nouveau <img src={Plus} alt="Icône plus" className="ml-4" />
+        </button>
       </div>
 
       {data

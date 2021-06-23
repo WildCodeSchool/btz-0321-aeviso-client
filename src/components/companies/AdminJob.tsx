@@ -9,7 +9,6 @@ interface IProps {
 
 function AdminJob({ jobId }: IProps): JSX.Element {
   const { data } = useQuery<Job, AxiosError>(['jobs', jobId], () => jobs.getOne(jobId));
-  console.log(data);
   return <>{data?.label}</>;
 }
 
