@@ -3,6 +3,7 @@ import { Link } from 'react-router-dom';
 import { useQuery } from 'react-query';
 import { AxiosError } from 'axios';
 import { companies, user } from '../../API/requests';
+import Spinner from '../Spinner';
 
 interface IProps {
   record: IRecord;
@@ -34,7 +35,7 @@ function RecordPreview({ record, isLastElement, isFirstElement }: IProps): JSX.E
   );
 
   if (companyIsLoading || userIsLoading) {
-    return <p>Loading...</p>;
+    return <Spinner />;
   }
   const error = companyError || userError;
 

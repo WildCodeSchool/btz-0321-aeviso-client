@@ -4,6 +4,7 @@ import { useQuery } from 'react-query';
 import { AxiosError } from 'axios';
 import { companies, project } from '../../../API/requests';
 import OneUser from './OneUser';
+import Spinner from '../../Spinner';
 
 function FormResult(): JSX.Element {
   const [company, setCompany] = useState<Company>({} as Company);
@@ -59,7 +60,7 @@ function FormResult(): JSX.Element {
   const error = companyError || projectError || recordError;
 
   if (companyLoading || projectLoading || recordLoading) {
-    return <p>Loading...</p>;
+    return <Spinner />;
   }
 
   if (error) {

@@ -4,6 +4,7 @@ import { useParams } from 'react-router-dom';
 import Modal from '../../Modal';
 import UserForm from './UserForm';
 import { user } from '../../../API/requests';
+import Spinner from '../../Spinner';
 
 function User(): JSX.Element {
   const [isModal, setIsModal] = useState(false);
@@ -23,7 +24,7 @@ function User(): JSX.Element {
   if (isModal) {
     return <Modal message={message} handleClick={() => setIsModal((prevState) => !prevState)} />;
   }
-  if (isLoading) return <p>Loading...</p>;
+  if (isLoading) return <Spinner />;
   if (error) return <p>An error has occurred: {error.message}</p>;
   return (
     <div>

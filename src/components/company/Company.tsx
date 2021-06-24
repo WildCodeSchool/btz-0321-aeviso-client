@@ -5,6 +5,7 @@ import { AxiosError } from 'axios';
 import UpdateCompany from './UpdateCompany';
 import { companies } from '../../API/requests';
 import DeleteCompany from './DeleteCompany';
+import Spinner from '../Spinner';
 
 function Company(): JSX.Element {
   const { id }: { id: string } = useParams();
@@ -19,7 +20,7 @@ function Company(): JSX.Element {
   });
 
   if (isLoading) {
-    return <p>Loading...</p>;
+    return <Spinner />;
   }
 
   if (error) {

@@ -2,6 +2,7 @@ import { AxiosError } from 'axios';
 import React, { useState } from 'react';
 import { useQuery } from 'react-query';
 import { jobs, project } from '../../../API/requests';
+import Spinner from '../../Spinner';
 
 interface IOneUser {
   firstName: string;
@@ -52,7 +53,7 @@ function OneUser({ firstName, lastName, projectId, userId, job, start, end, week
   const error = jobIsError || recordIsError;
 
   if (jobIsLoading || recordIsLoading) {
-    return <p>Loading...</p>;
+    return <Spinner />;
   }
 
   if (error) {
