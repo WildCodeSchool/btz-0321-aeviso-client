@@ -74,3 +74,8 @@ export const records = {
 
   delete: (id: string): Promise<null> => axios.delete(`${API_URL}/records/${id}`).then((res) => res.data),
 };
+
+export const auth = {
+  login: (user: { email: string }): Promise<{ message: string }> =>
+    axios.post(`${API_URL}/auth/login`, user).then((res) => res.data),
+};
