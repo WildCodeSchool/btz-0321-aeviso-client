@@ -46,3 +46,14 @@ interface SelectItem {
   value: string;
   text: string;
 }
+
+type UserState = {
+  user: User;
+};
+
+type UserAction = {
+  type: string;
+  user: User;
+};
+
+type DispatchType = (args: UserAction) => UserAction;
