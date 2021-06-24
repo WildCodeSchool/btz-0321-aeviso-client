@@ -1,5 +1,5 @@
 interface Company {
-  id: string;
+  id: number;
   name: string;
   city: string;
   zipCode: string;
@@ -19,25 +19,13 @@ interface User {
   companyId?: string;
 }
 
-interface IOneUser {
-  totalHours: string[];
-  weeklyBasis: string;
-  firstName: string;
-  lastName: string;
-  projectId: string;
-  userId: string;
-  job: string;
-  start: Date;
-  end: Date;
-}
-
 interface Job {
   id: string;
   label: string;
 }
 
 interface Project {
-  id: string;
+  id: number;
   name: string;
   description: string;
   code: string;
@@ -54,32 +42,7 @@ interface IRecord {
   comment: string;
 }
 
-interface IExportRecordQuery {
-  companyId: string;
-  projectId: string;
-  start: string;
-  end: string;
-}
-
 interface SelectItem {
   value: string;
   text: string;
-}
-
-type UserState = {
-  user: User;
-};
-
-type UserAction = {
-  type: string;
-  user: User;
-};
-
-type DispatchType = (args: UserAction) => UserAction;
-interface IResultUser {
-  id: string;
-  firstName: string;
-  lastName: string;
-  weeklyBasis: 'h35' | 'h39';
-  jobId: string;
 }

@@ -6,12 +6,13 @@ import { records } from '../../API/requests';
 import CardTitle from '../CardTitle';
 import { Link } from 'react-router-dom';
 import RecordPreview from './RecordPreview';
+import Spinner from '../Spinner';
 
 function Records(): JSX.Element {
   const { isLoading, error, data } = useQuery<IRecord[], AxiosError>('records', () => records.getAll(10));
 
   if (isLoading) {
-    return <p className="text-white">Loading...</p>;
+    return <Spinner />;
   }
 
   if (error) {
@@ -20,14 +21,13 @@ function Records(): JSX.Element {
 
   return (
     <div className=" text-white font-roboto">
-      <div className="py-3 px-5 text-lg font-bold flex justify-between items-center bg-black sticky top-0">
+      <div className="py-5 px-5 text-lg font-bold flex justify-between items-center bg-black sm:sticky sm:top-0">
         <CardTitle>Derniers rapports</CardTitle>
 
-        <Link to="/records" className="p-2 bg-blue rounded-md text-xs font-light">
-          Tous les rapports
+        <Link to="/export" className="p-2 bg-blue rounded-md text-xs font-light">
+          Exporter un rapport
         </Link>
       </div>
-
       {data?.map((record: IRecord, index) => (
         <RecordPreview
           key={record.id}

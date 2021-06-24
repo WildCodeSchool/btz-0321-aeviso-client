@@ -2,8 +2,9 @@ import { AxiosError } from 'axios';
 import React, { useState } from 'react';
 import { useQuery } from 'react-query';
 import { Link } from 'react-router-dom';
-import { user } from '../../API/requests';
-import Modal from '../Modal';
+import { user } from '../../../API/requests';
+import Modal from '../../Modal';
+import Spinner from '../../Spinner';
 import UserForm from './UserForm';
 
 function Users(): JSX.Element {
@@ -15,8 +16,7 @@ function Users(): JSX.Element {
     onSuccess: (data) => setUsers(data),
   });
 
-  if (isLoading) return <p>Loading...</p>;
-
+  if (isLoading) return <Spinner />;
   if (error) return <p>An error has occurred: {error.message}</p>;
 
   if (isModal) return <Modal message={message} handleClick={() => setIsModal((prevState) => !prevState)} />;
