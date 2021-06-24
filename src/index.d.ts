@@ -19,6 +19,18 @@ interface User {
   companyId?: string;
 }
 
+interface IOneUser {
+  totalHours: string[];
+  weeklyBasis: string;
+  firstName: string;
+  lastName: string;
+  projectId: string;
+  userId: string;
+  job: string;
+  start: Date;
+  end: Date;
+}
+
 interface Job {
   id: string;
   label: string;

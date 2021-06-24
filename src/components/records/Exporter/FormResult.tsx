@@ -56,6 +56,9 @@ function FormResult({ query }: { query: URLSearchParams }): JSX.Element {
     );
   }
 
+  const totalHours: IOneUser['totalHours'] = [];
+
+  console.log(totalHours);
   return (
     <div className="bg-black h-full sm:w-full text-white font-roboto rounded-xl shadow-mainShadow mx-4 sm:mx-0  py-8 sm:px-10 p-5">
       <div className="flex justify-between items-start">
@@ -74,6 +77,8 @@ function FormResult({ query }: { query: URLSearchParams }): JSX.Element {
         return (
           <div className="text-white flex w-full" key={user.id}>
             <OneUser
+              weeklyBasis={user.weeklyBasis}
+              totalHours={totalHours}
               firstName={user.firstName}
               lastName={user.lastName}
               projectId={projectId}
