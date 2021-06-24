@@ -1,4 +1,4 @@
-import React, { Dispatch, ReactChildren, SetStateAction, useState } from 'react';
+import React, { useState } from 'react';
 import { Dialog } from '@headlessui/react';
 
 interface Iprops {

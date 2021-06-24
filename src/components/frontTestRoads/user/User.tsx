@@ -25,7 +25,7 @@ function User(): JSX.Element {
   if (isModal) {
     return (
       <Modal title="Utilisateur supprimé" buttons={buttons}>
-        Modal
+        {message}
       </Modal>
     );
   }
