@@ -5,6 +5,7 @@ import { companies } from '../../API/requests';
 import AdminJob from './AdminJob';
 import Plus from '../../../media/icons/Plus.svg';
 import { Menu } from '@headlessui/react';
+import Spinner from '../Spinner';
 
 interface IProps {
   company: Company;
@@ -21,7 +22,7 @@ function CompanyDetails({ company }: IProps): JSX.Element {
     }
   );
 
-  if (isLoading) return <p>Loading ...</p>;
+  if (isLoading) return <Spinner />;
 
   if (error)
     return (

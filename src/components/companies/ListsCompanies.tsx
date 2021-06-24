@@ -6,6 +6,7 @@ import { companies } from '../../API/requests';
 import { useForm } from 'react-hook-form';
 import CompanyDetails from './CompanyDetails';
 import Plus from '../../../media/icons/Plus.svg';
+import Spinner from '../Spinner';
 
 function ListsCompanies(): JSX.Element {
   const { isLoading, error, data } = useQuery<Company[], AxiosError>('companies', () => companies.getAll());
@@ -17,7 +18,7 @@ function ListsCompanies(): JSX.Element {
     console.log('je clique');
   };
 
-  if (isLoading) return <p>Loading ...</p>;
+  if (isLoading) return <Spinner />;
 
   if (error)
     return (

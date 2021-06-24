@@ -35,8 +35,9 @@ function RecordPreview({ record, isLastElement, isFirstElement }: IProps): JSX.E
   );
 
   if (companyIsLoading || userIsLoading) {
-    return <Spinner />;
+    return <p className="flex justify-center">...</p>;
   }
+
   const error = companyError || userError;
 
   if (error) {
