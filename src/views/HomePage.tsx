@@ -6,6 +6,7 @@ import { auth } from '../API/requests';
 import Modal from '../components/Modal';
 import useModal from '../Hook/useModal';
 import { useHistory } from 'react-router';
+import Spinner from '../components/Spinner';
 
 interface IFormInput {
   email: string;
@@ -36,8 +37,7 @@ function HomePage(): JSX.Element {
     mutate(user);
   };
 
-  if (isLoading) return <p>Loading...</p>;
-
+  if (isLoading) return <Spinner />;
   if (isModal)
     return (
       <Modal

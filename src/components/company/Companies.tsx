@@ -4,6 +4,7 @@ import { useQuery } from 'react-query';
 import { companies } from '../../API/requests';
 import CreateCompanyForm from './CreateCompanyForm';
 import { AxiosError } from 'axios';
+import Spinner from '../Spinner';
 
 function Companies(): JSX.Element {
   const [companiesList, setCompaniesList] = useState<Company[]>([]);
@@ -13,7 +14,7 @@ function Companies(): JSX.Element {
   });
 
   if (isLoading) {
-    return <p>Loading...</p>;
+    return <Spinner />;
   }
 
   if (error) {
