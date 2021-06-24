@@ -11,9 +11,7 @@ import Spinner from '../Spinner';
 function Records(): JSX.Element {
   const { isLoading, error, data } = useQuery<IRecord[], AxiosError>('records', () => records.getAll(10));
 
-  const loggedIn = true;
-
-  if (loggedIn) {
+  if (isLoading) {
     return <Spinner />;
   }
 
