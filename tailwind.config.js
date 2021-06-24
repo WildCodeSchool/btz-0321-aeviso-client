@@ -10,23 +10,24 @@ module.exports = {
       colors: {
         darkGray: '#3E3E3E',
         input: '#404040',
-        blue: '#5A73A3',
         green: '#58926F',
+        blue: '#5A73A3',
+        red: '#976C6C',
       },
       boxShadow: {
         mainShadow: '10px 10px 20px rgba(0, 0, 0, 0.50)',
         inputShadow: '5px 5px 20px rgba(0, 0, 0, 0.8)',
       },
       gridTemplateRows: {
-        desktop: '10% 40% 50%',
-        mobile: '130px 200px 250px 400px',
+        desktop: '1fr 5fr 5fr',
+        mobile: '130px 200px 250px 0px',
       },
       gridTemplateColumns: {
-        desktop: '350px 500px 500px',
+        desktop: '350px 1fr',
         phone: '1fr',
       },
       screens: {
-        sm: '1100px',
+        sm: '1200px',
       },
     },
   },

@@ -5,6 +5,7 @@ import Rapport from '../../media/icons/folder.svg';
 import Réglages from '../../media/icons/Settings.svg';
 import useWindowDimensions from '../Hook/useWindowDimension';
 import Cross from '../../media/icons/Cross.svg';
+import { Link } from 'react-router-dom';
 
 interface sideBarProps {
   sideBarClass: string;
@@ -14,37 +15,59 @@ interface sideBarProps {
 function SideBar({ sideBarClass, setIsSidebarVisible }: sideBarProps): JSX.Element {
   const { width } = useWindowDimensions();
   const handleClose = () => {
-    setIsSidebarVisible(false);
+    if (width < 1200) {
+      setIsSidebarVisible(false);
+    } else {
+      setIsSidebarVisible(true);
+    }
   };
   return (
     <div className={sideBarClass}>
       <div className="py-8 px-8 ">
         <div className="flex justify-between">
-          {width < 1100 ? (
-            <button className="focus:outline-none" onClick={handleClose}>
-              <img className="h-5 w-5" src={Cross} alt="CloseButton" />{' '}
-            </button>
+          {width < 1200 ? (
+            <div className="flex justify-between w-full">
+              <div className="flex-col h-full">
+                <h1 className="sm:text-5xl text-5xl  font-bold">aeviso</h1>
+                <h2 className="text-sm">Expert Comptable.audit.conseil</h2>
+              </div>
+              <button className="focus:outline-none" onClick={handleClose}>
+                <img className="h-5 w-5" src={Cross} alt="CloseButton" />{' '}
+              </button>
+            </div>
           ) : (
             ''
           )}
         </div>
 
         <nav className="list-none pt-5">
-          <li className="flex text-lg  items-center pl-5 h-14 bg-darkGray rounded-xl">
-            <img src={Home} className="mr-3 mb-1" alt="homesvg" />
-            Acceuil
-          </li>
+          <Link to="/">
+            <li className="flex text-lg  items-center pl-5 h-14 rounded-xl">
+              <img src={Home} className="mr-3 mb-1" alt="homesvg" />
+              <button className="focus:outline-none" onClick={handleClose}>
+                Accueil
+              </button>
+            </li>
+          </Link>
           <li className="flex text-lg pl-5 mt-5 items-center h-14 ">
             <img src={Client} className="mr-3  mb-1" alt="homesvg" />
-            Clients
+            <button className="focus:outline-none" onClick={handleClose}>
+              Clients
+            </button>
           </li>
-          <li className="flex text-lg  pl-5 mt-5 items-center h-14">
-            <img src={Rapport} className="mr-3 mb-1" alt="homesvg" />
-            Rapport
-          </li>
+          <Link to="/records/export">
+            <li className="flex text-lg  pl-5 mt-5 items-center h-14">
+              <img src={Rapport} className="mr-3 mb-1" alt="homesvg" />
+              <button className="focus:outline-none" onClick={handleClose}>
+                Rapport
+              </button>
+            </li>
+          </Link>
           <li className="flex  text-lg  pl-5 mt-5 items-center h-14">
             <img src={Réglages} className="mr-3 mb-1" alt="homesvg" />
-            Réglages
+            <button className="focus:outline-none" onClick={handleClose}>
+              Réglages
+            </button>
           </li>
         </nav>
       </div>

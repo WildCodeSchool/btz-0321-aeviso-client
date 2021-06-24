@@ -45,11 +45,22 @@ export const project = {
   // TODO: create a real interface here
   create: ({ data }: { data: Project }): Promise<Project> =>
     axios.post(`${API_URL}/projects/`, data).then((res) => res.data),
+
+  getUsers: (projectId: string): Promise<IResultUser[]> =>
+    axios.get(`${API_URL}/projects/${projectId}/users`).then((res) => res.data),
+
+  getRecords: (projectId: string, userId: string, start: string, end: string): Promise<IRecord[]> =>
+    axios
+      .get(`${API_URL}/projects/${projectId}/users/${userId}/records?start=${start}&end=${end}`)
+      .then((res) => res.data),
 };
 
 export const companies = {
   getAll: (limit?: number): Promise<Company[]> =>
     axios.get(`${API_URL}/companies/${limit ? `?limit=${limit}` : ''}`).then((res) => res.data),
+
+  getAllProjects: (id: string): Promise<Project[]> =>
+    axios.get(`${API_URL}/companies/${id}/projects`).then((res) => res.data),
 
   getOne: (id: string): Promise<Company> => axios.get(`${API_URL}/companies/${id}`).then((res) => res.data),
 

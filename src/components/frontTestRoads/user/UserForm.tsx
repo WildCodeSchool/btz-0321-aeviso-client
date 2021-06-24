@@ -2,9 +2,9 @@ import React, { Dispatch, SetStateAction, useState } from 'react';
 import { useMutation, useQuery } from 'react-query';
 import { useParams } from 'react-router';
 import { SubmitHandler, useForm } from 'react-hook-form';
-import SelectInput from '../form components/SelectInput';
+import SelectInput from '../../form components/SelectInput';
 import { AxiosError } from 'axios';
-import { jobs } from '../../API/requests';
+import { jobs } from '../../../API/requests';
 
 interface BaseIProps {
   mutationFn: (variables: { user: User; id?: string }) => Promise<User>;
