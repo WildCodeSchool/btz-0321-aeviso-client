@@ -10,7 +10,9 @@ interface IProps {
 function Head({ setIsSidebarVisible, setSideBarClass }: IProps): JSX.Element {
   const handleSidebar = () => {
     setIsSidebarVisible(true);
-    setSideBarClass('flex flex-col bg-black w-screen fixed  h-screen text-white font-roboto justify-between');
+    setSideBarClass(
+      'flex flex-col bg-black w-screen fixed  h-screen text-white font-roboto justify-between visible sm:visible'
+    );
   };
   return (
     <div className="flex justify-between w-full h-full items-start px-2 py-1">
