@@ -10,7 +10,7 @@ interface IProps {
   company: Company;
 }
 
-function ListsCompanies({ company }: IProps): JSX.Element {
+function CompanyDetails({ company }: IProps): JSX.Element {
   const [user, setUser] = useState<User | null>(null);
 
   const { isLoading, error } = useQuery<User[], AxiosError>(
@@ -61,4 +61,4 @@ function ListsCompanies({ company }: IProps): JSX.Element {
   );
 }
 
-export default ListsCompanies;
+export default CompanyDetails;
