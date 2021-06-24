@@ -3,6 +3,8 @@ import { useQuery } from 'react-query';
 import { AxiosError } from 'axios';
 import { companies } from '../../API/requests';
 import AdminJob from './AdminJob';
+import Plus from '../../../media/icons/Plus.svg';
+import { Menu } from '@headlessui/react';
 
 interface IProps {
   company: Company;
@@ -31,12 +33,29 @@ function ListsCompanies({ company }: IProps): JSX.Element {
   return (
     <div>
       <p>{company.name}</p>
-      <div className="flex">
+      <div className="flex justify-between bg-red-300">
         <p>
           {user ? `${user.role} - ${user.firstName} ${user.lastName}` : 'Aucun admin enregistré'}
           {user?.jobId && ' - '}
           {user?.jobId && <AdminJob jobId={user.jobId} />}
         </p>
+
+        <Menu>
+          <div className="relative">
+            <Menu.Button>
+              <img src={Plus} alt="Icône plus" className="ml-4" />
+            </Menu.Button>
+            <Menu.Items className="absolute top-6 right-0 z-10 px-8 bg-gray-600 rounded-md">
+              <Menu.Item>
+                <p className="py-2">Modifier</p>
+              </Menu.Item>
+
+              <Menu.Item>
+                <p className="py-2">Supprimer</p>
+              </Menu.Item>
+            </Menu.Items>
+          </div>
+        </Menu>
       </div>
     </div>
   );
