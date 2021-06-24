@@ -1,18 +1,32 @@
-import React, { useState } from 'react';
-import { Link } from 'react-router-dom';
+import React, { useEffect, useState } from 'react';
+import { Link, useLocation, useParams } from 'react-router-dom';
 import { useQuery } from 'react-query';
 import { AxiosError } from 'axios';
 import { companies, project } from '../../../API/requests';
 import OneUser from './OneUser';
 
-function FormResult({ query }: { query: URLSearchParams }): JSX.Element {
-  const [company, setCompany] = useState<Company>();
-  const [prjt, setPrjt] = useState<Project>();
+function FormResult(): JSX.Element {
+  const [company, setCompany] = useState<Company>({} as Company);
+  const [start, setStart] = useState<Date | null>(null);
+  const [end, setEnd] = useState<Date | null>(null);
+  const [prjt, setPrjt] = useState<Project>({} as Project);
   const [users, setUsers] = useState<IResultUser[]>([]);
-  const companyId = query.get('companyId') as string;
-  const projectId = query.get('projectId') as string;
-  const start = new Date(query.get('start') as string);
-  const end = new Date(query.get('end') as string);
+
+  const { search } = useLocation();
+
+  useEffect(() => {
+    const searchParams = new URLSearchParams(search);
+
+    if (searchParams.get('start') && searchParams.get('end')) {
+      // eslint-disable-next-line @typescript-eslint/no-non-null-assertion
+      setStart(new Date(searchParams.get('start')!));
+      // eslint-disable-next-line @typescript-eslint/no-non-null-assertion
+      setEnd(new Date(searchParams.get('end')!));
+    }
+  }, [search]);
+
+  const { companyId, projectId } = useParams<{ companyId: string; projectId: string }>();
+
   const { isLoading: companyLoading, error: companyError } = useQuery<Company, AxiosError>(
     ['company', companyId],
     () => companies.getOne(companyId),
@@ -70,7 +84,7 @@ function FormResult({ query }: { query: URLSearchParams }): JSX.Element {
         </Link>
       </div>
       <h1 className="text-base sm:text-xl mt-8 sm:mb-10">
-        Rapport du {start.toLocaleDateString()} au {end.toLocaleDateString()}
+        Rapport du {start && start.toLocaleDateString()} au {end && end.toLocaleDateString()}
       </h1>
 
       {users.map((user) => {
@@ -83,6 +97,7 @@ function FormResult({ query }: { query: URLSearchParams }): JSX.Element {
               lastName={user.lastName}
               projectId={projectId}
               userId={user.id}
+              weeklyBasis={user.weeklyBasis}
               job={user.jobId}
               start={start}
               end={end}

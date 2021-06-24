@@ -1,19 +1,20 @@
 import { AxiosError } from 'axios';
-import React, { Dispatch, SetStateAction, useState, useEffect } from 'react';
+import React, { useState } from 'react';
 import { useQuery } from 'react-query';
 import { jobs, project } from '../../../API/requests';
 
-function OneUser({
-  firstName,
-  lastName,
-  projectId,
-  userId,
-  job,
-  start,
-  end,
-  totalHours,
-  weeklyBasis,
-}: IOneUser): JSX.Element {
+interface IOneUser {
+  firstName: string;
+  lastName: string;
+  projectId: string;
+  userId: string;
+  job: string;
+  start: Date | null;
+  end: Date | null;
+  weeklyBasis: IResultUser['weeklyBasis'];
+}
+
+function OneUser({ firstName, lastName, projectId, userId, job, start, end }: IOneUser): JSX.Element {
   const [jobName, setJobName] = useState<Job>();
   const [records, setRecords] = useState<IRecord[]>([]);
 
@@ -27,8 +28,8 @@ function OneUser({
   };
 
   const { isLoading: recordIsLoading, error: recordIsError } = useQuery<IRecord[], AxiosError>(
-    [records, userId],
-    () => project.getRecords(projectId, userId, start.toISOString(), end.toISOString()),
+    ['records', userId],
+    () => project.getRecords(projectId, userId, start!.toISOString(), end!.toISOString()),
     {
       onSuccess: (record) => {
         setRecords(record);

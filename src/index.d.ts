@@ -70,6 +70,6 @@ interface IResultUser {
   id: string;
   firstName: string;
   lastName: string;
-  weeklyBasis: string;
+  weeklyBasis: 'h35' | 'h39';
   jobId: string;
 }
