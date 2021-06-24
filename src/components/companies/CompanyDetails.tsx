@@ -1,4 +1,4 @@
-import React from 'react';
+import React, { useState } from 'react';
 import { useQuery } from 'react-query';
 import { AxiosError } from 'axios';
 import { companies } from '../../API/requests';
@@ -9,8 +9,14 @@ interface IProps {
 }
 
 function ListsCompanies({ company }: IProps): JSX.Element {
-  const { isLoading, error, data } = useQuery<User, AxiosError>(['companies', company.id], () =>
-    companies.getAdmin(company.id)
+  const [user, setUser] = useState<User | null>(null);
+
+  const { isLoading, error } = useQuery<User[], AxiosError>(
+    ['companies', company.id],
+    () => companies.getUsers(company.id, 'ADMIN'),
+    {
+      onSuccess: (data) => setUser(data[0]),
+    }
   );
 
   if (isLoading) return <p>Loading ...</p>;
@@ -27,9 +33,9 @@ function ListsCompanies({ company }: IProps): JSX.Element {
       <p>{company.name}</p>
       <div className="flex">
         <p>
-          {data ? `${data.role} - ${data.firstName} ${data.lastName}` : 'Aucun admin enregistré'}
-          {data?.jobId && ' - '}
-          {data?.jobId && <AdminJob jobId={data.jobId} />}
+          {user ? `${user.role} - ${user.firstName} ${user.lastName}` : 'Aucun admin enregistré'}
+          {user?.jobId && ' - '}
+          {user?.jobId && <AdminJob jobId={user.jobId} />}
         </p>
       </div>
     </div>
