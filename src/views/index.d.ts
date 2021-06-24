@@ -1,5 +1,5 @@
 interface Company {
-  id: number;
+  id: string;
   name: string;
   city: string;
   zipCode: string;
@@ -25,7 +25,7 @@ interface Job {
 }
 
 interface Project {
-  id: number;
+  id: string;
   name: string;
   description: string;
   code: string;

@@ -66,20 +66,17 @@ interface SelectItem {
   text: string;
 }
 
-type UserState = {
-  user: User;
-};
-
-type UserAction = {
-  type: string;
-  user: User;
-};
-
-type DispatchType = (args: UserAction) => UserAction;
 interface IResultUser {
   id: string;
   firstName: string;
   lastName: string;
   weeklyBasis: 'h35' | 'h39';
   jobId: string;
+}
+
+interface INavAdmin {
+  handleClose: () => void;
+  Home: string;
+  Rapport: string;
+  Réglages: string;
 }

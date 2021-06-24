@@ -7,6 +7,7 @@ import Modal from '../components/Modal';
 import useModal from '../Hook/useModal';
 import { useHistory } from 'react-router';
 import Spinner from '../components/Spinner';
+import { connect } from 'react-redux';
 
 interface IFormInput {
   email: string;
@@ -87,4 +88,4 @@ function HomePage(): JSX.Element {
   );
 }
 
-export default HomePage;
+export default connect()(HomePage);
