@@ -6,6 +6,7 @@ import { auth } from '../API/requests';
 import Modal from '../components/Modal';
 import useModal from '../Hook/useModal';
 import { useHistory } from 'react-router';
+import Spinner from '../components/Spinner';
 
 interface IFormInput {
   email: string;
@@ -36,8 +37,7 @@ function HomePage(): JSX.Element {
     mutate(user);
   };
 
-  if (isLoading) return <p>Loading...</p>;
-
+  if (isLoading) return <Spinner />;
   if (isModal)
     return (
       <Modal
@@ -48,7 +48,7 @@ function HomePage(): JSX.Element {
 
   return (
     <div
-      className="h-screen w-screen p-28"
+      className="h-full w-full p-28 absolute top-0 left-0"
       style={{
         backgroundImage: `url(${BG})`,
         backgroundRepeat: 'no-repeat',
@@ -56,9 +56,9 @@ function HomePage(): JSX.Element {
         backgroundSize: 'cover',
       }}
     >
-      <div className="text-white font-roboto">
-        <h1 className="text-9xl font-bold">aevisio</h1>
-        <h2 className="text-3xl">Expert Comptable.Audit.Conseil</h2>
+      <div className="text-white font-roboto container">
+        <h1 className="text-8xl font-bold">aevisio</h1>
+        <h2 className="text-2xl">Expert Comptable.Audit.Conseil</h2>
       </div>
       <form
         className="w-5/12 mt-10 flex flex-col text-white font-roboto text-xl"
@@ -69,7 +69,7 @@ function HomePage(): JSX.Element {
           Email
         </label>
         <input
-          className=" focus:outline-none mt-2 p-3 h-14 bg-input bg-opacity-50 rounded-lg shadow-inputShadow"
+          className=" focus:outline-none mt-2 px-3 h-12 bg-input bg-opacity-50 rounded-lg shadow-inputShadow"
           type="text"
           {...register('email', { required: true })}
         />
@@ -77,7 +77,7 @@ function HomePage(): JSX.Element {
           Mots de passe{' '}
         </label>
         <input
-          className="focus:outline-none mt-2 p-3 h-14 bg-input bg-opacity-50 rounded-lg shadow-inputShadow"
+          className="focus:outline-none mt-2 px-3 h-12 bg-input bg-opacity-50 rounded-lg shadow-inputShadow"
           type="password"
           {...register('password', { required: true })}
         />

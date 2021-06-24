@@ -70,6 +70,9 @@ export const companies = {
     axios.put(`${API_URL}/companies/${id}`, data).then((res) => res.data),
 
   delete: (id: string): Promise<null> => axios.delete(`${API_URL}/companies/${id}`).then((res) => res.data),
+
+  getUsers: (id: string, role: User['role']): Promise<User[]> =>
+    axios.get(`${API_URL}/companies/${id}/users?role=${role}`).then((res) => res.data),
 };
 
 export const records = {

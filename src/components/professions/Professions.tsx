@@ -3,6 +3,7 @@ import React, { useState } from 'react';
 import { useQuery } from 'react-query';
 import { Link } from 'react-router-dom';
 import { jobs } from '../../API/requests';
+import Spinner from '../Spinner';
 import CreateProfessionsForm from './CreateProfessionsForm';
 
 function Jobs(): JSX.Element {
@@ -11,8 +12,7 @@ function Jobs(): JSX.Element {
     onSuccess: (data) => setJobList(data),
   });
 
-  if (isLoading) return <p>Loading...</p>;
-
+  if (isLoading) return <Spinner />;
   if (error) return <p>An error has occurred: {error.message}</p>;
 
   return (

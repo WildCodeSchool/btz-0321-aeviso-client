@@ -6,12 +6,13 @@ import { companies } from '../../API/requests';
 import CardTitle from '../CardTitle';
 import { Link } from 'react-router-dom';
 import CompanyPreview from './CompanyPreview';
+import Spinner from '../Spinner';
 
 function Companies(): JSX.Element {
   const { isLoading, error, data } = useQuery<Company[], AxiosError>('companies', () => companies.getAll(10));
 
   if (isLoading) {
-    return <p className="text-white">Loading...</p>;
+    return <Spinner />;
   }
 
   if (error) {
@@ -23,7 +24,7 @@ function Companies(): JSX.Element {
       <div className="py-5 px-5 text-lg font-bold flex justify-between items-center bg-black sm:sticky sm:top-0 ">
         <CardTitle>Clients</CardTitle>
 
-        <Link to="/records" className="p-2 bg-blue rounded-md text-xs font-light">
+        <Link to="/companies" className="p-2 bg-blue rounded-md text-xs font-light">
           Tous les clients
         </Link>
       </div>
