@@ -14,7 +14,7 @@ interface IOneUser {
   weeklyBasis: IResultUser['weeklyBasis'];
 }
 
-function OneUser({ firstName, lastName, projectId, userId, job, start, end }: IOneUser): JSX.Element {
+function OneUser({ firstName, lastName, projectId, userId, job, start, end, weeklyBasis }: IOneUser): JSX.Element {
   const [jobName, setJobName] = useState<Job>();
   const [records, setRecords] = useState<IRecord[]>([]);
 
