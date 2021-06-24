@@ -13,7 +13,7 @@ export const user = {
     return axios.post(`${API_URL}/users`, user).then((res) => res.data);
   },
 
-  update: ({ user, id }: { user: User; id?: string }): Promise<null> => {
+  update: ({ user, id }: { user: User; id?: string }): Promise<User> => {
     if (!id) throw new Error("Id can't be undefined");
     return axios.put(`${API_URL}/users/${id}`, user).then((res) => res.data);
   },
@@ -45,6 +45,14 @@ export const project = {
   // TODO: create a real interface here
   create: ({ data }: { data: Project }): Promise<Project> =>
     axios.post(`${API_URL}/projects/`, data).then((res) => res.data),
+
+  getUsers: (projectId: string): Promise<IResultUser[]> =>
+    axios.get(`${API_URL}/projects/${projectId}/users`).then((res) => res.data),
+
+  getRecords: (projectId: string, userId: string, start: string, end: string): Promise<IRecord[]> =>
+    axios
+      .get(`${API_URL}/projects/${projectId}/users/${userId}/records?start=${start}&end=${end}`)
+      .then((res) => res.data),
 };
 
 export const companies = {
@@ -79,4 +87,9 @@ export const records = {
     axios.put(`${API_URL}/records/${id}`, data).then((res) => res.data),
 
   delete: (id: string): Promise<null> => axios.delete(`${API_URL}/records/${id}`).then((res) => res.data),
+};
+
+export const auth = {
+  login: (user: { email: string }): Promise<{ message: string }> =>
+    axios.post(`${API_URL}/auth/login`, user).then((res) => res.data),
 };

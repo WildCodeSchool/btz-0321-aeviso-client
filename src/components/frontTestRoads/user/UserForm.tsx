@@ -1,10 +1,13 @@
 import React, { Dispatch, SetStateAction, useState } from 'react';
-import { useMutation } from 'react-query';
+import { useMutation, useQuery } from 'react-query';
 import { useParams } from 'react-router';
 import { SubmitHandler, useForm } from 'react-hook-form';
+import SelectInput from '../../form components/SelectInput';
+import { AxiosError } from 'axios';
+import { jobs } from '../../../API/requests';
 
 interface BaseIProps {
-  mutationFn: (variables: { user: User; id?: string }) => Promise<any>;
+  mutationFn: (variables: { user: User; id?: string }) => Promise<User>;
   setIsModal: Dispatch<SetStateAction<boolean>>;
   setMessage: Dispatch<SetStateAction<string>>;
 }
@@ -13,25 +16,56 @@ interface UserIProps extends BaseIProps {
   initFirstname: string;
   initLastname: string;
   initEmail: string;
-  initProfession: string | null;
+  initJobId: string;
+  initCompanyId?: string;
+  initRole: 'USER' | 'ADMIN' | 'SUPERADMIN';
+  initWeeklyBasis: 'h35' | 'h39';
 }
 
 interface IFormInput {
-  firstname: string;
-  lastname: string;
+  firstName: string;
+  lastName: string;
   email: string;
-  profession: string;
+  jobId: string;
+  companyId?: string;
+  role: 'USER' | 'ADMIN' | 'SUPERADMIN';
+  weeklyBasis: 'h35' | 'h39';
+  password: string;
 }
 
 function userForm(props: UserIProps | BaseIProps): JSX.Element {
-  const { initFirstname, initLastname, initEmail, initProfession, mutationFn, setIsModal, setMessage } =
-    props as UserIProps;
+  const {
+    initFirstname,
+    initLastname,
+    initEmail,
+    initJobId,
+    initCompanyId,
+    initRole,
+    initWeeklyBasis,
+    mutationFn,
+    setIsModal,
+    setMessage,
+  } = props as UserIProps;
 
-  const [user, setUser] = useState({
-    firstname: initFirstname,
-    lastname: initLastname,
+  const [user, setUser] = useState<User>({
+    firstName: initFirstname,
+    lastName: initLastname,
     email: initEmail,
-    profession: initProfession,
+    jobId: initJobId,
+    companyId: initCompanyId,
+    role: initRole,
+    weeklyBasis: initWeeklyBasis,
+  });
+
+  const [listOfJobs, setListOfJobs] = useState<SelectItem[]>([]);
+
+  useQuery<Job[], AxiosError>('jobs', jobs.getAll, {
+    onSuccess: (data) => {
+      const jobs = data.map((job) => {
+        return { value: job.id, text: job.label };
+      });
+      setListOfJobs(jobs);
+    },
   });
 
   const { register, handleSubmit } = useForm();
@@ -48,12 +82,25 @@ function userForm(props: UserIProps | BaseIProps): JSX.Element {
 
   const { id } = useParams<{ id: string }>();
 
-  const onSubmit: SubmitHandler<IFormInput> = ({ firstname, lastname, email, profession }) => {
+  const onSubmit: SubmitHandler<IFormInput> = ({
+    firstName,
+    lastName,
+    email,
+    jobId,
+    companyId,
+    role,
+    weeklyBasis,
+    password,
+  }) => {
     const user = {
-      firstname,
-      lastname,
+      firstName,
+      lastName,
       email,
-      profession,
+      jobId,
+      companyId,
+      role,
+      weeklyBasis,
+      password,
     };
     mutate({ user, id });
   };
@@ -67,21 +114,51 @@ function userForm(props: UserIProps | BaseIProps): JSX.Element {
       <div className="border border-black mb-2">
         <form onSubmit={handleSubmit(onSubmit)}>
           <div className="form-firstname">
-            <label htmlFor="firstName">Prénom: </label>
-            <input defaultValue={user.firstname} {...register('firstname')} />
+            <label>
+              Prénom:
+              <input defaultValue={user.firstName} {...register('firstName')} />
+            </label>
           </div>
           <div className="form-lastname">
-            <label htmlFor="lastName">Nom: </label>
-            <input defaultValue={user.lastname} {...register('lastname')} />
+            <label>
+              Nom:
+              <input defaultValue={user.lastName} {...register('lastName')} />
+            </label>
           </div>
           <div className="form-mail">
-            <label htmlFor="email">Email: </label>
-            <input defaultValue={user.email} {...register('email')} />
+            <label>
+              Email:
+              <input defaultValue={user.email} {...register('email')} />
+            </label>
           </div>
-          <div className="form-job">
-            <label htmlFor="profession">Fonction: </label>
-            <input defaultValue={user.profession as string} {...register('profession')} />
-          </div>
+          <SelectInput
+            label="Fonction :"
+            name="jobId"
+            register={register}
+            items={listOfJobs}
+            defaultValue={user.jobId}
+          />
+          <SelectInput
+            label={`Droits d'accès:`}
+            name="role"
+            register={register}
+            items={[
+              { value: 'USER', text: 'Utilisateur' },
+              { value: 'ADMIN', text: 'Administrateur' },
+              { value: 'SUPERADMIN', text: 'Super Administrateur' },
+            ]}
+            defaultValue={user.role}
+          />
+          <SelectInput
+            label={'Heures hebdomadaires :'}
+            name="weeklyBasis"
+            register={register}
+            items={[
+              { value: 'h35', text: '35h' },
+              { value: 'h39', text: '39h' },
+            ]}
+            defaultValue={user.weeklyBasis}
+          />
           <div className="form-submit">
             <input type="submit" value="Envoyer" />
           </div>

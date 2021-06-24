@@ -11,7 +11,7 @@ const queryClient = new QueryClient();
 function App(): JSX.Element {
   return (
     <div
-      className="m-auto"
+      className="m-auto container"
       style={{
         maxWidth: 1440,
       }}

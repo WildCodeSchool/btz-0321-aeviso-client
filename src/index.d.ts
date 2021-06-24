@@ -8,20 +8,32 @@ interface Company {
 }
 
 interface User {
-  id: string;
+  id?: string;
   firstName: string;
   lastName: string;
-  role: 'USER' | 'ADMIN' | 'SUPERADMIN';
+  role?: 'USER' | 'ADMIN' | 'SUPERADMIN';
   email: string;
   password?: string;
-  weeklyBasis: 'h35' | 'h39';
+  weeklyBasis?: 'h35' | 'h39';
   jobId: string;
-  companyId: string;
+  companyId?: string;
+}
+
+interface IOneUser {
+  totalHours: string[];
+  weeklyBasis: string;
+  firstName: string;
+  lastName: string;
+  projectId: string;
+  userId: string;
+  job: string;
+  start: Date;
+  end: Date;
 }
 
 interface Job {
   id: string;
-  label: string | null;
+  label: string;
 }
 
 interface Project {
@@ -47,4 +59,17 @@ interface IExportRecordQuery {
   projectId: string;
   start: string;
   end: string;
+}
+
+interface SelectItem {
+  value: string;
+  text: string;
+}
+
+interface IResultUser {
+  id: string;
+  firstName: string;
+  lastName: string;
+  weeklyBasis: 'h35' | 'h39';
+  jobId: string;
 }

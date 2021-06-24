@@ -1,9 +1,9 @@
 import React from 'react';
-import { FieldValues } from 'react-hook-form';
+import { FieldValues, UseFormRegister } from 'react-hook-form';
 
 interface ISelectProject {
   projectData: Project[] | undefined;
-  register: FieldValues | any;
+  register: UseFormRegister<FieldValues>;
 }
 
 function SelectProject({ projectData, register }: ISelectProject): JSX.Element {

@@ -57,7 +57,7 @@ function SideBar({ sideBarClass, setIsSidebarVisible }: sideBarProps): JSX.Eleme
               </button>
             </li>
           </Link>
-          <Link to="/export">
+          <Link to="/records/export">
             <li className="flex text-lg  pl-5 mt-5 items-center h-14">
               <img src={Rapport} className="mr-3 mb-1" alt="homesvg" />
               <button className="focus:outline-none" onClick={handleClose}>

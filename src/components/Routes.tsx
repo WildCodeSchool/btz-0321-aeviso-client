@@ -13,6 +13,7 @@ import HomePage from '../views/HomePage';
 import SuperAdmin from './home/SuperAdmin';
 import ExportRecords from './records/Exporter/ExportRecords';
 import ListsCompanies from './companies/ListsCompanies';
+import FormResult from './records/Exporter/FormResult';
 
 function Routes(): JSX.Element {
   return (
@@ -27,8 +28,9 @@ function Routes(): JSX.Element {
       <Route exact path="/users" component={Users} />
       <Route path="/users/:id" component={User} />
       <Route path="/professions" component={Professions} />
+      <Route exact path="/records/export/companies/:companyId/projects/:projectId" component={FormResult} />
+      <Route exact path="/records/export" component={ExportRecords} />
       <Route exact path="/records" component={Records} />
-      <Route exact path="/export" component={ExportRecords} />
       <Route path="/records/:id" component={OneRecord} />
     </>
   );

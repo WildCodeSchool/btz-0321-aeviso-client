@@ -29,10 +29,13 @@ function User(): JSX.Element {
     <div>
       <UserForm
         mutationFn={user.update}
-        initFirstname={data?.firstName}
-        initLastname={data?.lastName}
-        initEmail={data?.email}
-        initProfession={data?.jobId}
+        initFirstname={data?.firstName || ''}
+        initLastname={data?.lastName || ''}
+        initEmail={data?.email || ''}
+        initJobId={data?.jobId || ''}
+        initCompanyId={data?.companyId || ''}
+        initRole={data?.role || 'USER'}
+        initWeeklyBasis={data?.weeklyBasis || 'h35'}
         setIsModal={setIsModal}
         setMessage={setMessage}
       />

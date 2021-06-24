@@ -1,15 +1,15 @@
 import React from 'react';
-import { FieldValues } from 'react-hook-form';
+import { FieldValues, UseFormRegister } from 'react-hook-form';
 
 interface ISelectCompany {
   companiesData: Company[] | undefined;
-  register: FieldValues | any;
+  register: UseFormRegister<FieldValues>;
 }
 
 function SelectCompany({ companiesData, register }: ISelectCompany): JSX.Element {
   return (
     <div className="flex flex-col mt-5">
-      <label className="mt-5 text-xl" htmlFor="select">
+      <label className="text-xl" htmlFor="select">
         1. Sélectionner une entreprise
       </label>
       <select

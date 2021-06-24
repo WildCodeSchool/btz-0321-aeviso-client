@@ -6,7 +6,7 @@ interface IProps {
   isFirstElement: boolean;
 }
 
-function RecordPreview({ company, isFirstElement }: IProps): JSX.Element {
+function CompanyPreview({ company, isFirstElement }: IProps): JSX.Element {
   return (
     <div>
       <Link to={`/companies/${company.id}`} className="group">
@@ -22,4 +22,4 @@ function RecordPreview({ company, isFirstElement }: IProps): JSX.Element {
   );
 }
 
-export default RecordPreview;
+export default CompanyPreview;
