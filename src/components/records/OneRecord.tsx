@@ -9,9 +9,9 @@ import DeleteRecord from './DeleteRecord';
 function Record(): JSX.Element {
   const { id }: { id: string } = useParams();
 
-  const [record, setRecord] = useState<Records | null>(null);
+  const [record, setRecord] = useState<IRecord | null>(null);
 
-  const { isLoading, error } = useQuery<Records, AxiosError>(['records', id], () => records.getOne(id), {
+  const { isLoading, error } = useQuery<IRecord, AxiosError>(['records', id], () => records.getOne(id), {
     onSuccess: (data) => {
       setRecord(data);
     },
@@ -38,10 +38,9 @@ function Record(): JSX.Element {
           <h3 className="mb-6">Test User</h3>
           <div className="border border-black mb-2">
             <p>{record.id}</p>
-            <p>{record.user_id}</p>
-            <p>{record.project_id}</p>
-            <p>{record.step_id}</p>
-            <p>{record.time_slot}</p>
+            <p>{record.userId}</p>
+            <p>{record.projectId}</p>
+            <p>{record.timeslot}</p>
           </div>
           <UpdateRecord setRecord={setRecord} />
           <DeleteRecord />
