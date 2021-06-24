@@ -18,7 +18,7 @@ import FormResult from './records/Exporter/FormResult';
 function Routes(): JSX.Element {
   return (
     <>
-      <Route exact path="/" component={SuperAdmin} />
+      <Route exact path="/eaVisio" component={SuperAdmin} />
       <Route exact path="/home" component={HomePage} />
       <Route exact path="/clients" component={ListsCompanies} />
       <Route exact path="/companies" component={Companies} />

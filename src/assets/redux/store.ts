@@ -1,24 +1,10 @@
 import { createStore } from 'redux';
 
-interface IReduxAction {
-  type: string;
-  payload: UserState;
-}
-
-interface UserState {
-  id: string;
-  firstName: string;
-  lastName: string;
-  email: string;
-  role: 'USER' | 'ADMIN' | 'SUPERADMIN';
-  logged: boolean;
-}
-
 const actions = {
   LOGIN: 'LOGIN',
 };
 
-const initialState: { user: UserState } = {
+const initialState: { user: UserReduxState } = {
   user: {
     id: '',
     firstName: '',
