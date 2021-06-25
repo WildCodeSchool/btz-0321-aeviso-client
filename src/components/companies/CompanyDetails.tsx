@@ -6,6 +6,7 @@ import AdminJob from './AdminJob';
 import Plus from '../../../media/icons/Plus.svg';
 import { Menu } from '@headlessui/react';
 import Spinner from '../Spinner';
+import { Link } from 'react-router-dom';
 
 interface IProps {
   company: Company;
@@ -33,14 +34,15 @@ function CompanyDetails({ company }: IProps): JSX.Element {
 
   return (
     <div>
-      <p>{company.name}</p>
       <div className="flex justify-between bg-red-300">
-        <p>
-          {user ? `${user.role} - ${user.firstName} ${user.lastName}` : 'Aucun admin enregistré'}
-          {user?.jobId && ' - '}
-          {user?.jobId && <AdminJob jobId={user.jobId} />}
-        </p>
-
+        <Link to={`/companies/${company.id}`}>
+          <p>{company.name}</p>
+          <p>
+            {user ? `${user.role} - ${user.firstName} ${user.lastName}` : 'Aucun admin enregistré'}
+            {user?.jobId && ' - '}
+            {user?.jobId && <AdminJob jobId={user.jobId} />}
+          </p>
+        </Link>
         <Menu>
           <div className="relative">
             <Menu.Button>
