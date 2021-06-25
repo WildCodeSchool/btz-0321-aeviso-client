@@ -24,18 +24,6 @@ function SideBar({ sideBarClass, setSideBarClass, user }: sideBarProps): JSX.Ele
     );
   };
 
-  // const handleSP = () => {
-  //   setUser('SUPERADMIN');
-  // };
-
-  // const handleAD = () => {
-  //   setUser('ADMIN');
-  // };
-
-  // const handleUS = () => {
-  //   setUser('USER');
-  // };
-
   return (
     <div className={sideBarClass}>
       <div className="py-8 px-8 ">
@@ -78,12 +66,11 @@ function SideBar({ sideBarClass, setSideBarClass, user }: sideBarProps): JSX.Ele
           ''
         )}
       </div>
-      {user.firstName} {user.lastName}
-      {/* <div className=" text-xs flex flex-col h-20 border-t border-white p-6">
-        <button onClick={handleSP}>SUPERADMIN</button>
-        <button onClick={handleAD}>ADMIN</button>
-        <button onClick={handleUS}>USER</button>
-      </div> */}
+      <div className="h-20  border-t border-white  p-6">
+        <h2 className="text-xl font-bold">
+          {user.firstName} {user.lastName}
+        </h2>
+      </div>
     </div>
   );
 }
