@@ -2,6 +2,7 @@ import { createStore, compose } from 'redux';
 
 export const actions = {
   LOGIN: 'LOGIN',
+  LOGOUT: 'LOGOUT',
 };
 
 const initialState: { user: UserReduxState } = {
@@ -18,6 +19,8 @@ const initialState: { user: UserReduxState } = {
 const reducer = (state = initialState, action: IReduxAction) => {
   switch (action.type) {
     case actions.LOGIN:
+      return { ...state, user: action.payload };
+    case actions.LOGOUT:
       return { ...state, user: action.payload };
     default:
       return state;

@@ -8,7 +8,8 @@ import NouveauRapport from '../../../media/icons/NouveauRapport.svg';
 import SUPERADMIN from './SUPERADMIN';
 import ADMIN from './ADMIN';
 import USER from './USER';
-import { RootState } from '../../assets/redux/store';
+import store, { actions, RootState } from '../../assets/redux/store';
+import { useHistory } from 'react-router-dom';
 
 interface sideBarProps {
   sideBarClass: string;
@@ -22,6 +23,21 @@ function SideBar({ sideBarClass, setSideBarClass, user }: sideBarProps): JSX.Ele
     setSideBarClass(
       'flex flex-col bg-black  h-full shadow-mainShadow  rounded-xl text-white font-roboto justify-between invisible sm:visible'
     );
+  };
+  const history = useHistory();
+  const handleLogout = () => {
+    store.dispatch({
+      type: actions.LOGOUT,
+      payload: {
+        id: undefined,
+        firstName: undefined,
+        lastName: undefined,
+        email: undefined,
+        role: undefined,
+        logged: false,
+      },
+    });
+    history.push('/home');
   };
 
   return (
@@ -70,6 +86,7 @@ function SideBar({ sideBarClass, setSideBarClass, user }: sideBarProps): JSX.Ele
         <h2 className="text-xl font-bold">
           {user.firstName} {user.lastName}
         </h2>
+        <button onClick={handleLogout}>LOGOUT</button>
       </div>
     </div>
   );
