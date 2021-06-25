@@ -60,7 +60,7 @@ function HomePage(): JSX.Element {
         buttons={
           isError
             ? [{ text: 'Nouvel essai', handleClick: () => setIsModal((prevState) => !prevState) }]
-            : [{ text: 'Accueil', handleClick: () => history.push('/') }]
+            : [{ text: 'Accueil', handleClick: () => history.push('/aeviso') }]
         }
       >
         {message}
