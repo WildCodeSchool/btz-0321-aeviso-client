@@ -1,4 +1,5 @@
-import React, { Dispatch, SetStateAction, useState } from 'react';
+import React, { Dispatch, SetStateAction } from 'react';
+import { connect } from 'react-redux';
 import Home from '../../../media/icons/Home.svg';
 import Rapport from '../../../media/icons/folder.svg';
 import Réglages from '../../../media/icons/Settings.svg';
@@ -7,32 +8,33 @@ import NouveauRapport from '../../../media/icons/NouveauRapport.svg';
 import SUPERADMIN from './SUPERADMIN';
 import ADMIN from './ADMIN';
 import USER from './USER';
+import { RootState } from '../../assets/redux/store';
 
 interface sideBarProps {
   sideBarClass: string;
   setIsSidebarVisible: Dispatch<SetStateAction<boolean>>;
   setSideBarClass: Dispatch<SetStateAction<string>>;
+  user: UserReduxState;
 }
 
-function SideBar({ sideBarClass, setSideBarClass }: sideBarProps): JSX.Element {
-  const [user, setUser] = useState<string>('SUPERADMIN');
+function SideBar({ sideBarClass, setSideBarClass, user }: sideBarProps): JSX.Element {
   const handleClose = () => {
     setSideBarClass(
       'flex flex-col bg-black  h-full shadow-mainShadow  rounded-xl text-white font-roboto justify-between invisible sm:visible'
     );
   };
 
-  const handleSP = () => {
-    setUser('SUPERADMIN');
-  };
+  // const handleSP = () => {
+  //   setUser('SUPERADMIN');
+  // };
 
-  const handleAD = () => {
-    setUser('ADMIN');
-  };
+  // const handleAD = () => {
+  //   setUser('ADMIN');
+  // };
 
-  const handleUS = () => {
-    setUser('USER');
-  };
+  // const handleUS = () => {
+  //   setUser('USER');
+  // };
 
   return (
     <div className={sideBarClass}>
@@ -48,12 +50,12 @@ function SideBar({ sideBarClass, setSideBarClass }: sideBarProps): JSX.Element {
             </button>
           </div>
         </div>
-        {user === 'SUPERADMIN' ? (
+        {user.role === 'SUPERADMIN' ? (
           <SUPERADMIN handleClose={handleClose} Home={Home} Rapport={Rapport} Réglages={Réglages} />
         ) : (
           ''
         )}
-        {user === 'ADMIN' ? (
+        {user.role === 'ADMIN' ? (
           <ADMIN
             Home={Home}
             Rapport={Rapport}
@@ -64,7 +66,7 @@ function SideBar({ sideBarClass, setSideBarClass }: sideBarProps): JSX.Element {
         ) : (
           ''
         )}
-        {user === 'USER' ? (
+        {user.role === 'USER' ? (
           <USER
             handleClose={handleClose}
             NouveauRapport={NouveauRapport}
@@ -76,14 +78,18 @@ function SideBar({ sideBarClass, setSideBarClass }: sideBarProps): JSX.Element {
           ''
         )}
       </div>
-
-      <div className=" text-xs flex flex-col h-20 border-t border-white p-6">
+      {user.firstName} {user.lastName}
+      {/* <div className=" text-xs flex flex-col h-20 border-t border-white p-6">
         <button onClick={handleSP}>SUPERADMIN</button>
         <button onClick={handleAD}>ADMIN</button>
         <button onClick={handleUS}>USER</button>
-      </div>
+      </div> */}
     </div>
   );
 }
 
-export default SideBar;
+const mapStateToProps = (state: RootState) => {
+  return { user: state.user };
+};
+
+export default connect(mapStateToProps)(SideBar);

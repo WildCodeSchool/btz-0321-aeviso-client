@@ -1,4 +1,7 @@
 import React from 'react';
+import { connect } from 'react-redux';
+import store from '../assets/redux/store';
+import { actions } from '../assets/redux/store';
 import BG from '../../media/images/BgAeivsio.webp';
 import { SubmitHandler, useForm } from 'react-hook-form';
 import { useMutation } from 'react-query';
@@ -7,7 +10,6 @@ import Modal from '../components/Modal';
 import useModal from '../Hook/useModal';
 import { useHistory } from 'react-router';
 import Spinner from '../components/Spinner';
-import { connect } from 'react-redux';
 
 interface IFormInput {
   email: string;
@@ -24,9 +26,21 @@ function HomePage(): JSX.Element {
       setMessage('Une erreur est survenue');
       setIsModal((prevState) => !prevState);
     },
-    onSuccess: () => {
+    onSuccess: (data) => {
       setMessage('Vous êtes bien authentifié');
       setIsModal((prevState) => !prevState);
+      const { user } = data;
+      store.dispatch({
+        type: actions.LOGIN,
+        payload: {
+          id: user.id,
+          firstName: user.firstName,
+          lastName: user.lastName,
+          email: user.email,
+          role: user.role,
+          logged: true,
+        },
+      });
     },
   });
 
@@ -42,9 +56,15 @@ function HomePage(): JSX.Element {
   if (isModal)
     return (
       <Modal
-        message={message}
-        handleClick={isError ? () => setIsModal((prevState) => !prevState) : () => history.push('/')}
-      />
+        title="Authentification"
+        buttons={
+          isError
+            ? [{ text: 'Nouvel essai', handleClick: () => setIsModal((prevState) => !prevState) }]
+            : [{ text: 'Accueil', handleClick: () => history.push('/') }]
+        }
+      >
+        {message}
+      </Modal>
     );
 
   return (

@@ -88,10 +88,10 @@ interface IReduxAction {
 }
 
 interface UserReduxState {
-  id: string;
-  firstName: string;
-  lastName: string;
-  email: string;
-  role: 'USER' | 'ADMIN' | 'SUPERADMIN';
+  id?: string;
+  firstName?: string;
+  lastName?: string;
+  email?: string;
+  role?: 'USER' | 'ADMIN' | 'SUPERADMIN';
   logged: boolean;
 }
