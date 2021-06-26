@@ -23,7 +23,7 @@ interface sideBarProps {
 }
 
 function SideBar({ isDarkMode, setIsDarkMode, sideBarClass, setSideBarClass, user }: sideBarProps): JSX.Element {
-  const [toggleClass, setToggleClass] = useState('bg-white ml-5 focus:outline-none h-7 rounded-full w-7');
+  const [toggleClass, setToggleClass] = useState('bg-black focus:outline-none h-7 mr-2 rounded-full w-7');
   const handleClose = () => {
     setSideBarClass(
       'flex flex-col dark:bg-black bg-white h-full shadow-mainShadow rounded-xl text-black dark:text-white font-roboto justify-between invisible sm:visible'
@@ -48,10 +48,10 @@ function SideBar({ isDarkMode, setIsDarkMode, sideBarClass, setSideBarClass, use
   const handleDarkMode = () => {
     if (isDarkMode) {
       setIsDarkMode(false);
-      setToggleClass('bg-white focus:outline-none dark:bg-black mr-6 h-6 rounded-full w-6');
+      setToggleClass('bg-black focus:outline-none mr-4 h-7 rounded-full w-7');
     } else {
       setIsDarkMode(true);
-      setToggleClass('bg-white focus:outline-none dark:bg-black h-6 ml-6 rounded-full w-6');
+      setToggleClass('bg-white focus:outline-none h-6 ml-6 rounded-full w-6');
     }
   };
 
@@ -109,7 +109,7 @@ function SideBar({ isDarkMode, setIsDarkMode, sideBarClass, setSideBarClass, use
             {user.firstName} {user.lastName}
           </h2>
           <button
-            className="w-8/12 mt-2 text-xs text-white bg-red py-1 px-2 rounded-sm shadow-buttonShadow"
+            className="w-12/12 mt-2 text-xs text-white bg-red py-1 px-2 rounded-sm shadow-buttonShadow"
             onClick={handleLogout}
           >
             Déconnexion
