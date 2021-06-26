@@ -16,8 +16,8 @@ function Head({ setIsSidebarVisible, setSideBarClass }: IProps): JSX.Element {
   };
   return (
     <div className="flex justify-between w-full h-full items-start px-2 py-1">
-      <div className="flex sm:flex-row flex-col w-full justify-between h-full sm:items-end">
-        <div className="flex-col h-full">
+      <div className="flex sm:flex-row-reverse flex-col w-full justify-between h-full sm:items-end">
+        <div className="flex-col h-full sm:hidden">
           <h1 className="text-4xl  font-bold">aeviso</h1>
           <h2 className="text-sm">Expert Comptable.audit.conseil</h2>
         </div>
