@@ -8,7 +8,7 @@ import store from './assets/redux/store';
 
 ReactDOM.render(
   <React.StrictMode>
-    <div>
+    <div className="bg-darkGray">
       <Provider store={store}>
         <App />
       </Provider>
