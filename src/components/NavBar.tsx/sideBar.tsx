@@ -29,11 +29,11 @@ function SideBar({ sideBarClass, setSideBarClass, user }: sideBarProps): JSX.Ele
     store.dispatch({
       type: actions.LOGOUT,
       payload: {
-        id: undefined,
-        firstName: undefined,
-        lastName: undefined,
-        email: undefined,
-        role: undefined,
+        id: '',
+        firstName: '',
+        lastName: '',
+        email: '',
+        role: null,
         logged: false,
       },
     });
