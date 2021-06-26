@@ -1,7 +1,6 @@
 import React, { Dispatch, SetStateAction, useState } from 'react';
 import { connect } from 'react-redux';
 import Home from '../../../media/icons/Home.svg';
-import HomeBlack from '../../../media/icons/HomeBlack.svg';
 import Rapport from '../../../media/icons/folder.svg';
 import Réglages from '../../../media/icons/Settings.svg';
 import Cross from '../../../media/icons/Cross.svg';
@@ -70,13 +69,7 @@ function SideBar({ isDarkMode, setIsDarkMode, sideBarClass, setSideBarClass, use
           </div>
         </div>
         {user.role === 'SUPERADMIN' ? (
-          <SUPERADMIN
-            handleClose={handleClose}
-            Home={Home}
-            HomeBlack={HomeBlack}
-            Rapport={Rapport}
-            Réglages={Réglages}
-          />
+          <SUPERADMIN handleClose={handleClose} Home={Home} Rapport={Rapport} Réglages={Réglages} />
         ) : (
           ''
         )}

@@ -5,7 +5,6 @@ import { Link } from 'react-router-dom';
 interface ISPNavbar {
   handleClose: () => void;
   Home: string;
-  HomeBlack: string;
   Rapport: string;
   Réglages: string;
 }
