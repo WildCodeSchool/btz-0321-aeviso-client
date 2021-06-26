@@ -8,11 +8,7 @@ import store from './assets/redux/store';
 
 ReactDOM.render(
   <React.StrictMode>
-    <div
-      style={{
-        background: 'linear-gradient(298.31deg, #232323 20%, rgba(22, 22, 22, 0.78) 84.83%)',
-      }}
-    >
+    <div>
       <Provider store={store}>
         <App />
       </Provider>

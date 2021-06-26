@@ -16,20 +16,20 @@ function Companies(): JSX.Element {
   }
 
   if (error) {
-    return <p className="text-white">An error occurred: {error.message}</p>;
+    return <p className="text-black dark:text-white">An error occurred: {error.message}</p>;
   }
 
   return (
-    <div className="text-white">
-      <div className="py-5 px-5 text-lg font-bold flex justify-between items-center bg-black sm:sticky sm:top-0 ">
-        <CardTitle>Clients</CardTitle>
+    <div className="text-black dark:text-white">
+      <div className="py-4 px-5 text-lg font-bold flex justify-between items-center bg-white border-b-2  border-black dark:border-white dark:bg-black sm:sticky sm:top-0 ">
+        <CardTitle>Entreprises</CardTitle>
 
-        <Link to="/companies" className="p-2 bg-blue rounded-md text-xs font-light">
+        <Link to="/companies" className="p-2 text-white bg-blue rounded text-xs font-light shadow-buttonShadow">
           Tous les clients
         </Link>
       </div>
 
-      <div className="h-full mx-4">
+      <div className="h-full mt-2 mx-4">
         {data?.map((company: Company, index) => (
           <CompanyPreview key={company.id} company={company} isFirstElement={index === 0} />
         ))}

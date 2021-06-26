@@ -27,12 +27,12 @@ function ListsCompanies(): JSX.Element {
     );
 
   return (
-    <div className="bg-black h-full sm:w-full text-white font-roboto rounded-xl shadow-mainShadow mx-4 sm:mx-0  py-5 sm:px-10 p-5 overflow-y-auto">
-      <h1 className="sm:text-3xl text-white text-2xl font-bold">Liste de tous les clients</h1>
+    <div className="dark:bg-black bg-white h-full sm:w-full text-black dark:text-white font-roboto rounded-xl shadow-mainShadow mx-4 sm:mx-0  py-5 sm:px-10 p-5 overflow-y-auto">
+      <h1 className="sm:text-3xl text-2xl font-bold">Liste de tous les clients</h1>
       <div className="flex justify-between items-center">
         <SearchInput register={register} name="search" />
         <button className="focus:outline-none flex items-center" onClick={handleClick}>
-          Créer Nouveau <img src={Plus} alt="Icône plus" className="ml-4" />
+          Créer Nouveau <img src={Plus} alt="Icône plus" className="ml-2 bg-black p-1 rounded-full h-6 w-6" />
         </button>
       </div>
 
