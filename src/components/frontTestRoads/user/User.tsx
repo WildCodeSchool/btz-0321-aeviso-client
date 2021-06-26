@@ -1,14 +1,14 @@
-import React, { useState } from 'react';
+import React from 'react';
 import { useMutation, useQuery } from 'react-query';
 import { useParams } from 'react-router-dom';
 import Modal from '../../Modal';
 import UserForm from './UserForm';
 import { user } from '../../../API/requests';
 import Spinner from '../../Spinner';
+import getModal from '../../../Hook/useModal';
 
 function User(): JSX.Element {
-  const [isModal, setIsModal] = useState(false);
-  const [message, setMessage] = useState('');
+  const { isModal, setIsModal, message, setMessage } = getModal();
 
   const { id }: { id: string } = useParams();
 
@@ -21,11 +21,15 @@ function User(): JSX.Element {
       setMessage('Utilisateur supprimé');
       setIsModal((prevState) => !prevState);
     },
+    onError: () => {
+      setMessage('Une erreur est survenue');
+      setIsModal((prevState) => !prevState);
+    },
   });
 
   if (isModal) {
     return (
-      <Modal title="Utilisateur supprimé" buttons={buttons}>
+      <Modal title="Succès" buttons={buttons}>
         {message}
       </Modal>
     );
