@@ -92,6 +92,6 @@ interface UserReduxState {
   firstName?: string;
   lastName?: string;
   email?: string;
-  role?: 'USER' | 'ADMIN' | 'SUPERADMIN';
+  role?: 'USER' | 'ADMIN' | 'SUPERADMIN' | null;
   logged: boolean;
 }

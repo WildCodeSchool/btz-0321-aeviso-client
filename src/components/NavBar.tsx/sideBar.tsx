@@ -33,11 +33,11 @@ function SideBar({ isDarkMode, setIsDarkMode, sideBarClass, setSideBarClass, use
     store.dispatch({
       type: actions.LOGOUT,
       payload: {
-        id: undefined,
-        firstName: undefined,
-        lastName: undefined,
-        email: undefined,
-        role: undefined,
+        id: '',
+        firstName: '',
+        lastName: '',
+        email: '',
+        role: null,
         logged: false,
       },
     });
