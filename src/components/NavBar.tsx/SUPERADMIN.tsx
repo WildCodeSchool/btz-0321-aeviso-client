@@ -14,7 +14,7 @@ function SUPERADMIN({ Home, Rapport, Réglages, handleClose }: ISPNavbar): JSX.E
     <div>
       {' '}
       <nav className="list-none pt-5">
-        <Link to="/eaVisio">
+        <Link to="/aeviso">
           <li className="flex text-lg  items-center pl-5 h-14 rounded-xl">
             <img src={Home} className="mr-3 mb-1" alt="homesvg" />
             <button className="focus:outline-none" onClick={handleClose}>
