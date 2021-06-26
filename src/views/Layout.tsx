@@ -4,7 +4,7 @@ import Routes from '../../src/components/Routes';
 
 import Head from '../components/head';
 
-import SideBar from '../components/sideBar';
+import SideBar from '../components/NavBar.tsx/sideBar';
 
 function Layout(): JSX.Element {
   const [isSidebarVisible, setIsSidebarVisible] = useState<boolean>(true);

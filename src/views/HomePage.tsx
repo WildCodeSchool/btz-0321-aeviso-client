@@ -41,9 +41,15 @@ function HomePage(): JSX.Element {
   if (isModal)
     return (
       <Modal
-        message={message}
-        handleClick={isError ? () => setIsModal((prevState) => !prevState) : () => history.push('/')}
-      />
+        title="Authentification"
+        buttons={
+          isError
+            ? [{ text: 'Ok', handleClick: () => setIsModal((prevState) => !prevState) }]
+            : [{ text: 'Accueil', handleClick: () => history.push('/aeviso') }]
+        }
+      >
+        {message}
+      </Modal>
     );
 
   return (

@@ -73,3 +73,11 @@ interface IResultUser {
   weeklyBasis: 'h35' | 'h39';
   jobId: string;
 }
+
+interface INavbar {
+  handleClose: () => void;
+  Home: string;
+  Rapport: string;
+  Réglages: string;
+  NouveauRapport: string;
+}
