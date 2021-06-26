@@ -10,7 +10,7 @@ function Layout(): JSX.Element {
   const [isSidebarVisible, setIsSidebarVisible] = useState<boolean>(true);
 
   const [sideBarClass, setSideBarClass] = useState(
-    'sm:flex flex-col bg-black w-full h-full rounded-xl text-white font-roboto justify-between shadow-mainShadow invisible sm:visible'
+    'sm:flex flex-col bg-black w-full h-full rounded-lg text-white font-roboto justify-between shadow-mainShadow invisible sm:visible'
   );
 
   return (
