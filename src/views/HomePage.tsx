@@ -2,7 +2,7 @@ import React from 'react';
 import { connect } from 'react-redux';
 import store from '../assets/redux/store';
 import { actions } from '../assets/redux/store';
-import BG from '../../media/images/BgAeivsio.webp';
+// import BG from '../../media/images/BgAeivsio.webp';
 import { SubmitHandler, useForm } from 'react-hook-form';
 import { useMutation } from 'react-query';
 import { auth } from '../API/requests';
@@ -68,21 +68,13 @@ function HomePage(): JSX.Element {
     );
 
   return (
-    <div
-      className="h-full w-full flex flex-col justify-center absolute top-0 left-0"
-      style={{
-        backgroundImage: `url(${BG})`,
-        backgroundRepeat: 'no-repeat',
-        backgroundColor: 'black',
-        backgroundSize: 'cover',
-      }}
-    >
-      <div className="text-white font-roboto flex items-center  flex-col">
-        <h1 className="sm:text-9xl text-8xl font-bold">aevisio</h1>
-        <h2 className="sm:text-2xl text-2xl">Expert Comptable.Audit.Conseil</h2>
+    <div className="h-full w-full flex flex-col justify-center sm:fixed absolute top-0 left-0 right-0 bg-bgdark bg-center bg-cover">
+      <div className="text-white sm:ml-20 font-roboto flex items-center sm:items-start  flex-col">
+        <h1 className="sm:text-9xl text-8xl font-bold">AeViso</h1>
+        <h2 className="sm:text-4xl text-2xl">Expert Comptable.Audit.Conseil</h2>
       </div>
       <form
-        className="w-12/12 sm:w-full mt-5 flex items-center flex-col text-white font-roboto text-xl sm:text-2xl"
+        className="w-12/12 sm:ml-20 sm:w-5/12 mt-5 sm:mt-10 flex items-center sm:items-start flex-col text-white font-roboto text-xl sm:text-2xl"
         onSubmit={handleSubmit(onSubmit)}
         action="login"
       >
@@ -90,7 +82,7 @@ function HomePage(): JSX.Element {
           Email
         </label>
         <input
-          className=" focus:outline-none mt-2 px-3 w-8/12 h-12 bg-input bg-opacity-50 rounded-lg shadow-inputShadow"
+          className=" focus:outline-none mt-2 px-3 w-11/12 h-12 bg-black rounded-lg shadow-inputShadow"
           type="text"
           {...register('email', { required: true })}
         />
@@ -98,11 +90,11 @@ function HomePage(): JSX.Element {
           Mots de passe{' '}
         </label>
         <input
-          className="focus:outline-none mt-2 px-3 w-8/12 h-12 bg-input bg-opacity-50 rounded-lg shadow-inputShadow"
+          className="focus:outline-none mt-2 px-3 w-11/12 h-12 bg-black rounded-lg shadow-inputShadow"
           type="password"
           {...register('password', { required: true })}
         />
-        <input className="bg-green py-1 bg-opacity-50 rounded-lg w-8/12 mt-16 shadow-inputShadow" type="submit" />
+        <input className="bg-lightblue py-1 rounded-lg w-11/12 mt-16 shadow-inputShadow" type="submit" />
       </form>
     </div>
   );

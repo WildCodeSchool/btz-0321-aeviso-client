@@ -7,26 +7,27 @@ module.exports = {
       fontFamily: {
         roboto: ['Roboto', 'sans-serif'],
       },
+      backgroundImage: {
+        bgdark: "url('./media/images/bgAevisio.png')",
+      },
       colors: {
         whiteGray: '#DEDDDD',
-        darkGray: '#3E3E3E',
+        darkGray: '#0F1223',
         input: '#404040',
         green: '#58926F',
-        blue: '#5A73A3',
+        blue: '#333A5E',
+        lightblue: '#6B77BF',
         red: '#976C6C',
+        black: '#292D41',
       },
-      backgroundColor: {
-        bgBlack: 'linear-gradient(298.31deg, #232323 20%, rgba(22, 22, 22, 0.78) 84.83%)',
-      },
-
       boxShadow: {
         mainShadow: '5px 5px 10px rgba(0, 0, 0, 0.50)',
-        inputShadow: '5px 5px 20px rgba(0, 0, 0, 0.8)',
+        inputShadow: '5px 5px 20px rgba(0, 0, 0, 0.6)',
         buttonShadow: '5px 5px 10px rgba(0, 0, 0, 0.20)',
       },
       gridTemplateRows: {
         desktop: '1fr 10fr 10fr',
-        mobile: '130px 200px 250px 0px',
+        mobile: '130px 200px 420px 30px',
       },
       gridTemplateColumns: {
         desktop: '320px 1fr',

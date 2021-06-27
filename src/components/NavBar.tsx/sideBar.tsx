@@ -11,6 +11,7 @@ import USER from './USER';
 import store, { actions, RootState } from '../../assets/redux/store';
 import { useHistory } from 'react-router-dom';
 import Togglebutton from '../../assets/ToggleButton';
+import { today } from '../../assets/date';
 
 interface sideBarProps {
   sideBarClass: string;
@@ -25,7 +26,7 @@ function SideBar({ isDarkMode, setIsDarkMode, sideBarClass, setSideBarClass, use
   const [toggleClass, setToggleClass] = useState('bg-black focus:outline-none h-7 mr-2 rounded-full w-7');
   const handleClose = () => {
     setSideBarClass(
-      'flex flex-col dark:bg-black bg-white h-full shadow-mainShadow rounded-xl text-black dark:text-white font-roboto justify-between invisible sm:visible'
+      'flex flex-col border-2 border-blue dark:bg-black bg-white h-full shadow-mainShadow rounded-xl text-black dark:text-white font-roboto justify-between invisible sm:visible'
     );
   };
   const history = useHistory();
@@ -64,7 +65,11 @@ function SideBar({ isDarkMode, setIsDarkMode, sideBarClass, setSideBarClass, use
               <h2 className="text-sm">Expert Comptable.audit.conseil</h2>
             </div>
             <button className="focus:outline-none sm:hidden" onClick={handleClose}>
-              <img className="h-6 w-6 bg-black  rounded-full p-1 shadow-buttonShadow" src={Cross} alt="CloseButton" />{' '}
+              <img
+                className="h-6 w-6 bg-lightblue  rounded-full p-1 shadow-buttonShadow"
+                src={Cross}
+                alt="CloseButton"
+              />{' '}
             </button>
           </div>
         </div>
@@ -96,20 +101,23 @@ function SideBar({ isDarkMode, setIsDarkMode, sideBarClass, setSideBarClass, use
           ''
         )}
       </div>
-      <div className=" flex h-28 border-t border-black dark:border-white items-center justify-between p-5 ">
-        <div>
-          <h2 className="text-xl font-bold">
-            {user.firstName} {user.lastName}
-          </h2>
-          <button
-            className="w-12/12 mt-2 text-xs text-white bg-red py-1 px-2 rounded-sm shadow-buttonShadow"
-            onClick={handleLogout}
-          >
-            Déconnexion
-          </button>
-        </div>
-        <div className="flex h-full place-items-end">
-          <Togglebutton handleDarkMode={handleDarkMode} toggleClass={toggleClass} />
+      <div className=" flex flex-col w-full h-40 justify-end">
+        <h2 className="text-base mr-3 text-right mb-2">{today()}</h2>
+        <div className="flex flex-row justify-between p-5 border-t rounded-lg border-black dark:border-lightblue">
+          <div className="">
+            <h2 className="text-xl font-bold">
+              {user.firstName} {user.lastName}
+            </h2>
+            <button
+              className="w-12/12 mt-2 text-xs text-white bg-red py-1 px-2 rounded-sm shadow-buttonShadow"
+              onClick={handleLogout}
+            >
+              Déconnexion
+            </button>
+          </div>
+          <div className="flex h-full place-items-end">
+            <Togglebutton handleDarkMode={handleDarkMode} toggleClass={toggleClass} />
+          </div>
         </div>
       </div>
     </div>
