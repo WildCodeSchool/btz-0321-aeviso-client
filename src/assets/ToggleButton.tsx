@@ -7,7 +7,7 @@ interface IToggle {
 
 function Togglebutton({ handleDarkMode, toggleClass }: IToggle): JSX.Element {
   return (
-    <div className="bg-black flex items-center dark:bg-white h-8 w-14 rounded-full mt-2 px-1">
+    <div className="bg-black flex items-center dark:bg-white h-8 w-14 shadow-buttonShadow rounded-full mt-2 px-1">
       <button onClick={handleDarkMode} className={toggleClass}></button>
     </div>
   );
