@@ -26,7 +26,7 @@ function SideBar({ isDarkMode, setIsDarkMode, sideBarClass, setSideBarClass, use
   const [toggleClass, setToggleClass] = useState('bg-black focus:outline-none h-7 mr-2 rounded-full w-7');
   const handleClose = () => {
     setSideBarClass(
-      'flex flex-col border-2 border-blue dark:bg-black bg-white h-full shadow-mainShadow rounded-xl text-black dark:text-white font-roboto justify-between invisible sm:visible'
+      'flex flex-col border-2 dark:border-blue dark:bg-black bg-white h-full shadow-mainShadow rounded-xl text-black dark:text-white font-roboto justify-between invisible sm:visible'
     );
   };
   const history = useHistory();
@@ -66,7 +66,7 @@ function SideBar({ isDarkMode, setIsDarkMode, sideBarClass, setSideBarClass, use
             </div>
             <button className="focus:outline-none sm:hidden" onClick={handleClose}>
               <img
-                className="h-6 w-6 bg-lightblue  rounded-full p-1 shadow-buttonShadow"
+                className="h-6 w-6 bg-lightblue rounded-full p-1 shadow-buttonShadow"
                 src={Cross}
                 alt="CloseButton"
               />{' '}

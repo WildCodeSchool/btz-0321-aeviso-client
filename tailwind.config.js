@@ -16,7 +16,7 @@ module.exports = {
         input: '#404040',
         green: '#58926F',
         blue: '#333A5E',
-        lightblue: '#6B77BF',
+        lightblue: '#4A5383',
         red: '#976C6C',
         black: '#292D41',
       },
@@ -30,7 +30,7 @@ module.exports = {
         mobile: '130px 200px 420px 30px',
       },
       gridTemplateColumns: {
-        desktop: '320px 1fr',
+        desktop: '300px 1fr',
         phone: '1fr',
       },
       screens: {
