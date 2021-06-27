@@ -38,7 +38,7 @@ function Layout(): JSX.Element {
       <div className="sm:row-start-1 sm:row-end-2 sm:col-start-1  sm:col-end-3 row-start-1 row-end-2 col-start-1 items-end  text-black dark:text-white font-roboto sm:flex justify-between mx-4 mt-5 sm:m-0">
         <Head setSideBarClass={setSideBarClass} setIsSidebarVisible={setIsSidebarVisible} />
       </div>
-      <div className="row-start-2 row-end-4 col-start-1 sm:col-start-2">
+      <div className="row-start-2 sm:row-start-1 row-end-4 col-start-1 sm:col-start-2">
         <Switch>
           <Routes />
         </Switch>
