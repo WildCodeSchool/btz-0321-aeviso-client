@@ -3,7 +3,7 @@ import { useQuery } from 'react-query';
 import { AxiosError } from 'axios';
 import { companies } from '../../API/requests';
 import AdminJob from './AdminJob';
-import Plus from '../../../media/icons/Plus.svg';
+import Points from '../../../media/icons/points.svg';
 import { Menu } from '@headlessui/react';
 
 interface IProps {
@@ -31,32 +31,31 @@ function CompanyDetails({ company }: IProps): JSX.Element {
     );
 
   return (
-    <div>
-      <p>{company.name}</p>
-      <div className="flex justify-between bg-red-300">
-        <p>
+    <div className="flex pb-2 flex-row w-full justify-between mt-7 border-b border-black dark:border-white">
+      <div className="">
+        <p className="text-xl font-bold">{company.name}</p>
+        <p className="text-sm mt-1 text-gray-400">
           {user ? `${user.role} - ${user.firstName} ${user.lastName}` : 'Aucun admin enregistré'}
           {user?.jobId && ' - '}
           {user?.jobId && <AdminJob jobId={user.jobId} />}
         </p>
-
-        <Menu>
-          <div className="relative">
-            <Menu.Button>
-              <img src={Plus} alt="Icône plus" className="ml-4" />
-            </Menu.Button>
-            <Menu.Items className="absolute top-6 right-0 z-10 px-8 bg-gray-600 rounded-md">
-              <Menu.Item>
-                <p className="py-2">Modifier</p>
-              </Menu.Item>
-
-              <Menu.Item>
-                <p className="py-2">Supprimer</p>
-              </Menu.Item>
-            </Menu.Items>
-          </div>
-        </Menu>
       </div>
+      <Menu>
+        <div className="relative">
+          <Menu.Button className="focus:outline-none">
+            <img src={Points} alt="Icône plus" className="ml-4 focus:outline-none" />
+          </Menu.Button>
+          <Menu.Items className="absolute w-96 h-24 top-6 right-0 z-10 px-4 bg-darkGray rounded-md">
+            <Menu.Item>
+              <p className="py-1 border-b mt-2 border-white">Modifier</p>
+            </Menu.Item>
+
+            <Menu.Item>
+              <p className="py-1 mt-2 border-b border-white">Supprimer</p>
+            </Menu.Item>
+          </Menu.Items>
+        </div>
+      </Menu>
     </div>
   );
 }
