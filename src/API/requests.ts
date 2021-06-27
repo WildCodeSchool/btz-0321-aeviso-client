@@ -92,4 +92,6 @@ export const records = {
 export const auth = {
   login: (user: { email: string; password: string }): Promise<{ message: string; user: User }> =>
     axios.post(`${API_URL}/auth/login`, user).then((res) => res.data),
+
+  me: (): Promise<{ message: string; user: User }> => axios.get(`${API_URL}/auth/me`).then((res) => res.data),
 };
