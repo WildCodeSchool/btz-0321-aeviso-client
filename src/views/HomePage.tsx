@@ -68,13 +68,13 @@ function HomePage(): JSX.Element {
     );
 
   return (
-    <div className="h-full w-full flex flex-col justify-center bg-bgdark bg-center bg-cover absolute top-0 right-0">
-      <div className="text-white sm:ml-20 font-roboto flex items-center sm:items-start  flex-col">
+    <div className="h-full w-full sm:w-screen sm:h-screen flex flex-col justify-center items-center bg-bgdark bg-center bg-cover absolute top-0 right-0">
+      {/* <div className="text-white sm:ml-20 font-roboto flex items-center sm:items-start  flex-col">
         <h1 className="sm:text-9xl text-8xl font-bold">AeViso</h1>
         <h2 className="sm:text-4xl text-2xl">Expert Comptable.Audit.Conseil</h2>
-      </div>
+      </div> */}
       <form
-        className="w-12/12 sm:ml-20 sm:w-5/12 mt-5 sm:mt-10 flex items-center sm:items-start flex-col text-white font-roboto text-xl sm:text-2xl"
+        className="w-12/12 flex  sm:w-6/12 sm:mt-32 justify-center sm:h-full mt-5 items-center sm:items-center flex-col text-white font-roboto text-xl sm:text-2xl"
         onSubmit={handleSubmit(onSubmit)}
         action="login"
       >
@@ -82,7 +82,7 @@ function HomePage(): JSX.Element {
           Email
         </label>
         <input
-          className=" focus:outline-none mt-2 px-3 w-11/12 h-12 bg-black rounded-lg shadow-inputShadow"
+          className=" focus:outline-none mt-2 mb-5 px-3 w-11/12 h-12 bg-black rounded-lg shadow-inputShadow"
           type="text"
           {...register('email', { required: true })}
         />

@@ -19,7 +19,7 @@ function Layout(): JSX.Element {
       className={
         isDarkMode
           ? 'grid bg-whiteGray sm:grid-rows-desktop sm:grid-cols-desktop grid-cols-phone grid-rows-mobile sm:gap-x-5  min-h-screen sm:max-h-screen sm:p-5'
-          : 'grid bg-bgdark dark sm:grid-rows-desktop sm:grid-cols-desktop grid-cols-phone grid-rows-mobile sm:gap-x-5  min-h-screen sm:max-h-screen sm:p-5'
+          : 'grid bg-darkgray dark sm:grid-rows-desktop sm:grid-cols-desktop grid-cols-phone grid-rows-mobile sm:gap-x-5  min-h-screen sm:max-h-screen sm:p-5'
       }
     >
       <div className="sm:col-start-1 sm:col-end-2 sm:row-start-1 sm:row-end-4 row-start-1 row-end-6 col-start-1">

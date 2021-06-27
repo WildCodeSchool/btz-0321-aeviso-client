@@ -24,7 +24,7 @@ function Records(): JSX.Element {
       <div className="py-4 px-5 text-lg font-bold flex justify-between items-center shadow-inputShadow bg-white dark:bg-blue sm:sticky sm:top-0">
         <CardTitle>Derniers rapports</CardTitle>
 
-        <Link to="/export" className="p-2 text-white bg-green rounded text-xs font-light shadow-buttonShadow">
+        <Link to="/records/export" className="p-2 text-white bg-green rounded text-xs font-light shadow-buttonShadow">
           Exporter un rapport
         </Link>
       </div>

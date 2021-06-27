@@ -72,12 +72,12 @@ function FormResult(): JSX.Element {
   }
 
   return (
-    <div className="dark:bg-black bg-white h-full sm:w-full text-black dark:text-white font-roboto rounded-xl shadow-mainShadow mx-4 sm:mx-0  py-8 sm:px-10 p-5">
+    <div className="dark:bg-black bg-white border dark:border-lightblue h-full sm:w-full text-black dark:text-white font-roboto rounded-xl shadow-mainShadow mx-4 sm:mx-0  py-8 sm:px-10 p-5">
       <div className="flex justify-between items-start">
         <h1 className="sm:text-4xl text-xl">
           {company?.name} / {prjt?.name}{' '}
         </h1>
-        <Link to="/">
+        <Link to="/records/export">
           <button className="focus:outline-none w-12/12 py-1 text-white shadow-buttonShadow px-5 rounded-sm bg-blue">
             Retour
           </button>

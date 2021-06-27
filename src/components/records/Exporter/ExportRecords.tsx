@@ -46,7 +46,7 @@ function ExportRecords(): JSX.Element {
   }
 
   return (
-    <div className="dark:bg-black bg-white border-2 dark:border-blue h-full sm:w-full text-black dark:text-white font-roboto rounded-xl shadow-mainShadow mx-4 sm:mx-0 py-6 sm:px-10 p-5">
+    <div className="dark:bg-black bg-white border-2 dark:border-blue h-full sm:w-full text-black dark:text-white font-roboto rounded-xl shadow-mainShadow mx-4 sm:mx-0  sm:px-10 p-5">
       <form
         onSubmit={handleSubmit((data) => {
           const start = new Date(data.start).toISOString();
@@ -56,7 +56,7 @@ function ExportRecords(): JSX.Element {
         className="flex flex-col pb-2"
         action="sumbit"
       >
-        <h1 className="sm:text-3xl  text-2xl font-bold">Exporter un Rapport</h1>
+        <h1 className="sm:text-5xl  text-3xl font-bold">Exporter un Rapport</h1>
         <h2 className="sm:text-base text-sm mt-3">{`Attention vous devez obligatoirement remplir tous les champs afin d'exporter un rapport`}</h2>
         {!companiesIsLoading && <SelectCompany register={register} companiesData={companiesData} />}
         <SelectProject register={register} projectData={projectData} />

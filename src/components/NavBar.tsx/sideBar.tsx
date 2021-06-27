@@ -109,13 +109,13 @@ function SideBar({ isDarkMode, setIsDarkMode, sideBarClass, setSideBarClass, use
               {user.firstName} {user.lastName}
             </h2>
             <button
-              className="w-12/12 mt-2 text-xs text-white bg-red py-1 px-2 rounded-sm shadow-buttonShadow"
+              className="outline:focus-none w-12/12 mt-2 text-xs text-white bg-red py-1 px-2 rounded-sm shadow-buttonShadow"
               onClick={handleLogout}
             >
               Déconnexion
             </button>
           </div>
-          <div className="flex h-full place-items-end">
+          <div className="flex h-full items-end">
             <Togglebutton handleDarkMode={handleDarkMode} toggleClass={toggleClass} />
           </div>
         </div>
