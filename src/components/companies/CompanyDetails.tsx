@@ -42,16 +42,16 @@ function CompanyDetails({ company }: IProps): JSX.Element {
       </div>
       <Menu>
         <div className="relative">
-          <Menu.Button>
+          <Menu.Button className="focus:outline-none">
             <img src={Points} alt="Icône plus" className="ml-4 focus:outline-none" />
           </Menu.Button>
-          <Menu.Items className="absolute top-6 right-0 z-10 px-8 bg-gray-600 rounded-md">
+          <Menu.Items className="absolute w-96 h-24 top-6 right-0 z-10 px-4 bg-darkGray rounded-md">
             <Menu.Item>
-              <p className="py-2">Modifier</p>
+              <p className="py-1 border-b mt-2 border-white">Modifier</p>
             </Menu.Item>
 
             <Menu.Item>
-              <p className="py-2">Supprimer</p>
+              <p className="py-1 mt-2 border-b border-white">Supprimer</p>
             </Menu.Item>
           </Menu.Items>
         </div>
