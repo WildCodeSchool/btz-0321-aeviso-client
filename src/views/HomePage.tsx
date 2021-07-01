@@ -69,7 +69,7 @@ function HomePage(): JSX.Element {
 
   return (
     <div
-      className="h-full w-full p-28 absolute top-0 left-0"
+      className="h-full w-full flex flex-col justify-center absolute top-0 left-0"
       style={{
         backgroundImage: `url(${BG})`,
         backgroundRepeat: 'no-repeat',
@@ -77,12 +77,12 @@ function HomePage(): JSX.Element {
         backgroundSize: 'cover',
       }}
     >
-      <div className="text-white font-roboto container">
-        <h1 className="text-8xl font-bold">aevisio</h1>
-        <h2 className="text-2xl">Expert Comptable.Audit.Conseil</h2>
+      <div className="text-white font-roboto flex items-center  flex-col">
+        <h1 className="sm:text-9xl text-8xl font-bold">aevisio</h1>
+        <h2 className="sm:text-2xl text-2xl">Expert Comptable.Audit.Conseil</h2>
       </div>
       <form
-        className="w-5/12 mt-10 flex flex-col text-white font-roboto text-xl"
+        className="w-12/12 sm:w-full mt-5 flex items-center flex-col text-white font-roboto text-xl sm:text-2xl"
         onSubmit={handleSubmit(onSubmit)}
         action="login"
       >
@@ -90,7 +90,7 @@ function HomePage(): JSX.Element {
           Email
         </label>
         <input
-          className=" focus:outline-none mt-2 px-3 h-12 bg-input bg-opacity-50 rounded-lg shadow-inputShadow"
+          className=" focus:outline-none mt-2 px-3 w-8/12 h-12 bg-input bg-opacity-50 rounded-lg shadow-inputShadow"
           type="text"
           {...register('email', { required: true })}
         />
@@ -98,11 +98,11 @@ function HomePage(): JSX.Element {
           Mots de passe{' '}
         </label>
         <input
-          className="focus:outline-none mt-2 px-3 h-12 bg-input bg-opacity-50 rounded-lg shadow-inputShadow"
+          className="focus:outline-none mt-2 px-3 w-8/12 h-12 bg-input bg-opacity-50 rounded-lg shadow-inputShadow"
           type="password"
           {...register('password', { required: true })}
         />
-        <input className="bg-input py-1 bg-opacity-50 rounded-lg w-6/12 mt-8 shadow-inputShadow" type="submit" />
+        <input className="bg-green py-1 bg-opacity-50 rounded-lg w-8/12 mt-16 shadow-inputShadow" type="submit" />
       </form>
     </div>
   );
