@@ -24,6 +24,7 @@ function Modal({ title, buttons, children }: Iprops): JSX.Element {
       <Dialog.Overlay className="fixed inset-0 z-50 bg-black bg-opacity-50" />
 
       <div className="p-10 w-10/12 sm:w-4/12 shadow-mainShadow flex flex-col justify-start z-50 text-white bg-black rounded-md break-all">
+
         <Dialog.Title className="text-2xl mb-1 font-bold">{title}</Dialog.Title>
 
         {children && <div className="mb-6">{children}</div>}
