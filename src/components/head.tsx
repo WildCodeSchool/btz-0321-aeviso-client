@@ -15,16 +15,16 @@ function Head({ setIsSidebarVisible, setSideBarClass }: IProps): JSX.Element {
     );
   };
   return (
-    <div className="flex justify-between w-full h-full items-start px-2 py-1">
-      <div className="flex sm:flex-row-reverse flex-col w-full justify-between h-full sm:items-end">
-        <div className="flex-col h-full sm:hidden">
+    <div className="flex justify-between w-full h-full items-start sm:items-end px-2 py-1">
+      <div className="flex sm:flex-row-reverse flex-col w-10/12 justify-between h-full ">
+        <div className="flex-col h-full sm:hidden sm:items-end">
           <h1 className="text-4xl  font-bold">aeviso</h1>
           <h2 className="text-sm">Expert Comptable.audit.conseil</h2>
         </div>
         <h2 className="text-base sm:text-lg">{today()}</h2>
       </div>
       <button onClick={handleSidebar} className="mt-3 sm:hidden focus:outline-none">
-        <img className="h-10  w-10" src={Burger} alt="" />
+        <img className="bg-black rounded-lg shadow-buttonShadow px-2 h-12  w-12" src={Burger} alt="" />
       </button>
     </div>
   );

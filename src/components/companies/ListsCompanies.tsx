@@ -13,10 +13,6 @@ function ListsCompanies(): JSX.Element {
 
   const searchInput = watch('search');
 
-  const handleClick = () => {
-    console.log('je clique');
-  };
-
   if (isLoading) return <p>Loading ...</p>;
 
   if (error)
@@ -27,20 +23,21 @@ function ListsCompanies(): JSX.Element {
     );
 
   return (
-    <div className="bg-black h-full sm:w-full text-white font-roboto rounded-xl shadow-mainShadow mx-4 sm:mx-0  py-5 sm:px-10 p-5 overflow-y-auto">
-      <h1 className="sm:text-3xl text-white text-2xl font-bold">Liste de tous les clients</h1>
-      <div className="flex justify-between items-center">
+    <div className="dark:bg-black bg-white h-full sm:w-full text-black dark:text-white font-roboto rounded-xl shadow-mainShadow mx-4 sm:mx-0 sm:px-10 px-5 py-8 overflow-y-auto">
+      <h1 className="sm:text-4xl text-xl font-bold">Liste de tous les clients</h1>
+      <div className="flex justify-between mt-5 items-center">
         <SearchInput register={register} name="search" />
-        <button className="focus:outline-none flex items-center" onClick={handleClick}>
-          Créer Nouveau <img src={Plus} alt="Icône plus" className="ml-4" />
+        <button className="focus:outline-none flex items-center">
+          Créer Nouveau <img src={Plus} alt="Icône plus" className="ml-2 bg-black p-1 rounded-full h-6 w-6" />
         </button>
       </div>
-
-      {data
-        ?.filter((company) => company.name.toLowerCase().includes(searchInput?.toLowerCase()))
-        ?.map((company) => {
-          return <CompanyDetails company={company} key={company.id} />;
-        })}
+      <div className="mt-10">
+        {data
+          ?.filter((company) => company.name.toLowerCase().includes(searchInput?.toLowerCase()))
+          ?.map((company) => {
+            return <CompanyDetails company={company} key={company.id} />;
+          })}
+      </div>
     </div>
   );
 }
