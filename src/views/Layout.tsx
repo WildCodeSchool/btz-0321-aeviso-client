@@ -20,6 +20,7 @@ function Layout(): JSX.Element {
 
   const { isLoading } = useQuery<{ message: string; user: User }>('userAuthenticated', () => auth.me(), {
     onSuccess: (data) => {
+      console.log(data);
       const { user } = data;
       store.dispatch({
         type: actions.LOGIN,
