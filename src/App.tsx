@@ -1,12 +1,11 @@
 import React from 'react';
-import { QueryClient, QueryClientProvider } from 'react-query';
+import { QueryClientProvider } from 'react-query';
+import queryClient from './API/query-client';
 import { BrowserRouter as Router } from 'react-router-dom';
 
 import Layout from './views/Layout';
 
 import { ReactQueryDevtools } from 'react-query/devtools';
-
-const queryClient = new QueryClient();
 
 function App(): JSX.Element {
   return (
