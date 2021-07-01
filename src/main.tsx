@@ -9,6 +9,7 @@ import store from './assets/redux/store';
 ReactDOM.render(
   <React.StrictMode>
     <div
+      className="bg-darkGray"
       style={{
         background: 'linear-gradient(298.31deg, #232323 20%, rgba(22, 22, 22, 0.78) 84.83%)',
       }}

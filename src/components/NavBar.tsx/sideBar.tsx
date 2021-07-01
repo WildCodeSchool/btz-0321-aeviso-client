@@ -1,4 +1,4 @@
-import React, { Dispatch, SetStateAction } from 'react';
+import React, { Dispatch, SetStateAction, useState } from 'react';
 import { connect } from 'react-redux';
 import Home from '../../../media/icons/Home.svg';
 import Rapport from '../../../media/icons/folder.svg';
@@ -10,18 +10,22 @@ import ADMIN from './ADMIN';
 import USER from './USER';
 import store, { actions, RootState } from '../../assets/redux/store';
 import { useHistory } from 'react-router-dom';
+import ToggleButton from '../../assets/ToggleButton';
 
 interface sideBarProps {
   sideBarClass: string;
   setIsSidebarVisible: Dispatch<SetStateAction<boolean>>;
   setSideBarClass: Dispatch<SetStateAction<string>>;
   user: UserReduxState;
+  setIsDarkMode: Dispatch<SetStateAction<boolean>>;
+  isDarkMode: boolean;
 }
 
-function SideBar({ sideBarClass, setSideBarClass, user }: sideBarProps): JSX.Element {
+function SideBar({ isDarkMode, setIsDarkMode, sideBarClass, setSideBarClass, user }: sideBarProps): JSX.Element {
+  const [toggleClass, setToggleClass] = useState('bg-black focus:outline-none h-7 mr-2 rounded-full w-7');
   const handleClose = () => {
     setSideBarClass(
-      'flex flex-col bg-black  h-full shadow-mainShadow  rounded-xl text-white font-roboto justify-between invisible sm:visible'
+      'flex flex-col dark:bg-black bg-white h-full shadow-mainShadow  rounded-xl text-black dark:text-white font-roboto justify-between invisible sm:visible'
     );
   };
   const history = useHistory();
@@ -38,6 +42,16 @@ function SideBar({ sideBarClass, setSideBarClass, user }: sideBarProps): JSX.Ele
       },
     });
     history.push('/home');
+  };
+
+  const handleDarkMode = () => {
+    if (isDarkMode) {
+      setIsDarkMode(false);
+      setToggleClass('bg-black focus:outline-none mr-4 h-7 rounded-full w-7');
+    } else {
+      setIsDarkMode(true);
+      setToggleClass('bg-white focus:outline-none h-6 ml-6 rounded-full w-6');
+    }
   };
 
   return (
@@ -82,13 +96,16 @@ function SideBar({ sideBarClass, setSideBarClass, user }: sideBarProps): JSX.Ele
           ''
         )}
       </div>
-      <div className=" flex flex-col h-28  border-t border-white justify-center p-5 ">
+      <div className=" flex flex-col h-28  border-t border-black dark:border-white justify-center p-5 ">
         <h2 className="text-xl font-bold">
           {user.firstName} {user.lastName}
         </h2>
         <button className="w-4/12 mt-2 text-xs bg-red py-1 px-2 rounded-sm" onClick={handleLogout}>
           Déconnexion
         </button>
+      </div>
+      <div className="flex h-full place-items-end">
+        <ToggleButton handleDarkMode={handleDarkMode} toggleClass={toggleClass} />
       </div>
     </div>
   );

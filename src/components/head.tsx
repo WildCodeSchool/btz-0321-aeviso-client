@@ -11,7 +11,7 @@ function Head({ setIsSidebarVisible, setSideBarClass }: IProps): JSX.Element {
   const handleSidebar = () => {
     setIsSidebarVisible(true);
     setSideBarClass(
-      'flex flex-col bg-black w-screen fixed  h-screen text-white font-roboto justify-between visible sm:visible'
+      'flex flex-col bg-white dark:bg-black w-screen fixed  h-screen text-dark dark:text-white font-roboto justify-between visible sm:visible'
     );
   };
   return (
