@@ -19,11 +19,11 @@ module.exports = {
         inputShadow: '5px 5px 20px rgba(0, 0, 0, 0.8)',
       },
       gridTemplateRows: {
-        desktop: '1fr 5fr 5fr',
+        desktop: '1fr 10fr 10fr',
         mobile: '130px 200px 250px 0px',
       },
       gridTemplateColumns: {
-        desktop: '350px 1fr',
+        desktop: '320px 1fr',
         phone: '1fr',
       },
       screens: {

@@ -44,12 +44,12 @@ function SideBar({ sideBarClass, setSideBarClass, user }: sideBarProps): JSX.Ele
     <div className={sideBarClass}>
       <div className="py-8 px-8 ">
         <div className="flex justify-between">
-          <div className="flex justify-between w-full sm:hidden">
+          <div className="flex justify-between w-full">
             <div className="flex-col h-full">
               <h1 className="sm:text-5xl text-5xl  font-bold">aeviso</h1>
               <h2 className="text-sm">Expert Comptable.audit.conseil</h2>
             </div>
-            <button className="focus:outline-none" onClick={handleClose}>
+            <button className="focus:outline-none sm:hidden" onClick={handleClose}>
               <img className="h-5 w-5" src={Cross} alt="CloseButton" />{' '}
             </button>
           </div>
@@ -82,11 +82,13 @@ function SideBar({ sideBarClass, setSideBarClass, user }: sideBarProps): JSX.Ele
           ''
         )}
       </div>
-      <div className="h-20  border-t border-white  p-6">
+      <div className=" flex flex-col h-28  border-t border-white justify-center p-5 ">
         <h2 className="text-xl font-bold">
           {user.firstName} {user.lastName}
         </h2>
-        <button onClick={handleLogout}>LOGOUT</button>
+        <button className="w-4/12 mt-2 text-xs bg-red py-1 px-2 rounded-sm" onClick={handleLogout}>
+          Déconnexion
+        </button>
       </div>
     </div>
   );
