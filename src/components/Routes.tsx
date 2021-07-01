@@ -14,6 +14,7 @@ import SuperAdmin from './home/SuperAdmin';
 import ExportRecords from './records/Exporter/ExportRecords';
 import ListsCompanies from './companies/ListsCompanies';
 import FormResult from './records/Exporter/FormResult';
+import DetailsProjects from './company/DetailsProjects';
 
 function Routes(): JSX.Element {
   return (
@@ -22,9 +23,9 @@ function Routes(): JSX.Element {
       <Route exact path="/home" component={HomePage} />
       <Route exact path="/clients" component={ListsCompanies} />
       <Route exact path="/companies" component={Companies} />
-      <Route path="/companies/:id" component={Company} />
+      <Route exact path="/companies/:id" component={Company} />
+      <Route exact path="/companies/*/projects/:id" component={DetailsProjects} />
       <Route exact path="/projects" component={ProjectList} />
-      <Route path="/projects/:id" component={UniqueProject} />
       <Route exact path="/users" component={Users} />
       <Route path="/users/:id" component={User} />
       <Route path="/professions" component={Professions} />

@@ -5,6 +5,7 @@ interface Company {
   zipCode: string;
   createdAt: string;
   updatedAt: string;
+  logoUrl: string;
 }
 
 interface User {
