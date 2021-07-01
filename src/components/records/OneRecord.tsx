@@ -33,6 +33,7 @@ function Record(): JSX.Element {
 
   return (
     <div>
+      <p>HELLO WORLD</p>
       {record && (
         <>
           <h3 className="mb-6">Test User</h3>

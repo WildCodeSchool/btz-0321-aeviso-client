@@ -10,7 +10,7 @@ import { ReactQueryDevtools } from 'react-query/devtools';
 function App(): JSX.Element {
   return (
     <div
-      className="m-auto container bg-darkGray"
+      className="m-auto container"
       style={{
         maxWidth: 1440,
       }}
