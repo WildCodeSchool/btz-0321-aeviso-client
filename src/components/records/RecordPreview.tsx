@@ -3,7 +3,6 @@ import { Link } from 'react-router-dom';
 import { useQuery } from 'react-query';
 import { AxiosError } from 'axios';
 import { companies, user } from '../../API/requests';
-import Spinner from '../Spinner';
 
 interface IProps {
   record: IRecord;
