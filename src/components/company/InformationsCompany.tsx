@@ -1,4 +1,4 @@
-import React, { Dispatch } from 'react';
+import React from 'react';
 import { useQuery } from 'react-query';
 import { useParams } from 'react-router-dom';
 import { AxiosError } from 'axios';
@@ -8,7 +8,9 @@ import Spinner from '../Spinner';
 function InformationsCompany(): JSX.Element {
   const { id }: { id: string } = useParams();
 
-  const { isLoading, error, data } = useQuery<Company, AxiosError>(['company', id], () => companies.getOne(id));
+  const { isLoading, error, data } = useQuery<User[], AxiosError>(['user', id], () => companies.getUsers(id, 'ADMIN'));
+  console.log(data);
+  console.log(id);
 
   if (isLoading) {
     return <Spinner />;
@@ -24,16 +26,22 @@ function InformationsCompany(): JSX.Element {
 
   return (
     <>
-      <p>Informations</p>
-      <div className="flex justify-between">
-        <button>Modifier</button>
-        <button>Supprimer</button>
+      <div className="flex justify-around p-2 items-center">
+        <p className="text-lg">Informations Clients</p>
+        <div className=" flex justify-between items-stretch p-2">
+          <button className="border p-2 mr-2 bg-green">Modifier</button>
+          <button className="border p-2 ml-2 bg-red">Supprimer</button>
+        </div>
       </div>
       <div>
-        <p>Admin</p>
+        {data?.map((data) => (
+          <>
+            <p key={data.id}>{data.firstName}</p>
+            <p>Contact</p>
+            <p>{data.email}</p>
+          </>
+        ))}
       </div>
-      <div>Contact</div>
-      <p>Status</p>
     </>
   );
 }

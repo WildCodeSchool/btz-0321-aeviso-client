@@ -4,6 +4,7 @@ import { useParams } from 'react-router-dom';
 import { AxiosError } from 'axios';
 import { project } from '../../API/requests';
 import Spinner from '../Spinner';
+import InformationsCompany from './InformationsCompany';
 
 function DetailsProjects(): JSX.Element {
   const { id }: { id: string } = useParams();
@@ -43,7 +44,7 @@ function DetailsProjects(): JSX.Element {
         </div>
       </div>
       <div className="text-white sm:col-start-2 sm:row-start-1 sm:row-end-2 col-start-1 row-start-2 bg-black rounded-xl shadow-mainShadow mx-4 sm:mx-0 overflow-y-auto">
-        <div>infos</div>
+        <InformationsCompany />
       </div>
       <div className="text-white sm:col-start-1 sm:col-end-3 sm:row-start-2 sm:row-end-5 row-start-3 row-end-4 col-start-1 bg-black rounded-xl shadow-mainShadow mx-4 sm:mx-0">
         HELLO

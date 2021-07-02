@@ -6,7 +6,6 @@ import Companies from './company/Companies';
 import Company from './company/Company';
 import Professions from './professions/Professions';
 import ProjectList from './project/ProjectList';
-import UniqueProject from './project/UniqueProject';
 import Records from './records/Records';
 import OneRecord from './records/OneRecord';
 import HomePage from '../views/HomePage';
@@ -15,6 +14,7 @@ import ExportRecords from './records/Exporter/ExportRecords';
 import ListsCompanies from './companies/ListsCompanies';
 import FormResult from './records/Exporter/FormResult';
 import DetailsProjects from './company/DetailsProjects';
+import InformationsCompany from './company/InformationsCompany';
 
 function Routes(): JSX.Element {
   return (
