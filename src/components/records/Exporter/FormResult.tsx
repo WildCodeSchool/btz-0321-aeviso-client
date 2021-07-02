@@ -72,7 +72,7 @@ function FormResult(): JSX.Element {
   }
 
   return (
-    <div className="bg-black h-full sm:w-full text-white font-roboto rounded-xl shadow-mainShadow mx-4 sm:mx-0  py-8 sm:px-10 p-5">
+    <div className="dark:bg-black bg-white h-full sm:w-full text-black dark:text-white font-roboto rounded-xl shadow-mainShadow mx-4 sm:mx-0  py-8 sm:px-10 p-5">
       <div className="flex justify-between items-start">
         <h1 className="sm:text-4xl text-xl">
           {company?.name} / {prjt?.name}{' '}
@@ -87,7 +87,7 @@ function FormResult(): JSX.Element {
 
       {users.map((user) => {
         return (
-          <div className="text-white flex w-full" key={user.id}>
+          <div className="dark:text-white text-black flex w-full" key={user.id}>
             <OneUser
               firstName={user.firstName}
               lastName={user.lastName}

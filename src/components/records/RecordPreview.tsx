@@ -49,12 +49,16 @@ function RecordPreview({ record, isLastElement, isFirstElement }: IProps): JSX.E
   }
 
   return (
-    <div className="mx-3 mb-3 mt-1  sm:mx-5 text-white font-roboto">
+    <div className="mx-3 mb-3 mt-1  sm:mx-5 text-black dark:text-white font-roboto">
       <Link to={`/records/${record.id}`} className="group">
         <p className={` font-bold text-sm ${isFirstElement ? '' : 'font-bold text-sm sm:mt-4'} `}>
           {formatDate(new Date(record.date))} - {userData?.firstName} {userData?.lastName} - {companyData?.name}
         </p>
-        <p className={`truncate text-xs text-gray-400 ${isLastElement ? '' : 'pb-1 border-b border-white'}`}>
+        <p
+          className={`truncate text-xs text-gray-400 ${
+            isLastElement ? '' : 'pb-1 border-b border-black dark:border-white'
+          }`}
+        >
           {record.comment}
         </p>
       </Link>

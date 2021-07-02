@@ -16,12 +16,12 @@ function Records(): JSX.Element {
   }
 
   if (error) {
-    return <p className="text-white">An error occurred: {error.message}</p>;
+    return <p className="text-black dark:text-white">An error occurred: {error.message}</p>;
   }
 
   return (
-    <div className=" text-white font-roboto">
-      <div className="py-5 px-5 text-lg font-bold flex justify-between items-center bg-black sm:sticky sm:top-0">
+    <div className=" text-black dark:text-white font-roboto">
+      <div className="py-5 px-5 text-lg font-bold flex justify-between items-center border-black dark:border-white bg-white dark:bg-black sm:sticky sm:top-0">
         <CardTitle>Derniers rapports</CardTitle>
 
         <Link to="/export" className="p-2 bg-blue rounded-md text-xs font-light">
