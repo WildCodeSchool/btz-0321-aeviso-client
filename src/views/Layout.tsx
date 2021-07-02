@@ -33,7 +33,7 @@ function Layout(): JSX.Element {
           logged: true,
         },
       });
-      history.push('/aeviso');
+      history.push('/clients/create');
     },
     onError: () => history.push('/home'),
   });

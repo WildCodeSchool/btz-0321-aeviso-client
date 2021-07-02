@@ -1,5 +1,5 @@
 import axios from 'axios';
-const API_URL = import.meta.env.VITE_API_URL || 'http://localhost:5000';
+const API_URL = import.meta.env.VITE_API_URL || 'http://localhost:5000/api/v1';
 
 axios.defaults.withCredentials = true;
 
@@ -65,7 +65,11 @@ export const companies = {
 
   getOne: (id: string): Promise<Company> => axios.get(`${API_URL}/companies/${id}`).then((res) => res.data),
 
-  post: (data: Company): Promise<Company> => axios.post(`${API_URL}/companies`, data).then((res) => res.data),
+  post: ({ companyData, userData }: { companyData: ICompanyForm; userData: IUserForm }): Promise<Company> =>
+    axios
+      .post<Company>(`${API_URL}/companies`, companyData)
+      .then((res) => res.data)
+      .then((data) => axios.post(`${API_URL}/users`, { ...userData, companyId: data.id } as User)),
 
   put: ({ id, data }: { id: string; data: Company }): Promise<Company> =>
     axios.put(`${API_URL}/companies/${id}`, data).then((res) => res.data),
