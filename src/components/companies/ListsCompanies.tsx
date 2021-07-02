@@ -14,10 +14,6 @@ function ListsCompanies(): JSX.Element {
 
   const searchInput = watch('search');
 
-  const handleClick = () => {
-    console.log('je clique');
-  };
-
   if (isLoading) return <Spinner />;
 
   if (error)
