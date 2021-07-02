@@ -37,12 +37,12 @@ function ProjectsCieAdmin(): JSX.Element {
       {data
         ?.filter((project) => project.name.toLowerCase().includes(searchInput?.toLowerCase()))
         ?.map((project) => (
-          <div key={project.id}>
+          <div key={project.id} className="flex-row justify-around py-3 px-5">
             <Link to={`/companies/${id}/projects/${project.id}`}>
               <p key={project.id}>
                 {project.name} / {project.code}
               </p>
-              <p className="text-xs">Total demi journées déclarées / </p>
+              <p className="text-xs border-b">Total demi journées déclarées: </p>
             </Link>
           </div>
         ))}

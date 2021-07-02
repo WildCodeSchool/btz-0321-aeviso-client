@@ -9,8 +9,6 @@ function InformationsCompany(): JSX.Element {
   const { id }: { id: string } = useParams();
 
   const { isLoading, error, data } = useQuery<User[], AxiosError>(['user', id], () => companies.getUsers(id, 'ADMIN'));
-  console.log(data);
-  console.log(id);
 
   if (isLoading) {
     return <Spinner />;
@@ -35,11 +33,15 @@ function InformationsCompany(): JSX.Element {
       </div>
       <div>
         {data?.map((data) => (
-          <>
-            <p key={data.id}>{data.firstName}</p>
-            <p>Contact</p>
-            <p>{data.email}</p>
-          </>
+          <div key={data.id} className="px-10">
+            <p className="border-b">Administrateur</p>
+            <div className="flex mb-3">
+              <p>{data.firstName}</p>
+              <p>{data.lastName}</p>
+            </div>
+            <p className="border-b">Contact</p>
+            <a href={`mailto: ${data.email}`}>Envoyer un email: {data.email}</a>
+          </div>
         ))}
       </div>
     </>
