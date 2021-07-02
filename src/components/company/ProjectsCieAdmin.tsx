@@ -10,7 +10,7 @@ import Spinner from '../Spinner';
 import SearchInput from '../SearchInput';
 
 function ProjectsCieAdmin(): JSX.Element {
-  const { id }: { id: string } = useParams();
+  const { id } = useParams<{ id: string }>();
   const { register, watch } = useForm();
 
   const searchInput = watch('search');
@@ -38,7 +38,7 @@ function ProjectsCieAdmin(): JSX.Element {
         ?.filter((project) => project.name.toLowerCase().includes(searchInput?.toLowerCase()))
         ?.map((project) => (
           <div key={project.id} className="flex-row justify-around py-3 px-5">
-            <Link to={`/companies/${id}/projects/${project.id}`}>
+            <Link to={`/projects/${project.id}`}>
               <p key={project.id}>
                 {project.name} / {project.code}
               </p>

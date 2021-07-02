@@ -6,7 +6,7 @@ import { companies } from '../../API/requests';
 import Spinner from '../Spinner';
 
 function InformationsCompany(): JSX.Element {
-  const { id }: { id: string } = useParams();
+  const { id } = useParams<{ id: string }>();
 
   const { isLoading, error, data } = useQuery<User[], AxiosError>(['user', id], () => companies.getUsers(id, 'ADMIN'));
 

@@ -7,9 +7,11 @@ import Spinner from '../Spinner';
 import InformationsCompany from './InformationsCompany';
 
 function DetailsProjects(): JSX.Element {
-  const { id }: { id: string } = useParams();
+  const { id } = useParams<{ id: string }>();
 
   const { isLoading, error, data } = useQuery<Project, AxiosError>(['projects', id], () => project.getOne(id));
+  console.log(data);
+  console.log();
 
   if (isLoading) {
     return <Spinner />;

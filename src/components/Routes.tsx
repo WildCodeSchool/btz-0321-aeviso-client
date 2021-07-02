@@ -21,7 +21,7 @@ function Routes(): JSX.Element {
       <Route exact path="/clients" component={ListsCompanies} />
       <Route exact path="/companies" component={Companies} />
       <Route exact path="/companies/:id" component={Company} />
-      <Route exact path="/companies/*/projects/:id" component={DetailsProjects} />
+      <Route exact path="/projects/:id" component={DetailsProjects} />
       <Route exact path="/projects" component={ProjectList} />
       <Route exact path="/users" component={Users} />
       <Route path="/users/:id" component={User} />
