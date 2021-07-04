@@ -23,7 +23,7 @@ function UpdateCompany({ setCompany }: IProps): JSX.Element {
   if (error) {
     return (
       <p>
-        An error occurred: {error.message}. Code: {error.code}
+        An error occurcustomRed: {error.message}. Code: {error.code}
       </p>
     );
   }

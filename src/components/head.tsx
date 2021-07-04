@@ -11,7 +11,7 @@ function Head({ setIsSidebarVisible, setSideBarClass }: IProps): JSX.Element {
   const handleSidebar = () => {
     setIsSidebarVisible(true);
     setSideBarClass(
-      'flex flex-col bg-white border-2 dark:border-lightblue dark:bg-black w-screen fixed  h-screen  text-dark dark:text-white font-roboto justify-between visible sm:visible'
+      'flex flex-col bg-white border-2 dark:border-lightblue dark:bg-customBlue w-screen fixed  h-screen  text-dark dark:text-white font-roboto justify-between visible sm:visible'
     );
   };
   return (
@@ -24,7 +24,7 @@ function Head({ setIsSidebarVisible, setSideBarClass }: IProps): JSX.Element {
         <h2 className="text-xs sm:text-lg">{today()}</h2>
       </div>
       <button onClick={handleSidebar} className="mt-3 sm:hidden focus:outline-none">
-        <img className="bg-black rounded-lg shadow-buttonShadow px-2 h-12  w-12" src={Burger} alt="" />
+        <img className="bg-customBlue rounded-lg shadow-buttonShadow px-2 h-12  w-12" src={Burger} alt="" />
       </button>
     </div>
   );

@@ -14,7 +14,7 @@ function CreateProfessionsForm({ setJobList }: { setJobList: Dispatch<SetStateAc
   });
 
   if (isLoading) return <p>Sending User...</p>;
-  if (error) return <p>An error has occurred</p>;
+  if (error) return <p>An error has occurcustomRed</p>;
   if (isSuccess) return <p>User successfuly added</p>;
 
   return (

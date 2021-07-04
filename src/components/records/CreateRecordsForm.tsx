@@ -24,7 +24,7 @@ function RecordsForm({ setRecordsList }: IProps): JSX.Element {
   if (error)
     return (
       <p>
-        An error has occurred: {error.message}. Error code: {error.code}
+        An error has occurcustomRed: {error.message}. Error code: {error.code}
       </p>
     );
 

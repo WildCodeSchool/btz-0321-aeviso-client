@@ -66,19 +66,19 @@ function FormResult(): JSX.Element {
   if (error) {
     return (
       <p>
-        An error has occured: {error.message}. code:{error.code}
+        An error has occucustomRed: {error.message}. code:{error.code}
       </p>
     );
   }
 
   return (
-    <div className="dark:bg-black bg-white border dark:border-lightblue h-full sm:w-full text-black dark:text-white font-roboto rounded-xl shadow-mainShadow mx-4 sm:mx-0  py-8 sm:px-10 p-5">
+    <div className="dark:bg-customBlue bg-white border dark:border-lightblue h-full sm:w-full text-black dark:text-white font-roboto rounded-xl shadow-mainShadow mx-4 sm:mx-0  py-8 sm:px-10 p-5">
       <div className="flex justify-between items-start">
         <h1 className="sm:text-4xl text-xl">
           {company?.name} / {prjt?.name}{' '}
         </h1>
         <Link to="/records/export">
-          <button className="focus:outline-none w-12/12 py-1 text-white shadow-buttonShadow px-5 rounded-sm bg-blue">
+          <button className="focus:outline-none w-12/12 py-1 text-white shadow-buttonShadow px-5 rounded-sm bg-lightblue">
             Retour
           </button>
         </Link>

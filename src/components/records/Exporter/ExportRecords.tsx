@@ -42,11 +42,11 @@ function ExportRecords(): JSX.Element {
   const error = companiesError || projectError;
 
   if (error) {
-    return <p className="text-white">An error occurred: {error.message}</p>;
+    return <p className="text-white">An error occurcustomRed: {error.message}</p>;
   }
 
   return (
-    <div className="dark:bg-black bg-white border-2 dark:border-blue h-full sm:w-full text-black dark:text-white font-roboto rounded-xl shadow-mainShadow mx-4 sm:mx-0  sm:px-10 p-5">
+    <div className="dark:bg-customBlue bg-white border-2 dark:border-lightblue h-full sm:w-full text-black dark:text-white font-roboto rounded-xl shadow-mainShadow mx-4 sm:mx-0  sm:px-10 p-5">
       <form
         onSubmit={handleSubmit((data) => {
           const start = new Date(data.start).toISOString();

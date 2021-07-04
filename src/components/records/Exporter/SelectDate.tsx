@@ -10,7 +10,7 @@ export default function SelectDate({ register }: { register: UseFormRegister<Fie
         </label>
         <input
           {...register('start')}
-          className="focus:outline-none text-black dark:text-gray-300 text-sm bg-white dark:bg-black border-b pt-3 pb-2 border-black dark:border-white"
+          className="focus:outline-none text-black dark:text-gray-300 text-sm bg-white dark:bg-customBlue border-b pt-3 pb-2 border-black dark:border-white"
           type="date"
         />
       </div>
@@ -22,13 +22,13 @@ export default function SelectDate({ register }: { register: UseFormRegister<Fie
         </label>
         <input
           {...register('end')}
-          className="focus:outline-none text-black dark:text-gray-300 text-sm bg-white dark:bg-black border-b pt-3 pb-2 border-black dark:border-white"
+          className="focus:outline-none text-black dark:text-gray-300 text-sm bg-white dark:bg-customBlue border-b pt-3 pb-2 border-black dark:border-white"
           type="date"
         />
         <input
           value="Exporter"
           type="submit"
-          className="focus:outline-none text-white shadow-buttonShadow mt-10 w-12/12 sm:w-4/12 py-2 rounded-lg bg-green "
+          className="focus:outline-none text-white shadow-buttonShadow mt-10 w-12/12 sm:w-4/12 py-2 rounded-lg bg-customGreen "
         />
       </div>
     </div>

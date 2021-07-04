@@ -18,7 +18,7 @@ function Companies(): JSX.Element {
   }
 
   if (error) {
-    return <p>An error occurred: {error.message}</p>;
+    return <p>An error occurcustomRed: {error.message}</p>;
   }
 
   return (

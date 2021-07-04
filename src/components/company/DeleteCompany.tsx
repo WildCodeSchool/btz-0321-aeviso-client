@@ -15,7 +15,7 @@ function DeleteCompany(): JSX.Element {
   if (error) {
     return (
       <p>
-        An error occurred: {error.message}. Code: {error.code}
+        An error occurcustomRed: {error.message}. Code: {error.code}
       </p>
     );
   }
@@ -23,7 +23,7 @@ function DeleteCompany(): JSX.Element {
   return (
     <div>
       <p>Do you want to delete this company ?</p>
-      <button type="submit" onClick={() => mutate()} className="border border-black mb-2 bg-red-500">
+      <button type="submit" onClick={() => mutate()} className="border border-black mb-2 bg-customRed-500">
         DELETE
       </button>
     </div>

@@ -16,15 +16,15 @@ function Companies(): JSX.Element {
   }
 
   if (error) {
-    return <p className="text-black dark:text-white">An error occurred: {error.message}</p>;
+    return <p className="text-black dark:text-white">An error occurcustomRed: {error.message}</p>;
   }
 
   return (
     <div className="text-black dark:text-white">
-      <div className="py-4 px-5 text-lg font-bold flex justify-between items-center bg-white dark:bg-blue shadow-inputShadow sm:sticky sm:top-0 ">
+      <div className="py-4 px-5 text-lg font-bold flex justify-between items-center bg-white dark:bg-lightblue shadow-inputShadow sm:sticky sm:top-0 ">
         <CardTitle>Entreprises</CardTitle>
 
-        <Link to="/companies" className="p-2 text-white bg-green rounded text-xs font-light shadow-buttonShadow">
+        <Link to="/companies" className="p-2 text-white bg-customGreen rounded text-xs font-light shadow-buttonShadow">
           Tous les clients
         </Link>
       </div>
