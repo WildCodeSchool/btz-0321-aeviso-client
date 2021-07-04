@@ -59,7 +59,7 @@ function SideBar({ isDarkMode, setIsDarkMode, sideBarClass, setSideBarClass, use
     <div className={sideBarClass}>
       <div className="py-8 px-8 ">
         <div className="flex justify-between">
-          <div className="flex justify-between items-center w-full">
+          <div className="flex justify-between w-full">
             <div className="flex-col h-full">
               <h1 className="sm:text-5xl text-5xl  font-bold">aeviso</h1>
               <h2 className="text-sm">Expert Comptable.audit.conseil</h2>

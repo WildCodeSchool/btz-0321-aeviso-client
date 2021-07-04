@@ -26,7 +26,7 @@ module.exports = {
         buttonShadow: '5px 5px 10px rgba(0, 0, 0, 0.20)',
       },
       gridTemplateRows: {
-        desktop: '1fr 10fr 10fr',
+        desktop: '1fr 1fr',
         mobile: '130px 200px 420px 30px',
       },
       gridTemplateColumns: {

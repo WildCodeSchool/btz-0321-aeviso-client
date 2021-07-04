@@ -14,7 +14,7 @@ function SelectCompany({ companiesData, register }: ISelectCompany): JSX.Element
       </label>
       <select
         {...register('company')}
-        className="focus:outline-none text-black dark:text-gray-300 text-sm  bg-white dark:bg-black border-b pt-3 pb-2 border-black dark:border-white"
+        className="focus:outline-none text-black dark:text-gray-300 text-sm bg-white dark:bg-black border-b pt-3 pb-2 border-black dark:border-white"
       >
         {companiesData?.map((company: Company) => {
           return (
