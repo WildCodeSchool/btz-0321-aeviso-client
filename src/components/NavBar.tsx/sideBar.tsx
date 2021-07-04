@@ -49,12 +49,12 @@ function SideBar({ isDarkMode, sideBarClass, setSideBarClass, user }: sideBarPro
       store.dispatch({
         type: actions.TOGGLEDARKMODE,
       });
-      setToggleClass('bg-component focus:outline-none mr-4 h-7 rounded-full w-7');
+      setToggleClass('bg-white focus:outline-none mr-4 h-7 rounded-full w-7');
     } else {
       store.dispatch({
         type: actions.TOGGLEDARKMODE,
       });
-      setToggleClass('bg-white focus:outline-none h-6 ml-6 rounded-full w-6');
+      setToggleClass('bg-component focus:outline-none h-6 ml-6 rounded-full w-6');
     }
   };
 
