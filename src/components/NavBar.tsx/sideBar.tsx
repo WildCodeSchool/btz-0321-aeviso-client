@@ -1,10 +1,10 @@
 import React, { Dispatch, SetStateAction, useState } from 'react';
 import { connect } from 'react-redux';
 import Home from '../../../media/icons/Home.svg';
-import Rapport from '../../../media/icons/folder.svg';
-import Réglages from '../../../media/icons/Settings.svg';
+import report from '../../../media/icons/folder.svg';
+import settings from '../../../media/icons/Settings.svg';
 import Cross from '../../../media/icons/Cross.svg';
-import NouveauRapport from '../../../media/icons/NouveauRapport.svg';
+import newReport from '../../../media/icons/NouveauRapport.svg';
 import SUPERADMIN from './SUPERADMIN';
 import ADMIN from './ADMIN';
 import USER from './USER';
@@ -74,29 +74,17 @@ function SideBar({ isDarkMode, setIsDarkMode, sideBarClass, setSideBarClass, use
           </div>
         </div>
         {user.role === 'SUPERADMIN' ? (
-          <SUPERADMIN handleClose={handleClose} Home={Home} Rapport={Rapport} Réglages={Réglages} />
+          <SUPERADMIN handleClose={handleClose} Home={Home} report={report} settings={settings} />
         ) : (
           ''
         )}
         {user.role === 'ADMIN' ? (
-          <ADMIN
-            Home={Home}
-            Rapport={Rapport}
-            Réglages={Réglages}
-            NouveauRapport={NouveauRapport}
-            handleClose={handleClose}
-          />
+          <ADMIN Home={Home} report={report} settings={settings} newReport={newReport} handleClose={handleClose} />
         ) : (
           ''
         )}
         {user.role === 'USER' ? (
-          <USER
-            handleClose={handleClose}
-            NouveauRapport={NouveauRapport}
-            Home={Home}
-            Rapport={Rapport}
-            Réglages={Réglages}
-          />
+          <USER handleClose={handleClose} newReport={newReport} Home={Home} report={report} settings={settings} />
         ) : (
           ''
         )}

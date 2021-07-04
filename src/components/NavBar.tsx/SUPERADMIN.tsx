@@ -5,11 +5,11 @@ import { Link } from 'react-router-dom';
 interface ISPNavbar {
   handleClose: () => void;
   Home: string;
-  Rapport: string;
-  Réglages: string;
+  report: string;
+  settings: string;
 }
 
-function SUPERADMIN({ Home, Rapport, Réglages, handleClose }: ISPNavbar): JSX.Element {
+function SUPERADMIN({ Home, report, settings, handleClose }: ISPNavbar): JSX.Element {
   return (
     <div>
       {' '}
@@ -41,7 +41,7 @@ function SUPERADMIN({ Home, Rapport, Réglages, handleClose }: ISPNavbar): JSX.E
         <Link to="/records/export">
           <li className="flex text-lg mt-3 items-center h-14">
             <img
-              src={Rapport}
+              src={report}
               className="mr-3 h-6 w-6 bg-customBlue dark:bg-lightblue shadow-buttonShadow p-1 rounded-full mb-1"
               alt="homesvg"
             />
@@ -52,7 +52,7 @@ function SUPERADMIN({ Home, Rapport, Réglages, handleClose }: ISPNavbar): JSX.E
         </Link>
         <li className="flex text-lg mt-3 items-center h-14">
           <img
-            src={Réglages}
+            src={settings}
             className="mr-3 h-6 w-6 bg-customBlue dark:bg-lightblue shadow-buttonShadow p-1 rounded-full mb-1"
             alt="homesvg"
           />
