@@ -21,7 +21,7 @@ function Records(): JSX.Element {
 
   return (
     <div className="text-black dark:text-white font-roboto">
-      <div className="py-4 px-5 text-lg font-bold flex justify-between items-center shadow-inputShadow bg-white dark:bg-lightblue sm:sticky sm:top-0">
+      <div className="py-4 px-5 text-lg font-bold flex justify-between items-center shadow-inputShadow bg-white dark:bg-component sm:sticky sm:top-0">
         <CardTitle>Derniers rapports</CardTitle>
 
         <Link

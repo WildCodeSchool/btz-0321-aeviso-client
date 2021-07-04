@@ -14,7 +14,7 @@ function Layout(): JSX.Element {
   const [isSidebarVisible, setIsSidebarVisible] = useState<boolean>(true);
 
   const [sideBarClass, setSideBarClass] = useState(
-    'sm:flex flex-col border-2 dark:border-lightblue bg-white dark:bg-customBlue w-full h-full rounded-lg text-black dark:text-white font-roboto justify-between shadow-mainShadow invisible sm:visible'
+    'sm:flex flex-col border-2 dark:border-componentBorder bg-white dark:bg-component w-full h-full rounded-lg text-black dark:text-white font-roboto justify-between shadow-mainShadow invisible sm:visible'
   );
 
   const history = useHistory();

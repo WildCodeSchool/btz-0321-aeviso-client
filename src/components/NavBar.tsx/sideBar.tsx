@@ -23,10 +23,10 @@ interface sideBarProps {
 }
 
 function SideBar({ isDarkMode, setIsDarkMode, sideBarClass, setSideBarClass, user }: sideBarProps): JSX.Element {
-  const [toggleClass, setToggleClass] = useState('bg-customBlue focus:outline-none h-7 mr-2 rounded-full w-7');
+  const [toggleClass, setToggleClass] = useState('bg-component focus:outline-none h-7 mr-2 rounded-full w-7');
   const handleClose = () => {
     setSideBarClass(
-      'flex flex-col border-2 dark:border-lightblue dark:bg-customBlue bg-white h-full shadow-mainShadow rounded-xl text-black dark:text-white font-roboto justify-between invisible sm:visible'
+      'flex flex-col border-2 dark:border-componentBorder dark:bg-component bg-white h-full shadow-mainShadow rounded-xl text-black dark:text-white font-roboto justify-between invisible sm:visible'
     );
   };
   const history = useHistory();
@@ -48,7 +48,7 @@ function SideBar({ isDarkMode, setIsDarkMode, sideBarClass, setSideBarClass, use
   const handleDarkMode = () => {
     if (isDarkMode) {
       setIsDarkMode(false);
-      setToggleClass('bg-customBlue focus:outline-none mr-4 h-7 rounded-full w-7');
+      setToggleClass('bg-component focus:outline-none mr-4 h-7 rounded-full w-7');
     } else {
       setIsDarkMode(true);
       setToggleClass('bg-white focus:outline-none h-6 ml-6 rounded-full w-6');
@@ -66,7 +66,7 @@ function SideBar({ isDarkMode, setIsDarkMode, sideBarClass, setSideBarClass, use
             </div>
             <button className="focus:outline-none sm:hidden" onClick={handleClose}>
               <img
-                className="h-6 w-6 bg-lightblue rounded-full p-1 shadow-buttonShadow"
+                className="h-6 w-6 bg-component rounded-full p-1 shadow-buttonShadow"
                 src={Cross}
                 alt="CloseButton"
               />{' '}
@@ -91,7 +91,7 @@ function SideBar({ isDarkMode, setIsDarkMode, sideBarClass, setSideBarClass, use
       </div>
       <div className=" flex flex-col w-full h-40 justify-end">
         <h2 className="text-base mr-3 text-right mb-2">{today()}</h2>
-        <div className="flex flex-row justify-between p-5 border-t rounded-lg border-black dark:border-lightblue">
+        <div className="flex flex-row justify-between p-5 border-t rounded-lg border-black dark:border-componentBorder">
           <div className="">
             <h2 className="text-xl font-bold">
               {user.firstName} {user.lastName}

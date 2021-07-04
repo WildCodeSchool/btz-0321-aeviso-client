@@ -2,7 +2,6 @@ import React from 'react';
 import { connect } from 'react-redux';
 import store from '../assets/redux/store';
 import { actions } from '../assets/redux/store';
-// import BG from '../../media/images/BgAeivsio.webp';
 import { SubmitHandler, useForm } from 'react-hook-form';
 import { useMutation } from 'react-query';
 import { auth } from '../API/requests';
@@ -69,12 +68,12 @@ function HomePage(): JSX.Element {
 
   return (
     <div className="h-full w-full sm:w-screen sm:h-screen flex flex-col justify-center items-center bg-bgImg bg-center bg-cover absolute top-0 right-0">
-      {/* <div className="text-white sm:ml-20 font-roboto flex items-center sm:items-start  flex-col">
+      <div className="text-white font-roboto flex items-center sm:items-center  flex-col">
         <h1 className="sm:text-9xl text-8xl font-bold">AeViso</h1>
         <h2 className="sm:text-4xl text-2xl">Expert Comptable.Audit.Conseil</h2>
-      </div> */}
+      </div>
       <form
-        className="w-12/12 flex  sm:w-6/12 sm:mt-32 justify-center sm:h-full mt-5 items-center sm:items-center flex-col text-white font-roboto text-xl sm:text-2xl"
+        className="w-full flex sm:w-6/12 justify-center mt-10 items-center sm:items-center flex-col text-white font-roboto text-xl sm:text-2xl"
         onSubmit={handleSubmit(onSubmit)}
         action="login"
       >
@@ -82,7 +81,7 @@ function HomePage(): JSX.Element {
           Email
         </label>
         <input
-          className=" focus:outline-none mt-2 mb-5 px-3 w-11/12 h-12 bg-black rounded-lg shadow-inputShadow"
+          className=" focus:outline-none bg-white bg-opacity-0 mt-2 mb-5 px-3 w-11/12 h-12 border-b border-white shadow-inputShadow"
           type="text"
           {...register('email', { required: true })}
         />
@@ -90,11 +89,11 @@ function HomePage(): JSX.Element {
           Mots de passe{' '}
         </label>
         <input
-          className="focus:outline-none mt-2 px-3 w-11/12 h-12 bg-black rounded-lg shadow-inputShadow"
+          className="focus:outline-none bg-white bg-opacity-0 mt-2 px-3 w-11/12 h-12 border-b border-white shadow-inputShadow"
           type="password"
           {...register('password', { required: true })}
         />
-        <input className="bg-lightblue py-1 rounded-lg w-11/12 mt-16 shadow-inputShadow" type="submit" />
+        <input className="bg-customGreen py-1 rounded-lg w-11/12 mt-16 shadow-inputShadow" type="submit" />
       </form>
     </div>
   );

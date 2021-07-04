@@ -45,7 +45,7 @@ function CompanyDetails({ company }: IProps): JSX.Element {
           <Menu.Button className="focus:outline-none">
             <img src={Points} alt="Icône plus" className="ml-4 focus:outline-none" />
           </Menu.Button>
-          <Menu.Items className="absolute w-96 h-24 top-6 right-0 z-10 px-4 bg-lightblue shadow-buttonShadow border border-lightblue  rounded-md">
+          <Menu.Items className="absolute w-96 h-24 top-6 right-0 z-10 px-4 bg-component shadow-buttonShadow border border-componentBorder  rounded-md">
             <Menu.Item>
               <p className="py-1 border-b mt-2 border-white">Modifier</p>
             </Menu.Item>

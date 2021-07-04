@@ -46,7 +46,7 @@ function ExportRecords(): JSX.Element {
   }
 
   return (
-    <div className="dark:bg-customBlue bg-white border-2 dark:border-lightblue h-full sm:w-full text-black dark:text-white font-roboto rounded-xl shadow-mainShadow mx-4 sm:mx-0  sm:px-10 p-5">
+    <div className="dark:bg-component bg-white border-2 dark:border-componentBorder h-full sm:w-full text-black dark:text-white font-roboto rounded-xl shadow-mainShadow mx-4 sm:mx-0  sm:px-10 p-5">
       <form
         onSubmit={handleSubmit((data) => {
           const start = new Date(data.start).toISOString();

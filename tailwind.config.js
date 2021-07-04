@@ -8,39 +8,41 @@ module.exports = {
         roboto: ['Roboto', 'sans-serif'],
       },
       backgroundImage: {
-        bgImg: "url('./media/images/bgAevisioBlue.png')",
+        // bgImg: "url('./media/images/bgAevisioBlue.png')",
+        // bgImg: "url('./media/images/bgAevisioGray.png')",
+        bgImg: "url('./media/images/bgAevisioOriginal.png')",
       },
       // BlueVersion
       // colors: {
       //   whiteGray: '#DEDDDD',
-      //   darkGray: '#0F1223',
+      //   mainBg: '#0F1223',
       //   input: '#404040',
-      //   lightblue: '#333A5E',
+      //   componentBorder: '#333A5E',
       //   customGreen: '#58926F',
       //   customRed: '#976C6C',
-      //   customBlue: '#292D41',
+      //   component: '#292D41',
       // },
 
       // GrayVersion
       // colors: {
       //   whiteGray: '#DEDDDD',
-      //   darkGray: '#202225',
+      //   mainBg: '#202225',
       //   input: '#404040',
-      //   lightblue: '#40434B',
+      //   componentBorder: '#40434B',
       //   customGreen: '#58926F',
       //   customRed: '#976C6C',
-      //   customBlue: '#37393F',
+      //   component: '#37393F',
       // },
 
       // OriginalVersion
       colors: {
         whiteGray: '#DEDDDD',
-        darkGray: '#3E3E3E',
+        mainBg: '#3E3E3E',
         input: '#404040',
-        lightblue: '#111111',
+        componentBorder: '#111111',
         customGreen: '#58926F',
         customRed: '#976C6C',
-        customBlue: '#111111',
+        component: '#111111',
       },
       boxShadow: {
         mainShadow: '5px 5px 10px rgba(0, 0, 0, 0.50)',

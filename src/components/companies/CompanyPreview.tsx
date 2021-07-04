@@ -12,7 +12,7 @@ function CompanyPreview({ company, isFirstElement }: IProps): JSX.Element {
       <Link to={`/companies/${company.id}`} className="group">
         <p
           className={` font-bold text-base py-2 border-b border-black dark:border-white ${
-            isFirstElement ? '' : 'font-bold text-sm sm:mt-4'
+            isFirstElement ? '' : 'font-bold text-sm sm:mt-5'
           } `}
         >
           <span className="font-bold">{company.name}</span>
