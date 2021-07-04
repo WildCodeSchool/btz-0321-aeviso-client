@@ -1,4 +1,4 @@
-import { createStore, compose } from 'redux';
+import { combineReducers, createStore, compose } from 'redux';
 
 export const actions = {
   LOGIN: 'LOGIN',
@@ -6,7 +6,7 @@ export const actions = {
   TOGGLEDARKMODE: 'TOGGLEDARKMODE',
 };
 
-const initialState: { user: UserReduxState; darkMode: boolean } = {
+const initialUserState: { user: UserReduxState } = {
   user: {
     id: undefined,
     firstName: undefined,
@@ -15,25 +15,36 @@ const initialState: { user: UserReduxState; darkMode: boolean } = {
     role: undefined,
     logged: false,
   },
-  darkMode: true,
 };
 
-const reducer = (state = initialState, action: IReduxAction) => {
+const initialDarkmodeState: { darkMode: boolean } = {
+  darkMode: false,
+};
+
+const userReducer = (state = initialUserState, action: IReduxAction) => {
   switch (action.type) {
     case actions.LOGIN:
       return { ...state, user: action.payload };
     case actions.LOGOUT:
       return { ...state, user: action.payload };
-    case actions.TOGGLEDARKMODE:
-      return { ...state, darkMode: action.payload };
     default:
       return state;
   }
 };
 
+const darkModeReducer = (state = initialDarkmodeState, action: { type: string }) => {
+  if (action.type === actions.TOGGLEDARKMODE) {
+    return { ...state, darkMode: !state.darkMode };
+  } else {
+    return state;
+  }
+};
+
 const composeEnhancers = window.__REDUX_DEVTOOLS_EXTENSION_COMPOSE__ || compose;
 
-const store = createStore(reducer, composeEnhancers());
+const rootReducer = combineReducers({ userReducer, darkModeReducer });
+
+const store = createStore(rootReducer, composeEnhancers());
 
 export default store;
 

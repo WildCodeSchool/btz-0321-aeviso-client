@@ -7,10 +7,9 @@ import Head from '../components/head';
 import Routes from '../../src/components/Routes';
 import SideBar from '../components/NavBar.tsx/sideBar';
 import Spinner from '../components/Spinner';
-import store, { actions, RootState } from '../assets/redux/store';
-import { connect } from 'react-redux';
+import store, { actions } from '../assets/redux/store';
 
-function Layout({ isDarkMode }: { isDarkMode: boolean }): JSX.Element {
+function Layout(): JSX.Element {
   const [isSidebarVisible, setIsSidebarVisible] = useState<boolean>(true);
 
   const [sideBarClass, setSideBarClass] = useState(
@@ -41,11 +40,7 @@ function Layout({ isDarkMode }: { isDarkMode: boolean }): JSX.Element {
   if (isLoading) return <Spinner />;
 
   return (
-    <div
-      className={`grid sm:grid-rows-desktop sm:grid-cols-desktop grid-cols-phone grid-rows-mobile sm:gap-x-5  min-h-screen sm:max-h-screen sm:p-5 ${
-        !isDarkMode ? 'bg-whiteGray' : 'bg-darkGray dark'
-      }`}
-    >
+    <div className="grid sm:grid-rows-desktop sm:grid-cols-desktop grid-cols-phone grid-rows-mobile sm:gap-x-5  min-h-screen sm:max-h-screen sm:p-5 dark:bg-mainBg bg-whiteGray">
       <div className="sm:col-start-1 sm:col-end-2 sm:row-start-1 sm:row-end-3 row-start-1 row-end-6 col-start-1">
         {isSidebarVisible ? (
           <SideBar
@@ -69,8 +64,4 @@ function Layout({ isDarkMode }: { isDarkMode: boolean }): JSX.Element {
   );
 }
 
-const mapStateToProps = (state: RootState) => {
-  return { isDarkMode: state.darkMode };
-};
-
-export default connect(mapStateToProps)(Layout);
+export default Layout;

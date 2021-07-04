@@ -48,13 +48,12 @@ function SideBar({ isDarkMode, sideBarClass, setSideBarClass, user }: sideBarPro
     if (isDarkMode) {
       store.dispatch({
         type: actions.TOGGLEDARKMODE,
-        payload: {
-          darkMode: false,
-        },
       });
       setToggleClass('bg-component focus:outline-none mr-4 h-7 rounded-full w-7');
     } else {
-      setIsDarkMode(true);
+      store.dispatch({
+        type: actions.TOGGLEDARKMODE,
+      });
       setToggleClass('bg-white focus:outline-none h-6 ml-6 rounded-full w-6');
     }
   };
@@ -117,7 +116,7 @@ function SideBar({ isDarkMode, sideBarClass, setSideBarClass, user }: sideBarPro
 }
 
 const mapStateToProps = (state: RootState) => {
-  return { user: state.user, isDarkMode: state.darkMode };
+  return { user: state.userReducer.user, isDarkMode: state.darkModeReducer.darkMode };
 };
 
 export default connect(mapStateToProps)(SideBar);
