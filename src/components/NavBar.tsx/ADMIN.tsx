@@ -1,5 +1,4 @@
 import React from 'react';
-import Projets from '../../../media/icons/Projets.svg';
 import Collaborateurs from '../../../media/icons/Collaborateurs.svg';
 interface ISPNavbar {
   handleClose: () => void;
@@ -43,16 +42,6 @@ function ADMIN({ Home, report, settings, newReport, handleClose }: ISPNavbar): J
             Rapport
           </button>
         </li>
-        <li className="flex text-lg  pl-5 mt-5 items-center h-14">
-          <img
-            src={Projets}
-            className="mr-3 mb-1 h-6 w-6 bg-component dark:bg-component shadow-buttonShadow p-1 rounded-full"
-            alt="homesvg"
-          />
-          <button className="focus:outline-none" onClick={handleClose}>
-            Projets
-          </button>
-        </li>
         <li className="flex  text-lg  pl-5 mt-5 items-center h-14">
           <img
             src={Collaborateurs}
@@ -60,7 +49,7 @@ function ADMIN({ Home, report, settings, newReport, handleClose }: ISPNavbar): J
             alt="homesvg"
           />
           <button className="focus:outline-none" onClick={handleClose}>
-            Réglages
+            Collaborateurs
           </button>
         </li>
         <li className="flex  text-lg  pl-5 mt-5 items-center h-14">
