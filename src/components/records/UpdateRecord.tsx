@@ -21,7 +21,7 @@ function UpdateRecord({ setRecord }: { setRecord: Dispatch<SetStateAction<IRecor
   if (error) {
     return (
       <p>
-        An error occurcustomRed: {error.message}. Code: {error.code}
+        An error occurred: {error.message}. Code: {error.code}
       </p>
     );
   }

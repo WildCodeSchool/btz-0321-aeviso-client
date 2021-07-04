@@ -16,7 +16,7 @@ function Companies(): JSX.Element {
   }
 
   if (error) {
-    return <p className="text-black dark:text-white">An error occurcustomRed: {error.message}</p>;
+    return <p className="text-black dark:text-white">An error occurred: {error.message}</p>;
   }
 
   return (

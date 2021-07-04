@@ -13,7 +13,7 @@ function Jobs(): JSX.Element {
   });
 
   if (isLoading) return <Spinner />;
-  if (error) return <p>An error has occurcustomRed: {error.message}</p>;
+  if (error) return <p>An error has occurred: {error.message}</p>;
 
   return (
     <div>

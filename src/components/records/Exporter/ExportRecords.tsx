@@ -42,7 +42,7 @@ function ExportRecords(): JSX.Element {
   const error = companiesError || projectError;
 
   if (error) {
-    return <p className="text-white">An error occurcustomRed: {error.message}</p>;
+    return <p className="text-white">An error occurred: {error.message}</p>;
   }
 
   return (
