@@ -8,6 +8,7 @@ import FormResult from './records/Exporter/FormResult';
 import { RootState } from '../assets/redux/store';
 import { connect } from 'react-redux';
 import Admin from './home/Admin';
+import User from './home/User';
 
 function Routes({ user }: { user?: UserReduxState }): JSX.Element {
   if (user?.role === 'ADMIN') {
@@ -15,6 +16,15 @@ function Routes({ user }: { user?: UserReduxState }): JSX.Element {
       <>
         <Route exact path="/home" component={HomePage} />
         <Route exact path="/aeviso" component={Admin} />
+      </>
+    );
+  }
+
+  if (user?.role === 'USER') {
+    return (
+      <>
+        <Route exact path="/home" component={HomePage} />
+        <Route exact path="/aeviso" component={User} />
       </>
     );
   }

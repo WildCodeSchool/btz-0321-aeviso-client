@@ -8,6 +8,7 @@ import { connect } from 'react-redux';
 import { RootState } from './assets/redux/store';
 
 function App({ isDarkMode }: { isDarkMode: boolean }): JSX.Element {
+  console.log(isDarkMode);
   return (
     <div className={`${isDarkMode ? 'bg-mainBg dark' : 'bg-whiteGray'}`}>
       <div className="container m-auto dark:bg-mainBg">

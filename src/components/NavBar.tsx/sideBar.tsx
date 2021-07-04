@@ -100,7 +100,7 @@ function SideBar({ isDarkMode, sideBarClass, setSideBarClass, user }: sideBarPro
               {user.firstName} {user.lastName}
             </h2>
             <button
-              className="outline:focus-none w-12/12 mt-2 text-xs text-white bg-customRed py-1 px-2 rounded-sm shadow-buttonShadow"
+              className="focus:outline-none w-12/12 mt-2 text-xs text-white bg-customRed py-1 px-2 rounded-sm shadow-buttonShadow"
               onClick={handleLogout}
             >
               Déconnexion
