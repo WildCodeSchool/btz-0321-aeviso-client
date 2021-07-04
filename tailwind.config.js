@@ -10,14 +10,37 @@ module.exports = {
       backgroundImage: {
         bgdark: "url('./media/images/bgAevisio.png')",
       },
+      // BlueVersion
+      // colors: {
+      //   whiteGray: '#DEDDDD',
+      //   darkGray: '#0F1223',
+      //   input: '#404040',
+      //   lightblue: '#333A5E',
+      //   customGreen: '#58926F',
+      //   customRed: '#976C6C',
+      //   customBlue: '#292D41',
+      // },
+
+      // GrayVersion
+      // colors: {
+      //   whiteGray: '#DEDDDD',
+      //   darkGray: '#202225',
+      //   input: '#404040',
+      //   lightblue: '#40434B',
+      //   customGreen: '#58926F',
+      //   customRed: '#976C6C',
+      //   customBlue: '#37393F',
+      // },
+
+      // OriginalVersion
       colors: {
         whiteGray: '#DEDDDD',
-        darkGray: '#0F1223',
+        darkGray: '#202225',
         input: '#404040',
-        lightblue: '#333A5E',
+        lightblue: '#40434B',
         customGreen: '#58926F',
         customRed: '#976C6C',
-        customBlue: '#292D41',
+        customBlue: '#37393F',
       },
       boxShadow: {
         mainShadow: '5px 5px 10px rgba(0, 0, 0, 0.50)',
