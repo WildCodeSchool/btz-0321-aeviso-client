@@ -18,11 +18,10 @@ interface sideBarProps {
   setIsSidebarVisible: Dispatch<SetStateAction<boolean>>;
   setSideBarClass: Dispatch<SetStateAction<string>>;
   user: UserReduxState;
-  setIsDarkMode: Dispatch<SetStateAction<boolean>>;
   isDarkMode: boolean;
 }
 
-function SideBar({ isDarkMode, setIsDarkMode, sideBarClass, setSideBarClass, user }: sideBarProps): JSX.Element {
+function SideBar({ isDarkMode, sideBarClass, setSideBarClass, user }: sideBarProps): JSX.Element {
   const [toggleClass, setToggleClass] = useState('bg-component focus:outline-none h-7 mr-2 rounded-full w-7');
   const handleClose = () => {
     setSideBarClass(
@@ -47,7 +46,12 @@ function SideBar({ isDarkMode, setIsDarkMode, sideBarClass, setSideBarClass, use
 
   const handleDarkMode = () => {
     if (isDarkMode) {
-      setIsDarkMode(false);
+      store.dispatch({
+        type: actions.TOGGLEDARKMODE,
+        payload: {
+          darkMode: false,
+        },
+      });
       setToggleClass('bg-component focus:outline-none mr-4 h-7 rounded-full w-7');
     } else {
       setIsDarkMode(true);
@@ -113,7 +117,7 @@ function SideBar({ isDarkMode, setIsDarkMode, sideBarClass, setSideBarClass, use
 }
 
 const mapStateToProps = (state: RootState) => {
-  return { user: state.user };
+  return { user: state.user, isDarkMode: state.darkMode };
 };
 
 export default connect(mapStateToProps)(SideBar);

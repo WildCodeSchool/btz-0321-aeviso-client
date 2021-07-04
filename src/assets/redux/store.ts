@@ -3,9 +3,10 @@ import { createStore, compose } from 'redux';
 export const actions = {
   LOGIN: 'LOGIN',
   LOGOUT: 'LOGOUT',
+  TOGGLEDARKMODE: 'TOGGLEDARKMODE',
 };
 
-const initialState: { user: UserReduxState } = {
+const initialState: { user: UserReduxState; darkMode: boolean } = {
   user: {
     id: undefined,
     firstName: undefined,
@@ -14,6 +15,7 @@ const initialState: { user: UserReduxState } = {
     role: undefined,
     logged: false,
   },
+  darkMode: true,
 };
 
 const reducer = (state = initialState, action: IReduxAction) => {
@@ -22,6 +24,8 @@ const reducer = (state = initialState, action: IReduxAction) => {
       return { ...state, user: action.payload };
     case actions.LOGOUT:
       return { ...state, user: action.payload };
+    case actions.TOGGLEDARKMODE:
+      return { ...state, darkMode: action.payload };
     default:
       return state;
   }
