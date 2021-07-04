@@ -68,7 +68,7 @@ function HomePage(): JSX.Element {
     );
 
   return (
-    <div className="h-full w-full sm:w-screen sm:h-screen flex flex-col justify-center items-center bg-bgdark bg-center bg-cover absolute top-0 right-0">
+    <div className="h-full w-full sm:w-screen sm:h-screen flex flex-col justify-center items-center bg-bgImg bg-center bg-cover absolute top-0 right-0">
       {/* <div className="text-white sm:ml-20 font-roboto flex items-center sm:items-start  flex-col">
         <h1 className="sm:text-9xl text-8xl font-bold">AeViso</h1>
         <h2 className="sm:text-4xl text-2xl">Expert Comptable.Audit.Conseil</h2>
