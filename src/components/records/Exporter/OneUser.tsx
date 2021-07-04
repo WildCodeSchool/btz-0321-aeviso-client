@@ -59,7 +59,7 @@ function OneUser({ firstName, lastName, projectId, userId, job, start, end, week
   if (error) {
     return (
       <p>
-        An error as occucustomRed : {error.message}. code:{error.code}
+        An error as occurred : {error.message}. code:{error.code}
       </p>
     );
   }

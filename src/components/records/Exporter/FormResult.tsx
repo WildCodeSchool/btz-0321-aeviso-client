@@ -66,7 +66,7 @@ function FormResult(): JSX.Element {
   if (error) {
     return (
       <p>
-        An error has occucustomRed: {error.message}. code:{error.code}
+        An error has occurred: {error.message}. code:{error.code}
       </p>
     );
   }
