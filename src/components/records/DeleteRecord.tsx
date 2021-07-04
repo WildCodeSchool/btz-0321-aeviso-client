@@ -23,7 +23,7 @@ function DeleteRecord(): JSX.Element {
   return (
     <div>
       <p>Do you want to delete this record ?</p>
-      <button type="submit" onClick={() => mutate()} className="border border-black mb-2 bg-red-500">
+      <button type="submit" onClick={() => mutate()} className="border border-black mb-2 bg-customRed-500">
         DELETE
       </button>
     </div>

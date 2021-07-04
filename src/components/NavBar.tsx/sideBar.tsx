@@ -1,16 +1,17 @@
 import React, { Dispatch, SetStateAction, useState } from 'react';
 import { connect } from 'react-redux';
 import Home from '../../../media/icons/Home.svg';
-import Rapport from '../../../media/icons/folder.svg';
-import Réglages from '../../../media/icons/Settings.svg';
+import report from '../../../media/icons/folder.svg';
+import settings from '../../../media/icons/Settings.svg';
 import Cross from '../../../media/icons/Cross.svg';
-import NouveauRapport from '../../../media/icons/NouveauRapport.svg';
+import newReport from '../../../media/icons/NouveauRapport.svg';
 import SUPERADMIN from './SUPERADMIN';
 import ADMIN from './ADMIN';
 import USER from './USER';
 import store, { actions, RootState } from '../../assets/redux/store';
 import { useHistory } from 'react-router-dom';
-import ToggleButton from '../../assets/ToggleButton';
+import Togglebutton from '../../assets/ToggleButton';
+import { today } from '../../assets/date';
 
 interface sideBarProps {
   sideBarClass: string;
@@ -22,10 +23,10 @@ interface sideBarProps {
 }
 
 function SideBar({ isDarkMode, setIsDarkMode, sideBarClass, setSideBarClass, user }: sideBarProps): JSX.Element {
-  const [toggleClass, setToggleClass] = useState('bg-black focus:outline-none h-7 mr-2 rounded-full w-7');
+  const [toggleClass, setToggleClass] = useState('bg-component focus:outline-none h-7 mr-2 rounded-full w-7');
   const handleClose = () => {
     setSideBarClass(
-      'flex flex-col dark:bg-black bg-white h-full shadow-mainShadow  rounded-xl text-black dark:text-white font-roboto justify-between invisible sm:visible'
+      'flex flex-col border-2 dark:border-componentBorder dark:bg-component bg-white h-full shadow-mainShadow rounded-xl text-black dark:text-white font-roboto justify-between invisible sm:visible'
     );
   };
   const history = useHistory();
@@ -47,7 +48,7 @@ function SideBar({ isDarkMode, setIsDarkMode, sideBarClass, setSideBarClass, use
   const handleDarkMode = () => {
     if (isDarkMode) {
       setIsDarkMode(false);
-      setToggleClass('bg-black focus:outline-none mr-4 h-7 rounded-full w-7');
+      setToggleClass('bg-component focus:outline-none mr-4 h-7 rounded-full w-7');
     } else {
       setIsDarkMode(true);
       setToggleClass('bg-white focus:outline-none h-6 ml-6 rounded-full w-6');
@@ -64,48 +65,48 @@ function SideBar({ isDarkMode, setIsDarkMode, sideBarClass, setSideBarClass, use
               <h2 className="text-sm">Expert Comptable.audit.conseil</h2>
             </div>
             <button className="focus:outline-none sm:hidden" onClick={handleClose}>
-              <img className="h-5 w-5" src={Cross} alt="CloseButton" />{' '}
+              <img
+                className="h-6 w-6 bg-component rounded-full p-1 shadow-buttonShadow"
+                src={Cross}
+                alt="CloseButton"
+              />{' '}
             </button>
           </div>
         </div>
         {user.role === 'SUPERADMIN' ? (
-          <SUPERADMIN handleClose={handleClose} Home={Home} Rapport={Rapport} Réglages={Réglages} />
+          <SUPERADMIN handleClose={handleClose} Home={Home} report={report} settings={settings} />
         ) : (
           ''
         )}
         {user.role === 'ADMIN' ? (
-          <ADMIN
-            Home={Home}
-            Rapport={Rapport}
-            Réglages={Réglages}
-            NouveauRapport={NouveauRapport}
-            handleClose={handleClose}
-          />
+          <ADMIN Home={Home} report={report} settings={settings} newReport={newReport} handleClose={handleClose} />
         ) : (
           ''
         )}
         {user.role === 'USER' ? (
-          <USER
-            handleClose={handleClose}
-            NouveauRapport={NouveauRapport}
-            Home={Home}
-            Rapport={Rapport}
-            Réglages={Réglages}
-          />
+          <USER handleClose={handleClose} newReport={newReport} Home={Home} report={report} settings={settings} />
         ) : (
           ''
         )}
       </div>
-      <div className=" flex flex-col h-28  border-t border-black dark:border-white justify-center p-5 ">
-        <h2 className="text-xl font-bold">
-          {user.firstName} {user.lastName}
-        </h2>
-        <button className="w-4/12 mt-2 text-xs bg-red py-1 px-2 rounded-sm" onClick={handleLogout}>
-          Déconnexion
-        </button>
-      </div>
-      <div className="flex h-full place-items-end">
-        <ToggleButton handleDarkMode={handleDarkMode} toggleClass={toggleClass} />
+      <div className=" flex flex-col w-full h-40 justify-end">
+        <h2 className="text-base mr-3 text-right mb-2">{today()}</h2>
+        <div className="flex flex-row justify-between p-5 border-t rounded-lg border-black dark:border-componentBorder">
+          <div className="">
+            <h2 className="text-xl font-bold">
+              {user.firstName} {user.lastName}
+            </h2>
+            <button
+              className="outline:focus-none w-12/12 mt-2 text-xs text-white bg-customRed py-1 px-2 rounded-sm shadow-buttonShadow"
+              onClick={handleLogout}
+            >
+              Déconnexion
+            </button>
+          </div>
+          <div className="flex h-full items-end">
+            <Togglebutton handleDarkMode={handleDarkMode} toggleClass={toggleClass} />
+          </div>
+        </div>
       </div>
     </div>
   );
