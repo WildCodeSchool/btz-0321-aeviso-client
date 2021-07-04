@@ -1,13 +1,13 @@
 import React, { useState } from 'react';
-import { useQuery } from 'react-query';
+import store, { actions } from '../assets/redux/store';
 import { Switch, useHistory } from 'react-router-dom';
-import { auth } from '../API/requests';
 
 import Head from '../components/head';
 import Routes from '../../src/components/Routes';
 import SideBar from '../components/NavBar.tsx/sideBar';
+import { useQuery } from 'react-query';
+import { auth } from '../API/requests';
 import Spinner from '../components/Spinner';
-import store, { actions } from '../assets/redux/store';
 
 function Layout(): JSX.Element {
   const [isSidebarVisible, setIsSidebarVisible] = useState<boolean>(true);

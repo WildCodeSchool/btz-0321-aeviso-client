@@ -22,7 +22,7 @@ interface sideBarProps {
 }
 
 function SideBar({ isDarkMode, sideBarClass, setSideBarClass, user }: sideBarProps): JSX.Element {
-  const [toggleClass, setToggleClass] = useState('bg-component focus:outline-none h-7 mr-2 rounded-full w-7');
+  const [toggleClass, setToggleClass] = useState('bg-white focus:outline-none h-7 mr-2 rounded-full w-7');
   const handleClose = () => {
     setSideBarClass(
       'flex flex-col border-2 dark:border-componentBorder dark:bg-component bg-white h-full shadow-mainShadow rounded-xl text-black dark:text-white font-roboto justify-between invisible sm:visible'
