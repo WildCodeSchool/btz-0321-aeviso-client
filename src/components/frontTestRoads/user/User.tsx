@@ -35,7 +35,7 @@ function User(): JSX.Element {
     );
   }
   if (isLoading) return <Spinner />;
-  if (error) return <p>An error has occurcustomRed: {error.message}</p>;
+  if (error) return <p>An error has occured: {error.message}</p>;
   return (
     <div>
       <UserForm
