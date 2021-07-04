@@ -22,17 +22,6 @@ module.exports = {
       // },
 
       // GrayVersion
-      // colors: {
-      //   whiteGray: '#DEDDDD',
-      //   darkGray: '#202225',
-      //   input: '#404040',
-      //   lightblue: '#40434B',
-      //   customGreen: '#58926F',
-      //   customRed: '#976C6C',
-      //   customBlue: '#37393F',
-      // },
-
-      // OriginalVersion
       colors: {
         whiteGray: '#DEDDDD',
         darkGray: '#202225',
@@ -42,6 +31,17 @@ module.exports = {
         customRed: '#976C6C',
         customBlue: '#37393F',
       },
+
+      // OriginalVersion
+      // colors: {
+      //   whiteGray: '#DEDDDD',
+      //   darkGray: '#3E3E3E',
+      //   input: '#404040',
+      //   lightblue: '#111111',
+      //   customGreen: '#58926F',
+      //   customRed: '#976C6C',
+      //   customBlue: '#111111',
+      // },
       boxShadow: {
         mainShadow: '5px 5px 10px rgba(0, 0, 0, 0.50)',
         inputShadow: '5px 5px 20px rgba(0, 0, 0, 0.6)',
