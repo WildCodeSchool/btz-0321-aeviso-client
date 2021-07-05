@@ -5,15 +5,15 @@ import report from '../../../media/icons/folder.svg';
 import settings from '../../../media/icons/Settings.svg';
 import Cross from '../../../media/icons/Cross.svg';
 import newReport from '../../../media/icons/NouveauRapport.svg';
-import SUPERADMIN from './SUPERADMIN';
-import ADMIN from './ADMIN';
-import USER from './USER';
+import SuperAdmin from './Superadmin';
+import Admin from './Admin';
+import User from './User';
 import store, { actions, RootState } from '../../assets/redux/store';
 import { useHistory } from 'react-router-dom';
 import Togglebutton from '../../assets/ToggleButton';
 import { today } from '../../assets/date';
 
-interface sideBarProps {
+interface ISideBarProps {
   sideBarClass: string;
   setIsSidebarVisible: Dispatch<SetStateAction<boolean>>;
   setSideBarClass: Dispatch<SetStateAction<string>>;
@@ -22,7 +22,7 @@ interface sideBarProps {
   isDarkMode: boolean;
 }
 
-function SideBar({ isDarkMode, setIsDarkMode, sideBarClass, setSideBarClass, user }: sideBarProps): JSX.Element {
+function SideBar({ isDarkMode, setIsDarkMode, sideBarClass, setSideBarClass, user }: ISideBarProps): JSX.Element {
   const [toggleClass, setToggleClass] = useState('bg-component focus:outline-none h-7 mr-2 rounded-full w-7');
   const handleClose = () => {
     setSideBarClass(
@@ -74,17 +74,17 @@ function SideBar({ isDarkMode, setIsDarkMode, sideBarClass, setSideBarClass, use
           </div>
         </div>
         {user.role === 'SUPERADMIN' ? (
-          <SUPERADMIN handleClose={handleClose} Home={Home} report={report} settings={settings} />
+          <SuperAdmin handleClose={handleClose} Home={Home} report={report} settings={settings} />
         ) : (
           ''
         )}
         {user.role === 'ADMIN' ? (
-          <ADMIN Home={Home} report={report} settings={settings} newReport={newReport} handleClose={handleClose} />
+          <Admin Home={Home} report={report} settings={settings} newReport={newReport} handleClose={handleClose} />
         ) : (
           ''
         )}
         {user.role === 'USER' ? (
-          <USER handleClose={handleClose} newReport={newReport} Home={Home} report={report} settings={settings} />
+          <User handleClose={handleClose} newReport={newReport} Home={Home} report={report} settings={settings} />
         ) : (
           ''
         )}

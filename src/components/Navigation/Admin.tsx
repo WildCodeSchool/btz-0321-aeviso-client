@@ -9,7 +9,7 @@ interface ISPNavbar {
   newReport: string;
 }
 
-function ADMIN({ Home, report, settings, newReport, handleClose }: ISPNavbar): JSX.Element {
+function Admin({ Home, report, settings, newReport, handleClose }: ISPNavbar): JSX.Element {
   return (
     <div>
       <nav className="list-none pt-5">
@@ -54,4 +54,4 @@ function ADMIN({ Home, report, settings, newReport, handleClose }: ISPNavbar): J
   );
 }
 
-export default ADMIN;
+export default Admin;

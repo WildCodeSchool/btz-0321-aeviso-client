@@ -5,6 +5,7 @@ import { companies } from '../../API/requests';
 import AdminJob from './AdminJob';
 import Points from '../../../media/icons/points.svg';
 import { Menu } from '@headlessui/react';
+import Spinner from '../Spinner';
 
 interface IProps {
   company: Company;
@@ -21,14 +22,13 @@ function CompanyDetails({ company }: IProps): JSX.Element {
     }
   );
 
-  if (isLoading) return <p>Loading ...</p>;
+  if (isLoading) {
+    return <Spinner />;
+  }
 
-  if (error)
-    return (
-      <p>
-        error : {error.message} {error.code}
-      </p>
-    );
+  if (error) {
+    return <p className="text-black dark:text-white">An error occurred: {error.message}</p>;
+  }
 
   return (
     <div className="flex pb-2 flex-row w-full justify-between mt-7 border-b border-black dark:border-white">

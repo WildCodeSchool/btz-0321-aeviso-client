@@ -9,7 +9,7 @@ interface ISPNavbar {
   settings: string;
 }
 
-function SUPERADMIN({ Home, report, settings, handleClose }: ISPNavbar): JSX.Element {
+function SuperAdmin({ Home, report, settings, handleClose }: ISPNavbar): JSX.Element {
   return (
     <div>
       {' '}
@@ -65,4 +65,4 @@ function SUPERADMIN({ Home, report, settings, handleClose }: ISPNavbar): JSX.Ele
   );
 }
 
-export default SUPERADMIN;
+export default SuperAdmin;

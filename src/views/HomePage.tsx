@@ -6,7 +6,7 @@ import { SubmitHandler, useForm } from 'react-hook-form';
 import { useMutation } from 'react-query';
 import { auth } from '../API/requests';
 import Modal from '../components/Modal';
-import useModal from '../Hook/useModal';
+import useModal from '../hooks/useModal';
 import { useHistory } from 'react-router';
 import Spinner from '../components/Spinner';
 
