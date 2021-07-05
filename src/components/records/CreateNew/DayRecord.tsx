@@ -6,7 +6,7 @@ interface IDayRecord {
 }
 function DayRecord({ newDate, setDayActive }: IDayRecord): JSX.Element {
   const [timeSlote, setTimeSlote] = useState('');
-  const [comment, setComment] = useState();
+  const [comment, setComment] = useState<string>();
   const [isMatin, setIsMatin] = useState('text-white border border-white rounded-xl px-12 py-4 hover:bg-darkGreen');
   const [isAp, setIsAp] = useState('text-white border border-white rounded-xl px-12 py-4 ml-5 hover:bg-darkGreen');
   const [isAllDay, setIsAllDay] = useState(
