@@ -36,16 +36,20 @@ function ProjectsCieAdmin(): JSX.Element {
       <SearchInput register={register} name="search" />
       {data
         ?.filter((project) => project.name.toLowerCase().includes(searchInput?.toLowerCase()))
-        ?.map((project) => (
-          <div key={project.id} className="flex-row justify-around py-3 px-5">
-            <Link to={`/projects/${project.id}`}>
-              <p key={project.id}>
-                {project.name} / {project.code}
-              </p>
-              <p className="text-xs border-b">Total demi journées déclarées: </p>
-            </Link>
-          </div>
-        ))}
+        ?.map((project) => {
+          console.log(project);
+
+          return (
+            <div key={project.id} className="flex-row justify-around py-3 px-5">
+              <Link to={`/projects/${project.id}`}>
+                <p key={project.id}>
+                  {project.name} / {project.code}
+                </p>
+                <p className="text-xs border-b">Total demi journées déclarées: </p>
+              </Link>
+            </div>
+          );
+        })}
     </div>
   );
 }
