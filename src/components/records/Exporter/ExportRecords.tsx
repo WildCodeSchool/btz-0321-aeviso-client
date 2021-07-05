@@ -18,7 +18,6 @@ function ExportRecords({ user }: { user: UserReduxState }): JSX.Element {
   if (user.role === 'ADMIN') {
     companySelect = user.companyId;
   }
-  console.log(companySelect);
 
   const {
     isLoading: companiesIsLoading,
