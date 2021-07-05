@@ -3,9 +3,14 @@ import { createStore, compose } from 'redux';
 export const actions = {
   LOGIN: 'LOGIN',
   LOGOUT: 'LOGOUT',
+  ADD_USER_TO_STATS: 'ADD_USER_TO_STATS',
 };
 
-const initialState: { user: UserReduxState } = {
+interface Store {
+  user: UserReduxState;
+}
+
+const initialState: Store = {
   user: {
     id: undefined,
     firstName: undefined,
@@ -16,12 +21,14 @@ const initialState: { user: UserReduxState } = {
   },
 };
 
-const reducer = (state = initialState, action: IReduxAction) => {
+const reducer = (state = initialState, action: IReduxAction<UserReduxState>) => {
   switch (action.type) {
     case actions.LOGIN:
       return { ...state, user: action.payload };
     case actions.LOGOUT:
       return { ...state, user: action.payload };
+    case actions.ADD_USER_TO_STATS:
+      return { ...state, stats: { ...state.stats, selectedUsers: [...state.stats.selectedUsers, action.payload] } };
     default:
       return state;
   }

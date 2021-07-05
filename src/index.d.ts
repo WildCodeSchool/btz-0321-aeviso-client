@@ -82,9 +82,9 @@ interface INavbar {
   NouveauRapport: string;
 }
 
-interface IReduxAction {
+interface IReduxAction<T> {
   type: string;
-  payload: UserReduxState;
+  payload: T;
 }
 
 interface UserReduxState {
