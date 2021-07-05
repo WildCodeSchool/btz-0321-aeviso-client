@@ -2,6 +2,8 @@ interface Company {
   id: string;
   name: string;
   logoUrl: string;
+  city: string;
+  zipCode: string;
   companyId?: string;
   createdAt: string;
   updatedAt: string;

@@ -2,7 +2,7 @@ import React, { useState } from 'react';
 import store, { actions } from '../assets/redux/store';
 import { Switch, useHistory } from 'react-router-dom';
 
-import Head from '../components/head';
+import Head from '../components/Head';
 import Routes from '../../src/components/Routes';
 import SideBar from '../components/NavBar.tsx/sideBar';
 import { useQuery } from 'react-query';
