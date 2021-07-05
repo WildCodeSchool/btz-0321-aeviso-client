@@ -5,15 +5,15 @@ import report from '../../../media/icons/folder.svg';
 import settings from '../../../media/icons/Settings.svg';
 import Cross from '../../../media/icons/Cross.svg';
 import newReport from '../../../media/icons/NouveauRapport.svg';
-import SuperAdmin from './superAdmin';
-import Admin from './admin';
-import User from './user';
+import SuperAdmin from './SuperAdmin';
+import Admin from './Admin';
+import User from './User';
 import store, { actions, RootState } from '../../assets/redux/store';
 import { useHistory } from 'react-router-dom';
 import Togglebutton from '../../assets/ToggleButton';
 import { today } from '../../assets/date';
 
-interface sideBarProps {
+interface ISideBarProps {
   sideBarClass: string;
   setIsSidebarVisible: Dispatch<SetStateAction<boolean>>;
   setSideBarClass: Dispatch<SetStateAction<string>>;
@@ -22,7 +22,7 @@ interface sideBarProps {
   isDarkMode: boolean;
 }
 
-function SideBar({ isDarkMode, setIsDarkMode, sideBarClass, setSideBarClass, user }: sideBarProps): JSX.Element {
+function SideBar({ isDarkMode, setIsDarkMode, sideBarClass, setSideBarClass, user }: ISideBarProps): JSX.Element {
   const [toggleClass, setToggleClass] = useState('bg-component focus:outline-none h-7 mr-2 rounded-full w-7');
   const handleClose = () => {
     setSideBarClass(

@@ -3,7 +3,7 @@ import { useQuery } from 'react-query';
 import { Switch, useHistory } from 'react-router-dom';
 import { auth } from '../API/requests';
 
-import Head from '../components/head';
+import Head from '../components/Head';
 import Routes from '../../src/components/Routes';
 import SideBar from '../components/NavBar.tsx/sideBar';
 import Spinner from '../components/Spinner';
