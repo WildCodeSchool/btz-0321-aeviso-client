@@ -5,7 +5,7 @@ import Modal from '../../Modal';
 import UserForm from './UserForm';
 import { user } from '../../../API/requests';
 import Spinner from '../../Spinner';
-import getModal from '../../../Hook/useModal';
+import getModal from '../../../hooks/useModal';
 
 function User(): JSX.Element {
   const { isModal, setIsModal, message, setMessage } = getModal();

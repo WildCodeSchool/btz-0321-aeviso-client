@@ -5,7 +5,7 @@ import { auth } from '../API/requests';
 
 import Head from '../components/Head';
 import Routes from '../../src/components/Routes';
-import SideBar from '../components/Navigation/sideBar';
+import Sidebar from '../components/navigation/Sidebar';
 import Spinner from '../components/Spinner';
 import store, { actions } from '../assets/redux/store';
 
@@ -48,7 +48,7 @@ function Layout(): JSX.Element {
     >
       <div className="sm:col-start-1 sm:col-end-2 sm:row-start-1 sm:row-end-3 row-start-1 row-end-6 col-start-1">
         {isSidebarVisible ? (
-          <SideBar
+          <Sidebar
             isDarkMode={isDarkMode}
             setIsDarkMode={setIsDarkMode}
             setIsSidebarVisible={setIsSidebarVisible}
