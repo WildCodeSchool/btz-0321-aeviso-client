@@ -5,6 +5,7 @@ import { AxiosError } from 'axios';
 import { records } from '../../API/requests';
 import UpdateRecord from './UpdateRecord';
 import DeleteRecord from './DeleteRecord';
+import Spinner from '../Spinner';
 
 function Record(): JSX.Element {
   const { id }: { id: string } = useParams();
@@ -19,7 +20,7 @@ function Record(): JSX.Element {
   });
 
   if (isLoading) {
-    return <p>Loading...</p>;
+    return <Spinner />;
   }
 
   if (error) {
@@ -32,7 +33,6 @@ function Record(): JSX.Element {
 
   return (
     <div>
-      <p>HELLO WORLD</p>
       {record && (
         <>
           <h3 className="mb-6">Test User</h3>

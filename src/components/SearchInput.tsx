@@ -1,11 +1,18 @@
 import React from 'react';
+import { FieldValues, UseFormRegister } from 'react-hook-form';
 
-function SearchInput(): JSX.Element {
+interface IProps {
+  register: UseFormRegister<FieldValues>;
+  name: string;
+}
+
+function SearchInput({ register, name }: IProps): JSX.Element {
   return (
     <input
       type="text"
-      placeholder="Rechercher"
-      className="p-2 bg-transparent border border-white rounded-md focus:ring focus:ring-white"
+      placeholder={'Rechercher'}
+      className="pb-1 w-6/12 bg-transparent border-b border-black focus:outline-none dark:border-white"
+      {...register(name)}
     />
   );
 }

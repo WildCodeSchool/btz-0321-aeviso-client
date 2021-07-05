@@ -1,6 +1,7 @@
 import axios from 'axios';
+const API_URL = import.meta.env.VITE_API_URL || 'http://localhost:5000';
 
-const API_URL = import.meta.env.VITE_API_URL; //  || 'http://localhost:5000/api/v1'
+axios.defaults.withCredentials = true;
 
 export const user = {
   getAll: (): Promise<User[]> => axios.get(`${API_URL}/users`).then((res) => res.data),
@@ -45,11 +46,22 @@ export const project = {
   // TODO: create a real interface here
   create: ({ data }: { data: Project }): Promise<Project> =>
     axios.post(`${API_URL}/projects/`, data).then((res) => res.data),
+
+  getUsers: (projectId: string): Promise<IResultUser[]> =>
+    axios.get(`${API_URL}/projects/${projectId}/users`).then((res) => res.data),
+
+  getRecords: (projectId: string, userId: string, start: string, end: string): Promise<IRecord[]> =>
+    axios
+      .get(`${API_URL}/projects/${projectId}/users/${userId}/records?start=${start}&end=${end}`)
+      .then((res) => res.data),
 };
 
 export const companies = {
   getAll: (limit?: number): Promise<Company[]> =>
     axios.get(`${API_URL}/companies/${limit ? `?limit=${limit}` : ''}`).then((res) => res.data),
+
+  getAllProjects: (id: string): Promise<Project[]> =>
+    axios.get(`${API_URL}/companies/${id}/projects`).then((res) => res.data),
 
   getOne: (id: string): Promise<Company> => axios.get(`${API_URL}/companies/${id}`).then((res) => res.data),
 
@@ -59,6 +71,9 @@ export const companies = {
     axios.put(`${API_URL}/companies/${id}`, data).then((res) => res.data),
 
   delete: (id: string): Promise<null> => axios.delete(`${API_URL}/companies/${id}`).then((res) => res.data),
+
+  getUsers: (id: string, role: User['role']): Promise<User[]> =>
+    axios.get(`${API_URL}/companies/${id}/users?role=${role}`).then((res) => res.data),
 };
 
 export const records = {
@@ -73,4 +88,11 @@ export const records = {
     axios.put(`${API_URL}/records/${id}`, data).then((res) => res.data),
 
   delete: (id: string): Promise<null> => axios.delete(`${API_URL}/records/${id}`).then((res) => res.data),
+};
+
+export const auth = {
+  login: (user: { email: string; password: string }): Promise<{ message: string; user: User }> =>
+    axios.post(`${API_URL}/auth/login`, user).then((res) => res.data),
+
+  me: (): Promise<{ message: string; user: User }> => axios.get(`${API_URL}/auth/me`).then((res) => res.data),
 };

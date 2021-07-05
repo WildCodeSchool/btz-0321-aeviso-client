@@ -1,54 +1,102 @@
 import React from 'react';
-import BG from '../../media/images/BgAeivsio.webp';
-import { useForm } from 'react-hook-form';
-import { Link } from 'react-router-dom';
+import { connect } from 'react-redux';
+import store from '../assets/redux/store';
+import { actions } from '../assets/redux/store';
+import { SubmitHandler, useForm } from 'react-hook-form';
+import { useMutation } from 'react-query';
+import { auth } from '../API/requests';
+import Modal from '../components/Modal';
+import useModal from '../hooks/useModal';
+import { useHistory } from 'react-router';
+import Spinner from '../components/Spinner';
+
+interface IFormInput {
+  email: string;
+  password: string;
+}
 
 function HomePage(): JSX.Element {
+  const history = useHistory();
   const { register, handleSubmit } = useForm();
+  const { isModal, setIsModal, message, setMessage } = useModal();
+
+  const { mutate, isLoading, isError } = useMutation(auth.login, {
+    onError: () => {
+      setMessage('Une erreur est survenue');
+      setIsModal((prevState) => !prevState);
+    },
+    onSuccess: (data) => {
+      setMessage('Vous êtes bien authentifié');
+      setIsModal((prevState) => !prevState);
+      const { user } = data;
+      store.dispatch({
+        type: actions.LOGIN,
+        payload: {
+          id: user.id,
+          firstName: user.firstName,
+          lastName: user.lastName,
+          email: user.email,
+          role: user.role,
+          logged: true,
+        },
+      });
+    },
+  });
+
+  const onSubmit: SubmitHandler<IFormInput> = ({ email, password }) => {
+    const user = {
+      email,
+      password,
+    };
+    mutate(user);
+  };
+
+  if (isLoading) return <Spinner />;
+  if (isModal)
+    return (
+      <Modal
+        title="Authentification"
+        buttons={
+          isError
+            ? [{ text: 'Nouvel essai', handleClick: () => setIsModal((prevState) => !prevState) }]
+            : [{ text: 'Accueil', handleClick: () => history.push('/aeviso') }]
+        }
+      >
+        {message}
+      </Modal>
+    );
 
   return (
-    <div
-      className="h-screen w-screen p-28"
-      style={{
-        backgroundImage: `url(${BG})`,
-        backgroundRepeat: 'no-repeat',
-        backgroundColor: 'black',
-        backgroundSize: 'cover',
-      }}
-    >
-      <div className="text-white font-roboto">
-        <h1 className="text-9xl font-bold">aevisio</h1>
-        <h2 className="text-3xl">Expert Comptable.Audit.Conseil</h2>
+    <div className="h-full w-full sm:w-screen sm:h-screen flex flex-col justify-center items-center bg-bgImg bg-center bg-cover absolute top-0 right-0">
+      <div className="text-white font-roboto flex items-center sm:items-center  flex-col">
+        <h1 className="sm:text-9xl text-8xl font-bold">AeViso</h1>
+        <h2 className="sm:text-4xl text-2xl">Expert Comptable.Audit.Conseil</h2>
       </div>
       <form
-        className="w-5/12 mt-10 flex flex-col text-white font-roboto text-xl"
-        onSubmit={handleSubmit((data) => {
-          console.log(data);
-        })}
+        className="w-full flex sm:w-6/12 justify-center mt-10 items-center sm:items-center flex-col text-white font-roboto text-xl sm:text-2xl"
+        onSubmit={handleSubmit(onSubmit)}
         action="login"
       >
         <label className="mt-5" htmlFor="email">
           Email
         </label>
         <input
-          className=" focus:outline-none mt-2 p-3 h-14 bg-input bg-opacity-50 rounded-lg shadow-inputShadow"
+          className=" focus:outline-none bg-white bg-opacity-0 mt-2 mb-5 px-3 w-11/12 h-12 border-b border-white shadow-inputShadow"
           type="text"
-          {...register('mail', { required: true })}
+          {...register('email', { required: true })}
         />
         <label className="mt-5" htmlFor="Password">
           Mots de passe{' '}
         </label>
         <input
-          className="focus:outline-none mt-2 p-3 h-14 bg-input bg-opacity-50 rounded-lg shadow-inputShadow"
-          type="text"
-          {...register('passWord', { required: true })}
+          className="focus:outline-none bg-white bg-opacity-0 mt-2 px-3 w-11/12 h-12 border-b border-white shadow-inputShadow"
+          type="password"
+          {...register('password', { required: true })}
         />
-        <Link to="/">
-          <input className="bg-input py-1 bg-opacity-50 rounded-lg w-6/12 mt-8 shadow-inputShadow" type="submit" />
-        </Link>
+        <input className="bg-customGreen py-1 rounded-lg w-11/12 mt-16 shadow-inputShadow" type="submit" />
       </form>
     </div>
   );
 }
 
-export default HomePage;
+export default connect()(HomePage);
