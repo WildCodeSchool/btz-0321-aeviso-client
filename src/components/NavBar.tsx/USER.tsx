@@ -7,7 +7,7 @@ interface ISPNavbar {
   newReport: string;
 }
 
-function USER({ newReport, Home, report, settings, handleClose }: ISPNavbar): JSX.Element {
+function User({ newReport, Home, report, settings, handleClose }: ISPNavbar): JSX.Element {
   return (
     <div>
       <nav className="list-none pt-5">
@@ -40,4 +40,4 @@ function USER({ newReport, Home, report, settings, handleClose }: ISPNavbar): JS
   );
 }
 
-export default USER;
+export default User;

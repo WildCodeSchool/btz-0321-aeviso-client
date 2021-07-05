@@ -5,9 +5,9 @@ import report from '../../../media/icons/folder.svg';
 import settings from '../../../media/icons/Settings.svg';
 import Cross from '../../../media/icons/Cross.svg';
 import newReport from '../../../media/icons/NouveauRapport.svg';
-import SUPERADMIN from './SUPERADMIN';
-import ADMIN from './ADMIN';
-import USER from './USER';
+import SuperAdmin from './superAdmin';
+import Admin from './admin';
+import User from './user';
 import store, { actions, RootState } from '../../assets/redux/store';
 import { useHistory } from 'react-router-dom';
 import Togglebutton from '../../assets/ToggleButton';
@@ -74,17 +74,17 @@ function SideBar({ isDarkMode, setIsDarkMode, sideBarClass, setSideBarClass, use
           </div>
         </div>
         {user.role === 'SUPERADMIN' ? (
-          <SUPERADMIN handleClose={handleClose} Home={Home} report={report} settings={settings} />
+          <SuperAdmin handleClose={handleClose} Home={Home} report={report} settings={settings} />
         ) : (
           ''
         )}
         {user.role === 'ADMIN' ? (
-          <ADMIN Home={Home} report={report} settings={settings} newReport={newReport} handleClose={handleClose} />
+          <Admin Home={Home} report={report} settings={settings} newReport={newReport} handleClose={handleClose} />
         ) : (
           ''
         )}
         {user.role === 'USER' ? (
-          <USER handleClose={handleClose} newReport={newReport} Home={Home} report={report} settings={settings} />
+          <User handleClose={handleClose} newReport={newReport} Home={Home} report={report} settings={settings} />
         ) : (
           ''
         )}
