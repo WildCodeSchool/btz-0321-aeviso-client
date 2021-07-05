@@ -5,7 +5,7 @@ import report from '../../../media/icons/folder.svg';
 import settings from '../../../media/icons/Settings.svg';
 import Cross from '../../../media/icons/Cross.svg';
 import newReport from '../../../media/icons/NouveauRapport.svg';
-import SuperAdmin from './SuperAdmin';
+import SuperAdmin from './Superadmin';
 import Admin from './Admin';
 import User from './User';
 import store, { actions, RootState } from '../../assets/redux/store';
