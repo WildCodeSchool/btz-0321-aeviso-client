@@ -12,10 +12,13 @@ import User from './home/User';
 
 function Routes({ user }: { user?: UserReduxState }): JSX.Element {
   if (user?.role === 'ADMIN') {
+    console.log(user?.id);
+    console.log(user?.companyId);
     return (
       <>
         <Route exact path="/home" component={HomePage} />
         <Route exact path="/aeviso" component={Admin} />
+        <Route exact path="/records/export" component={ExportRecords} />
       </>
     );
   }

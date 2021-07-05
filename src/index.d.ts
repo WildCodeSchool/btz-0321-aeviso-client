@@ -1,8 +1,8 @@
 interface Company {
   id: string;
   name: string;
-  city: string;
-  zipCode: string;
+  logoUrl: string;
+  companyId?: string;
   createdAt: string;
   updatedAt: string;
 }
@@ -93,5 +93,6 @@ interface UserReduxState {
   lastName?: string;
   email?: string;
   role?: 'USER' | 'ADMIN' | 'SUPERADMIN' | null;
+  companyId?: string;
   logged: boolean;
 }

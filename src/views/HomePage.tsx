@@ -37,6 +37,7 @@ function HomePage(): JSX.Element {
           lastName: user.lastName,
           email: user.email,
           role: user.role,
+          companyId: user.companyId,
           logged: true,
         },
       });

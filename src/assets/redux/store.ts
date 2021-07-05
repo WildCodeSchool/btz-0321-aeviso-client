@@ -13,6 +13,7 @@ const initialUserState: { user: UserReduxState } = {
     lastName: undefined,
     email: undefined,
     role: undefined,
+    companyId: undefined,
     logged: false,
   },
 };
