@@ -23,14 +23,13 @@ function CompanyDetails({ company }: IProps): JSX.Element {
     }
   );
 
-  if (isLoading) return <Spinner />;
+  if (isLoading) {
+    return <Spinner />;
+  }
 
-  if (error)
-    return (
-      <p>
-        error : {error.message} {error.code}
-      </p>
-    );
+  if (error) {
+    return <p className="text-black dark:text-white">An error occurred: {error.message}</p>;
+  }
 
   return (
     <div>

@@ -21,9 +21,9 @@ function Modal({ title, buttons, children }: Iprops): JSX.Element {
 
   return (
     <Dialog open={isOpen} onClose={handleClose} className="flex justify-center items-center fixed inset-0">
-      <Dialog.Overlay className="fixed inset-0 z-50 bg-black bg-opacity-50" />
+      <Dialog.Overlay className="fixed inset-0 z-50 bg-white dark:bg-component bg-opacity-80" />
 
-      <div className="p-10 w-10/12 sm:w-4/12 shadow-mainShadow flex flex-col justify-start z-50 text-white bg-black rounded-md break-all">
+      <div className="p-10 w-10/12 sm:w-96 shadow-mainShadow flex flex-col justify-start z-50 text-black dark:text-white bg-white dark:bg-component rounded-md break-all">
         <Dialog.Title className="text-2xl mb-1 font-bold">{title}</Dialog.Title>
 
         {children && <div className="mb-6">{children}</div>}
@@ -33,7 +33,7 @@ function Modal({ title, buttons, children }: Iprops): JSX.Element {
             <button
               key={index}
               className={`focus:outline-none h-8 px-6 ${index === 0 ? 'mr-2' : 'mx-2'} ${
-                button.backgroundColor || 'bg-green'
+                button.backgroundColor || 'text-white bg-customGreen shadow-buttonShadow'
               } rounded-sm`}
               onClick={() => (button.handleClick ? button.handleClick(handleClose) : handleClose())}
             >

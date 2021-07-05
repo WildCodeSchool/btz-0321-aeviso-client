@@ -3,9 +3,9 @@ import { useQuery } from 'react-query';
 import { Switch, useHistory } from 'react-router-dom';
 import { auth } from '../API/requests';
 
-import Head from '../components/head';
+import Head from '../components/Head';
 import Routes from '../../src/components/Routes';
-import SideBar from '../components/NavBar.tsx/sideBar';
+import Sidebar from '../components/navigation/Sidebar';
 import Spinner from '../components/Spinner';
 import store, { actions } from '../assets/redux/store';
 
@@ -14,7 +14,7 @@ function Layout(): JSX.Element {
   const [isSidebarVisible, setIsSidebarVisible] = useState<boolean>(true);
 
   const [sideBarClass, setSideBarClass] = useState(
-    'sm:flex flex-col bg-white dark:bg-black w-full h-full rounded-lg text-black dark:text-white font-roboto justify-between shadow-mainShadow invisible sm:visible'
+    'sm:flex flex-col border-2 dark:border-componentBorder bg-white dark:bg-component w-full h-full rounded-lg text-black dark:text-white font-roboto justify-between shadow-mainShadow invisible sm:visible'
   );
 
   const history = useHistory();
@@ -46,9 +46,9 @@ function Layout(): JSX.Element {
         isDarkMode ? 'bg-whiteGray' : 'bg-darkGray dark'
       }`}
     >
-      <div className="sm:col-start-1 sm:col-end-2 sm:row-start-1 sm:row-end-4 row-start-1 row-end-6 col-start-1">
+      <div className="sm:col-start-1 sm:col-end-2 sm:row-start-1 sm:row-end-3 row-start-1 row-end-6 col-start-1">
         {isSidebarVisible ? (
-          <SideBar
+          <Sidebar
             isDarkMode={isDarkMode}
             setIsDarkMode={setIsDarkMode}
             setIsSidebarVisible={setIsSidebarVisible}
@@ -59,10 +59,10 @@ function Layout(): JSX.Element {
           ''
         )}
       </div>
-      <div className="sm:row-start-1 sm:row-end-2 sm:col-start-1  sm:col-end-3 row-start-1 row-end-2 col-start-1 items-end  text-black dark:text-white font-roboto sm:flex justify-between mx-4 mt-5 sm:m-0">
+      <div className="sm:hidden row-start-1 row-end-2 col-start-1 items-end  text-black dark:text-white font-roboto  justify-between mx-4 mt-5 sm:m-0">
         <Head setSideBarClass={setSideBarClass} setIsSidebarVisible={setIsSidebarVisible} />
       </div>
-      <div className="row-start-2 sm:row-start-1 row-end-4 col-start-1 sm:col-start-2">
+      <div className="h-full sm:row-start-1 sm:row-end-4 row-start-2 row-end-4 col-start-1 sm:col-start-2">
         <Switch>
           <Routes />
         </Switch>

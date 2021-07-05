@@ -15,7 +15,7 @@ function SelectProject({ projectData, register }: ISelectProject): JSX.Element {
       </label>
       <select
         {...register('project', { value: projectData?.[0]?.id || '' })}
-        className="focus:outline-none text-black dark:text-gray-300 text-sm bg-white dark:bg-black border-b pt-3 pb-2 border-black dark:border-white"
+        className="focus:outline-none text-black dark:text-gray-300 text-sm bg-white dark:bg-component border-b pt-3 pb-2 border-black dark:border-white"
       >
         {projectData?.map((project) => {
           return (

@@ -21,15 +21,15 @@ function Companies(): JSX.Element {
 
   return (
     <div className="text-black dark:text-white">
-      <div className="py-5 px-5 text-lg font-bold flex justify-between items-center border-black dark:border-white dark:bg-black bg-white sm:sticky sm:top-0 ">
-        <CardTitle>Clients</CardTitle>
+      <div className="py-4 px-5 text-lg font-bold flex justify-between items-center bg-white dark:bg-component shadow-inputShadow sm:sticky sm:top-0 ">
+        <CardTitle>Entreprises</CardTitle>
 
-        <Link to="/clients" className="p-2 bg-blue rounded-md text-xs font-light">
+        <Link to="/companies" className="p-2 text-white bg-customGreen rounded text-xs font-light shadow-buttonShadow">
           Tous les clients
         </Link>
       </div>
 
-      <div className="h-full mx-4">
+      <div className="h-full mt-5 mx-4">
         {data?.map((company: Company, index) => (
           <CompanyPreview key={company.id} company={company} isFirstElement={index === 0} />
         ))}
