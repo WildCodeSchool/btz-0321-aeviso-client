@@ -7,12 +7,18 @@ import { useHistory } from 'react-router-dom';
 import SelectCompany from './SelectCompany';
 import SelectProject from './SelectProject';
 import SelectDate from './SelectDate';
+import { RootState } from '../../../assets/redux/store';
+import { connect } from 'react-redux';
 
-function ExportRecords(): JSX.Element {
+function ExportRecords({ user }: { user: UserReduxState }): JSX.Element {
   const { register, handleSubmit, watch } = useForm();
   const history = useHistory();
+  let companySelect = watch('company');
 
-  const companySelect = watch('company');
+  if (user.role === 'ADMIN') {
+    companySelect = user.companyId;
+  }
+  console.log(companySelect);
 
   const {
     isLoading: companiesIsLoading,
@@ -66,4 +72,8 @@ function ExportRecords(): JSX.Element {
   );
 }
 
-export default ExportRecords;
+const mapStateToProps = (state: RootState) => {
+  return { user: state.userReducer.user };
+};
+
+export default connect(mapStateToProps)(ExportRecords);
