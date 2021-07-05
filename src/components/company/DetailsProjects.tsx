@@ -1,12 +1,13 @@
 import React from 'react';
 import { useQuery } from 'react-query';
-import { useParams } from 'react-router-dom';
+import { useHistory, useParams } from 'react-router-dom';
 import { AxiosError } from 'axios';
 import { project } from '../../API/requests';
 import Spinner from '../Spinner';
-import InformationsCompany from './InformationsCompany';
+import { Link } from 'react-router-dom';
 
 function DetailsProjects(): JSX.Element {
+  const history = useHistory();
   const { id } = useParams<{ id: string }>();
 
   const { isLoading, error, data } = useQuery<Project, AxiosError>(['projects', id], () => project.getOne(id));
@@ -30,11 +31,16 @@ function DetailsProjects(): JSX.Element {
           <div className="flex justify-around p-2 items-center">
             <p className="text-lg">{data?.name}</p>
             <div className=" flex justify-between items-stretch p-2">
-              <button className="border p-2 mr-2 bg-green">Modifier les informations</button>
-              <button className="border p-2 ml-2 bg-red">Supprimer</button>
+              <button onClick={history.goBack} className="border p-2 ml-2 bg-red">
+                Retour
+              </button>
             </div>
           </div>
-          <p className="text-lg pl-5">Informations</p>
+          <div className=" flex justify-between items-stretch p-2">
+            <p className="text-lg pl-5">Informations</p>
+            <button className="border p-2 mr-2 bg-green">Modifier les informations</button>
+          </div>
+          <p className="text-m pl-5">Total d'heures RD déclarées : </p>
           <div className="p-5 divide-y">
             <p>Statut Juridique : {data?.taxation}</p>
             <p>Description:</p>
