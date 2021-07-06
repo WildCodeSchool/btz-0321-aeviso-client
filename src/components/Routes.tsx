@@ -37,6 +37,7 @@ function Routes(): JSX.Element {
   if (user?.role === 'SUPERADMIN') {
     return (
       <>
+        <Route exact path="/home" component={HomePage} />
         <Route exact path="/aeviso" component={SuperAdmin} />
         <Route exact path="/clients" component={ListsCompanies} />
         <Route exact path="/records/export/companies/:companyId/projects/:projectId" component={FormResult} />
