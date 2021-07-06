@@ -1,6 +1,7 @@
 import React from 'react';
 import { Route } from 'react-router-dom';
 import HomePage from '../views/HomePage';
+import Logout from '../components/navigation/Logout';
 import SuperAdmin from './home/SuperAdmin';
 import ExportRecords from './records/Exporter/ExportRecords';
 import ListsCompanies from './companies/ListsCompanies';
@@ -11,6 +12,7 @@ function Routes(): JSX.Element {
     <>
       <Route exact path="/aeviso" component={SuperAdmin} />
       <Route exact path="/home" component={HomePage} />
+      <Route exact path="/logout" component={Logout} />
       <Route exact path="/clients" component={ListsCompanies} />
       <Route exact path="/records/export/companies/:companyId/projects/:projectId" component={FormResult} />
       <Route exact path="/records/export" component={ExportRecords} />
