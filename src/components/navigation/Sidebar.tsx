@@ -25,6 +25,7 @@ function SideBar({ sideBarClass, setSideBarClass }: ISideBarProps): JSX.Element 
     );
   };
   const { user, dispatchLogout } = useUserFromStore();
+
   const history = useHistory();
   const handleLogout = () => {
     dispatchLogout();

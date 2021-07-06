@@ -4,11 +4,13 @@ import queryClient from './API/query-client';
 import { BrowserRouter as Router } from 'react-router-dom';
 import Layout from './views/Layout';
 import { ReactQueryDevtools } from 'react-query/devtools';
+import { useDarkModeFromStore } from './store/darkmode.slice';
 
 function App(): JSX.Element {
+  const { darkMode } = useDarkModeFromStore();
   return (
-    <div>
-      <div className="container m-auto dark:bg-mainBg">
+    <div className={`${darkMode.active ? 'bg-mainBg dark' : 'bg-whiteGray'}`}>
+      <div className="container m-auto">
         <QueryClientProvider client={queryClient}>
           <Router>
             <Layout />

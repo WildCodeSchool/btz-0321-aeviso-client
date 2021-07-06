@@ -2,8 +2,12 @@ import { configureStore } from '@reduxjs/toolkit';
 
 import statsReducer from './stats.slice';
 import userReducer from './user.slice';
+import darkmodeReducer from './darkmode.slice';
 
-export const store = configureStore({ reducer: { user: userReducer, stats: statsReducer }, devTools: true });
+export const store = configureStore({
+  reducer: { user: userReducer, stats: statsReducer, darkMode: darkmodeReducer },
+  devTools: true,
+});
 
 // Redux dependencies types
 
