@@ -2,7 +2,6 @@ import React from 'react';
 import { useQuery } from 'react-query';
 import { AxiosError } from 'axios';
 import { companies } from '../../API/requests';
-
 import CardTitle from '../CardTitle';
 import { Link } from 'react-router-dom';
 import CompanyPreview from './CompanyPreview';

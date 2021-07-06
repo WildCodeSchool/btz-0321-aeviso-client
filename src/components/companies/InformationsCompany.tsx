@@ -23,28 +23,35 @@ function InformationsCompany(): JSX.Element {
   }
 
   return (
-    <>
-      <div className="flex justify-around p-2 items-center">
-        <p className="text-lg">Informations Clients</p>
+    <div className="text-black dark:text-white">
+      <div className="py-2 px-2 text-lg font-bold flex justify-between items-center bg-white dark:bg-component shadow-inputShadow sm:sticky sm:top-0 ">
+        <p className="text-xl mr-2">Informations Clients</p>
         <div className=" flex justify-between items-stretch p-2">
-          <button className="border p-2 mr-2 bg-green-600">Modifier</button>
-          <button className="border p-2 ml-2 bg-red-400">Supprimer</button>
+          <button className="rounded-sm h-9 text-white shadow-buttonShadow px-4 py-1 mr-3 bg-customGreen">
+            Modifier
+          </button>
+          <button className="rounded-sm h-9 text-white shadow-buttonShadow px-4 py-1 bg-customRed">Supprimer</button>
         </div>
       </div>
       <div>
         {data?.map((data) => (
-          <div key={data.id} className="px-10">
-            <p className="border-b">Administrateur</p>
-            <div className="flex mb-3">
-              <p>{data.firstName}</p>
-              <p>{data.lastName}</p>
+          <div key={data.id} className="mt-5 mx-4">
+            <div className="mb-3 border-b pb-2">
+              <p className="font-bold text-base">Administrateur</p>
+              <p className="text-sm font-thin">
+                {data.firstName} {data.lastName}
+              </p>
             </div>
-            <p className="border-b">Contact</p>
-            <a href={`mailto: ${data.email}`}>Envoyer un email: {data.email}</a>
+            <div className="border-b pb-2 mt-5">
+              <p className="font-bold text-base">Contact</p>
+              <a className="text-sm font-thin" href={`mailto: ${data.email}`}>
+                Envoyer un email: {data.email}
+              </a>
+            </div>
           </div>
         ))}
       </div>
-    </>
+    </div>
   );
 }
 
