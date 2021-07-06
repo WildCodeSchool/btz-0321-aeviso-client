@@ -5,9 +5,9 @@ import { BrowserRouter as Router } from 'react-router-dom';
 import Layout from './views/Layout';
 import { ReactQueryDevtools } from 'react-query/devtools';
 
-function App({ isDarkMode }: { isDarkMode: boolean }): JSX.Element {
+function App(): JSX.Element {
   return (
-    <div className={`${isDarkMode ? 'bg-mainBg dark' : 'bg-whiteGray'}`}>
+    <div>
       <div className="container m-auto dark:bg-mainBg">
         <QueryClientProvider client={queryClient}>
           <Router>
