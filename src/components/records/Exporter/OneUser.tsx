@@ -2,6 +2,7 @@ import { AxiosError } from 'axios';
 import React, { useState } from 'react';
 import { useQuery } from 'react-query';
 import { jobs, project } from '../../../API/requests';
+import { useStats } from '../../../store/stats.slice';
 import Spinner from '../../Spinner';
 
 interface IOneUser {
@@ -19,14 +20,11 @@ function OneUser({ firstName, lastName, projectId, userId, job, start, end, week
   const [jobName, setJobName] = useState<Job>();
   const [records, setRecords] = useState<IRecord[]>([]);
 
-  const getTotalHours = (basis: string, number: number) => {
-    if (basis === 'h35') {
-      return number * 3.5;
-    }
-    if (basis === 'h39') {
-      return number * 4;
-    }
+  const getTotalHours = (basis: 'h35' | 'h39', number: number): number => {
+    return basis === 'h35' ? number * 3.5 : number * 4;
   };
+
+  const { dispatchAddUser } = useStats();
 
   const { isLoading: recordIsLoading, error: recordIsError } = useQuery<IRecord[], AxiosError>(
     ['records', userId],
@@ -34,6 +32,7 @@ function OneUser({ firstName, lastName, projectId, userId, job, start, end, week
     {
       onSuccess: (record) => {
         setRecords(record);
+        dispatchAddUser({ name: `${firstName} ${lastName}`, total: getTotalHours(weeklyBasis, record.length) });
       },
     }
   );

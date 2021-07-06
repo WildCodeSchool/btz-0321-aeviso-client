@@ -1,10 +1,9 @@
 import { createSlice, PayloadAction } from '@reduxjs/toolkit';
-import { useSelector } from 'react-redux';
+import { useDispatch, useSelector } from 'react-redux';
 import { RootState } from '.';
 
 type UserSelection = {
   name: string;
-  email: string;
   total: number;
 };
 
@@ -23,14 +22,24 @@ export const statsSlice = createSlice({
     addUser: (state, action: PayloadAction<UserSelection>) => {
       state.selectedUsers.push(action.payload);
     },
+    reset: () => initialState,
   },
 });
 
-export const { addUser } = statsSlice.actions;
+export const { addUser, reset } = statsSlice.actions;
 
-export const useStats = (): UserSelection[] => {
+interface ReturnUseState {
+  users: UserSelection[];
+  dispatchAddUser: (payload: UserSelection) => any; // TODO: find the good type
+  dispatchReset: () => any;
+}
+
+export const useStats = (): ReturnUseState => {
   const users = useSelector((state: RootState) => state.stats.selectedUsers);
-  return users;
+  const dispatch = useDispatch();
+  const dispatchReset = () => dispatch(reset());
+  const dispatchAddUser = (payload: UserSelection) => dispatch(addUser(payload));
+  return { users, dispatchAddUser, dispatchReset };
 };
 
 export default statsSlice.reducer;
