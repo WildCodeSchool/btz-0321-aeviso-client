@@ -18,7 +18,6 @@ function Modal({ title, buttons, children }: Iprops): JSX.Element {
   const [isOpen, setIsOpen] = useState<boolean>(true);
 
   const handleClose = (): void => setIsOpen(false);
-
   return (
     <Dialog open={isOpen} onClose={handleClose} className="flex justify-center items-center fixed inset-0">
       <Dialog.Overlay className="fixed inset-0 z-50 bg-white dark:bg-component bg-opacity-80" />
