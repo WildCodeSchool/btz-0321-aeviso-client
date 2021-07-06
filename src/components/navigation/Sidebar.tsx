@@ -62,7 +62,7 @@ function SideBar({ sideBarClass, setSideBarClass }: ISideBarProps): JSX.Element 
       </div>
       <div className=" flex flex-col w-full h-40 justify-end">
         <h2 className="text-base mr-3 text-right mb-2">{today()}</h2>
-        <div className="flex flex-row justify-between p-5 border-t rounded-lg border-black dark:border-componentBorder">
+        <div className="flex flex-row justify-between p-5 border-t  border-black dark:border-componentBorder">
           <div className="">
             <h2 className="text-xl font-bold">
               {user.firstName} {user.lastName}
