@@ -33,7 +33,7 @@ function CompanyDetails({ company }: IProps): JSX.Element {
 
   return (
     <div>
-      <div className="flex justify-between bg-red-300">
+      <div className="flex justify-between">
         <Link to={`/companies/${company.id}`}>
           <p>{company.name}</p>
           <p>

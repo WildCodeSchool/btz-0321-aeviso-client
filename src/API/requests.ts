@@ -15,7 +15,7 @@ export const user = {
   },
 
   update: ({ user, id }: { user: User; id?: string }): Promise<User> => {
-    if (!id) throw new Error("Id can't be undefined");
+    if (!id) throw new Error("It can't be undefined");
     return axios.put(`${API_URL}/users/${id}`, user).then((res) => res.data);
   },
 };
@@ -48,7 +48,9 @@ export const project = {
     axios.post(`${API_URL}/projects/`, data).then((res) => res.data),
 
   getUsers: (projectId: string): Promise<IResultUser[]> =>
-    axios.get(`${API_URL}/projects/${projectId}/users`).then((res) => res.data),
+    axios
+      .get(`${API_URL}/projects/${projectId}/users${projectId ? `?projectId=${projectId}` : ''}`)
+      .then((res) => res.data),
 
   getRecords: (projectId: string, userId: string, start: string, end: string): Promise<IRecord[]> =>
     axios

@@ -27,8 +27,8 @@ function InformationsCompany(): JSX.Element {
       <div className="flex justify-around p-2 items-center">
         <p className="text-lg">Informations Clients</p>
         <div className=" flex justify-between items-stretch p-2">
-          <button className="border p-2 mr-2 bg-green">Modifier</button>
-          <button className="border p-2 ml-2 bg-red">Supprimer</button>
+          <button className="border p-2 mr-2 bg-green-600">Modifier</button>
+          <button className="border p-2 ml-2 bg-red-400">Supprimer</button>
         </div>
       </div>
       <div>

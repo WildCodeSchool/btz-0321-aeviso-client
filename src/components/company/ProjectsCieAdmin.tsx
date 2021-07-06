@@ -37,8 +37,6 @@ function ProjectsCieAdmin(): JSX.Element {
       {data
         ?.filter((project) => project.name.toLowerCase().includes(searchInput?.toLowerCase()))
         ?.map((project) => {
-          console.log(project);
-
           return (
             <div key={project.id} className="flex-row justify-around py-3 px-5">
               <Link to={`/projects/${project.id}`}>
