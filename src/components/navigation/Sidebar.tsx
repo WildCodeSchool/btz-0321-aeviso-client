@@ -1,4 +1,4 @@
-import React, { Dispatch, SetStateAction, useState } from 'react';
+import React, { Dispatch, SetStateAction } from 'react';
 import Home from '../../../media/icons/Home.svg';
 import report from '../../../media/icons/folder.svg';
 import settings from '../../../media/icons/Settings.svg';
@@ -16,12 +16,9 @@ interface ISideBarProps {
   sideBarClass: string;
   setIsSidebarVisible: Dispatch<SetStateAction<boolean>>;
   setSideBarClass: Dispatch<SetStateAction<string>>;
-  setIsDarkMode: Dispatch<SetStateAction<boolean>>;
-  isDarkMode: boolean;
 }
 
-function SideBar({ isDarkMode, setIsDarkMode, sideBarClass, setSideBarClass }: ISideBarProps): JSX.Element {
-  const [toggleClass, setToggleClass] = useState('bg-component focus:outline-none h-7 mr-2 rounded-full w-7');
+function SideBar({ sideBarClass, setSideBarClass }: ISideBarProps): JSX.Element {
   const handleClose = () => {
     setSideBarClass(
       'flex flex-col border-2 dark:border-componentBorder dark:bg-component bg-white h-full shadow-mainShadow rounded-xl text-black dark:text-white font-roboto justify-between invisible sm:visible'
@@ -34,15 +31,15 @@ function SideBar({ isDarkMode, setIsDarkMode, sideBarClass, setSideBarClass }: I
     history.push('/home');
   };
 
-  const handleDarkMode = () => {
-    if (isDarkMode) {
-      setIsDarkMode(false);
-      setToggleClass('bg-component focus:outline-none mr-4 h-7 rounded-full w-7');
-    } else {
-      setIsDarkMode(true);
-      setToggleClass('bg-white focus:outline-none h-6 ml-6 rounded-full w-6');
-    }
-  };
+  // const handleDarkMode = () => {
+  //   if (isDarkMode) {
+  //     setIsDarkMode(false);
+  //     setToggleClass('bg-component focus:outline-none mr-4 h-7 rounded-full w-7');
+  //   } else {
+  //     setIsDarkMode(true);
+  //     setToggleClass('bg-white focus:outline-none h-6 ml-6 rounded-full w-6');
+  //   }
+  // };
 
   return (
     <div className={sideBarClass}>
@@ -93,7 +90,7 @@ function SideBar({ isDarkMode, setIsDarkMode, sideBarClass, setSideBarClass }: I
             </button>
           </div>
           <div className="flex h-full items-end">
-            <Togglebutton handleDarkMode={handleDarkMode} toggleClass={toggleClass} />
+            <Togglebutton />
           </div>
         </div>
       </div>
