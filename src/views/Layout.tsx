@@ -1,5 +1,4 @@
 import React, { useState } from 'react';
-import store, { actions } from '../assets/redux/store';
 import { Switch, useHistory } from 'react-router-dom';
 
 import Head from '../components/Head';
@@ -8,6 +7,7 @@ import { useQuery } from 'react-query';
 import { auth } from '../API/requests';
 import Sidebar from '../components/navigation/Sidebar';
 import Spinner from '../components/Spinner';
+import { useUserFromStore } from '../store/user.slice';
 
 function Layout(): JSX.Element {
   const [isSidebarVisible, setIsSidebarVisible] = useState<boolean>(true);
@@ -17,21 +17,13 @@ function Layout(): JSX.Element {
   );
 
   const history = useHistory();
+  const { dispatchLogin } = useUserFromStore();
 
   const { isLoading } = useQuery<{ message: string; user: User }>('userAuthenticated', () => auth.me(), {
     onSuccess: (data) => {
       const { user } = data;
-      store.dispatch({
-        type: actions.LOGIN,
-        payload: {
-          id: user.id,
-          firstName: user.firstName,
-          lastName: user.lastName,
-          email: user.email,
-          role: user.role,
-          logged: true,
-        },
-      });
+      dispatchLogin(user);
+
       history.push('/aeviso');
     },
     onError: () => history.push('/home'),

@@ -83,17 +83,3 @@ interface INavbar {
   Réglages: string;
   NouveauRapport: string;
 }
-
-interface IReduxAction {
-  type: string;
-  payload: UserReduxState;
-}
-
-interface UserReduxState {
-  id?: string;
-  firstName?: string;
-  lastName?: string;
-  email?: string;
-  role?: 'USER' | 'ADMIN' | 'SUPERADMIN' | null;
-  logged: boolean;
-}

@@ -17,6 +17,7 @@ module.exports = {
         componentBorder: '#111111',
         customGreen: '#58926F',
         customRed: '#976C6C',
+        customBlue: '#5A73A3',
         component: '#111111',
       },
       boxShadow: {
