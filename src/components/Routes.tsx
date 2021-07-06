@@ -6,6 +6,7 @@ import Company from './company/Company';
 import Professions from './professions/Professions';
 import ProjectList from './project/ProjectList';
 import HomePage from '../views/HomePage';
+import Logout from '../components/navigation/Logout';
 import SuperAdmin from './home/SuperAdmin';
 import ExportRecords from './records/Exporter/ExportRecords';
 import ListsCompanies from './companies/ListsCompanies';
@@ -24,6 +25,7 @@ function Routes(): JSX.Element {
       <Route exact path="/users" component={Users} />
       <Route path="/users/:id" component={User} />
       <Route path="/professions" component={Professions} />
+      <Route exact path="/logout" component={Logout} />
       <Route exact path="/records/export/companies/:companyId/projects/:projectId" component={FormResult} />
       <Route exact path="/records/export" component={ExportRecords} />
     </>
