@@ -75,5 +75,4 @@ function OneUser({ firstName, lastName, projectId, userId, job, start, end, week
     </div>
   );
 }
-
 export default OneUser;

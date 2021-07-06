@@ -52,7 +52,7 @@ function ProjectsCieAdmin(): JSX.Element {
                 <p className="font-bold" key={project.id}>
                   {project.name} / {project.code}
                 </p>
-                <p className="text-xs font-thin">Total demi journées déclarées: </p>
+                <p className="text-xs font-thin">{project.description} || Total demi journées déclarées:</p>
               </Link>
             </div>
           );
