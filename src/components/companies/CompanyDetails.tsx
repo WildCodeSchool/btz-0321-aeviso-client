@@ -3,10 +3,10 @@ import { useQuery } from 'react-query';
 import { AxiosError } from 'axios';
 import { companies } from '../../API/requests';
 import AdminJob from './AdminJob';
-import Plus from '../../../media/icons/Plus.svg';
 import { Menu } from '@headlessui/react';
 import Spinner from '../Spinner';
 import { Link } from 'react-router-dom';
+import more from '../../../media/icons/more.svg';
 
 interface IProps {
   company: Company;
@@ -33,27 +33,29 @@ function CompanyDetails({ company }: IProps): JSX.Element {
 
   return (
     <div>
-      <div className="flex justify-between">
+      <div className="text-black dark:text-white flex justify-between mt-6 border-b border-gray-400">
         <Link to={`/clients/${company.id}`}>
-          <p>{company.name}</p>
-          <p>
+          <p className="font-bold text-base">{company.name}</p>
+          <p className="font-thin text-xs mr-2">
             {user ? `${user.role} - ${user.firstName} ${user.lastName}` : 'Aucun admin enregistré'}
             {user?.jobId && ' - '}
             {user?.jobId && <AdminJob jobId={user.jobId} />}
           </p>
         </Link>
         <Menu>
-          <div className="relative">
+          <div className="">
             <Menu.Button>
-              <img src={Plus} alt="Icône plus" className="ml-4" />
+              <button className="focus:outline-none">
+                <img src={more} alt="more" />
+              </button>
             </Menu.Button>
-            <Menu.Items className="absolute top-6 right-0 z-10 px-8 bg-gray-600 rounded-md">
+            <Menu.Items className="absolute right-10 sm:right-28 flex flex-col justify-center w-72 shadow-buttonShadow px-2 py-4 text-black dark:text-white z-10  bg-whiteGray dark:bg-mainBg rounded-md">
               <Menu.Item>
-                <p className="py-2">Modifier</p>
+                <p className=" border-b px-4 border-gray-400">Modifier</p>
               </Menu.Item>
 
               <Menu.Item>
-                <p className="py-2">Supprimer</p>
+                <p className="pt-4 border-b border-gray-400 px-4">Supprimer</p>
               </Menu.Item>
             </Menu.Items>
           </div>
