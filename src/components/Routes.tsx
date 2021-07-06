@@ -9,13 +9,14 @@ import SuperAdmin from './home/SuperAdmin';
 import ExportRecords from './records/Exporter/ExportRecords';
 import ListsCompanies from './companies/ListsCompanies';
 import FormResult from './records/Exporter/FormResult';
-import { RootState } from '../assets/redux/store';
+import { RootState } from '../store';
 import { connect } from 'react-redux';
 import Admin from './home/Admin';
 
 import DetailsProjects from './company/DetailsProjects';
+import { UserState } from '../store/user.slice';
 
-function Routes({ user }: { user?: UserReduxState }): JSX.Element {
+function Routes({ user }: { user?: UserState }): JSX.Element {
   if (user?.role === 'ADMIN') {
     return (
       <>
@@ -53,7 +54,7 @@ function Routes({ user }: { user?: UserReduxState }): JSX.Element {
 }
 
 const mapStateToProps = (state: RootState) => {
-  return { user: state.userReducer.user };
+  return { user: state.user };
 };
 
 export default connect(mapStateToProps)(Routes);

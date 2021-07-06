@@ -4,11 +4,8 @@ import queryClient from './API/query-client';
 import { BrowserRouter as Router } from 'react-router-dom';
 import Layout from './views/Layout';
 import { ReactQueryDevtools } from 'react-query/devtools';
-import { connect } from 'react-redux';
-import { RootState } from './assets/redux/store';
 
 function App({ isDarkMode }: { isDarkMode: boolean }): JSX.Element {
-  console.log(isDarkMode);
   return (
     <div className={`${isDarkMode ? 'bg-mainBg dark' : 'bg-whiteGray'}`}>
       <div className="container m-auto dark:bg-mainBg">
@@ -23,8 +20,4 @@ function App({ isDarkMode }: { isDarkMode: boolean }): JSX.Element {
   );
 }
 
-const mapStateToProps = (state: RootState) => {
-  return { isDarkMode: state.darkModeReducer.darkMode };
-};
-
-export default connect(mapStateToProps)(App);
+export default App;
