@@ -3,7 +3,7 @@ import React, { useState } from 'react';
 import { useQuery } from 'react-query';
 import { Link } from 'react-router-dom';
 import { user } from '../../../API/requests';
-import getModal from '../../../Hook/useModal';
+import getModal from '../../../hooks/useModal';
 import Modal from '../../Modal';
 import Spinner from '../../Spinner';
 import UserForm from './UserForm';

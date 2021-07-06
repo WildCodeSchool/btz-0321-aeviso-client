@@ -1,28 +1,26 @@
-import React, { Dispatch, SetStateAction, useState } from 'react';
+import React, { Dispatch, SetStateAction } from 'react';
 import { connect } from 'react-redux';
 import Home from '../../../media/icons/Home.svg';
 import report from '../../../media/icons/folder.svg';
 import settings from '../../../media/icons/Settings.svg';
 import Cross from '../../../media/icons/Cross.svg';
 import newReport from '../../../media/icons/NouveauRapport.svg';
-import SUPERADMIN from './SUPERADMIN';
-import ADMIN from './ADMIN';
-import USER from './USER';
+import SuperAdmin from './Superadmin';
+import Admin from './Admin';
+import User from './User';
 import store, { actions, RootState } from '../../assets/redux/store';
 import { useHistory } from 'react-router-dom';
 import Togglebutton from '../../assets/ToggleButton';
 import { today } from '../../assets/date';
 
-interface sideBarProps {
+interface ISideBarProps {
   sideBarClass: string;
   setIsSidebarVisible: Dispatch<SetStateAction<boolean>>;
   setSideBarClass: Dispatch<SetStateAction<string>>;
   user: UserReduxState;
-  isDarkMode: boolean;
 }
 
-function SideBar({ isDarkMode, sideBarClass, setSideBarClass, user }: sideBarProps): JSX.Element {
-  const [toggleClass, setToggleClass] = useState('bg-white focus:outline-none h-7 mr-2 rounded-full w-7');
+function SideBar({ sideBarClass, setSideBarClass, user }: ISideBarProps): JSX.Element {
   const handleClose = () => {
     setSideBarClass(
       'flex flex-col border-2 dark:border-componentBorder dark:bg-component bg-white h-full shadow-mainShadow rounded-xl text-black dark:text-white font-roboto justify-between invisible sm:visible'
@@ -44,20 +42,6 @@ function SideBar({ isDarkMode, sideBarClass, setSideBarClass, user }: sideBarPro
     history.push('/home');
   };
 
-  const handleDarkMode = () => {
-    if (isDarkMode) {
-      store.dispatch({
-        type: actions.TOGGLEDARKMODE,
-      });
-      setToggleClass('bg-white focus:outline-none mr-4 h-7 rounded-full w-7');
-    } else {
-      store.dispatch({
-        type: actions.TOGGLEDARKMODE,
-      });
-      setToggleClass('bg-component focus:outline-none h-6 ml-6 rounded-full w-6');
-    }
-  };
-
   return (
     <div className={sideBarClass}>
       <div className="py-8 px-8 ">
@@ -77,17 +61,17 @@ function SideBar({ isDarkMode, sideBarClass, setSideBarClass, user }: sideBarPro
           </div>
         </div>
         {user.role === 'SUPERADMIN' ? (
-          <SUPERADMIN handleClose={handleClose} Home={Home} report={report} settings={settings} />
+          <SuperAdmin handleClose={handleClose} Home={Home} report={report} settings={settings} />
         ) : (
           ''
         )}
         {user.role === 'ADMIN' ? (
-          <ADMIN Home={Home} report={report} settings={settings} newReport={newReport} handleClose={handleClose} />
+          <Admin Home={Home} report={report} settings={settings} newReport={newReport} handleClose={handleClose} />
         ) : (
           ''
         )}
         {user.role === 'USER' ? (
-          <USER handleClose={handleClose} newReport={newReport} Home={Home} report={report} settings={settings} />
+          <User handleClose={handleClose} newReport={newReport} Home={Home} report={report} settings={settings} />
         ) : (
           ''
         )}
@@ -107,7 +91,7 @@ function SideBar({ isDarkMode, sideBarClass, setSideBarClass, user }: sideBarPro
             </button>
           </div>
           <div className="flex h-full items-end">
-            <Togglebutton handleDarkMode={handleDarkMode} toggleClass={toggleClass} />
+            <Togglebutton />
           </div>
         </div>
       </div>

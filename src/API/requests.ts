@@ -1,5 +1,5 @@
 import axios from 'axios';
-const API_URL = import.meta.env.VITE_API_URL || 'http://localhost:5000';
+const API_URL = import.meta.env.VITE_API_URL || 'http://localhost:5000/api/v1';
 
 axios.defaults.withCredentials = true;
 
@@ -15,7 +15,7 @@ export const user = {
   },
 
   update: ({ user, id }: { user: User; id?: string }): Promise<User> => {
-    if (!id) throw new Error("Id can't be undefined");
+    if (!id) throw new Error("It can't be undefined");
     return axios.put(`${API_URL}/users/${id}`, user).then((res) => res.data);
   },
 };
@@ -48,7 +48,9 @@ export const project = {
     axios.post(`${API_URL}/projects/`, data).then((res) => res.data),
 
   getUsers: (projectId: string): Promise<IResultUser[]> =>
-    axios.get(`${API_URL}/projects/${projectId}/users`).then((res) => res.data),
+    axios
+      .get(`${API_URL}/projects/${projectId}/users${projectId ? `?projectId=${projectId}` : ''}`)
+      .then((res) => res.data),
 
   getRecords: (projectId: string, userId: string, start: string, end: string): Promise<IRecord[]> =>
     axios
@@ -95,4 +97,6 @@ export const auth = {
     axios.post(`${API_URL}/auth/login`, user).then((res) => res.data),
 
   me: (): Promise<{ message: string; user: User }> => axios.get(`${API_URL}/auth/me`).then((res) => res.data),
+
+  logout: (): Promise<{ message: string }> => axios.get(`${API_URL}/auth/logout`),
 };

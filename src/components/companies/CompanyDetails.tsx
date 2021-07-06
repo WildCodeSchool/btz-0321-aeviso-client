@@ -3,8 +3,10 @@ import { useQuery } from 'react-query';
 import { AxiosError } from 'axios';
 import { companies } from '../../API/requests';
 import AdminJob from './AdminJob';
-import Points from '../../../media/icons/points.svg';
+import Plus from '../../../media/icons/Plus.svg';
 import { Menu } from '@headlessui/react';
+import Spinner from '../Spinner';
+import { Link } from 'react-router-dom';
 
 interface IProps {
   company: Company;
@@ -21,41 +23,42 @@ function CompanyDetails({ company }: IProps): JSX.Element {
     }
   );
 
-  if (isLoading) return <p>Loading ...</p>;
+  if (isLoading) {
+    return <Spinner />;
+  }
 
-  if (error)
-    return (
-      <p>
-        error : {error.message} {error.code}
-      </p>
-    );
+  if (error) {
+    return <p className="text-black dark:text-white">An error occurred: {error.message}</p>;
+  }
 
   return (
-    <div className="flex pb-2 flex-row w-full justify-between mt-7 border-b border-black dark:border-white">
-      <div className="">
-        <p className="text-xl font-bold">{company.name}</p>
-        <p className="text-sm mt-1 text-gray-400">
-          {user ? `${user.role} - ${user.firstName} ${user.lastName}` : 'Aucun admin enregistré'}
-          {user?.jobId && ' - '}
-          {user?.jobId && <AdminJob jobId={user.jobId} />}
-        </p>
-      </div>
-      <Menu>
-        <div className="relative">
-          <Menu.Button className="focus:outline-none">
-            <img src={Points} alt="Icône plus" className="ml-4 focus:outline-none" />
-          </Menu.Button>
-          <Menu.Items className="absolute w-96 h-24 top-6 right-0 z-10 px-4 bg-component shadow-buttonShadow border border-componentBorder  rounded-md">
-            <Menu.Item>
-              <p className="py-1 border-b mt-2 border-white">Modifier</p>
-            </Menu.Item>
+    <div>
+      <div className="flex justify-between">
+        <Link to={`/companies/${company.id}`}>
+          <p>{company.name}</p>
+          <p>
+            {user ? `${user.role} - ${user.firstName} ${user.lastName}` : 'Aucun admin enregistré'}
+            {user?.jobId && ' - '}
+            {user?.jobId && <AdminJob jobId={user.jobId} />}
+          </p>
+        </Link>
+        <Menu>
+          <div className="relative">
+            <Menu.Button>
+              <img src={Plus} alt="Icône plus" className="ml-4" />
+            </Menu.Button>
+            <Menu.Items className="absolute top-6 right-0 z-10 px-8 bg-gray-600 rounded-md">
+              <Menu.Item>
+                <p className="py-2">Modifier</p>
+              </Menu.Item>
 
-            <Menu.Item>
-              <p className="py-1 mt-2 border-b border-white">Supprimer</p>
-            </Menu.Item>
-          </Menu.Items>
-        </div>
-      </Menu>
+              <Menu.Item>
+                <p className="py-2">Supprimer</p>
+              </Menu.Item>
+            </Menu.Items>
+          </div>
+        </Menu>
+      </div>
     </div>
   );
 }
