@@ -35,7 +35,13 @@ function ProjectsCieAdmin(): JSX.Element {
     <div>
       <SearchInput register={register} name="search" />
       {data
-        ?.filter((project) => project.name.toLowerCase().includes(searchInput?.toLowerCase()))
+        ?.filter((project) => {
+          const included = project.name.toLowerCase().includes(searchInput?.toLowerCase());
+
+          // at first mount searchInput is undefined,
+          // so we use a ternary to ensure we have list at first render
+          return searchInput ? included : true;
+        })
         ?.map((project) => {
           return (
             <div key={project.id} className="flex-row justify-around py-3 px-5">
