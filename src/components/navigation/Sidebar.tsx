@@ -1,5 +1,4 @@
 import React, { Dispatch, SetStateAction, useState } from 'react';
-import { connect } from 'react-redux';
 import Home from '../../../media/icons/Home.svg';
 import report from '../../../media/icons/folder.svg';
 import settings from '../../../media/icons/Settings.svg';
@@ -8,40 +7,30 @@ import newReport from '../../../media/icons/NouveauRapport.svg';
 import SuperAdmin from './Superadmin';
 import Admin from './Admin';
 import User from './User';
-import store, { actions, RootState } from '../../assets/redux/store';
 import { useHistory } from 'react-router-dom';
 import Togglebutton from '../../assets/ToggleButton';
 import { today } from '../../assets/date';
+import { useUserFromStore } from '../../store/user.slice';
 
 interface ISideBarProps {
   sideBarClass: string;
   setIsSidebarVisible: Dispatch<SetStateAction<boolean>>;
   setSideBarClass: Dispatch<SetStateAction<string>>;
-  user: UserReduxState;
   setIsDarkMode: Dispatch<SetStateAction<boolean>>;
   isDarkMode: boolean;
 }
 
-function SideBar({ isDarkMode, setIsDarkMode, sideBarClass, setSideBarClass, user }: ISideBarProps): JSX.Element {
+function SideBar({ isDarkMode, setIsDarkMode, sideBarClass, setSideBarClass }: ISideBarProps): JSX.Element {
   const [toggleClass, setToggleClass] = useState('bg-component focus:outline-none h-7 mr-2 rounded-full w-7');
   const handleClose = () => {
     setSideBarClass(
       'flex flex-col border-2 dark:border-componentBorder dark:bg-component bg-white h-full shadow-mainShadow rounded-xl text-black dark:text-white font-roboto justify-between invisible sm:visible'
     );
   };
+  const { user, dispatchLogout } = useUserFromStore();
   const history = useHistory();
   const handleLogout = () => {
-    store.dispatch({
-      type: actions.LOGOUT,
-      payload: {
-        id: '',
-        firstName: '',
-        lastName: '',
-        email: '',
-        role: null,
-        logged: false,
-      },
-    });
+    dispatchLogout();
     history.push('/home');
   };
 
@@ -112,8 +101,4 @@ function SideBar({ isDarkMode, setIsDarkMode, sideBarClass, setSideBarClass, use
   );
 }
 
-const mapStateToProps = (state: RootState) => {
-  return { user: state.user };
-};
-
-export default connect(mapStateToProps)(SideBar);
+export default SideBar;

@@ -7,7 +7,7 @@ import Head from '../components/Head';
 import Routes from '../../src/components/Routes';
 import Sidebar from '../components/navigation/Sidebar';
 import Spinner from '../components/Spinner';
-import store, { actions } from '../assets/redux/store';
+import { useUserFromStore } from '../store/user.slice';
 
 function Layout(): JSX.Element {
   const [isDarkMode, setIsDarkMode] = useState<boolean>(false);
@@ -18,21 +18,21 @@ function Layout(): JSX.Element {
   );
 
   const history = useHistory();
+  const { dispatchLogin } = useUserFromStore();
 
   const { isLoading } = useQuery<{ message: string; user: User }>('userAuthenticated', () => auth.me(), {
     onSuccess: (data) => {
       const { user } = data;
-      store.dispatch({
-        type: actions.LOGIN,
-        payload: {
-          id: user.id,
-          firstName: user.firstName,
-          lastName: user.lastName,
-          email: user.email,
-          role: user.role,
-          logged: true,
-        },
+      dispatchLogin({
+        id: user.id,
+        firstName: user.firstName,
+        lastName: user.lastName,
+        email: user.email,
+        role: user.role,
+        companyId: user.companyId,
+        logged: true,
       });
+
       history.push('/aeviso');
     },
     onError: () => history.push('/home'),

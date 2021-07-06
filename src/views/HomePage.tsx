@@ -1,14 +1,14 @@
 import React from 'react';
-import { connect } from 'react-redux';
-import store from '../assets/redux/store';
-import { actions } from '../assets/redux/store';
+import { useDispatch } from 'react-redux';
 import { SubmitHandler, useForm } from 'react-hook-form';
+import { useHistory } from 'react-router';
 import { useMutation } from 'react-query';
+
 import { auth } from '../API/requests';
 import Modal from '../components/Modal';
 import useModal from '../hooks/useModal';
-import { useHistory } from 'react-router';
 import Spinner from '../components/Spinner';
+import { login } from '../store/user.slice';
 
 interface IFormInput {
   email: string;
@@ -20,6 +20,8 @@ function HomePage(): JSX.Element {
   const { register, handleSubmit } = useForm();
   const { isModal, setIsModal, message, setMessage } = useModal();
 
+  const dispatch = useDispatch();
+
   const { mutate, isLoading, isError } = useMutation(auth.login, {
     onError: () => {
       setMessage('Une erreur est survenue');
@@ -29,17 +31,16 @@ function HomePage(): JSX.Element {
       setMessage('Vous êtes bien authentifié');
       setIsModal((prevState) => !prevState);
       const { user } = data;
-      store.dispatch({
-        type: actions.LOGIN,
-        payload: {
+      dispatch(
+        login({
           id: user.id,
           firstName: user.firstName,
           lastName: user.lastName,
           email: user.email,
           role: user.role,
           logged: true,
-        },
-      });
+        })
+      );
     },
   });
 
@@ -99,4 +100,4 @@ function HomePage(): JSX.Element {
   );
 }
 
-export default connect()(HomePage);
+export default HomePage;
