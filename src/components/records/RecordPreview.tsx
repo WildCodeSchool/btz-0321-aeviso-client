@@ -50,11 +50,11 @@ function RecordPreview({ record, isLastElement, isFirstElement }: IProps): JSX.E
   return (
     <div className="mx-3 mb-4 mt-4  sm:mx-5 text-black dark:text-white font-roboto">
       <Link to={`/records/${record.id}`} className="group">
-        <p className={` font-bold text-base ${isFirstElement ? '' : 'font-bold text-sm sm:mt-4'} `}>
+        <p className={` font-bold text-base ${isFirstElement ? '' : 'font-bold text-sm sm:mt-5'} `}>
           {formatDate(new Date(record.date))} - {userData?.firstName} {userData?.lastName} - {companyData?.name}
         </p>
         <p
-          className={`truncate text-sm text-gray-400 ${
+          className={` font-roboto text-gray-400 font-thin text-xs mr-2 ${
             isLastElement ? '' : 'pb-1 border-b border-black dark:border-white'
           }`}
         >
