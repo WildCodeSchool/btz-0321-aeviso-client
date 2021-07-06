@@ -21,18 +21,17 @@ function HomePage(): JSX.Element {
   const { isModal, setIsModal, message, setMessage } = useModal();
   const { dispatchLogin } = useUserFromStore();
 
-  const { mutate, isLoading, isError } = useMutation(auth.login, {
+  const { mutate, isLoading, isError, data } = useMutation(auth.login, {
     onError: () => {
       setMessage('Une erreur est survenue');
       setIsModal((prevState) => !prevState);
     },
-    onSuccess: (data) => {
-      const { user } = data;
-      dispatchLogin(user);
+    onSuccess: () => {
       setMessage('Vous êtes bien authentifié');
       setIsModal((prevState) => !prevState);
     },
   });
+
   const onSubmit: SubmitHandler<IFormInput> = ({ email, password }) => {
     const user = {
       email,
@@ -41,15 +40,20 @@ function HomePage(): JSX.Element {
     mutate(user);
   };
 
+  const handleLogin = () => {
+    if (data) dispatchLogin(data?.user);
+    history.push('/aeviso');
+  };
+
   if (isLoading) return <Spinner />;
   if (isModal)
     return (
       <Modal
         title="Authentification"
         buttons={
-          isError
-            ? [{ text: 'Nouvel essai', handleClick: () => setIsModal((prevState) => !prevState) }]
-            : [{ text: 'Accueil', handleClick: () => history.push('/aeviso') }]
+          !isError && data
+            ? [{ text: 'Accueil', handleClick: () => handleLogin() }]
+            : [{ text: 'Nouvel essai', handleClick: () => setIsModal((prevState) => !prevState) }]
         }
       >
         {message}
