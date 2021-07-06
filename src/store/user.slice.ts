@@ -1,6 +1,6 @@
 import { createSlice, PayloadAction } from '@reduxjs/toolkit';
-import { useSelector } from 'react-redux';
-import { RootState, useAppDispatch } from '.';
+import { useDispatch, useSelector } from 'react-redux';
+import { RootState } from '.';
 
 interface UserState {
   id?: string;
@@ -9,19 +9,27 @@ interface UserState {
   email?: string;
   role?: 'USER' | 'ADMIN' | 'SUPERADMIN' | null;
   companyId?: string;
-  logged: boolean;
 }
 
-const initialState: UserState = {
+interface UserStateWithLogged extends UserState {
+  logged: boolean;
+}
+interface ReturnUseUserFromStore {
+  user: UserState;
+  dispatchLogin: (payload: UserState) => any; // TODO: find the good type
+  dispatchLogout: () => any;
+}
+
+const initialState: UserStateWithLogged = {
   logged: false,
 };
 
 export const userSlice = createSlice({
-  name: 'stats',
+  name: 'user',
   initialState,
   reducers: {
     login: (state, action: PayloadAction<UserState>) => {
-      state = { ...action.payload, logged: true };
+      return { ...action.payload, logged: true };
     },
     logout: () => initialState,
   },
@@ -29,15 +37,9 @@ export const userSlice = createSlice({
 
 export const { login, logout } = userSlice.actions;
 
-interface ReturnUseUserFromStore {
-  user: UserState;
-  dispatchLogin: (payload: UserState) => any; // TODO: find the good type
-  dispatchLogout: () => any;
-}
-
 export const useUserFromStore = (): ReturnUseUserFromStore => {
   const user = useSelector((state: RootState) => state.user);
-  const dispatch = useAppDispatch();
+  const dispatch = useDispatch();
   const dispatchLogin = (payload: UserState) => dispatch(login(payload));
   const dispatchLogout = () => dispatch(logout());
   return { user, dispatchLogin, dispatchLogout };

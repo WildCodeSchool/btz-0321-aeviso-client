@@ -23,15 +23,7 @@ function Layout(): JSX.Element {
   const { isLoading } = useQuery<{ message: string; user: User }>('userAuthenticated', () => auth.me(), {
     onSuccess: (data) => {
       const { user } = data;
-      dispatchLogin({
-        id: user.id,
-        firstName: user.firstName,
-        lastName: user.lastName,
-        email: user.email,
-        role: user.role,
-        companyId: user.companyId,
-        logged: true,
-      });
+      dispatchLogin(user);
 
       history.push('/aeviso');
     },

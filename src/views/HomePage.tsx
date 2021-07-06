@@ -1,5 +1,4 @@
 import React from 'react';
-import { useDispatch } from 'react-redux';
 import { SubmitHandler, useForm } from 'react-hook-form';
 import { useHistory } from 'react-router';
 import { useMutation } from 'react-query';
@@ -8,7 +7,7 @@ import { auth } from '../API/requests';
 import Modal from '../components/Modal';
 import useModal from '../hooks/useModal';
 import Spinner from '../components/Spinner';
-import { login } from '../store/user.slice';
+import { useUserFromStore } from '../store/user.slice';
 
 interface IFormInput {
   email: string;
@@ -19,9 +18,7 @@ function HomePage(): JSX.Element {
   const history = useHistory();
   const { register, handleSubmit } = useForm();
   const { isModal, setIsModal, message, setMessage } = useModal();
-
-  const dispatch = useDispatch();
-
+  const { dispatchLogin } = useUserFromStore();
   const { mutate, isLoading, isError } = useMutation(auth.login, {
     onError: () => {
       setMessage('Une erreur est survenue');
@@ -31,16 +28,7 @@ function HomePage(): JSX.Element {
       setMessage('Vous êtes bien authentifié');
       setIsModal((prevState) => !prevState);
       const { user } = data;
-      dispatch(
-        login({
-          id: user.id,
-          firstName: user.firstName,
-          lastName: user.lastName,
-          email: user.email,
-          role: user.role,
-          logged: true,
-        })
-      );
+      dispatchLogin(user);
     },
   });
 
