@@ -2,7 +2,7 @@ import { createSlice, PayloadAction } from '@reduxjs/toolkit';
 import { useDispatch, useSelector } from 'react-redux';
 import { RootState } from '.';
 
-interface UserState {
+export interface UserState {
   id?: string;
   firstName?: string;
   lastName?: string;

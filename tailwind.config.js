@@ -7,9 +7,9 @@ module.exports = {
       fontFamily: {
         roboto: ['Roboto', 'sans-serif'],
       },
-      backgroundImage: {
-        bgImg: "url('./media/images/bgAevisioOriginal.png')",
-      },
+      backgroundImage: (_theme) => ({
+        bgImg: "url('/media/images/bgAevisioOriginal.png')",
+      }),
       colors: {
         whiteGray: '#DEDDDD',
         mainBg: '#3E3E3E',
@@ -17,6 +17,7 @@ module.exports = {
         componentBorder: '#111111',
         customGreen: '#58926F',
         customRed: '#976C6C',
+        customBlue: '#5A73A3',
         component: '#111111',
       },
       boxShadow: {

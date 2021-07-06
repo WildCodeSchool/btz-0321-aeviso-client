@@ -1,10 +1,10 @@
 import React, { useState } from 'react';
-import { useQuery } from 'react-query';
 import { Switch, useHistory } from 'react-router-dom';
-import { auth } from '../API/requests';
 
 import Head from '../components/Head';
 import Routes from '../../src/components/Routes';
+import { useQuery } from 'react-query';
+import { auth } from '../API/requests';
 import Sidebar from '../components/navigation/Sidebar';
 import Spinner from '../components/Spinner';
 import { useUserFromStore } from '../store/user.slice';
