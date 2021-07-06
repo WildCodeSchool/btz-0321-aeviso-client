@@ -1,5 +1,5 @@
 import axios from 'axios';
-const API_URL = import.meta.env.VITE_API_URL || 'http://localhost:5000';
+const API_URL = import.meta.env.VITE_API_URL || 'http://localhost:5000/api/v1';
 
 axios.defaults.withCredentials = true;
 
@@ -95,4 +95,6 @@ export const auth = {
     axios.post(`${API_URL}/auth/login`, user).then((res) => res.data),
 
   me: (): Promise<{ message: string; user: User }> => axios.get(`${API_URL}/auth/me`).then((res) => res.data),
+
+  logout: (): Promise<{ message: string }> => axios.get(`${API_URL}/auth/logout`),
 };

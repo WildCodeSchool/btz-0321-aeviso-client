@@ -7,7 +7,7 @@ import newReport from '../../../media/icons/NouveauRapport.svg';
 import SuperAdmin from './Superadmin';
 import Admin from './Admin';
 import User from './User';
-import { useHistory } from 'react-router-dom';
+import { useHistory, Link } from 'react-router-dom';
 import Togglebutton from '../ToggleButton';
 import { today } from '../../assets/date';
 import { useUserFromStore } from '../../store/user.slice';
@@ -85,12 +85,13 @@ function SideBar({ isDarkMode, setIsDarkMode, sideBarClass, setSideBarClass }: I
             <h2 className="text-xl font-bold">
               {user.firstName} {user.lastName}
             </h2>
-            <button
+            <Link
               className="outline:focus-none w-12/12 mt-2 text-xs text-white bg-customRed py-1 px-2 rounded-sm shadow-buttonShadow"
               onClick={handleLogout}
+              to="/logout"
             >
               Déconnexion
-            </button>
+            </Link>
           </div>
           <div className="flex h-full items-end">
             <Togglebutton handleDarkMode={handleDarkMode} toggleClass={toggleClass} />

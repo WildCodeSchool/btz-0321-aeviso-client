@@ -7,9 +7,9 @@ module.exports = {
       fontFamily: {
         roboto: ['Roboto', 'sans-serif'],
       },
-      backgroundImage: {
-        bgImg: "url('./media/images/bgAevisioOriginal.png')",
-      },
+      backgroundImage: (_theme) => ({
+        bgImg: "url('/media/images/bgAevisioOriginal.png')",
+      }),
       colors: {
         whiteGray: '#DEDDDD',
         mainBg: '#3E3E3E',
