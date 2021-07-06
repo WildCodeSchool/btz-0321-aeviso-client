@@ -5,6 +5,7 @@ interface Company {
   zipCode: string;
   createdAt: string;
   updatedAt: string;
+  logoUrl: string;
 }
 
 interface User {
@@ -72,6 +73,7 @@ interface IResultUser {
   lastName: string;
   weeklyBasis: 'h35' | 'h39';
   jobId: string;
+  email: string;
 }
 
 interface INavbar {

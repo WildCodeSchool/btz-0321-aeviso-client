@@ -1,4 +1,4 @@
-import React, { Dispatch, SetStateAction, useState } from 'react';
+import React, { Dispatch, SetStateAction } from 'react';
 import Home from '../../../media/icons/Home.svg';
 import report from '../../../media/icons/folder.svg';
 import settings from '../../../media/icons/Settings.svg';
@@ -7,7 +7,7 @@ import newReport from '../../../media/icons/NouveauRapport.svg';
 import SuperAdmin from './Superadmin';
 import Admin from './Admin';
 import User from './User';
-import { useHistory, Link } from 'react-router-dom';
+import { useHistory } from 'react-router-dom';
 import Togglebutton from '../ToggleButton';
 import { today } from '../../assets/date';
 import { useUserFromStore } from '../../store/user.slice';
@@ -16,12 +16,9 @@ interface ISideBarProps {
   sideBarClass: string;
   setIsSidebarVisible: Dispatch<SetStateAction<boolean>>;
   setSideBarClass: Dispatch<SetStateAction<string>>;
-  setIsDarkMode: Dispatch<SetStateAction<boolean>>;
-  isDarkMode: boolean;
 }
 
-function SideBar({ isDarkMode, setIsDarkMode, sideBarClass, setSideBarClass }: ISideBarProps): JSX.Element {
-  const [toggleClass, setToggleClass] = useState('bg-component focus:outline-none h-7 mr-2 rounded-full w-7');
+function SideBar({ sideBarClass, setSideBarClass }: ISideBarProps): JSX.Element {
   const handleClose = () => {
     setSideBarClass(
       'flex flex-col border-2 dark:border-componentBorder dark:bg-component bg-white h-full shadow-mainShadow rounded-xl text-black dark:text-white font-roboto justify-between invisible sm:visible'
@@ -32,16 +29,6 @@ function SideBar({ isDarkMode, setIsDarkMode, sideBarClass, setSideBarClass }: I
   const handleLogout = () => {
     dispatchLogout();
     history.push('/home');
-  };
-
-  const handleDarkMode = () => {
-    if (isDarkMode) {
-      setIsDarkMode(false);
-      setToggleClass('bg-component focus:outline-none mr-4 h-7 rounded-full w-7');
-    } else {
-      setIsDarkMode(true);
-      setToggleClass('bg-white focus:outline-none h-6 ml-6 rounded-full w-6');
-    }
   };
 
   return (
@@ -85,16 +72,15 @@ function SideBar({ isDarkMode, setIsDarkMode, sideBarClass, setSideBarClass }: I
             <h2 className="text-xl font-bold">
               {user.firstName} {user.lastName}
             </h2>
-            <Link
-              className="outline:focus-none w-12/12 mt-2 text-xs text-white bg-customRed py-1 px-2 rounded-sm shadow-buttonShadow"
+            <button
+              className="focus:outline-none w-12/12 mt-2 text-xs text-white bg-customRed py-1 px-2 rounded-sm shadow-buttonShadow"
               onClick={handleLogout}
-              to="/logout"
             >
               Déconnexion
-            </Link>
+            </button>
           </div>
           <div className="flex h-full items-end">
-            <Togglebutton handleDarkMode={handleDarkMode} toggleClass={toggleClass} />
+            <Togglebutton />
           </div>
         </div>
       </div>
