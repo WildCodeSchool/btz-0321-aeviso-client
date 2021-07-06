@@ -32,8 +32,11 @@ function ProjectsCieAdmin(): JSX.Element {
   }
 
   return (
-    <div>
-      <SearchInput register={register} name="search" />
+    <div className="text-black dark:text-white">
+      <div className="py-4 px-5 text-lg font-bold flex items-center justify-between bg-white dark:bg-component shadow-inputShadow sm:sticky sm:top-0 ">
+        <p className="text-2xl font-bold">Projets</p>
+        <SearchInput register={register} name="search" />
+      </div>
       {data
         ?.filter((project) => {
           const included = project.name.toLowerCase().includes(searchInput?.toLowerCase());
@@ -44,12 +47,12 @@ function ProjectsCieAdmin(): JSX.Element {
         })
         ?.map((project) => {
           return (
-            <div key={project.id} className="flex-row justify-around py-3 px-5">
+            <div key={project.id} className="flex-row justify-around mt-3 mx-4 border-b pb-2">
               <Link to={`/projects/${project.id}`}>
-                <p key={project.id}>
+                <p className="font-bold" key={project.id}>
                   {project.name} / {project.code}
                 </p>
-                <p className="text-xs border-b">Total demi journées déclarées: </p>
+                <p className="text-xs font-thin">Total demi journées déclarées: </p>
               </Link>
             </div>
           );
