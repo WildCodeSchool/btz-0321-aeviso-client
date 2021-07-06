@@ -8,7 +8,7 @@ import SuperAdmin from './Superadmin';
 import Admin from './Admin';
 import User from './User';
 import { useHistory } from 'react-router-dom';
-import Togglebutton from '../../assets/ToggleButton';
+import Togglebutton from '../ToggleButton';
 import { today } from '../../assets/date';
 import { useUserFromStore } from '../../store/user.slice';
 
