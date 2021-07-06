@@ -1,14 +1,9 @@
 import React from 'react';
 
-interface IToggle {
-  handleDarkMode: () => void;
-  toggleClass: string;
-}
-
-function ToggleButton({ handleDarkMode, toggleClass }: IToggle): JSX.Element {
+function ToggleButton(): JSX.Element {
   return (
     <div className="bg-black flex items-center dark:bg-white h-8 w-14 shadow-buttonShadow rounded-full mt-2 px-1">
-      <button onClick={handleDarkMode} className={toggleClass}></button>
+      <button></button>
     </div>
   );
 }
