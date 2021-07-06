@@ -15,7 +15,7 @@ const initialState: DarkModeState = {
   active: false,
 };
 
-export const userSlice = createSlice({
+export const darkModeSlice = createSlice({
   name: 'darkmode',
   initialState,
   reducers: {
@@ -25,7 +25,7 @@ export const userSlice = createSlice({
   },
 });
 
-export const { toggleDarkMode } = userSlice.actions;
+export const { toggleDarkMode } = darkModeSlice.actions;
 
 export const useDarkModeFromStore = (): ReturnDarkModeFromStore => {
   const darkMode = useSelector((state: RootState) => state.darkMode);
@@ -34,4 +34,4 @@ export const useDarkModeFromStore = (): ReturnDarkModeFromStore => {
   return { darkMode, dispatchToggleDarkMode };
 };
 
-export default userSlice.reducer;
+export default darkModeSlice.reducer;

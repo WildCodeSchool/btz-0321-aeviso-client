@@ -1,25 +1,18 @@
-import React, { useState } from 'react';
-
-// interface IToggle {
-//  handleDarkMode: () => void;
-//   toggleClass: string;
-// }
+import React from 'react';
+import { useDarkModeFromStore } from '../store/darkmode.slice';
 
 function ToggleButton(): JSX.Element {
-  const [toggleClass, setToggleClass] = useState('bg-component focus:outline-none h-7 mr-2 rounded-full w-7');
-
+  const { darkMode, dispatchToggleDarkMode } = useDarkModeFromStore();
   const handleDarkMode = () => {
-    if (isDarkMode) {
-      setIsDarkMode(false);
-      setToggleClass('bg-component focus:outline-none mr-4 h-7 rounded-full w-7');
-    } else {
-      setIsDarkMode(true);
-      setToggleClass('bg-white focus:outline-none h-6 ml-6 rounded-full w-6');
-    }
+    dispatchToggleDarkMode();
   };
+
   return (
     <div className="bg-black flex items-center dark:bg-white h-8 w-14 shadow-buttonShadow rounded-full mt-2 px-1">
-      <button onClick={handleDarkMode} className={toggleClass}></button>
+      <button
+        onClick={handleDarkMode}
+        className={`focus:outline-none rounded-full w-7 h-7 ${darkMode.active ? 'bg-component ml-5' : 'bg-white mr-5'}`}
+      ></button>
     </div>
   );
 }

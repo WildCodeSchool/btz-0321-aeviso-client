@@ -25,21 +25,12 @@ function SideBar({ sideBarClass, setSideBarClass }: ISideBarProps): JSX.Element 
     );
   };
   const { user, dispatchLogout } = useUserFromStore();
+
   const history = useHistory();
   const handleLogout = () => {
     dispatchLogout();
     history.push('/home');
   };
-
-  // const handleDarkMode = () => {
-  //   if (isDarkMode) {
-  //     setIsDarkMode(false);
-  //     setToggleClass('bg-component focus:outline-none mr-4 h-7 rounded-full w-7');
-  //   } else {
-  //     setIsDarkMode(true);
-  //     setToggleClass('bg-white focus:outline-none h-6 ml-6 rounded-full w-6');
-  //   }
-  // };
 
   return (
     <div className={sideBarClass}>
