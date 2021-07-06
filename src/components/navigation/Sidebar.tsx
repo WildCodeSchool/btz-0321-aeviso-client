@@ -7,10 +7,10 @@ import newReport from '../../../media/icons/NouveauRapport.svg';
 import SuperAdmin from './Superadmin';
 import Admin from './Admin';
 import User from './User';
-import { useHistory } from 'react-router-dom';
 import Togglebutton from '../ToggleButton';
 import { today } from '../../assets/date';
 import { useUserFromStore } from '../../store/user.slice';
+import { Link } from 'react-router-dom';
 
 interface ISideBarProps {
   sideBarClass: string;
@@ -24,13 +24,7 @@ function SideBar({ sideBarClass, setSideBarClass }: ISideBarProps): JSX.Element 
       'flex flex-col border-2 dark:border-componentBorder dark:bg-component bg-white h-full shadow-mainShadow rounded-xl text-black dark:text-white font-roboto justify-between invisible sm:visible'
     );
   };
-  const { user, dispatchLogout } = useUserFromStore();
-
-  const history = useHistory();
-  const handleLogout = () => {
-    dispatchLogout();
-    history.push('/home');
-  };
+  const { user } = useUserFromStore();
 
   return (
     <div className={sideBarClass}>
@@ -73,12 +67,12 @@ function SideBar({ sideBarClass, setSideBarClass }: ISideBarProps): JSX.Element 
             <h2 className="text-xl font-bold">
               {user.firstName} {user.lastName}
             </h2>
-            <button
+            <Link
               className="focus:outline-none w-12/12 mt-2 text-xs text-white bg-customRed py-1 px-2 rounded-sm shadow-buttonShadow"
-              onClick={handleLogout}
+              to="/logout"
             >
               Déconnexion
-            </button>
+            </Link>
           </div>
           <div className="flex h-full items-end">
             <Togglebutton />

@@ -34,7 +34,7 @@ function CompanyDetails({ company }: IProps): JSX.Element {
   return (
     <div>
       <div className="flex justify-between">
-        <Link to={`/companies/${company.id}`}>
+        <Link to={`/clients/${company.id}`}>
           <p>{company.name}</p>
           <p>
             {user ? `${user.role} - ${user.firstName} ${user.lastName}` : 'Aucun admin enregistré'}

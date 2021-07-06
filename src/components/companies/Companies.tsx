@@ -24,7 +24,7 @@ function Companies(): JSX.Element {
       <div className="py-4 px-5 text-lg font-bold flex justify-between items-center bg-white dark:bg-component shadow-inputShadow sm:sticky sm:top-0 ">
         <CardTitle>Clients</CardTitle>
 
-        <Link to="/companies" className="p-2 text-white bg-customGreen rounded text-xs font-light shadow-buttonShadow">
+        <Link to="/clients" className="p-2 text-white bg-customGreen rounded text-xs font-light shadow-buttonShadow">
           Tous les clients
         </Link>
       </div>

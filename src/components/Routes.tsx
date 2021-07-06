@@ -1,7 +1,7 @@
 import React from 'react';
 import { Route } from 'react-router-dom';
 import User from './frontTestRoads/user/User';
-import Company from './company/Company';
+import Company from './companies/Company';
 import ProjectList from './project/ProjectList';
 import HomePage from '../views/HomePage';
 import Logout from '../components/navigation/Logout';
@@ -11,7 +11,7 @@ import ListsCompanies from './companies/ListsCompanies';
 import FormResult from './records/Exporter/FormResult';
 import Admin from './home/Admin';
 
-import DetailsProjects from './company/DetailsProjects';
+import DetailsProjects from './companies/DetailsProjects';
 import { useUserFromStore } from '../store/user.slice';
 
 function Routes(): JSX.Element {
@@ -41,7 +41,7 @@ function Routes(): JSX.Element {
         <Route exact path="/clients" component={ListsCompanies} />
         <Route exact path="/records/export/companies/:companyId/projects/:projectId" component={FormResult} />
         <Route exact path="/records/export" component={ExportRecords} />
-        <Route exact path="/companies/:id" component={Company} />
+        <Route exact path="/clients/:id" component={Company} />
         <Route exact path="/projects/:id" component={DetailsProjects} />
         <Route exact path="/projects" component={ProjectList} />
         <Route exact path="/logout" component={Logout} />

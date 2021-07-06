@@ -26,7 +26,7 @@ function SuperAdmin({ Home, report, settings, handleClose }: ISPNavbar): JSX.Ele
             </button>
           </li>
         </Link>
-        <Link to="/companies">
+        <Link to="/clients">
           <li className="flex text-lg mt-3 items-center h-14 ">
             <img
               src={Client}
