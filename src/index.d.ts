@@ -1,11 +1,12 @@
 interface Company {
   id: string;
   name: string;
+  logoUrl: string;
   city: string;
   zipCode: string;
+  companyId?: string;
   createdAt: string;
   updatedAt: string;
-  logoUrl: string;
 }
 
 interface User {
@@ -82,4 +83,19 @@ interface INavbar {
   Rapport: string;
   Réglages: string;
   NouveauRapport: string;
+}
+
+interface IReduxAction {
+  type: string;
+  payload: UserReduxState;
+}
+
+interface UserReduxState {
+  id?: string;
+  firstName?: string;
+  lastName?: string;
+  email?: string;
+  role?: 'USER' | 'ADMIN' | 'SUPERADMIN' | null;
+  companyId?: string;
+  logged: boolean;
 }

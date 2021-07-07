@@ -17,10 +17,13 @@ import { useUserFromStore } from '../store/user.slice';
 function Routes(): JSX.Element {
   const { user } = useUserFromStore();
   if (user?.role === 'ADMIN') {
+    console.log(user?.id);
+    console.log(user?.companyId);
     return (
       <>
         <Route exact path="/aeviso" component={Admin} />
         <Route exact path="/logout" component={Logout} />
+        <Route exact path="/records/export" component={ExportRecords} />
       </>
     );
   }
