@@ -1,12 +1,13 @@
 import { AxiosError } from 'axios';
 import React, { useState } from 'react';
 import { useQuery } from 'react-query';
-import { connect } from 'react-redux';
 import { companies } from '../../API/requests';
-import { RootState } from '../../assets/redux/store';
 import Spinner from '../Spinner';
+import { useUserFromStore } from '../../store/user.slice';
 
-function Admin({ user }: { user?: UserReduxState }): JSX.Element {
+function Admin(): JSX.Element {
+  const { user } = useUserFromStore();
+
   const id = user?.companyId;
   const [company, setCompany] = useState<Company | null>(null);
 
@@ -30,9 +31,9 @@ function Admin({ user }: { user?: UserReduxState }): JSX.Element {
 
   return (
     <div className="h-full">
-      <h1 className="text-black dark:text-white text-lg sm:text-2xl font-roboto font-bold">{company?.name}</h1>
       <div className="grid sm:grid-cols-2 grid-cols-1 grid-rows-2 gap-5 h-full">
         <div className="sm:col-start-1 sm:row-start-1 sm:row-end-2 col-start-1 border-2 dark:border-componentBorder bg-white dark:bg-component rounded-lg shadow-mainShadow mx-4 sm:mx-0 overflow-y-auto">
+          <h1 className="text-black dark:text-white text-lg sm:text-2xl font-roboto font-bold">{company?.name}</h1>
           <p className="text-black dark:text-white">ADMIN</p>
         </div>
         <div className="sm:col-start-2 sm:row-start-1 sm:row-end-2 col-start-1 row-start-2 border-2 dark:border-componentBorder  bg-white dark:bg-component rounded-lg shadow-mainShadow mx-4 sm:mx-0 overflow-y-auto">
@@ -45,8 +46,4 @@ function Admin({ user }: { user?: UserReduxState }): JSX.Element {
     </div>
   );
 }
-const mapStateToProps = (state: RootState) => {
-  return { user: state.userReducer.user };
-};
-
-export default connect(mapStateToProps)(Admin);
+export default Admin;
