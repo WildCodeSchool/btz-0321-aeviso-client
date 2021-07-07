@@ -12,6 +12,7 @@ import Admin from './home/Admin';
 import ExportRecords from './records/Exporter/ExportRecords';
 import DetailsProjects from './companies/DetailsProjects';
 import { useUserFromStore } from '../store/user.slice';
+import Calendar from './records/CreateNew/Calendar';
 
 function Routes(): JSX.Element {
   const { user } = useUserFromStore();
@@ -20,6 +21,7 @@ function Routes(): JSX.Element {
       <>
         <Route exact path="/aeviso" component={Admin} />
         <Route exact path="/logout" component={Logout} />
+        <Route exact path="/nouveaurapport" component={Calendar} />
         <Route exact path="/records/export" component={ExportRecords} />
       </>
     );

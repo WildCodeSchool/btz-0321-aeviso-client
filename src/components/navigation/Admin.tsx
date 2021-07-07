@@ -1,6 +1,7 @@
 import React from 'react';
 import Collaborateurs from '../../../media/icons/Collaborateurs.svg';
 import { Link } from 'react-router-dom';
+
 interface ISPNavbar {
   handleClose: () => void;
   Home: string;
@@ -25,16 +26,18 @@ function Admin({ Home, report, settings, newReport, handleClose }: ISPNavbar): J
             </button>
           </li>
         </Link>
-        <li className="flex text-lg  pl-5 mt-5 items-center h-14">
-          <img
-            src={newReport}
-            className="mr-3 mb-1 h-6 w-6 bg-component dark:bg-component shadow-buttonShadow p-1 rounded-full"
-            alt="homesvg"
-          />
-          <button className="focus:outline-none" onClick={handleClose}>
-            Nouveau Rapport
-          </button>
-        </li>
+        <Link to="/nouveaurapport">
+          <li className="flex text-lg  pl-5 mt-5 items-center h-14">
+            <img
+              src={newReport}
+              className="mr-3 mb-1 h-6 w-6 bg-component dark:bg-component shadow-buttonShadow p-1 rounded-full"
+              alt="homesvg"
+            />
+            <button className="focus:outline-none" onClick={handleClose}>
+              Nouveau Rapport
+            </button>
+          </li>
+        </Link>
         <Link to="/records/export">
           <li className="flex text-lg  pl-5 mt-5 items-center h-14">
             <img
