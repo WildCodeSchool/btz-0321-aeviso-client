@@ -84,6 +84,7 @@ interface IResultUser {
   lastName: string;
   weeklyBasis: 'h35' | 'h39';
   jobId: string;
+  email: string;
 }
 
 interface INavbar {
@@ -92,18 +93,4 @@ interface INavbar {
   Rapport: string;
   Réglages: string;
   NouveauRapport: string;
-}
-
-interface IReduxAction {
-  type: string;
-  payload: UserReduxState;
-}
-
-interface UserReduxState {
-  id?: string;
-  firstName?: string;
-  lastName?: string;
-  email?: string;
-  role?: 'USER' | 'ADMIN' | 'SUPERADMIN' | null;
-  logged: boolean;
 }

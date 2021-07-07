@@ -2,35 +2,51 @@ import React from 'react';
 interface ISPNavbar {
   handleClose: () => void;
   Home: string;
-  Rapport: string;
-  Réglages: string;
-  NouveauRapport: string;
+  report: string;
+  settings: string;
+  newReport: string;
 }
 
-function USER({ NouveauRapport, Home, Rapport, Réglages, handleClose }: ISPNavbar): JSX.Element {
+function User({ newReport, Home, report, settings, handleClose }: ISPNavbar): JSX.Element {
   return (
     <div>
       <nav className="list-none pt-5">
         <li className="flex text-lg  items-center pl-5 h-14 rounded-xl">
-          <img src={Home} className="mr-3 mb-1" alt="homesvg" />
+          <img
+            src={Home}
+            className="mr-3 mb-1 h-6 w-6 bg-component dark:bg-component shadow-buttonShadow p-1 rounded-full"
+            alt="homesvg"
+          />
           <button className="focus:outline-none" onClick={handleClose}>
             Accueil
           </button>
         </li>
         <li className="flex text-lg  pl-5 mt-5 items-center h-14">
-          <img src={NouveauRapport} className="mr-3 mb-1" alt="homesvg" />
+          <img
+            src={newReport}
+            className="mr-3 mb-1 h-6 w-6 bg-component dark:bg-component shadow-buttonShadow p-1 rounded-full"
+            alt="homesvg"
+          />
           <button className="focus:outline-none" onClick={handleClose}>
             Nouveau Rapport
           </button>
         </li>
         <li className="flex text-lg  pl-5 mt-5 items-center h-14">
-          <img src={Rapport} className="mr-3 mb-1" alt="homesvg" />
+          <img
+            src={report}
+            className="mr-3 mb-1 h-6 w-6 bg-component dark:bg-component shadow-buttonShadow p-1 rounded-full"
+            alt="homesvg"
+          />
           <button className="focus:outline-none" onClick={handleClose}>
             Rapport
           </button>
         </li>
         <li className="flex  text-lg  pl-5 mt-5 items-center h-14">
-          <img src={Réglages} className="mr-3 mb-1" alt="homesvg" />
+          <img
+            src={settings}
+            className="mr-3 mb-1 h-6 w-6 bg-component dark:bg-component shadow-buttonShadow p-1 rounded-full"
+            alt="homesvg"
+          />
           <button className="focus:outline-none" onClick={handleClose}>
             Réglages
           </button>
@@ -40,4 +56,4 @@ function USER({ NouveauRapport, Home, Rapport, Réglages, handleClose }: ISPNavb
   );
 }
 
-export default USER;
+export default User;

@@ -20,11 +20,14 @@ function Records(): JSX.Element {
   }
 
   return (
-    <div className=" text-black dark:text-white font-roboto">
-      <div className="py-5 px-5 text-lg font-bold flex justify-between items-center border-black dark:border-white bg-white dark:bg-black sm:sticky sm:top-0">
+    <div className="text-black dark:text-white font-roboto">
+      <div className="py-4 px-5 text-lg font-bold flex justify-between items-center shadow-inputShadow bg-white dark:bg-component sm:sticky sm:top-0">
         <CardTitle>Derniers rapports</CardTitle>
 
-        <Link to="/export" className="p-2 bg-blue rounded-md text-xs font-light">
+        <Link
+          to="/records/export"
+          className="p-2 text-white bg-customGreen rounded text-xs font-light shadow-buttonShadow"
+        >
           Exporter un rapport
         </Link>
       </div>
