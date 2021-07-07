@@ -7,18 +7,21 @@ import { useQuery } from 'react-query';
 import { AxiosError } from 'axios';
 import { companies } from '../../../API/requests';
 import { useUserFromStore } from '../../../store/user.slice';
+import { FieldValues, UseFormRegister } from 'react-hook-form';
 
 interface IPicker {
   setDayActive: Dispatch<SetStateAction<boolean>>;
   setNewDate: Dispatch<SetStateAction<Date>>;
+  register: UseFormRegister<FieldValues>;
 }
 
-function Picker({ setDayActive, setNewDate }: IPicker): JSX.Element {
-  const { user } = useUserFromStore();
+function Picker({ setDayActive, setNewDate, register }: IPicker): JSX.Element {
   const handleChange = (date: Date) => {
     setNewDate(date);
     setDayActive(false);
   };
+
+  const { user } = useUserFromStore();
 
   const companySelect = user.companyId;
 
@@ -41,7 +44,6 @@ function Picker({ setDayActive, setNewDate }: IPicker): JSX.Element {
   return (
     <div>
       <div className="flex w-full sm:mt-10 justify-between sm:items-end flex-col sm:flex-row">
-        <h1 className="font-bold text-3xl sm:text-5xl mx-4 mt-3">Crée un nouveau rapport</h1>
         <Link to="/records/export">
           <p className="bg-customGreen text-white ml-4 mt-5 px-4 py-1 rounded-md shadow-buttonShadow text-center w-6/12 sm:w-full">
             Exporter un projet
@@ -54,7 +56,7 @@ function Picker({ setDayActive, setNewDate }: IPicker): JSX.Element {
         </label>
 
         <select
-          value={data?.[0]?.id}
+          {...register('project', { value: data?.[0]?.id || '' })}
           className="focus:outline-none w-full text-black dark:text-gray-300 text-sm bg-white dark:bg-component border-b pt-3 pb-2 border-black dark:border-white"
         >
           {data?.map((project) => {

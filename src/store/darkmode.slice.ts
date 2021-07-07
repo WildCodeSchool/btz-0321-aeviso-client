@@ -12,7 +12,7 @@ interface ReturnDarkModeFromStore {
 }
 
 const initialState: DarkModeState = {
-  active: false,
+  active: true,
 };
 
 export const darkModeSlice = createSlice({
