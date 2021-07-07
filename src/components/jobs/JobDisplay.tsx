@@ -3,13 +3,12 @@ import { useQuery } from 'react-query';
 import { AxiosError } from 'axios';
 
 import { jobs } from '../../API/requests';
-import Spinner from '../Spinner';
 
 function JobDisplay({ id }: { id: string }): JSX.Element {
   const { isLoading, error, data } = useQuery<Job, AxiosError>(['jobs', id], () => jobs.getOne(id));
 
   if (isLoading) {
-    return <Spinner />;
+    return <p>...</p>;
   }
 
   if (error) {

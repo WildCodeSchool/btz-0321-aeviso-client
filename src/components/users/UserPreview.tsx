@@ -24,7 +24,16 @@ function UserPreview({ id }: IProps): JSX.Element {
   return (
     <div>
       {data?.firstName} {data?.lastName}
-      <JobDisplay id={data?.jobId as string} />
+      <div className="flex">
+        <p>
+          Fonction:{' '}
+          <span>
+            <JobDisplay id={data?.jobId as string} />
+          </span>{' '}
+          /{' '}
+        </p>
+        <p>email: {data?.email}</p>
+      </div>
     </div>
   );
 }
