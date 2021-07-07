@@ -15,7 +15,7 @@ export const user = {
   },
 
   update: ({ user, id }: { user: User; id?: string }): Promise<User> => {
-    if (!id) throw new Error("It can't be undefined");
+    if (!id) throw new Error("ID can't be undefined");
     return axios.put(`${API_URL}/users/${id}`, user).then((res) => res.data);
   },
 };
