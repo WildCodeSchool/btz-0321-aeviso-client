@@ -8,8 +8,6 @@ function Calendar(): JSX.Element {
   const selectedProject = watch('project');
   const [dayActive, setDayActive] = useState<boolean>(true);
   const [newDate, setNewDate] = useState(new Date());
-  console.log(newDate);
-  console.log(selectedProject);
   const handleClose = () => {
     setDayActive(true);
   };
