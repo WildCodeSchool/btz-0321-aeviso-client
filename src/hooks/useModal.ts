@@ -7,11 +7,11 @@ interface Return {
   setMessage: Dispatch<SetStateAction<string>>;
 }
 
-function getModal(): Return {
+function useModal(): Return {
   const [isModal, setIsModal] = useState(false);
   const [message, setMessage] = useState<string>('');
 
   return { isModal, setIsModal, message, setMessage };
 }
 
-export default getModal;
+export default useModal;

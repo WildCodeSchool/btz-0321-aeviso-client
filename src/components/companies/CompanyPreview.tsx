@@ -9,7 +9,7 @@ interface IProps {
 function CompanyPreview({ company, isFirstElement }: IProps): JSX.Element {
   return (
     <div>
-      <Link to={`/companies/${company.id}`} className="group">
+      <Link to={`/clients/${company.id}`} className="group">
         <p
           className={` font-bold text-base py-2 border-b border-black dark:border-white ${
             isFirstElement ? '' : 'font-bold text-sm sm:mt-5'

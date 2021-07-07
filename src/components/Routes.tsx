@@ -1,7 +1,7 @@
 import React from 'react';
 import { Route } from 'react-router-dom';
 import User from './frontTestRoads/user/User';
-import Company from './company/Company';
+import Company from './companies/Company';
 import ProjectList from './project/ProjectList';
 import HomePage from '../views/HomePage';
 import Logout from '../components/navigation/Logout';
@@ -9,14 +9,13 @@ import SuperAdmin from './home/SuperAdmin';
 import ExportRecords from './records/Exporter/ExportRecords';
 import ListsCompanies from './companies/ListsCompanies';
 import FormResult from './records/Exporter/FormResult';
-import { RootState } from '../store';
-import { connect } from 'react-redux';
 import Admin from './home/Admin';
 
-import DetailsProjects from './company/DetailsProjects';
-import { UserState } from '../store/user.slice';
+import DetailsProjects from './companies/DetailsProjects';
+import { useUserFromStore } from '../store/user.slice';
 
-function Routes({ user }: { user?: UserState }): JSX.Element {
+function Routes(): JSX.Element {
+  const { user } = useUserFromStore();
   if (user?.role === 'ADMIN') {
     return (
       <>
@@ -38,11 +37,12 @@ function Routes({ user }: { user?: UserState }): JSX.Element {
   if (user?.role === 'SUPERADMIN') {
     return (
       <>
+        <Route exact path="/home" component={HomePage} />
         <Route exact path="/aeviso" component={SuperAdmin} />
         <Route exact path="/clients" component={ListsCompanies} />
         <Route exact path="/records/export/companies/:companyId/projects/:projectId" component={FormResult} />
         <Route exact path="/records/export" component={ExportRecords} />
-        <Route exact path="/companies/:id" component={Company} />
+        <Route exact path="/clients/:id" component={Company} />
         <Route exact path="/projects/:id" component={DetailsProjects} />
         <Route exact path="/projects" component={ProjectList} />
         <Route exact path="/logout" component={Logout} />
@@ -53,8 +53,4 @@ function Routes({ user }: { user?: UserState }): JSX.Element {
   return <Route exact path="/home" component={HomePage} />;
 }
 
-const mapStateToProps = (state: RootState) => {
-  return { user: state.user };
-};
-
-export default connect(mapStateToProps)(Routes);
+export default Routes;

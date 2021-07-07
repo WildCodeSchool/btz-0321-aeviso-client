@@ -1,12 +1,12 @@
 import React from 'react';
 import { SubmitHandler, useForm } from 'react-hook-form';
-import { useHistory } from 'react-router';
+import { useHistory } from 'react-router-dom';
 import { useMutation } from 'react-query';
 
 import { auth } from '../API/requests';
 import Modal from '../components/Modal';
-import useModal from '../hooks/useModal';
 import Spinner from '../components/Spinner';
+import useModal from '../hooks/useModal';
 import { useUserFromStore } from '../store/user.slice';
 
 interface IFormInput {
@@ -17,18 +17,18 @@ interface IFormInput {
 function HomePage(): JSX.Element {
   const history = useHistory();
   const { register, handleSubmit } = useForm();
+
   const { isModal, setIsModal, message, setMessage } = useModal();
   const { dispatchLogin } = useUserFromStore();
-  const { mutate, isLoading, isError } = useMutation(auth.login, {
+
+  const { mutate, isLoading, isError, data } = useMutation(auth.login, {
     onError: () => {
       setMessage('Une erreur est survenue');
       setIsModal((prevState) => !prevState);
     },
-    onSuccess: (data) => {
+    onSuccess: () => {
       setMessage('Vous êtes bien authentifié');
       setIsModal((prevState) => !prevState);
-      const { user } = data;
-      dispatchLogin(user);
     },
   });
 
@@ -40,15 +40,20 @@ function HomePage(): JSX.Element {
     mutate(user);
   };
 
+  const handleLogin = () => {
+    if (data) dispatchLogin(data?.user);
+    history.push('/aeviso');
+  };
+
   if (isLoading) return <Spinner />;
   if (isModal)
     return (
       <Modal
         title="Authentification"
         buttons={
-          isError
-            ? [{ text: 'Nouvel essai', handleClick: () => setIsModal((prevState) => !prevState) }]
-            : [{ text: 'Accueil', handleClick: () => history.push('/aeviso') }]
+          !isError && data
+            ? [{ text: 'Accueil', handleClick: () => handleLogin() }]
+            : [{ text: 'Nouvel essai', handleClick: () => setIsModal((prevState) => !prevState) }]
         }
       >
         {message}
