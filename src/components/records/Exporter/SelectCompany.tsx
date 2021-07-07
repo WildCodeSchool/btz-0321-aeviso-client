@@ -2,18 +2,18 @@ import { AxiosError } from 'axios';
 import React, { useState } from 'react';
 import { FieldValues, UseFormRegister } from 'react-hook-form';
 import { useQuery } from 'react-query';
-import { connect } from 'react-redux';
+import { useUserFromStore } from '../../../store/user.slice';
 import { companies } from '../../../API/requests';
-import { RootState } from '../../../assets/redux/store';
+
 import Spinner from '../../Spinner';
 
 interface ISelectCompany {
   companiesData: Company[] | undefined;
   register: UseFormRegister<FieldValues>;
-  user: UserReduxState;
 }
 
-function SelectCompany({ companiesData, register, user }: ISelectCompany): JSX.Element {
+function SelectCompany({ companiesData, register }: ISelectCompany): JSX.Element {
+  const { user } = useUserFromStore();
   const userCompanyId = user.companyId;
 
   const [userCompany, setUserCompany] = useState<Company | null>(null);
@@ -70,8 +70,4 @@ function SelectCompany({ companiesData, register, user }: ISelectCompany): JSX.E
   }
 }
 
-const mapStateToProps = (state: RootState) => {
-  return { user: state.userReducer.user };
-};
-
-export default connect(mapStateToProps)(SelectCompany);
+export default SelectCompany;

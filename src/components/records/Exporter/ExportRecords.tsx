@@ -7,10 +7,11 @@ import { useHistory } from 'react-router-dom';
 import SelectCompany from './SelectCompany';
 import SelectProject from './SelectProject';
 import SelectDate from './SelectDate';
-import { RootState } from '../../../assets/redux/store';
-import { connect } from 'react-redux';
+import Spinner from '../../Spinner';
+import { useUserFromStore } from '../../../store/user.slice';
 
-function ExportRecords({ user }: { user: UserReduxState }): JSX.Element {
+function ExportRecords(): JSX.Element {
+  const { user } = useUserFromStore();
   const { register, handleSubmit, watch } = useForm();
   const history = useHistory();
   let companySelect = watch('company');
@@ -41,7 +42,7 @@ function ExportRecords({ user }: { user: UserReduxState }): JSX.Element {
   }, [companySelect]);
 
   if (companiesIsLoading || projectIsLoading) {
-    return <p className="text-white">Loading...</p>;
+    return <Spinner />;
   }
 
   const error = companiesError || projectError;
@@ -71,8 +72,4 @@ function ExportRecords({ user }: { user: UserReduxState }): JSX.Element {
   );
 }
 
-const mapStateToProps = (state: RootState) => {
-  return { user: state.userReducer.user };
-};
-
-export default connect(mapStateToProps)(ExportRecords);
+export default ExportRecords;
