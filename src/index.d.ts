@@ -1,12 +1,24 @@
 interface Company {
   id: string;
   name: string;
-  logoUrl: string;
-  city: string;
-  zipCode: string;
-  companyId?: string;
+  logoUrl?: string;
   createdAt: string;
   updatedAt: string;
+}
+
+interface ICompanyForm {
+  name: string;
+  logo?: File[] | File;
+}
+
+interface IUserForm {
+  firstName: string;
+  lastName: string;
+  email: string;
+  password: string;
+  role: 'ADMIN';
+  jobId: string;
+  job?: string;
 }
 
 interface User {
