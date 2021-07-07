@@ -1,4 +1,6 @@
 import React, { Dispatch, SetStateAction } from 'react';
+import { Link } from 'react-router-dom';
+
 import Home from '../../../media/icons/Home.svg';
 import report from '../../../media/icons/folder.svg';
 import settings from '../../../media/icons/Settings.svg';
@@ -10,7 +12,6 @@ import User from './User';
 import Togglebutton from '../ToggleButton';
 import { today } from '../../assets/date';
 import { useUserFromStore } from '../../store/user.slice';
-import { Link } from 'react-router-dom';
 
 interface ISideBarProps {
   sideBarClass: string;
