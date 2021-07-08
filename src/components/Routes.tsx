@@ -14,6 +14,7 @@ import Admin from './home/Admin';
 import DetailsProjects from './companies/DetailsProjects';
 import { useUserFromStore } from '../store/user.slice';
 import Collaborators from './users/Collaborators';
+import CreateNewUser from './users/CreateUser';
 
 function Routes(): JSX.Element {
   const { user } = useUserFromStore();
@@ -23,6 +24,7 @@ function Routes(): JSX.Element {
         <Route path="/home" component={HomePage} />
         <Route path="/aeviso" component={Admin} />
         <Route exact path="/clients/:id/collaborateurs" component={Collaborators} />
+        <Route exact path="/clients/:id/collaborateurs/createnew/" component={CreateNewUser} />
         <Route path="/logout" component={Logout} />
         <Route />
       </>

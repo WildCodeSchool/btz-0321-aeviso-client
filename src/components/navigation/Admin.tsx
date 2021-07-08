@@ -62,7 +62,7 @@ function Admin({ Home, report, settings, newReport, handleClose }: ISPNavbar): J
           />
           <button
             className="focus:outline-none"
-            onClick={() => handleClickLink(`clients/${user.companyId}/collaborateurs`)}
+            onClick={() => handleClickLink(`/clients/${user.companyId}/collaborateurs`)}
           >
             Collaborateurs
           </button>
