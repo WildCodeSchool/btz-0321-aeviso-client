@@ -33,18 +33,18 @@ function CompanyPreview({ company, isFirstElement }: IProps): JSX.Element {
   return (
     <div>
       <Link to={`/clients/${company.id}`} className="group">
-        <p
+        <div
           className={` font-bold text-base py-2 border-b border-black dark:border-white ${
             isFirstElement ? '' : 'font-bold text-sm sm:mt-5'
-          } `}
+          }`}
         >
-          <span className="font-bold">{company.name}</span>
+          <p className="font-bold">{company.name}</p>
           <p className="font-thin text-xs mr-2">
             {user ? `${user.role} - ${user.firstName} ${user.lastName}` : 'Aucun admin enregistré'}
             {user?.jobId && ' - '}
             {user?.jobId && <AdminJob jobId={user.jobId} />}
           </p>
-        </p>
+        </div>
       </Link>
     </div>
   );
