@@ -94,6 +94,9 @@ export const records = {
     axios.put(`${API_URL}/records/${id}`, data).then((res) => res.data),
 
   delete: (id: string): Promise<null> => axios.delete(`${API_URL}/records/${id}`).then((res) => res.data),
+
+  deleteDayRecords: (date: Date): Promise<null> =>
+    axios.delete(`${API_URL}/records?date=${date}`).then((res) => res.data),
 };
 
 export const auth = {
