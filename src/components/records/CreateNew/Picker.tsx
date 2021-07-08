@@ -46,7 +46,7 @@ function Picker({ setDayActive, setNewDate, register }: IPicker): JSX.Element {
       <div className="flex w-full sm:mt-10 justify-between sm:items-end flex-col sm:flex-row">
         <Link to="/records/export">
           <p className="bg-customGreen text-white ml-4 mt-5 px-4 py-1 rounded-md shadow-buttonShadow text-center w-6/12 sm:w-full">
-            Exporter un projet
+            Exporter un rapport
           </p>
         </Link>
       </div>

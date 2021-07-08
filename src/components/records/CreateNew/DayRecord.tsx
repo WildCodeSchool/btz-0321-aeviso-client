@@ -20,12 +20,13 @@ function DayRecord({ newDate, selectedProject }: IDayRecord): JSX.Element {
   const { user } = useUserFromStore();
   const { register, handleSubmit, watch } = useForm();
 
-  const { isLoading, error, data } = useQuery<Project, AxiosError>(['project', selectedProject], () =>
-    project.getOne(selectedProject)
-  );
+  const {
+    isLoading: projectLoading,
+    error: projectError,
+    data,
+  } = useQuery<Project, AxiosError>(['project', selectedProject], () => project.getOne(selectedProject));
 
   const isTimeslot = watch('timeslot');
-
   const date = newDate.toISOString();
 
   const { mutate } = useMutation(records.post);
@@ -44,27 +45,44 @@ function DayRecord({ newDate, selectedProject }: IDayRecord): JSX.Element {
     }
     mutate({ ...record, timeslot: timeslot === 'morning' ? 'MORNING' : 'AFTERNOON' });
   };
-
-  if (isLoading) {
+  const end = new Date(newDate);
+  end.setDate(end.getDate() + 1);
+  const {
+    isLoading: recordLoading,
+    error: recordError,
+    data: recordData,
+  } = useQuery<IRecord[], AxiosError>(['records', user.id], () =>
+    project.getRecords(selectedProject, user.id as string, newDate.toISOString(), end.toISOString())
+  );
+  console.log(newDate.getTimezoneOffset());
+  console.log(recordData);
+  const error = recordError || projectError;
+  if (projectLoading || recordLoading) {
     return <Spinner />;
   }
 
   if (error) {
-    return <p className="text-white">An error occurred: {error.message}</p>;
+    return (
+      <p>
+        An error as occurred : {error.message}. code:{error.code}
+      </p>
+    );
   }
 
   return (
     <div>
       <div className="flex text-black dark:text-white items-center mx-4 mt-5 sm:mt-20 justify-between">
-        <h1 className="font-bold text-2xl">{data?.name}</h1>
+        <h1 className="font-bold text-2xl sm:text-4xl">Projet : {data?.name}</h1>
 
-        <h1>{newDate.toLocaleDateString()}</h1>
+        <h1 className="font-bold sm:text-2xl">{newDate.toLocaleDateString()}</h1>
       </div>
       <form className="sm:mt-20" onSubmit={handleSubmit(onSubmit)}>
         <div className="mt-10 flex flex-col sm:flex-row mx-4">
           <label
-            className={`text-center rounded-xl px-12 py-4   ${
-              isTimeslot === 'morning' ? ' bg-customGreen' : 'border border-white hover:bg-customGreen'
+            className={`text-black dark:text-white text-center rounded-xl px-12 py-4   ${
+              isTimeslot === 'morning'
+                ? ' bg-customGreen text-white'
+                : 'border border-black dark:border-white hover:bg-customGreen'
             }`}
           >
             Matin
@@ -72,17 +90,19 @@ function DayRecord({ newDate, selectedProject }: IDayRecord): JSX.Element {
           </label>
 
           <label
-            className={`text-center rounded-xl px-12 py-4 sm:ml-10   ${
-              isTimeslot === 'afternoon' ? ' bg-customGreen' : 'border border-white hover:bg-customGreen'
+            className={`text-black dark:text-white  text-center rounded-xl px-12 py-4 sm:ml-10   ${
+              isTimeslot === 'afternoon'
+                ? ' bg-customGreen text-white'
+                : 'border border-black dark:border-white hover:bg-customGreen'
             }`}
           >
             Après Midi
             <input className="hidden" type="radio" {...register('timeslot')} id="afternoon" value="afternoon"></input>
           </label>
           <label
-            className={` text-center rounded-xl px-12 py-4 sm:ml-10   ${
+            className={` text-black dark:text-white  text-center rounded-xl px-12 py-4 sm:ml-10   ${
               isTimeslot === 'fullday'
-                ? ' bg-customGreen'
+                ? ' bg-customGreen text-white'
                 : 'border border-black dark:border-white shadow-buttonShadow hover:text-white hover:border-white hover:bg-customGreen'
             }`}
           >
@@ -95,7 +115,10 @@ function DayRecord({ newDate, selectedProject }: IDayRecord): JSX.Element {
           <label htmlFor="text" className="text-white text-xl">
             Comment
           </label>
-          <textarea {...register('comment')} className=" bg-input rounded-xl mt-2 h-32 p-3" />
+          <textarea
+            {...register('comment')}
+            className=" bg-input shadow-inputShadow text-white rounded-xl mt-2 h-32 p-3"
+          />
         </div>
         <button
           type="submit"
