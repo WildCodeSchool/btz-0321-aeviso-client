@@ -4,6 +4,7 @@ import { useQuery } from 'react-query';
 import { user } from '../../API/requests';
 import JobDisplay from '../jobs/JobDisplay';
 import Modal from '../Modal';
+import { Link } from 'react-router-dom';
 
 interface IProps {
   id: string;
@@ -20,22 +21,24 @@ function UserPreview({ id }: IProps): JSX.Element {
         Une erreur est survenue
       </Modal>
     );
-
+  console.log(data?.id);
   return (
     <div className="my-5 border-b border-gray-400 pb-2">
-      <p className="font-bold sm:text-xl mb-1">
-        {data?.firstName} {data?.lastName}
-      </p>
-      <div className=" flex flex-col sm:flex-row">
-        <p className="text-gray-300">
-          Fonction:{' '}
-          <span>
-            <JobDisplay id={data?.jobId as string} />
-          </span>{' '}
-          /{' '}
+      <Link to={`/collaborateurs/oneuser/${data?.id}`}>
+        <p className="font-bold sm:text-xl mb-1">
+          {data?.firstName} {data?.lastName}
         </p>
-        <p className="text-gray-300">email: {data?.email}</p>
-      </div>
+        <div className=" flex flex-col sm:flex-row">
+          <p className="text-gray-300">
+            Fonction:{' '}
+            <span>
+              <JobDisplay id={data?.jobId as string} />
+            </span>{' '}
+            /{' '}
+          </p>
+          <p className="text-gray-300">email: {data?.email}</p>
+        </div>
+      </Link>
     </div>
   );
 }
