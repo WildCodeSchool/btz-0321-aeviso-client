@@ -68,7 +68,7 @@ function Picker({ setDayActive, setNewDate, register }: IPicker): JSX.Element {
           })}
         </select>
       </div>
-      <p className="font-bold sm:text-2xl mt-10 mx-4">Pour crée un rapport sélectionner une journée</p>
+      <p className="font-bold sm:text-2xl mt-10 mx-4">Pour créer un rapport sélectionnez une journée</p>
       <div className="flex mt-5 sm:p-10 mb-10 w-12/12 bg-black rounded-xl">
         <Calendar onChange={handleChange} />
       </div>
