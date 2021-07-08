@@ -8,14 +8,14 @@ function JobDisplay({ id }: { id: string }): JSX.Element {
   const { isLoading, error, data } = useQuery<Job, AxiosError>(['jobs', id], () => jobs.getOne(id));
 
   if (isLoading) {
-    return <p>...</p>;
+    return <span>...</span>;
   }
 
   if (error) {
     return (
-      <p>
+      <span>
         An error has occurred: {error.message}. Code: {error.code}
-      </p>
+      </span>
     );
   }
 
