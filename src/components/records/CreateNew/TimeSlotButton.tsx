@@ -2,7 +2,7 @@ import React from 'react';
 import { FieldValues, UseFormSetValue } from 'react-hook-form';
 import { useMutation, useQueryClient } from 'react-query';
 import { records } from '../../../API/requests';
-import { useUserFromStore } from '../../../store/user.slice';
+import { useRecordContext } from '../../../Contexts/Record.context';
 
 interface IProps {
   active: boolean;
@@ -15,15 +15,11 @@ interface IProps {
 
 function TimeSlotButton({ setValue, active, children, isTimeslot, value, recordId }: IProps): JSX.Element {
   const { refetchQueries } = useQueryClient();
-  const { user } = useUserFromStore();
 
+  const { date } = useRecordContext();
   const { mutate: deleteRecord } = useMutation(records.delete, {
-    onSuccess: () => refetchQueries('records'),
-    onError: () => {
-      refetchQueries(['records', user.id]);
-    },
+    onSuccess: () => refetchQueries(['records', date]),
   });
-  const handleDelete = (id: string) => deleteRecord(id);
 
   return (
     <>
@@ -42,7 +38,7 @@ function TimeSlotButton({ setValue, active, children, isTimeslot, value, recordI
           disabled={!active}
         />
       </label>
-      {!active && <button onClick={() => handleDelete(recordId as string)}>Supprimer</button>}
+      {!active && <button onClick={() => deleteRecord(recordId as string)}>Supprimer</button>}
     </>
   );
 }
