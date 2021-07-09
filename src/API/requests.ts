@@ -48,9 +48,7 @@ export const project = {
     axios.post(`${API_URL}/projects/`, data).then((res) => res.data),
 
   getUsers: (projectId: string): Promise<IResultUser[]> =>
-    axios
-      .get(`${API_URL}/projects/${projectId}/users${projectId ? `?projectId=${projectId}` : ''}`)
-      .then((res) => res.data),
+    axios.get(`${API_URL}/projects/${projectId}/users`).then((res) => res.data),
 
   getRecords: (projectId: string, userId: string, start: string, end: string): Promise<IRecord[]> =>
     axios
