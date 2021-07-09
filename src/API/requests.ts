@@ -38,15 +38,6 @@ export const project = {
 
   getOne: (id: string): Promise<Project> => axios.get(`${API_URL}/projects/${id}`).then((res) => res.data),
 
-  delete: (id: string): Promise<null> => axios.delete(`${API_URL}/projects/${id}`).then((res) => res.data),
-
-  update: ({ id, data }: { id: string; data: Project }): Promise<null> =>
-    axios.put(`${API_URL}/projects/${id}`, data).then((res) => res.data),
-
-  // TODO: create a real interface here
-  create: ({ data }: { data: Project }): Promise<Project> =>
-    axios.post(`${API_URL}/projects/`, data).then((res) => res.data),
-
   getUsers: (projectId: string): Promise<IResultUser[]> =>
     axios
       .get(`${API_URL}/projects/${projectId}/users${projectId ? `?projectId=${projectId}` : ''}`)
@@ -56,6 +47,18 @@ export const project = {
     axios
       .get(`${API_URL}/projects/${projectId}/users/${userId}/records?start=${start}&end=${end}`)
       .then((res) => res.data),
+
+  // TODO: create a real interface here
+  create: ({ data }: { data: Project }): Promise<Project> =>
+    axios.post(`${API_URL}/projects/`, data).then((res) => res.data),
+
+  update: ({ id, data }: { id: string; data: Project }): Promise<null> =>
+    axios.put(`${API_URL}/projects/${id}`, data).then((res) => res.data),
+
+  delete: (id: string): Promise<null> => axios.delete(`${API_URL}/projects/${id}`).then((res) => res.data),
+
+  deleteDayRecords: ({ projectId, userId, date }: { projectId: string; userId: string; date: string }): Promise<null> =>
+    axios.delete(`${API_URL}/projects/${projectId}/users/${userId}/records?date=${date}`).then((res) => res.data),
 };
 
 export const companies = {
@@ -94,9 +97,6 @@ export const records = {
     axios.put(`${API_URL}/records/${id}`, data).then((res) => res.data),
 
   delete: (id: string): Promise<null> => axios.delete(`${API_URL}/records/${id}`).then((res) => res.data),
-
-  deleteDayRecords: (date: Date): Promise<null> =>
-    axios.delete(`${API_URL}/records?date=${date}`).then((res) => res.data),
 };
 
 export const auth = {
