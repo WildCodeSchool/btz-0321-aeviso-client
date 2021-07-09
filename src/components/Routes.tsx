@@ -15,7 +15,6 @@ import ExportRecords from './records/Exporter/ExportRecords';
 import DetailsProjects from './companies/DetailsProjects';
 import { useUserFromStore } from '../store/user.slice';
 import Collaborators from './users/Collaborators';
-import CreateNewUser from './users/CreateUser';
 import OneCollaborator from './users/OneCollaborator';
 
 function Routes(): JSX.Element {
@@ -25,8 +24,7 @@ function Routes(): JSX.Element {
       <>
         <Route path="/home" component={HomePage} />
         <Route path="/aeviso" component={Admin} />
-        <Route exact path="/clients/:id/collaborateurs" component={Collaborators} />
-        <Route exact path="/clients/:id/collaborateurs/createnew/" component={CreateNewUser} />
+        <Route exact path="/collaborateurs" component={Collaborators} />
         <Route path="/collaborateurs/oneuser/:id" component={OneCollaborator} />
         <Route path="/logout" component={Logout} />
         <Route />
