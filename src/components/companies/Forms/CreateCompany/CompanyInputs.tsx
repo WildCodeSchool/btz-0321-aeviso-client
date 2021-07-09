@@ -1,5 +1,5 @@
 import React from 'react';
-import TextInput from './CreateCompany/TextInput';
+import TextInput from '../CreateCompany/TextInput';
 import { FieldValues, UseFormRegister } from 'react-hook-form';
 
 interface IProps {

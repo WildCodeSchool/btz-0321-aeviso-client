@@ -2,8 +2,8 @@ import React from 'react';
 import { FieldValues } from 'react-hook-form';
 import { UseFormRegister } from 'react-hook-form';
 
-import AdministratorIdentity from './CreateAdministrator/AdministratorIdentity';
-import AdministratorCredentials from './CreateAdministrator/AdministratorCredentials';
+import AdministratorIdentity from './AdministratorIdentity';
+import AdministratorCredentials from './AdministratorCredentials';
 
 interface IProps {
   register: UseFormRegister<FieldValues>;

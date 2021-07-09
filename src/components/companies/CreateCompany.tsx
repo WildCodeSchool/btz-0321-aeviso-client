@@ -7,8 +7,8 @@ import { companies, jobs } from '../../API/requests';
 
 import JobsInput from './Forms/CreateCompany/JobsInput';
 import Spinner from '../Spinner';
-import CompanyInputs from './Forms/CompanyInputs';
-import AdministratorInputs from './Forms/AdministratorInputs';
+import CompanyInputs from './Forms/CreateCompany/CompanyInputs';
+import AdministratorInputs from './Forms/CreateAdministrator/AdministratorInputs';
 import ImageInput from './Forms/CreateCompany/ImageInput';
 
 interface IForm {
@@ -19,9 +19,9 @@ interface IForm {
 function CreateCompany(): JSX.Element {
   const { isLoading, error, data: jobsData } = useQuery<Job[], AxiosError>('jobs', jobs.getAll);
 
-  const { mutate } = useMutation<Company, AxiosError, { companyData: ICompanyForm; userData: IUserForm }>(
+  const { mutate } = useMutation<User, AxiosError, { companyData: ICompanyForm; userData: IUserForm }>(
     'companies',
-    (data) => companies.post(data)
+    companies.post
   );
 
   const {
