@@ -80,6 +80,7 @@ function CreateCompany(): JSX.Element {
   return (
     <div className="px-4 min-h-full bg-black text-white rounded-xl">
       <p className="text-xl">Créer un nouveau client</p>
+
       <form action="" onSubmit={handleSubmit(onSubmit)} className="">
         <CompanyInputs register={register} errors={errors} />
 

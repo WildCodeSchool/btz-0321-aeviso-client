@@ -8,7 +8,7 @@ module.exports = {
         roboto: ['Roboto', 'sans-serif'],
       },
       backgroundImage: (_theme) => ({
-        bgImg: "url('/media/images/bgAevisioOriginal.webp')",
+        bgImg: "url('/media/images/bgAevisoOriginal.webp')",
       }),
       colors: {
         whiteGray: '#DEDDDD',
