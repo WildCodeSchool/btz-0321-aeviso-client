@@ -8,16 +8,18 @@ import { AxiosError } from 'axios';
 import { companies } from '../../../API/requests';
 import { useUserFromStore } from '../../../store/user.slice';
 import { FieldValues, UseFormRegister } from 'react-hook-form';
+import { useRecordContext } from '../../../Contexts/Record.context';
 
 interface IPicker {
   setDayActive: Dispatch<SetStateAction<boolean>>;
-  setNewDate: Dispatch<SetStateAction<Date>>;
   register: UseFormRegister<FieldValues>;
 }
 
-function Picker({ setDayActive, setNewDate, register }: IPicker): JSX.Element {
+function Picker({ setDayActive, register }: IPicker): JSX.Element {
+  const { setDate } = useRecordContext();
+
   const handleChange = (date: Date) => {
-    setNewDate(date);
+    if (setDate) setDate(date);
     setDayActive(false);
   };
 
