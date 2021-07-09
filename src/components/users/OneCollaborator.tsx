@@ -1,6 +1,6 @@
 import React, { useState } from 'react';
 import { useMutation, useQuery } from 'react-query';
-import { useParams } from 'react-router-dom';
+import { useHistory, useParams } from 'react-router-dom';
 import { jobs, user } from '../../API/requests';
 import useModal from '../../hooks/useModal';
 import Modal from '../Modal';
@@ -12,8 +12,9 @@ interface Params {
 
 function OneCollaborator(): JSX.Element {
   const { id } = useParams<Params>();
-  const { setIsModal, setMessage } = useModal();
+  const { isModal, setIsModal, setMessage, message } = useModal();
   const [isForm, setIsForm] = useState<boolean>(false);
+  const history = useHistory();
 
   const { isLoading: userLoading, error: userError, data } = useQuery<User>(['user', id], () => user.getOne(id));
 
@@ -35,8 +36,6 @@ function OneCollaborator(): JSX.Element {
     error: jobError,
     data: job,
   } = useQuery(['job', jobId], () => jobs.getOne(jobId as string));
-  console.log(data);
-  console.log(job);
 
   const handleClick = () => {
     setIsForm(true);
@@ -53,16 +52,38 @@ function OneCollaborator(): JSX.Element {
         Une erreur est survenue
       </Modal>
     );
-
+  if (isModal)
+    return (
+      <Modal
+        title="Supprimer un utilisateur"
+        buttons={
+          !error
+            ? [{ text: 'ok', handleClick: () => history.push('/collaborateurs') }]
+            : [{ text: 'Nouvel essai', handleClick: () => setIsModal((prevState) => !prevState) }]
+        }
+      >
+        {message}
+      </Modal>
+    );
   return (
     <div>
       {isForm ? (
-        <CreateNewUser mutationFn={user.update} />
+        <CreateNewUser setIsForm={setIsForm} mutationFn={user.update} />
       ) : (
         <div className="dark:bg-component bg-white border-2 dark:border-componentBorder h-full sm:w-full text-black dark:text-white font-roboto rounded-xl shadow-mainShadow mx-4 sm:mx-0  sm:px-10 p-5 overflow-y-auto">
-          <div className="flex  font-bold text-2xl sm:text-4xl">
-            <p className="mr-2">{data?.lastName} /</p>
-            <p>{data?.firstName}</p>
+          <div className="flex w-full flex-col sm:flex-row justify-between">
+            <div className="flex  font-bold text-2xl items-center sm:text-4xl">
+              <p className="mr-2">{data?.lastName} /</p>
+              <p>{data?.firstName}</p>
+            </div>
+            <button
+              className="focus:outline-none text-white shadow-buttonShadow mt-5 sm:mt-7 w-full sm:w-2/12 py-2 sm:h-12 sm:rounded-md rounded-lg bg-customGreen"
+              onClick={() => {
+                history.push('/collaborateurs');
+              }}
+            >
+              retour
+            </button>
           </div>
           <div className="mt-5 sm:mt-10 border-b border-gray-300 pb-2">
             <p>Email</p>

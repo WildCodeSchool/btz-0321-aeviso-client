@@ -1,4 +1,4 @@
-import React, { useState } from 'react';
+import React, { Dispatch, SetStateAction, useState } from 'react';
 import { useMutation, useQuery } from 'react-query';
 import SelectInput from '../../components/form components/SelectInput';
 import { AxiosError } from 'axios';
@@ -8,17 +8,18 @@ import { useUserFromStore } from '../../store/user.slice';
 import useModal from '../../hooks/useModal';
 import Modal from '../Modal';
 import { useHistory, useParams } from 'react-router-dom';
-import PasswordFom from './PasswordFom';
+import PasswordFom from '../form components/PasswordFom';
 
 interface INewUser extends User {
   confirmPassword?: string;
 }
 
-function CreateNewUser({
-  mutationFn,
-}: {
+interface IFromCreateUser {
   mutationFn: (variables: { user: User; id?: string }) => Promise<User>;
-}): JSX.Element {
+  setIsForm: Dispatch<SetStateAction<boolean>>;
+}
+
+function CreateNewUser({ mutationFn, setIsForm }: IFromCreateUser): JSX.Element {
   const [listOfJobs, setListOfJobs] = useState<SelectItem[]>([]);
   const { user: currentUser } = useUserFromStore();
   const history = useHistory();
@@ -43,13 +44,12 @@ function CreateNewUser({
 
   const { mutate, isLoading, error } = useMutation<User, AxiosError, { user: User; id?: string }>(mutationFn, {
     onSuccess: () => {
-      setMessage('Utilisateur correctement créé/ajouté');
+      setMessage('Utilisateur correctement créé/modifier');
       setIsModal((prevState) => !prevState);
     },
   });
 
   const { id } = useParams<{ id: string }>();
-  console.log(id);
 
   if (id) {
     useQuery(['user', id], () => user.getOne(id), {
@@ -80,7 +80,7 @@ function CreateNewUser({
         title="Crée un nouvelle utilisateur"
         buttons={
           !error
-            ? [{ text: 'ok', handleClick: () => history.push('/clients/:id/collaborateurs') }]
+            ? [{ text: 'ok', handleClick: () => history.push('/collaborateurs') }]
             : [{ text: 'Nouvel essai', handleClick: () => setIsModal((prevState) => !prevState) }]
         }
       >
@@ -90,9 +90,24 @@ function CreateNewUser({
   if (error) return <p>Une erreur est survenue...</p>;
 
   return (
-    <div className="dark:bg-component bg-white border-2 dark:border-componentBorder h-full sm:w-full text-black dark:text-white font-roboto rounded-xl shadow-mainShadow mx-4 sm:mx-0  sm:px-10 p-5 overflow-y-auto">
-      <h3 className="text-xl sm:mt-2 sm:text-5xl font-bold">Crée/Modifier nouveau collaborateur</h3>
-
+    <div
+      className={
+        mutationFn === user.update
+          ? 'dark:bg-component bg-white border-2 dark:border-componentBorder h-full sm:w-full text-black dark:text-white font-roboto rounded-xl shadow-mainShadow mx-4 sm:mx-0  sm:px-10 p-5 overflow-y-auto'
+          : ''
+      }
+    >
+      <div className="flex w-full justify-between items-center">
+        <h3 className="text-xl sm:mt-2 sm:text-5xl font-bold">Crée/Modifier nouveau collaborateur</h3>
+        <button
+          className="focus:outline-none text-white shadow-buttonShadow mt-5 w-full sm:w-2/12 py-2 sm:h-12 sm:rounded-md rounded-lg bg-customGreen "
+          onClick={() => {
+            setIsForm(false);
+          }}
+        >
+          Retour
+        </button>
+      </div>
       <form className="flex-col mt-2 sm:mt-10" onSubmit={handleSubmit(onSubmit)}>
         <label className="flex flex-col">
           Prénom
@@ -130,7 +145,7 @@ function CreateNewUser({
         />
         {mutationFn === user.create ? <PasswordFom register={register} error={errors} /> : ''}
         <button
-          className="focus:outline-none text-white shadow-buttonShadow mt-5 w-full sm:w-4/12 py-2 sm:h-12 sm:rounded-md rounded-lg bg-customGreen "
+          className="focus:outline-none text-white shadow-buttonShadow mt-5 sm:mt-7 w-full sm:w-4/12 py-2 sm:h-12 sm:rounded-md rounded-lg bg-customGreen "
           type="submit"
         >
           Envoyer

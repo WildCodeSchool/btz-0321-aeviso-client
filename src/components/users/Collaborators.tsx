@@ -30,7 +30,7 @@ function Collaborators(): JSX.Element {
   return (
     <div className="dark:bg-component bg-white border-2 dark:border-componentBorder h-full sm:w-full text-black dark:text-white font-roboto rounded-xl shadow-mainShadow mx-4 sm:mx-0  sm:px-10 p-5 overflow-y-auto">
       {isForm ? (
-        <CreateNewUser mutationFn={user.create} />
+        <CreateNewUser setIsForm={setIsForm} mutationFn={user.create} />
       ) : (
         <div>
           <MainComponentHeader setIsForm={setIsForm} register={register} title="Liste des collaborateurs" />

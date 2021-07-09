@@ -21,7 +21,6 @@ function UserPreview({ id }: IProps): JSX.Element {
         Une erreur est survenue
       </Modal>
     );
-  console.log(data?.id);
   return (
     <div className="my-5 border-b border-gray-400 pb-2">
       <Link to={`/collaborateurs/oneuser/${data?.id}`}>
