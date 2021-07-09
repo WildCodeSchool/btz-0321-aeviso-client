@@ -1,14 +1,14 @@
 import { AxiosError } from 'axios';
 import React, { useState } from 'react';
-import { useMutation, useQuery } from 'react-query';
+import { useMutation, useQuery, useQueryClient } from 'react-query';
 import { project, records } from '../../../API/requests';
 import { useUserFromStore } from '../../../store/user.slice';
 import Spinner from '../../Spinner';
 import { useForm } from 'react-hook-form';
 import useModal from '../../../hooks/useModal';
 import Modal from '../../Modal';
-import { useHistory } from 'react-router-dom';
 import ValidateFormButton from '../../ValidateFormButton';
+import TimeSlotButton from './TimeSlotButton';
 
 interface IDayRecord {
   date: Date;
@@ -23,10 +23,11 @@ interface IData {
 function DayRecord({ date, selectedProject }: IDayRecord): JSX.Element {
   const [isAlreadyRecorded, setIsAlreadyRecorded] = useState(false);
 
-  const history = useHistory();
   const { user } = useUserFromStore();
-  const { register, handleSubmit, watch, setValue } = useForm();
   const { isModal, setIsModal, message, setMessage } = useModal();
+
+  const { register, handleSubmit, watch, setValue } = useForm();
+  const { refetchQueries } = useQueryClient();
 
   const end = new Date(date);
   end.setDate(end.getDate() + 1);
@@ -47,36 +48,41 @@ function DayRecord({ date, selectedProject }: IDayRecord): JSX.Element {
     {
       onSuccess: (data) => {
         if (data && data.length > 0) setIsAlreadyRecorded(true);
-        if (data.length === 1) return setValue('timeslot', data[0].timeslot.toLocaleLowerCase());
-        if (data.length === 2) return setValue('timeslot', 'fullday');
       },
     }
   );
 
   const isTimeslot = watch('timeslot');
+  console.log(isTimeslot);
 
-  const { mutate } = useMutation(records.post, {
+  const { mutate: postRecord } = useMutation(records.post, {
     onSuccess: () => {
+      refetchQueries(['records', user.id]);
       setMessage('Votre rapport à bien été éffectué');
+      setIsModal((prevState) => !prevState);
+    },
+    onError: () => {
+      setMessage('Une erreur est survenue lors de la création');
       setIsModal((prevState) => !prevState);
     },
   });
 
   const onSubmit = (data: IData) => {
     const { timeslot, comment } = data;
-    const dateRecoded = new Date(date.setHours(12)).toISOString();
+    const dateToRecord = new Date(date.setHours(12)).toISOString();
     const record = {
       userId: user.id,
       projectId: selectedProject,
-      date: dateRecoded,
+      date: dateToRecord,
       comment,
     };
     if (timeslot === 'fullday') {
-      mutate({ ...record, timeslot: 'MORNING' });
-      mutate({ ...record, timeslot: 'AFTERNOON' });
+      postRecord({ ...record, timeslot: 'MORNING' });
+      postRecord({ ...record, timeslot: 'AFTERNOON' });
       return;
     }
-    mutate({ ...record, timeslot: timeslot === 'morning' ? 'MORNING' : 'AFTERNOON' });
+    postRecord({ ...record, timeslot: timeslot === 'morning' ? 'MORNING' : 'AFTERNOON' });
+    return;
   };
 
   const error = recordError || projectError;
@@ -86,12 +92,8 @@ function DayRecord({ date, selectedProject }: IDayRecord): JSX.Element {
   if (isModal)
     return (
       <Modal
-        title="Authentification"
-        buttons={
-          data || recordData
-            ? [{ text: 'ok', handleClick: () => history.push('./') }]
-            : [{ text: 'Nouvel essai', handleClick: () => setIsModal((prevState) => !prevState) }]
-        }
+        title="Création de rappport"
+        buttons={[{ text: 'OK', handleClick: () => setIsModal((prevState) => !prevState) }]}
       >
         {message}
       </Modal>
@@ -113,52 +115,49 @@ function DayRecord({ date, selectedProject }: IDayRecord): JSX.Element {
         <h2 className="font-bold sm:text-2xl">{date.toLocaleDateString()}</h2>
       </div>
       {isAlreadyRecorded && <p>Vous avez déja enregistré des données ce jour là</p>}
-      <form className="sm:mt-20" onSubmit={handleSubmit(onSubmit)}>
-        <div className="mt-10 flex flex-col sm:flex-row mx-4">
-          <label
-            className={`text-black dark:text-white text-center rounded-xl px-12 py-4  ${
-              isTimeslot === 'morning'
-                ? ' bg-customGreen text-white'
-                : 'border border-black dark:border-white hover:bg-customGreen'
-            }`}
-          >
-            Matin
-            <input className="hidden" type="radio" {...register('timeslot')} id="morning" value="morning"></input>
-          </label>
+      <div className="mt-10 flex flex-col sm:flex-row mx-4">
+        <TimeSlotButton
+          recordId={recordData?.find((record) => record.timeslot === 'MORNING')?.id as string}
+          active={recordData?.find((record) => record.timeslot === 'MORNING') ? false : true}
+          isTimeslot={isTimeslot}
+          setValue={setValue}
+          value="morning"
+        >
+          Matin
+        </TimeSlotButton>
 
-          <label
-            className={`text-black dark:text-white  text-center rounded-xl px-12 py-4 sm:ml-10 mt-5   ${
-              isTimeslot === 'afternoon'
-                ? ' bg-customGreen text-white'
-                : 'border border-black dark:border-white hover:bg-customGreen'
-            }`}
-          >
-            Après Midi
-            <input className="hidden" type="radio" {...register('timeslot')} id="afternoon" value="afternoon"></input>
-          </label>
-          <label
-            className={` text-black dark:text-white  text-center rounded-xl px-12 py-4 sm:ml-10 mt-5   ${
-              isTimeslot === 'fullday'
-                ? ' bg-customGreen text-white'
-                : 'border border-black dark:border-white shadow-buttonShadow hover:text-white hover:border-white hover:bg-customGreen'
-            }`}
-          >
-            Journée
-            <input type="radio" className="hidden" {...register('timeslot')} id="fullday" value="fullday"></input>
-          </label>
-        </div>
+        <TimeSlotButton
+          recordId={recordData?.find((record) => record.timeslot === 'AFTERNOON')?.id as string}
+          active={recordData?.find((record) => record.timeslot === 'AFTERNOON') ? false : true}
+          isTimeslot={isTimeslot}
+          setValue={setValue}
+          value="afternoon"
+        >
+          Après-midi
+        </TimeSlotButton>
 
-        <div className="flex flex-col mt-10 sm:mt-10  mx-4">
-          <label htmlFor="text" className="text-white text-xl">
-            Commentaire
-          </label>
-          <textarea
-            {...register('comment')}
-            className=" bg-input shadow-inputShadow text-white rounded-xl mt-2 h-32 p-3"
-          />
-        </div>
-        <ValidateFormButton text={isAlreadyRecorded ? 'Modifier' : 'Créer'} />
-      </form>
+        <span className={recordData && recordData.length > 0 ? 'hidden' : 'block'}>
+          <TimeSlotButton
+            active={recordData && recordData.length > 0 ? false : true}
+            isTimeslot={isTimeslot}
+            setValue={setValue}
+            value="fullday"
+          >
+            Jour entier
+          </TimeSlotButton>
+        </span>
+      </div>
+
+      <div className="flex flex-col mt-10 sm:mt-10  mx-4">
+        <label htmlFor="text" className="text-white text-xl">
+          Commentaire
+        </label>
+        <textarea
+          {...register('comment')}
+          className=" bg-input shadow-inputShadow text-white rounded-xl mt-2 h-32 p-3"
+        />
+      </div>
+      <ValidateFormButton text={isAlreadyRecorded ? 'Modifier' : 'Créer'} handleClick={onSubmit} />
     </div>
   );
 }
