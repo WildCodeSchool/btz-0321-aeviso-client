@@ -19,7 +19,7 @@ function RecordPreview({ record, isLastElement, isFirstElement }: IProps): JSX.E
     isLoading: userIsLoading,
     error: userError,
     data: userData,
-  } = useQuery<User, AxiosError>(['users', record.userId], () => user.getOne(record.userId));
+  } = useQuery<User, AxiosError>(['users', record.userId], () => user.getOne(record.userId as string));
 
   const {
     isLoading: companyIsLoading,
