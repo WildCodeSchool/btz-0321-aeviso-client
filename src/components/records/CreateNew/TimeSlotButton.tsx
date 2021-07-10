@@ -1,11 +1,13 @@
 import React from 'react';
 import { FieldValues, UseFormSetValue } from 'react-hook-form';
-import { useMutation, useQueryClient } from 'react-query';
+import { useMutation } from 'react-query';
 import { records } from '../../../API/requests';
-import { useRecordContext } from '../../../Contexts/Record.context';
+import useModal from '../../../hooks/useModal';
+import { useRecordFromStore } from '../../../store/record.slice';
+import Modal from '../../Modal';
 
 interface IProps {
-  active: boolean;
+  isActive: boolean;
   setValue: UseFormSetValue<FieldValues>;
   children: React.ReactNode;
   isTimeslot: 'morning' | 'afternoon' | 'fullday';
@@ -13,20 +15,41 @@ interface IProps {
   recordId?: string;
 }
 
-function TimeSlotButton({ setValue, active, children, isTimeslot, value, recordId }: IProps): JSX.Element {
-  const { refetchQueries } = useQueryClient();
+function TimeSlotButton({ setValue, isActive, children, isTimeslot, value, recordId }: IProps): JSX.Element {
+  const { dispatchDeleteRecord } = useRecordFromStore();
+  const { isModal, setIsModal, message, setMessage } = useModal();
 
-  const { date } = useRecordContext();
   const { mutate: deleteRecord } = useMutation(records.delete, {
-    onSuccess: () => refetchQueries(['records', date]),
+    onSuccess: () => dispatchDeleteRecord(recordId as string),
+    onError: () => {
+      setMessage('Erreur lors de la suppession du rapport');
+      setIsModal(true);
+    },
   });
+
+  if (isModal)
+    return (
+      <Modal
+        title="Supression de rappport"
+        buttons={[
+          {
+            text: 'OK',
+            handleClick: () => {
+              setIsModal(false);
+            },
+          },
+        ]}
+      >
+        {message}
+      </Modal>
+    );
 
   return (
     <>
       <label
         className={`text-black dark:text-white text-center rounded-xl px-12 py-4 ${
           isTimeslot === value ? ' bg-customGreen text-white' : 'border border-black dark:border-white'
-        } ${!active ? 'text-gray-500' : 'hover:bg-customGreen'}`}
+        } ${!isActive ? 'text-gray-500' : 'hover:bg-customGreen'}`}
       >
         {children}
         <input
@@ -35,10 +58,10 @@ function TimeSlotButton({ setValue, active, children, isTimeslot, value, recordI
           onClick={() => setValue('timeslot', value)}
           id={value}
           value={value}
-          disabled={!active}
+          disabled={!isActive}
         />
       </label>
-      {!active && <button onClick={() => deleteRecord(recordId as string)}>Supprimer</button>}
+      {!isActive && <button onClick={() => deleteRecord(recordId as string)}>Supprimer</button>}
     </>
   );
 }
