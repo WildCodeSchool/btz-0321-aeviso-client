@@ -10,7 +10,7 @@ import ListsCompanies from './companies/ListsCompanies';
 import FormResult from './records/Exporter/FormResult';
 import Admin from './home/Admin';
 import ExportRecords from './records/Exporter/ExportRecords';
-
+import CompanyUdapte from './companies/CompanyUpdate';
 import DetailsProjects from './companies/DetailsProjects';
 import { useUserFromStore } from '../store/user.slice';
 import CreateCompany from './companies/CreateCompany';
@@ -20,6 +20,7 @@ function Routes(): JSX.Element {
   if (user?.role === 'ADMIN') {
     return (
       <>
+        <Route exact path="/home" component={HomePage} />
         <Route exact path="/aeviso" component={Admin} />
         <Route exact path="/logout" component={Logout} />
       </>
@@ -41,6 +42,7 @@ function Routes(): JSX.Element {
         <Route exact path="/home" component={HomePage} />
         <Route exact path="/aeviso" component={SuperAdmin} />
         <Route exact path="/create" component={CreateCompany} />
+        <Route exact path="/update/:id" component={CompanyUdapte} />
         <Route exact path="/clients" component={ListsCompanies} />
         <Route exact path="/records/export/companies/:companyId/projects/:projectId" component={FormResult} />
         <Route exact path="/records/export" component={ExportRecords} />
