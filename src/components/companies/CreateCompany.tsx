@@ -10,6 +10,9 @@ import Spinner from '../Spinner';
 import CompanyInputs from './Forms/CreateCompany/CompanyInputs';
 import AdministratorInputs from './Forms/CreateAdministrator/AdministratorInputs';
 import ImageInput from './Forms/CreateCompany/ImageInput';
+import useModal from '../../hooks/useModal';
+import Modal from '../Modal';
+import { useHistory } from 'react-router-dom';
 
 interface IForm {
   company: ICompanyForm;
@@ -18,10 +21,18 @@ interface IForm {
 
 function CreateCompany(): JSX.Element {
   const { isLoading, error, data: jobsData } = useQuery<Job[], AxiosError>('jobs', jobs.getAll);
+  const { isModal, setIsModal, message, setMessage } = useModal();
+  const history = useHistory();
 
   const { mutate } = useMutation<User, AxiosError, { companyData: ICompanyForm; userData: IUserForm }>(
     'companies',
-    companies.post
+    companies.post,
+    {
+      onSuccess: () => {
+        setMessage('Le client à bien été crée');
+        setIsModal(true);
+      },
+    }
   );
 
   const {
@@ -70,6 +81,23 @@ function CreateCompany(): JSX.Element {
       <p>
         Error message: {error.message}. Code: {error.code}
       </p>
+    );
+  }
+
+  console.log(isModal);
+
+  if (isModal) {
+    return (
+      <Modal
+        title="Le client à bien été crée"
+        buttons={
+          !error
+            ? [{ text: 'ok', handleClick: () => history.push('/clients') }]
+            : [{ text: 'Nouvelle essai', handleClick: () => setIsModal(false) }]
+        }
+      >
+        {message}
+      </Modal>
     );
   }
 

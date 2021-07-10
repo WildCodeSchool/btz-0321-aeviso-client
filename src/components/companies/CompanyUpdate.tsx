@@ -13,7 +13,7 @@ function CompanyUpdate(): JSX.Element {
   const { isLoading, error, mutate } = useMutation<{ data: Company; id: string }>(companies.put);
   return (
     <div>
-      <form onSubmit={handleSubmit((data: Company) => mutate({ data, id }))}>
+      <form onSubmit={handleSubmit((data) => mutate({ data, id }))}>
         <label htmlFor="name">Nom du client</label>
         <input type="text" {...register('name')} />
         <input type="submit" />
