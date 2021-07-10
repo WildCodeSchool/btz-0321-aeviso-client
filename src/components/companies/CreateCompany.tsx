@@ -3,7 +3,7 @@ import { useForm } from 'react-hook-form';
 import { useMutation, useQuery } from 'react-query';
 import { AxiosError } from 'axios';
 
-import { companies, jobs } from '../../API/requests';
+import { jobs } from '../../API/requests';
 
 import JobsInput from './Forms/CreateCompany/JobsInput';
 import Spinner from '../Spinner';
@@ -19,14 +19,21 @@ interface IForm {
   user: IUserForm;
 }
 
-function CreateCompany(): JSX.Element {
+interface IProps {
+  mutationFn: (variables: { userData: IUserForm; companyData: ICompanyForm; id: string }) => Promise<Company>;
+  data?: Company;
+}
+
+function CreateCompany({ mutationFn, data }: IProps): JSX.Element {
   const { isLoading, error, data: jobsData } = useQuery<Job[], AxiosError>('jobs', jobs.getAll);
   const { isModal, setIsModal, message, setMessage } = useModal();
   const history = useHistory();
 
-  const { mutate } = useMutation<User, AxiosError, { companyData: ICompanyForm; userData: IUserForm }>(
+  const id = data?.id;
+
+  const { mutate } = useMutation<IForm, { companyData: ICompanyForm; userData: IUserForm; id: string }>(
     'companies',
-    companies.post,
+    mutationFn,
     {
       onSuccess: () => {
         setMessage('Le client à bien été crée');
@@ -64,6 +71,7 @@ function CreateCompany(): JSX.Element {
     mutate({
       companyData,
       userData,
+      id,
     });
   };
 
@@ -83,8 +91,6 @@ function CreateCompany(): JSX.Element {
       </p>
     );
   }
-
-  console.log(isModal);
 
   if (isModal) {
     return (

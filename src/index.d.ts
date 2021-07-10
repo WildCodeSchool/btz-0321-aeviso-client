@@ -5,11 +5,13 @@ interface Company {
 }
 
 interface ICompanyForm {
+  id?: string;
   name: string;
   logo?: File[] | File;
 }
 
 interface IUserForm {
+  id?: string;
   firstName: string;
   lastName: string;
   email: string;

@@ -72,8 +72,20 @@ export const companies = {
       .then((data) => axios.post(`${API_URL}/users`, { ...userData, companyId: data.id } as User))
       .then((res) => res.data),
 
-  put: ({ id, data }: { id: string; data: Company }): Promise<Company> =>
-    axios.put(`${API_URL}/companies/${id}`, data).then((res) => res.data),
+  put: ({
+    id,
+    companyData,
+    userData,
+  }: {
+    id: string;
+    companyData: ICompanyForm;
+    userData: IUserForm;
+  }): Promise<Company> =>
+    axios
+      .put<Company>(`${API_URL}/companies/${id}`, companyData)
+      .then((res) => res.data)
+      .then((data) => axios.put(`${API_URL}/users/${userData.id}`, { ...userData, companyId: data.id } as User))
+      .then((res) => res.data),
 
   delete: (id: string): Promise<null> => axios.delete(`${API_URL}/companies/${id}`).then((res) => res.data),
 
