@@ -5,6 +5,7 @@ import { RootState } from '.';
 export interface RecordState {
   date?: Date;
   companyId?: string;
+  projetId?: string;
   userId?: string;
   records?: IRecord[];
 }
@@ -25,7 +26,7 @@ export const recordSlice = createSlice({
   initialState,
   reducers: {
     createRecord: (state, action: PayloadAction<RecordState>) => {
-      return { ...action.payload };
+      return { ...state, ...action.payload };
     },
     deleteRecord: () => initialState,
   },
