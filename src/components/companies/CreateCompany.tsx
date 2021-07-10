@@ -3,7 +3,7 @@ import { useForm } from 'react-hook-form';
 import { useMutation, useQuery } from 'react-query';
 import { AxiosError } from 'axios';
 
-import { jobs } from '../../API/requests';
+import { companies, jobs } from '../../API/requests';
 
 import JobsInput from './Forms/CreateCompany/JobsInput';
 import Spinner from '../Spinner';
@@ -28,6 +28,15 @@ function CreateCompany({ mutationFn, data }: IProps): JSX.Element {
   const { isLoading, error, data: jobsData } = useQuery<Job[], AxiosError>('jobs', jobs.getAll);
   const { isModal, setIsModal, message, setMessage } = useModal();
   const history = useHistory();
+  const {
+    register,
+    handleSubmit,
+    clearErrors,
+    setValue,
+    setError,
+    formState: { errors },
+    watch,
+  } = useForm();
 
   const id = data?.id;
 
@@ -42,16 +51,24 @@ function CreateCompany({ mutationFn, data }: IProps): JSX.Element {
     }
   );
 
-  const {
-    register,
-    handleSubmit,
-    clearErrors,
-    setValue,
-    setError,
-    formState: { errors },
-    watch,
-  } = useForm();
-
+  if (id) {
+    useQuery(['company', id], () => companies.getOne(id), {
+      onSuccess: (data) => {
+        setValue('company.name', data.name);
+      },
+    });
+    useQuery<User[], AxiosError>(['user', id], () => companies.getUsers(id, 'ADMIN'), {
+      onSuccess: (data) => {
+        data.map((admin) => {
+          const { data } = useQuery(['job', admin.jobId], () => jobs.getOne(admin.jobId));
+          setValue('user.lastName', admin.lastName);
+          setValue('user.firstName', admin.firstName);
+          setValue('user.email', admin.email);
+          setValue('user.job', data.name);
+        });
+      },
+    });
+  }
   const logo = watch('logo');
 
   const onSubmit = (data: IForm) => {
