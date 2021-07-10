@@ -78,19 +78,23 @@ function CreateCompany(): JSX.Element {
   }
 
   return (
-    <div className="px-4 min-h-full bg-black text-white rounded-xl">
-      <p className="text-xl">Créer un nouveau client</p>
+    <div className="dark:bg-component bg-white border-2 dark:border-componentBorder h-full sm:w-full text-black dark:text-white font-roboto rounded-xl shadow-mainShadow mx-4 sm:mx-0  sm:px-10 p-5 overflow-y-auto">
+      <div className="flex w-full justify-between">
+        <p className="text-2xl sm:text-5xl font-bold ">Créer un nouveau client</p>
+        <ImageInput logo={logo} register={register} setValue={setValue} />
+      </div>
 
       <form action="" onSubmit={handleSubmit(onSubmit)} className="">
         <CompanyInputs register={register} errors={errors} />
-
-        <ImageInput logo={logo} register={register} setValue={setValue} />
 
         {jobsData && <JobsInput register={register} name={'user.job'} jobs={jobsData} />}
 
         <AdministratorInputs register={register} errors={errors} />
 
-        <input type="submit" className="cursor-pointer" />
+        <input
+          type="submit"
+          className="flex sm:w-2/12 w-full mt-5 text-sm sm:text-base text-white items-center bg-customGreen px-4 py-1 shadow-buttonShadow rounded-lg  sm:mx-0"
+        />
       </form>
     </div>
   );
