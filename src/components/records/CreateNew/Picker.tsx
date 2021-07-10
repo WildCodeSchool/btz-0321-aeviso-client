@@ -8,7 +8,8 @@ import { AxiosError } from 'axios';
 import { companies } from '../../../API/requests';
 import { useUserFromStore } from '../../../store/user.slice';
 import { FieldValues, UseFormRegister } from 'react-hook-form';
-import { useRecordContext } from '../../../Contexts/Record.context';
+import { useRecordFromStore } from '../../../store/record.slice';
+import { getLocaleDate } from '../../../assets/date';
 
 interface IPicker {
   setDayActive: Dispatch<SetStateAction<boolean>>;
@@ -16,10 +17,10 @@ interface IPicker {
 }
 
 function Picker({ setDayActive, register }: IPicker): JSX.Element {
-  const { setDate } = useRecordContext();
+  const { dispatchSelectDate } = useRecordFromStore();
 
   const handleChange = (date: Date) => {
-    if (setDate) setDate(date);
+    dispatchSelectDate(getLocaleDate(date));
     setDayActive(false);
   };
 
@@ -28,7 +29,7 @@ function Picker({ setDayActive, register }: IPicker): JSX.Element {
   const companySelect = user.companyId;
 
   const { isLoading, error, data } = useQuery<Project[], AxiosError>(
-    'project',
+    ['projects', user.id],
     () => companies.getAllProjects(companySelect as string),
     {
       enabled: Boolean(companySelect),
