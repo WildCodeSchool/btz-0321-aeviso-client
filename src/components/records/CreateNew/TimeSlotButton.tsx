@@ -45,11 +45,11 @@ function TimeSlotButton({ setValue, isActive, children, isTimeslot, value, recor
     );
 
   return (
-    <>
+    <div className="flex flex-col items-center m-4">
       <label
         className={`text-black dark:text-white text-center rounded-xl px-12 py-4 ${
           isTimeslot === value ? ' bg-customGreen text-white' : 'border border-black dark:border-white'
-        } ${!isActive ? 'text-gray-500' : 'hover:bg-customGreen'}`}
+        } ${!isActive ? 'dark:text-gray-500 dark:border-gray-500' : 'hover:bg-customGreen'}`}
       >
         {children}
         <input
@@ -61,8 +61,12 @@ function TimeSlotButton({ setValue, isActive, children, isTimeslot, value, recor
           disabled={!isActive}
         />
       </label>
-      {!isActive && <button onClick={() => deleteRecord(recordId as string)}>Supprimer</button>}
-    </>
+      {!isActive && (
+        <button className="rounded-lg mt-4 bg-customRed p-2" onClick={() => deleteRecord(recordId as string)}>
+          Supprimer
+        </button>
+      )}
+    </div>
   );
 }
 
