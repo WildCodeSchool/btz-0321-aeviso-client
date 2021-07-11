@@ -19,6 +19,7 @@ function Routes(): JSX.Element {
   if (user?.role === 'ADMIN') {
     return (
       <>
+        <Route exact path="/home" component={HomePage} />
         <Route exact path="/aeviso" component={Admin} />
         <Route exact path="/logout" component={Logout} />
       </>
@@ -28,6 +29,7 @@ function Routes(): JSX.Element {
   if (user?.role === 'USER') {
     return (
       <>
+        <Route exact path="/home" component={HomePage} />
         <Route exact path="/aeviso" component={User} />
         <Route exact path="/logout" component={Logout} />
       </>
