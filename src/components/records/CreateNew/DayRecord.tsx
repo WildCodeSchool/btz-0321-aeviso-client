@@ -31,18 +31,17 @@ function DayRecord({ selectedProject }: IDayRecord): JSX.Element {
   const end = new Date(record.date);
   end.setDate(end.getDate() + 1);
 
-  const {
-    isLoading: projectLoading,
-    error: projectError,
-    data,
-  } = useQuery<Project, AxiosError>(['project', selectedProject], () => project.getOne(selectedProject));
+  const { isLoading: projectLoading, data } = useQuery<Project, AxiosError>(['project', selectedProject], () =>
+    project.getOne(selectedProject)
+  );
 
-  const { isLoading: recordLoading, error: recordError } = useQuery<IRecord[], AxiosError>(
+  const { isLoading: recordLoading } = useQuery<IRecord[], AxiosError>(
     ['records', record.date],
     () => project.getRecords(selectedProject, user.id as string, record.date.toISOString(), end.toISOString()),
     {
       onSuccess: (data) => {
         dispatchCreateRecord(data);
+        if (data) setValue('comment', data[0].comment);
       },
     }
   );
@@ -81,10 +80,10 @@ function DayRecord({ selectedProject }: IDayRecord): JSX.Element {
     return;
   };
 
-  const error = recordError || projectError;
   if (projectLoading || recordLoading) {
     return <Spinner />;
   }
+
   if (isModal)
     return (
       <Modal
@@ -102,14 +101,6 @@ function DayRecord({ selectedProject }: IDayRecord): JSX.Element {
       </Modal>
     );
 
-  if (error) {
-    return (
-      <p>
-        An error as occurred : {error.message}. code:{error.code}
-      </p>
-    );
-  }
-
   return (
     <div>
       <div className="flex text-black dark:text-white items-center mx-4 mt-5 sm:mt-20 justify-between">
@@ -117,8 +108,12 @@ function DayRecord({ selectedProject }: IDayRecord): JSX.Element {
 
         <h2 className="font-bold sm:text-2xl">{record.date.toLocaleDateString()}</h2>
       </div>
-      {record.records?.length > 0 && <p>Vous avez déja enregistré des données ce jour là</p>}
-      <div className="mt-10 flex flex-col sm:flex-row mx-4">
+      <div className="w-full md:h-10 mt-5 mx-4 flex items-center">
+        {record.records?.length > 0 && (
+          <p className="text-xl max-w-full">Vous avez déja enregistré {record.records.length} rapport(s) ce jour là</p>
+        )}
+      </div>
+      <div className="mt-5 md:h-28 flex flex-col sm:flex-row mx-4">
         <TimeSlotButton
           recordId={record.records?.find((record) => record.timeslot === 'MORNING')?.id as string}
           isActive={record.records?.find((record) => record.timeslot === 'MORNING') ? false : true}
