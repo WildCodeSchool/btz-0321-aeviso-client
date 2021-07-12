@@ -16,6 +16,7 @@ import DetailsProjects from './companies/DetailsProjects';
 import { useUserFromStore } from '../store/user.slice';
 import Collaborators from './users/Collaborators';
 import OneCollaborator from './users/OneCollaborator';
+import UniqueProject from './project/UniqueProject';
 
 function Routes(): JSX.Element {
   const { user } = useUserFromStore();
@@ -24,6 +25,9 @@ function Routes(): JSX.Element {
       <>
         <Route path="/home" component={HomePage} />
         <Route path="/aeviso" component={Admin} />
+        <Route path="/rapport" component={ExportRecords} />
+        <Route path="/projets" component={ProjectList} />
+        <Route path="/projet/:id" component={UniqueProject} />
         <Route exact path="/collaborateurs" component={Collaborators} />
         <Route path="/collaborateurs/oneuser/:id" component={OneCollaborator} />
         <Route path="/logout" component={Logout} />

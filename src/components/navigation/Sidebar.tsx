@@ -65,11 +65,11 @@ function SideBar({ sideBarClass, setSideBarClass }: ISideBarProps): JSX.Element 
         <h2 className="text-base mr-3 text-right mb-2">{today()}</h2>
         <div className="flex flex-row justify-between p-5 border-t border-black dark:border-componentBorder">
           <div className="">
-            <h2 className="text-xl font-bold">
+            <h2 className="text-xl font-bold mb-2">
               {user.firstName} {user.lastName}
             </h2>
             <Link
-              className="focus:outline-none w-12/12 mt-2 text-xs text-white bg-customRed py-1 px-2 rounded-sm shadow-buttonShadow"
+              className="focus:outline-none w-12/12  text-xs text-white bg-customRed py-1 px-2 rounded-sm shadow-buttonShadow"
               to="/logout"
             >
               Déconnexion

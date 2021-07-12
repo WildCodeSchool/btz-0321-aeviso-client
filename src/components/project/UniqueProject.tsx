@@ -3,44 +3,33 @@ import { useMutation, useQuery } from 'react-query';
 import { useParams } from 'react-router-dom';
 import { useHistory } from 'react-router-dom';
 import { project } from '../../API/requests';
-import { useForm } from 'react-hook-form';
+import Spinner from '../Spinner';
+import { AxiosError } from 'axios';
 
 interface Params {
   id: string;
 }
 
 function UniqueProject(): JSX.Element {
-  const { register, handleSubmit } = useForm<Project>();
   const { id } = useParams<Params>();
   const history = useHistory();
 
   const {
     isLoading: projectLoading,
-    error: projectError,
+    error,
     data,
-  } = useQuery<Project>(['project', id], () => project.getOne(id));
+  } = useQuery<Project, AxiosError>(['project', id], () => project.getOne(id));
 
-  const {
-    isLoading: mutationLoading,
-    error: mutationError,
-    mutateAsync,
-  } = useMutation(() => project.delete(id), {
+  const { isLoading: mutationLoading, mutateAsync } = useMutation(() => project.delete(id), {
     onSuccess: () => history.push('/projects'),
   });
 
-  const {
-    isLoading: updateLoading,
-    error: updateError,
-    mutate,
-  } = useMutation(project.update, { onSuccess: () => history.push('/projects') });
-
-  const loading = projectLoading || mutationLoading || updateLoading;
-  const error = projectError || mutationError || updateError;
+  const loading = projectLoading || mutationLoading;
   if (loading) {
-    return <p>loading</p>;
+    return <Spinner />;
   }
   if (error) {
-    return <p>error</p>;
+    return <p className="text-black dark:text-white">An error occurred: {error.message}</p>;
   }
 
   return (
@@ -51,20 +40,6 @@ function UniqueProject(): JSX.Element {
         <button className="w-40 mt-5 border border-black px-5 " onClick={() => mutateAsync()}>
           Delete
         </button>
-      </div>
-      <div className="w-6/12 ml-28">
-        <h1 className="font-bold">Update this Project</h1>
-        <form onSubmit={handleSubmit((data) => mutate({ data, id }))} className="flex flex-col">
-          <label className="mt-5" htmlFor="name">
-            Name
-          </label>
-          <input className="p-2 mt-2 border border-black" {...register('name')} type="text" />
-          <label className="mt-5" htmlFor="description">
-            Description
-          </label>
-          <textarea className="h-28 p-2 mt-2 border border-black" {...register('description')} />
-          <button type="submit">submit</button>
-        </form>
       </div>
     </div>
   );
