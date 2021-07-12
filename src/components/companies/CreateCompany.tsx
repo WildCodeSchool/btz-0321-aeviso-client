@@ -20,7 +20,7 @@ interface IForm {
 }
 
 interface IProps {
-  mutationFn: (variables: { userData: IUserForm; companyData: ICompanyForm; id: string }) => Promise<Company>;
+  mutationFn: (variables: { companyData: ICompanyForm; id: string }) => Promise<Company>;
   data?: Company;
 }
 
@@ -40,7 +40,7 @@ function CreateCompany({ mutationFn, data }: IProps): JSX.Element {
 
   const id = data?.id;
 
-  const { mutate } = useMutation<IForm, { companyData: ICompanyForm; userData: IUserForm; id: string }>(
+  const { mutateAsync } = useMutation<ICompanyForm, AxiosError, { companyData: ICompanyForm; id: string }>(
     'companies',
     mutationFn,
     {
@@ -50,6 +50,17 @@ function CreateCompany({ mutationFn, data }: IProps): JSX.Element {
       },
     }
   );
+
+  const { mutateAsync: mutateAsyncUser } = useMutation<
+    ICompanyForm,
+    AxiosError,
+    { companyData: ICompanyForm; id: string }
+  >('user', mutationFn, {
+    onSuccess: () => {
+      setMessage('Le client à bien été crée');
+      setIsModal(true);
+    },
+  });
 
   if (id) {
     useQuery(['company', id], () => companies.getOne(id), {
@@ -64,33 +75,36 @@ function CreateCompany({ mutationFn, data }: IProps): JSX.Element {
           setValue('user.lastName', admin.lastName);
           setValue('user.firstName', admin.firstName);
           setValue('user.email', admin.email);
-          setValue('user.job', data.name);
+          setValue('user.job', data?.label);
         });
       },
     });
   }
   const logo = watch('logo');
 
-  const onSubmit = (data: IForm) => {
+  const onSubmit = async (data: IForm) => {
     const companyData: ICompanyForm = {
       name: data.company.name,
     };
 
-    const userData: IUserForm = {
-      firstName: data.user.firstName,
-      lastName: data.user.lastName,
-      email: data.user.email,
-      password: data.user.password,
-      role: 'ADMIN',
-      jobId: data.user.job as string,
-    };
+    // const userData: IUserForm = {
+    //   firstName: data.user.firstName,
+    //   lastName: data.user.lastName,
+    //   email: data.user.email,
+    //   password: data.user.password,
+    //   role: 'ADMIN',
+    //   jobId: data.user.job as string,
+    // };
 
-    mutate({
+    await mutateAsync({
       companyData,
-      userData,
-      id,
+      id: id!,
     });
   };
+
+  await mutateAsyncUser({
+    userData,
+  });
 
   const setLogoError = (): void => {
     setValue('logo', undefined);
