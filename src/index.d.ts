@@ -1,10 +1,24 @@
 interface Company {
   id: string;
   name: string;
-  city: string;
-  zipCode: string;
+  logoUrl?: string;
   createdAt: string;
   updatedAt: string;
+}
+
+interface ICompanyForm {
+  name: string;
+  logo?: File[] | File;
+}
+
+interface IUserForm {
+  firstName: string;
+  lastName: string;
+  email: string;
+  password: string;
+  role: 'ADMIN';
+  jobId: string;
+  job?: string;
 }
 
 interface User {
@@ -72,6 +86,7 @@ interface IResultUser {
   lastName: string;
   weeklyBasis: 'h35' | 'h39';
   jobId: string;
+  email: string;
 }
 
 interface INavbar {
@@ -80,18 +95,4 @@ interface INavbar {
   Rapport: string;
   Réglages: string;
   NouveauRapport: string;
-}
-
-interface IReduxAction {
-  type: string;
-  payload: UserReduxState;
-}
-
-interface UserReduxState {
-  id?: string;
-  firstName?: string;
-  lastName?: string;
-  email?: string;
-  role?: 'USER' | 'ADMIN' | 'SUPERADMIN' | null;
-  logged: boolean;
 }

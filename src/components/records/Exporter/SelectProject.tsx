@@ -11,7 +11,7 @@ function SelectProject({ projectData, register }: ISelectProject): JSX.Element {
     <div className="flex flex-col mt-5">
       {' '}
       <label className="mt-5 text-xl" htmlFor="select">
-        2. Sélectionner une projet
+        2. Sélectionner un projet
       </label>
       <select
         {...register('project', { value: projectData?.[0]?.id || '' })}

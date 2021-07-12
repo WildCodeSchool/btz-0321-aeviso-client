@@ -11,7 +11,7 @@ function SearchInput({ register, name }: IProps): JSX.Element {
     <input
       type="text"
       placeholder={'Rechercher'}
-      className="pb-1 w-6/12 bg-transparent border-b border-black focus:outline-none dark:border-white"
+      className="pb-1 sm:w-6/12 bg-transparent border-b border-black focus:outline-none dark:border-white"
       {...register(name)}
     />
   );

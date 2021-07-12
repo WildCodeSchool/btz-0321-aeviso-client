@@ -2,6 +2,7 @@ import { AxiosError } from 'axios';
 import React, { useState } from 'react';
 import { useQuery } from 'react-query';
 import { jobs, project } from '../../../API/requests';
+import { useStats } from '../../../store/stats.slice';
 import Spinner from '../../Spinner';
 
 interface IOneUser {
@@ -19,14 +20,11 @@ function OneUser({ firstName, lastName, projectId, userId, job, start, end, week
   const [jobName, setJobName] = useState<Job>();
   const [records, setRecords] = useState<IRecord[]>([]);
 
-  const getTotalHours = (basis: string, number: number) => {
-    if (basis === 'h35') {
-      return number * 3.5;
-    }
-    if (basis === 'h39') {
-      return number * 4;
-    }
+  const getTotalHours = (basis: 'h35' | 'h39', number: number): number => {
+    return basis === 'h35' ? number * 3.5 : number * 4;
   };
+
+  const { dispatchAddUser } = useStats();
 
   const { isLoading: recordIsLoading, error: recordIsError } = useQuery<IRecord[], AxiosError>(
     ['records', userId],
@@ -34,6 +32,7 @@ function OneUser({ firstName, lastName, projectId, userId, job, start, end, week
     {
       onSuccess: (record) => {
         setRecords(record);
+        dispatchAddUser({ name: `${firstName} ${lastName}`, total: getTotalHours(weeklyBasis, record.length) });
       },
     }
   );
@@ -65,17 +64,15 @@ function OneUser({ firstName, lastName, projectId, userId, job, start, end, week
   }
 
   return (
-    <div className="flex items-end justify-between w-full py-2 mt-5 border-b border-gray-500">
+    <div className="flex items-end mt-5 justify-between w-full py-2 border-b border-gray-500">
       <div className="flex flex-col sm:flex-row sm:items-end items-start">
         <p className="sm:text-xl text-base">
           {firstName} - {lastName}
         </p>
         <p className="sm:text-sm text-xs sm:ml-3 font-thin">/ {jobName?.label}</p>
       </div>
-      <p className="text-xs sm:text-base">{totalHalfDays} Demi Journée</p>
       <p>{getTotalHours(weeklyBasis, totalHalfDays)} heures</p>
     </div>
   );
 }
-
 export default OneUser;

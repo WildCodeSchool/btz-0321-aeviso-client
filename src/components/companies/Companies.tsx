@@ -2,7 +2,6 @@ import React from 'react';
 import { useQuery } from 'react-query';
 import { AxiosError } from 'axios';
 import { companies } from '../../API/requests';
-
 import CardTitle from '../CardTitle';
 import { Link } from 'react-router-dom';
 import CompanyPreview from './CompanyPreview';
@@ -22,9 +21,9 @@ function Companies(): JSX.Element {
   return (
     <div className="text-black dark:text-white">
       <div className="py-4 px-5 text-lg font-bold flex justify-between items-center bg-white dark:bg-component shadow-inputShadow sm:sticky sm:top-0 ">
-        <CardTitle>Entreprises</CardTitle>
+        <CardTitle>Clients</CardTitle>
 
-        <Link to="/companies" className="p-2 text-white bg-customGreen rounded text-xs font-light shadow-buttonShadow">
+        <Link to="/clients" className="p-2 text-white bg-customGreen rounded text-xs font-light shadow-buttonShadow">
           Tous les clients
         </Link>
       </div>

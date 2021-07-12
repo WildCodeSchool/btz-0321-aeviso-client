@@ -5,6 +5,8 @@ import { AxiosError } from 'axios';
 import { companies, project } from '../../../API/requests';
 import OneUser from './OneUser';
 import Spinner from '../../Spinner';
+import TotalHours from './TotalHours';
+import cloud from '../../../../media/icons/cloud.svg';
 
 function FormResult(): JSX.Element {
   const [company, setCompany] = useState<Company>({} as Company);
@@ -72,37 +74,47 @@ function FormResult(): JSX.Element {
   }
 
   return (
-    <div className="dark:bg-component bg-white border dark:border-componentBorder h-full sm:w-full text-black dark:text-white font-roboto rounded-xl shadow-mainShadow mx-4 sm:mx-0  py-8 sm:px-10 p-5">
-      <div className="flex justify-between items-start">
-        <h1 className="sm:text-4xl text-xl">
-          {company?.name} / {prjt?.name}{' '}
-        </h1>
-        <Link to="/records/export">
-          <button className="focus:outline-none w-12/12 py-1 text-white shadow-buttonShadow px-5 rounded-sm bg-component">
-            Retour
-          </button>
-        </Link>
-      </div>
-      <h1 className="text-base sm:text-xl mt-8 sm:mb-10">
-        Rapport du {start && start.toLocaleDateString()} au {end && end.toLocaleDateString()}
-      </h1>
+    <div className="flex flex-col justify-between dark:bg-component bg-white border dark:border-componentBorder h-full sm:w-full text-black dark:text-white font-roboto rounded-lg shadow-mainShadow mx-4 sm:mx-0">
+      <div>
+        <div className="flex justify-between items-start mx-4 mt-5">
+          <h1 className="sm:text-4xl text-xl mr-5">
+            {company?.name} / {prjt?.name}{' '}
+          </h1>
+          <Link to="/records/export">
+            <button className="focus:outline-none w-12/12 py-1 bg-customGreen text-white shadow-buttonShadow px-5 rounded-sm ">
+              Retour
+            </button>
+          </Link>
+        </div>
+        <div className="mt-10">
+          <h1 className="text-base sm:text-xl mx-4 sm:mx-6 sm:mb-10">
+            Rapport du {start && start.toLocaleDateString()} au {end && end.toLocaleDateString()}
+          </h1>
 
-      {users.map((user) => {
-        return (
-          <div className="dark:text-white text-black flex w-full" key={user.id}>
-            <OneUser
-              firstName={user.firstName}
-              lastName={user.lastName}
-              projectId={projectId}
-              userId={user.id}
-              weeklyBasis={user.weeklyBasis}
-              job={user.jobId}
-              start={start}
-              end={end}
-            />
-          </div>
-        );
-      })}
+          {users.map((user) => {
+            return (
+              <div className="dark:text-white text-black mx-4 sm:mx-6 flex " key={user.id}>
+                <OneUser
+                  firstName={user.firstName}
+                  lastName={user.lastName}
+                  projectId={projectId}
+                  userId={user.id}
+                  weeklyBasis={user.weeklyBasis}
+                  job={user.jobId}
+                  start={start}
+                  end={end}
+                />
+              </div>
+            );
+          })}
+        </div>
+      </div>
+      <div>
+        <button className="flex text-sm sm:text-base text-white items-center bg-customBlue px-4 py-1 shadow-buttonShadow rounded-lg mx-4 sm:mx-6">
+          télécharger le rapport <img className="ml-2" src={cloud} alt="cloud" />
+        </button>
+        <TotalHours />
+      </div>
     </div>
   );
 }
