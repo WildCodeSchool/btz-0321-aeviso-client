@@ -7,7 +7,7 @@ import { SubmitHandler, useForm } from 'react-hook-form';
 import { useUserFromStore } from '../../store/user.slice';
 import useModal from '../../hooks/useModal';
 import Modal from '../Modal';
-import { useHistory, useParams } from 'react-router-dom';
+import { useParams } from 'react-router-dom';
 import PasswordFom from '../form components/PasswordFom';
 
 interface INewUser extends User {
@@ -22,7 +22,6 @@ interface IFromCreateUser {
 function CreateNewUser({ mutationFn, setIsForm }: IFromCreateUser): JSX.Element {
   const [listOfJobs, setListOfJobs] = useState<SelectItem[]>([]);
   const { user: currentUser } = useUserFromStore();
-  const history = useHistory();
 
   const { isModal, setIsModal, message, setMessage } = useModal();
   useQuery<Job[], AxiosError>('jobs', jobs.getAll, {
@@ -45,7 +44,11 @@ function CreateNewUser({ mutationFn, setIsForm }: IFromCreateUser): JSX.Element 
   const { mutate, isLoading, error } = useMutation<User, AxiosError, { user: User; id?: string }>(mutationFn, {
     onSuccess: () => {
       setMessage('Utilisateur correctement créé/modifier');
-      setIsModal((prevState) => !prevState);
+      setIsModal(true);
+    },
+    onError: () => {
+      setMessage('Erreur lors de la création du collaborateur');
+      setIsModal(true);
     },
   });
 
@@ -77,17 +80,16 @@ function CreateNewUser({ mutationFn, setIsForm }: IFromCreateUser): JSX.Element 
   if (isModal)
     return (
       <Modal
-        title="Crée un nouvelle utilisateur"
+        title="Crée un nouvel utilisateur"
         buttons={
           !error
-            ? [{ text: 'ok', handleClick: () => history.push('/collaborateurs') }]
-            : [{ text: 'Nouvel essai', handleClick: () => setIsModal((prevState) => !prevState) }]
+            ? [{ text: 'ok', handleClick: () => setIsModal(false) }]
+            : [{ text: 'Nouvel essai', handleClick: () => setIsModal(false) }]
         }
       >
         {message}
       </Modal>
     );
-  if (error) return <p>Une erreur est survenue...</p>;
 
   return (
     <div
