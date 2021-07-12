@@ -1,7 +1,7 @@
 import React from 'react';
 import { useQuery } from 'react-query';
 import { AxiosError } from 'axios';
-import { user } from '../../API/requests';
+import { user, jobs } from '../../API/requests';
 import Spinner from '../Spinner';
 import { useUserFromStore } from '../../store/user.slice';
 import SearchInput from '../SearchInput';
@@ -14,13 +14,25 @@ function ProjectsUser(): JSX.Element {
 
   const searchInput = watch('search');
 
-  const { isLoading, error, data } = useQuery<Project[], AxiosError>(['projects', userFromStore.id], () =>
+  const {
+    isLoading: projectsIsLoading,
+    error: projectsError,
+    data: projectsData,
+  } = useQuery<Project[], AxiosError>(['projects', userFromStore.id], () =>
     user.getProjects(userFromStore.id as string)
   );
-  if (isLoading) {
+
+  const {
+    isLoading: jobsIsLoading,
+    error: jobsError,
+    data: jobsData,
+  } = useQuery<Job, AxiosError>(['jobs', userFromStore.jobId], () => jobs.getOne(userFromStore.jobId as string));
+
+  if (projectsIsLoading || jobsIsLoading) {
     return <Spinner />;
   }
 
+  const error = jobsError || projectsError;
   if (error) {
     return <p className="text-black dark:text-white">An error occurred: {error.message}</p>;
   }
@@ -33,16 +45,19 @@ function ProjectsUser(): JSX.Element {
             {userFromStore.firstName} {userFromStore.lastName}
           </p>
           <p>{userFromStore.email}</p>
+          <p>{jobsData?.label}</p>
         </div>
-        <button className="focus:outline-none border sm:text-sm text-xs p-2 text-white shadow-buttonShadow rounded-md bg-customBlue">
-          Modifier les informations
-        </button>
+        <Link to="/modifications">
+          <p className="focus:outline-none border sm:text-sm text-xs p-2 text-white shadow-buttonShadow rounded-md bg-customBlue">
+            Modifier les informations
+          </p>
+        </Link>
       </div>
       <div className="py-4 px-5 text-lg font-bold flex items-center justify-between bg-white dark:bg-component shadow-inputShadow sm:sticky sm:top-0 ">
         <p className="text-2xl font-bold">Projets</p>
         <SearchInput register={register} name="search" />
       </div>
-      {data
+      {projectsData
         ?.filter((project) => {
           const included = project.name.toLowerCase().includes(searchInput?.toLowerCase());
 

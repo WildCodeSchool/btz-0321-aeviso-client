@@ -51,7 +51,7 @@ function RecordsUser(): JSX.Element {
             <p></p>
           </div>
           <div className="py-4 px-5 text-lg font-bold flex items-center justify-between bg-white dark:bg-component shadow-inputShadow sm:sticky sm:top-0 ">
-            <div className="flex flex-row">
+            <div className="flex flex-col">
               <p className="text-2xl font-bold">Rapports / {projectData?.name}</p>
               <SearchInput register={register} name="search" />
             </div>

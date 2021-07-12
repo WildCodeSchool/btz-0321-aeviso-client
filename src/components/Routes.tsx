@@ -15,6 +15,7 @@ import { useUserFromStore } from '../store/user.slice';
 import RecordsUser from './user/RecordsUser';
 import Collaborators from './users/Collaborators';
 import CreateNewUser from './users/CreateUser';
+import UpdateUserPanelUser from './user/UpdateUserPanelUser';
 
 function Routes(): JSX.Element {
   const { user } = useUserFromStore();
@@ -37,6 +38,7 @@ function Routes(): JSX.Element {
         <Route exact path="/aeviso" component={User} />
         <Route exact path="/projects/:projectId/records" component={RecordsUser} />
         <Route exact path="/logout" component={Logout} />
+        <Route exact path="/modifications" component={UpdateUserPanelUser} />
       </>
     );
   }

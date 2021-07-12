@@ -9,6 +9,7 @@ export interface UserState {
   email?: string;
   role?: 'USER' | 'ADMIN' | 'SUPERADMIN' | null;
   companyId?: string;
+  jobId?: string;
 }
 
 interface UserStateWithLogged extends UserState {
