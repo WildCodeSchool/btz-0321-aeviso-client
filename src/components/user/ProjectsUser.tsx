@@ -39,19 +39,12 @@ function ProjectsUser(): JSX.Element {
 
   return (
     <div className="text-black dark:text-white">
-      <div className="py-4 px-5 text-lg font-bold flex justify-between items-center bg-white dark:bg-component  sm:sticky sm:top-0 ">
-        <div>
-          <p className="text-2xl font-bold">
-            {userFromStore.firstName} {userFromStore.lastName}
-          </p>
-          <p>{userFromStore.email}</p>
-          <p>{jobsData?.label}</p>
-        </div>
-        <Link to="/modifications">
-          <p className="focus:outline-none border sm:text-sm text-xs p-2 text-white shadow-buttonShadow rounded-md bg-customBlue">
-            Modifier les informations
-          </p>
-        </Link>
+      <div className="py-4 px-5 text-lg font-bold flex flex-col justify-start items-start bg-white dark:bg-component  sm:sticky sm:top-0 ">
+        <p className="text-2xl font-bold ">
+          {userFromStore.firstName} {userFromStore.lastName}
+        </p>
+        <p>{userFromStore.email}</p>
+        <p>{jobsData?.label}</p>
       </div>
       <div className="py-4 px-5 text-lg font-bold flex items-center justify-between bg-white dark:bg-component shadow-inputShadow sm:sticky sm:top-0 ">
         <p className="text-2xl font-bold">Projets</p>

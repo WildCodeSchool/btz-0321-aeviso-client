@@ -14,12 +14,7 @@ import DetailsProjects from './companies/DetailsProjects';
 import { useUserFromStore } from '../store/user.slice';
 import RecordsUser from './user/RecordsUser';
 import Collaborators from './users/Collaborators';
-<<<<<<< HEAD
-import CreateNewUser from './users/CreateUser';
-import UpdateUserPanelUser from './user/UpdateUserPanelUser';
-=======
 import OneCollaborator from './users/OneCollaborator';
->>>>>>> 404b1e03a3a6db2c9dec39a2a2068568c9ed3036
 
 function Routes(): JSX.Element {
   const { user } = useUserFromStore();
@@ -42,7 +37,6 @@ function Routes(): JSX.Element {
         <Route exact path="/aeviso" component={User} />
         <Route exact path="/projects/:projectId/records" component={RecordsUser} />
         <Route exact path="/logout" component={Logout} />
-        <Route exact path="/modifications" component={UpdateUserPanelUser} />
       </>
     );
   }
