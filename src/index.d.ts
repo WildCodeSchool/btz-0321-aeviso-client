@@ -21,6 +21,10 @@ interface IUserForm {
   job?: string;
 }
 
+interface INewUser extends User {
+  confirmPassword?: string;
+}
+
 interface User {
   id?: string;
   firstName: string;
