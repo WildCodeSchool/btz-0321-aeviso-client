@@ -1,9 +1,9 @@
 import React, { useState } from 'react';
-import { Switch, useHistory } from 'react-router-dom';
+import { Switch, useHistory, useLocation } from 'react-router-dom';
+import { useQuery } from 'react-query';
 
 import Head from '../components/Head';
 import Routes from '../../src/components/Routes';
-import { useQuery } from 'react-query';
 import { auth } from '../API/requests';
 import Sidebar from '../components/navigation/Sidebar';
 import Spinner from '../components/Spinner';
@@ -11,20 +11,22 @@ import { useUserFromStore } from '../store/user.slice';
 
 function Layout(): JSX.Element {
   const [isSidebarVisible, setIsSidebarVisible] = useState<boolean>(true);
-
   const [sideBarClass, setSideBarClass] = useState(
     'sm:flex flex-col border-2 dark:border-componentBorder bg-white dark:bg-component w-full h-full rounded-lg text-black dark:text-white font-roboto justify-between shadow-mainShadow invisible sm:visible'
   );
 
   const history = useHistory();
+  const { pathname } = useLocation();
+
   const { dispatchLogin } = useUserFromStore();
 
   const { isLoading } = useQuery<{ message: string; user: User }>('userAuthenticated', () => auth.me(), {
+    retry: false,
     onSuccess: (data) => {
       const { user } = data;
       dispatchLogin(user);
 
-      history.push('/aeviso');
+      history.push(pathname);
     },
     onError: () => history.push('/home'),
   });
