@@ -2,7 +2,6 @@ import React from 'react';
 import { useHistory } from 'react-router-dom';
 
 import Collaborateurs from '../../../media/icons/Collaborateurs.svg';
-import { useUserFromStore } from '../../store/user.slice';
 
 interface ISPNavbar {
   handleClose: () => void;
@@ -14,7 +13,6 @@ interface ISPNavbar {
 
 function Admin({ Home, report, settings, newReport, handleClose }: ISPNavbar): JSX.Element {
   const history = useHistory();
-  const { user } = useUserFromStore();
 
   const handleClickLink = (url: string) => {
     handleClose();
@@ -60,10 +58,7 @@ function Admin({ Home, report, settings, newReport, handleClose }: ISPNavbar): J
             className="mr-3 mb-1 h-6 w-6 bg-component dark:bg-component shadow-buttonShadow p-1 rounded-full"
             alt="homesvg"
           />
-          <button
-            className="focus:outline-none"
-            onClick={() => handleClickLink(`/clients/${user.companyId}/collaborateurs`)}
-          >
+          <button className="focus:outline-none" onClick={() => handleClickLink(`/collaborateurs`)}>
             Collaborateurs
           </button>
         </li>
