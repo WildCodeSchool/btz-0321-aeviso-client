@@ -10,7 +10,6 @@ import { Link } from 'react-router-dom';
 
 function ProjectsUser(): JSX.Element {
   const { user: userFromStore } = useUserFromStore();
-  console.log(userFromStore.id);
   const { register, watch } = useForm();
 
   const searchInput = watch('search');
@@ -18,7 +17,6 @@ function ProjectsUser(): JSX.Element {
   const { isLoading, error, data } = useQuery<Project[], AxiosError>(['projects', userFromStore.id], () =>
     user.getProjects(userFromStore.id as string)
   );
-  console.log(data);
   if (isLoading) {
     return <Spinner />;
   }
@@ -29,7 +27,7 @@ function ProjectsUser(): JSX.Element {
 
   return (
     <div className="text-black dark:text-white">
-      <div className="py-4 px-5 text-lg font-bold flex  justify-between items-center bg-white dark:bg-component shadow-inputShadow sm:sticky sm:top-0 ">
+      <div className="py-4 px-5 text-lg font-bold flex justify-between items-center bg-white dark:bg-component  sm:sticky sm:top-0 ">
         <div>
           <p className="text-2xl font-bold">
             {userFromStore.firstName} {userFromStore.lastName}

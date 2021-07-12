@@ -10,18 +10,23 @@ import ListsCompanies from './companies/ListsCompanies';
 import FormResult from './records/Exporter/FormResult';
 import Admin from './home/Admin';
 import ExportRecords from './records/Exporter/ExportRecords';
-
 import DetailsProjects from './companies/DetailsProjects';
 import { useUserFromStore } from '../store/user.slice';
 import RecordsUser from './user/RecordsUser';
+import Collaborators from './users/Collaborators';
+import CreateNewUser from './users/CreateUser';
 
 function Routes(): JSX.Element {
   const { user } = useUserFromStore();
   if (user?.role === 'ADMIN') {
     return (
       <>
-        <Route exact path="/aeviso" component={Admin} />
-        <Route exact path="/logout" component={Logout} />
+        <Route path="/home" component={HomePage} />
+        <Route path="/aeviso" component={Admin} />
+        <Route exact path="/clients/:id/collaborateurs" component={Collaborators} />
+        <Route exact path="/clients/:id/collaborateurs/createnew/" component={CreateNewUser} />
+        <Route path="/logout" component={Logout} />
+        <Route />
       </>
     );
   }
@@ -39,15 +44,15 @@ function Routes(): JSX.Element {
   if (user?.role === 'SUPERADMIN') {
     return (
       <>
-        <Route exact path="/home" component={HomePage} />
-        <Route exact path="/aeviso" component={SuperAdmin} />
+        <Route path="/home" component={HomePage} />
+        <Route path="/aeviso" component={SuperAdmin} />
         <Route exact path="/clients" component={ListsCompanies} />
         <Route exact path="/records/export/companies/:companyId/projects/:projectId" component={FormResult} />
         <Route exact path="/records/export" component={ExportRecords} />
         <Route exact path="/clients/:id" component={Company} />
         <Route exact path="/projects/:id" component={DetailsProjects} />
         <Route exact path="/projects" component={ProjectList} />
-        <Route exact path="/logout" component={Logout} />
+        <Route path="/logout" component={Logout} />
       </>
     );
   }
