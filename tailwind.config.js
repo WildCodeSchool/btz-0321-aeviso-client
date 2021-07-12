@@ -14,6 +14,7 @@ module.exports = {
         whiteGray: '#DEDDDD',
         mainBg: '#3E3E3E',
         input: '#404040',
+        whiteInput: '#858585',
         componentBorder: '#111111',
         customGreen: '#58926F',
         customRed: '#976C6C',
