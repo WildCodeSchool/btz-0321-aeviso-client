@@ -7,7 +7,7 @@ import { useForm } from 'react-hook-form';
 import CompanyDetails from './CompanyDetails';
 import Plus from '../../../media/icons/Plus.svg';
 import Spinner from '../Spinner';
-import CreateCompany from './CreateCompany';
+import CreateCompany from './CreateUpdateCompany';
 
 function ListsCompanies(): JSX.Element {
   const [isCreatForm, setIsCreatForm] = useState<boolean>(false);

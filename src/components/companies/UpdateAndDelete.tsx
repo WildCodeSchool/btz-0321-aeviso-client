@@ -6,7 +6,7 @@ import { companies, user } from '../../API/requests';
 import useModal from '../../hooks/useModal';
 import Modal from '../Modal';
 import Spinner from '../Spinner';
-import CreateCompany from './CreateCompany';
+import CreateCompany from './CreateUpdateCompany';
 
 function UpdateAndDelete(): JSX.Element {
   const [isUpdateForm, setIsUpdateForm] = useState<boolean>(false);
@@ -54,16 +54,16 @@ function UpdateAndDelete(): JSX.Element {
     );
 
   return (
-    <div>
+    <div className="h-full">
       {isUpdateForm ? (
         <CreateCompany mutationFn={companies.put} mutationUs={user.update} />
       ) : (
         <div className="p-5 text-black dark:text-white">
-          <h2 className="text-xl font-bold mr-2">Modifier ou suprrilmer les informations de {data?.name}</h2>
-          <div className=" flex justify-between items-stretch p-2">
+          <h2 className="text-xl font-bold mr-2">Modifier ou supprimer les informations de {data?.name}</h2>
+          <div className=" flex justify-between items-stretch mt-10">
             <button
               onClick={() => setIsUpdateForm(true)}
-              className="focus:outline-none ounded-sm h-9 text-white shadow-buttonShadow px-4 py-1 mr-3 bg-customGreen"
+              className="focus:outline-none ounded-sm h-9 text-white shadow-buttonShadow px-4 py-1 mr-3 sm:mr-0 bg-customGreen"
             >
               Modifier
             </button>
