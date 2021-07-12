@@ -2,7 +2,7 @@ import React, { useState } from 'react';
 import SearchInput from '../SearchInput';
 import { useQuery } from 'react-query';
 import { AxiosError } from 'axios';
-import { companies } from '../../API/requests';
+import { companies, user } from '../../API/requests';
 import { useForm } from 'react-hook-form';
 import CompanyDetails from './CompanyDetails';
 import Plus from '../../../media/icons/Plus.svg';
@@ -27,7 +27,7 @@ function ListsCompanies(): JSX.Element {
   return (
     <div>
       {isCreatForm ? (
-        <CreateCompany mutationFn={companies.post} />
+        <CreateCompany mutationFn={companies.post} mutationUs={user.create} />
       ) : (
         <div className="dark:bg-component bg-white h-full sm:w-full text-black dark:text-white font-roboto rounded-xl shadow-mainShadow mx-4 sm:mx-0 sm:px-10 px-5 py-8 overflow-y-auto">
           <h1 className="sm:text-4xl text-xl font-bold">Liste de tous les clients</h1>

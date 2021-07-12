@@ -1,9 +1,9 @@
-import React from 'react';
+import React, { useState } from 'react';
 import { useForm } from 'react-hook-form';
-import { useMutation, useQuery } from 'react-query';
+import { useMutation, useQuery, useQueryClient } from 'react-query';
 import { AxiosError } from 'axios';
 
-import { companies, jobs } from '../../API/requests';
+import { companies, jobs, user } from '../../API/requests';
 
 import JobsInput from './Forms/CreateCompany/JobsInput';
 import Spinner from '../Spinner';
@@ -12,7 +12,7 @@ import AdministratorInputs from './Forms/CreateAdministrator/AdministratorInputs
 import ImageInput from './Forms/CreateCompany/ImageInput';
 import useModal from '../../hooks/useModal';
 import Modal from '../Modal';
-import { useHistory } from 'react-router-dom';
+import { useHistory, useParams } from 'react-router-dom';
 
 interface IForm {
   company: ICompanyForm;
@@ -21,13 +21,18 @@ interface IForm {
 
 interface IProps {
   mutationFn: (variables: { companyData: ICompanyForm; id: string }) => Promise<Company>;
+  mutationUs: (variables: { user: User; id: string }) => Promise<User>;
   data?: Company;
 }
 
-function CreateCompany({ mutationFn, data }: IProps): JSX.Element {
+function CreateCompany({ mutationFn, data, mutationUs }: IProps): JSX.Element {
+  const [companyData, setCompanyData] = useState<ICompanyForm | null>(null);
   const { isLoading, error, data: jobsData } = useQuery<Job[], AxiosError>('jobs', jobs.getAll);
   const { isModal, setIsModal, message, setMessage } = useModal();
   const history = useHistory();
+  const queryClient = useQueryClient();
+  const { id } = useParams<{ id: string }>();
+
   const {
     register,
     handleSubmit,
@@ -38,73 +43,58 @@ function CreateCompany({ mutationFn, data }: IProps): JSX.Element {
     watch,
   } = useForm();
 
-  const id = data?.id;
-
-  const { mutateAsync } = useMutation<ICompanyForm, AxiosError, { companyData: ICompanyForm; id: string }>(
-    'companies',
-    mutationFn,
-    {
-      onSuccess: () => {
-        setMessage('Le client à bien été crée');
-        setIsModal(true);
-      },
-    }
-  );
-
-  const { mutateAsync: mutateAsyncUser } = useMutation<
+  const { mutateAsync: mutateCompany } = useMutation<
     ICompanyForm,
     AxiosError,
     { companyData: ICompanyForm; id: string }
-  >('user', mutationFn, {
+  >('companies', mutationFn, {
+    onSuccess: (data) => {
+      setMessage('Le client à bien été crée');
+      setIsModal(true);
+      setCompanyData(data);
+    },
+  });
+
+  const { mutateAsync: mutateUser } = useMutation<User, AxiosError, { user: User; id: string }>('user', mutationUs, {
     onSuccess: () => {
       setMessage('Le client à bien été crée');
       setIsModal(true);
     },
   });
 
-  if (id) {
-    useQuery(['company', id], () => companies.getOne(id), {
-      onSuccess: (data) => {
-        setValue('company.name', data.name);
-      },
-    });
-    useQuery<User[], AxiosError>(['user', id], () => companies.getUsers(id, 'ADMIN'), {
-      onSuccess: (data) => {
-        data.map((admin) => {
-          const { data } = useQuery(['job', admin.jobId], () => jobs.getOne(admin.jobId));
-          setValue('user.lastName', admin.lastName);
-          setValue('user.firstName', admin.firstName);
-          setValue('user.email', admin.email);
-          setValue('user.job', data?.label);
-        });
-      },
-    });
-  }
+  const { data: adminData } = useQuery<User[], AxiosError>(['companies', companyData?.id], () =>
+    companies.getUsers(companyData?.id as string, 'ADMIN')
+  );
+
   const logo = watch('logo');
 
   const onSubmit = async (data: IForm) => {
+    const user: User = {
+      firstName: data.user.firstName,
+      lastName: data.user.lastName,
+      email: data.user.email,
+      password: data.user?.password,
+      role: 'ADMIN',
+      jobId: data.user.job as string,
+    };
+
     const companyData: ICompanyForm = {
+      id: data.company.id,
       name: data.company.name,
     };
 
-    // const userData: IUserForm = {
-    //   firstName: data.user.firstName,
-    //   lastName: data.user.lastName,
-    //   email: data.user.email,
-    //   password: data.user.password,
-    //   role: 'ADMIN',
-    //   jobId: data.user.job as string,
-    // };
+    const newCompany = await mutateCompany({ companyData, id });
 
-    await mutateAsync({
-      companyData,
-      id: id!,
+    await mutateUser({
+      user: {
+        ...user,
+        companyId: newCompany.id,
+      },
+      id: adminData?.[0]?.id as string,
     });
-  };
 
-  await mutateAsyncUser({
-    userData,
-  });
+    queryClient.removeQueries('companies');
+  };
 
   const setLogoError = (): void => {
     setValue('logo', undefined);
@@ -129,7 +119,7 @@ function CreateCompany({ mutationFn, data }: IProps): JSX.Element {
         title="Le client à bien été crée"
         buttons={
           !error
-            ? [{ text: 'ok', handleClick: () => history.push('/clients') }]
+            ? [{ text: 'ok', handleClick: () => history.push('/aeviso') }]
             : [{ text: 'Nouvelle essai', handleClick: () => setIsModal(false) }]
         }
       >

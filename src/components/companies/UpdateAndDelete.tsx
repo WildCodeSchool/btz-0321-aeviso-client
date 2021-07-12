@@ -2,7 +2,7 @@ import { AxiosError } from 'axios';
 import React, { useState } from 'react';
 import { useMutation, useQuery } from 'react-query';
 import { useHistory, useParams } from 'react-router-dom';
-import { companies } from '../../API/requests';
+import { companies, user } from '../../API/requests';
 import useModal from '../../hooks/useModal';
 import Modal from '../Modal';
 import Spinner from '../Spinner';
@@ -56,7 +56,7 @@ function UpdateAndDelete(): JSX.Element {
   return (
     <div>
       {isUpdateForm ? (
-        <CreateCompany mutationFn={companies.put} data={data} />
+        <CreateCompany mutationFn={companies.put} mutationUs={user.create} data={data} />
       ) : (
         <div className="p-5 text-black dark:text-white">
           <h2 className="text-xl font-bold mr-2">Modifier ou suprrilmer les informations de {data?.name}</h2>
