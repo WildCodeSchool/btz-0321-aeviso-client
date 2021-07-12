@@ -12,7 +12,6 @@ import Admin from './home/Admin';
 import ExportRecords from './records/Exporter/ExportRecords';
 import DetailsProjects from './companies/DetailsProjects';
 import { useUserFromStore } from '../store/user.slice';
-import CreateCompany from './companies/CreateCompany';
 
 function Routes(): JSX.Element {
   const { user } = useUserFromStore();
@@ -40,7 +39,6 @@ function Routes(): JSX.Element {
       <>
         <Route exact path="/home" component={HomePage} />
         <Route exact path="/aeviso" component={SuperAdmin} />
-        <Route exact path="/create" component={CreateCompany} />
         <Route exact path="/clients" component={ListsCompanies} />
         <Route exact path="/records/export/companies/:companyId/projects/:projectId" component={FormResult} />
         <Route exact path="/records/export" component={ExportRecords} />

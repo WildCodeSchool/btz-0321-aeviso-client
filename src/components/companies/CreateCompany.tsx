@@ -1,4 +1,4 @@
-import React, { useState } from 'react';
+import React from 'react';
 import { useForm } from 'react-hook-form';
 import { useMutation, useQuery, useQueryClient } from 'react-query';
 import { AxiosError } from 'axios';
@@ -9,7 +9,6 @@ import JobsInput from './Forms/CreateCompany/JobsInput';
 import Spinner from '../Spinner';
 import CompanyInputs from './Forms/CreateCompany/CompanyInputs';
 import AdministratorInputs from './Forms/CreateAdministrator/AdministratorInputs';
-import ImageInput from './Forms/CreateCompany/ImageInput';
 import useModal from '../../hooks/useModal';
 import Modal from '../Modal';
 import { useHistory, useParams } from 'react-router-dom';
@@ -25,8 +24,7 @@ interface IProps {
   data?: Company;
 }
 
-function CreateCompany({ mutationFn, data, mutationUs }: IProps): JSX.Element {
-  const [companyData, setCompanyData] = useState<ICompanyForm | null>(null);
+function CreateUpdateCompany({ mutationFn, mutationUs }: IProps): JSX.Element {
   const { isLoading, error, data: jobsData } = useQuery<Job[], AxiosError>('jobs', jobs.getAll);
   const { isModal, setIsModal, message, setMessage } = useModal();
   const history = useHistory();
@@ -36,37 +34,36 @@ function CreateCompany({ mutationFn, data, mutationUs }: IProps): JSX.Element {
   const {
     register,
     handleSubmit,
-    clearErrors,
-    setValue,
-    setError,
     formState: { errors },
-    watch,
+    setValue,
   } = useForm();
 
   const { mutateAsync: mutateCompany } = useMutation<
     ICompanyForm,
     AxiosError,
     { companyData: ICompanyForm; id: string }
-  >('companies', mutationFn, {
-    onSuccess: (data) => {
-      setMessage('Le client à bien été crée');
-      setIsModal(true);
-      setCompanyData(data);
-    },
-  });
+  >('companies', mutationFn);
+
+  const { data: companyWithUsers } = useQuery<[Company, User[]]>(
+    ['companies', id],
+    () => Promise.all([companies.getOne(id), companies.getUsers(id, 'ADMIN')]),
+    {
+      onSuccess: ([company, [admin]]) => {
+        setValue('company.name', company.name);
+        setValue('user.firstName', admin.firstName);
+        setValue('user.lastName', admin.lastName);
+        setValue('user.email', admin.email);
+        setValue('user.job', admin.jobId);
+      },
+    }
+  );
 
   const { mutateAsync: mutateUser } = useMutation<User, AxiosError, { user: User; id: string }>('user', mutationUs, {
     onSuccess: () => {
-      setMessage('Le client à bien été crée');
+      setMessage('Le client a bien été crée');
       setIsModal(true);
     },
   });
-
-  const { data: adminData } = useQuery<User[], AxiosError>(['companies', companyData?.id], () =>
-    companies.getUsers(companyData?.id as string, 'ADMIN')
-  );
-
-  const logo = watch('logo');
 
   const onSubmit = async (data: IForm) => {
     const user: User = {
@@ -90,15 +87,10 @@ function CreateCompany({ mutationFn, data, mutationUs }: IProps): JSX.Element {
         ...user,
         companyId: newCompany.id,
       },
-      id: adminData?.[0]?.id as string,
+      id: companyWithUsers?.[1][0].id as string,
     });
 
     queryClient.removeQueries('companies');
-  };
-
-  const setLogoError = (): void => {
-    setValue('logo', undefined);
-    setError('logo', { message: 'Le fichier doit etre une image valide' });
   };
 
   if (isLoading) {
@@ -116,11 +108,11 @@ function CreateCompany({ mutationFn, data, mutationUs }: IProps): JSX.Element {
   if (isModal) {
     return (
       <Modal
-        title="Le client à bien été crée"
+        title="Le client a bien été créé ou modifié"
         buttons={
           !error
             ? [{ text: 'ok', handleClick: () => history.push('/aeviso') }]
-            : [{ text: 'Nouvelle essai', handleClick: () => setIsModal(false) }]
+            : [{ text: 'Nouvel essai', handleClick: () => setIsModal(false) }]
         }
       >
         {message}
@@ -128,15 +120,10 @@ function CreateCompany({ mutationFn, data, mutationUs }: IProps): JSX.Element {
     );
   }
 
-  if (logo?.length) {
-    logo[0].type.startsWith('image/') ? errors.logo && clearErrors('logo') : setLogoError();
-  }
-
   return (
     <div className="dark:bg-component bg-white border-2 dark:border-componentBorder h-full sm:w-full text-black dark:text-white font-roboto rounded-xl shadow-mainShadow mx-4 sm:mx-0  sm:px-10 p-5 overflow-y-auto">
       <div className="flex w-full justify-between">
         <p className="text-2xl sm:text-5xl font-bold ">Créer un nouveau client</p>
-        <ImageInput logo={logo} register={register} setValue={setValue} />
       </div>
 
       <form action="" onSubmit={handleSubmit(onSubmit)} className="">
@@ -155,4 +142,4 @@ function CreateCompany({ mutationFn, data, mutationUs }: IProps): JSX.Element {
   );
 }
 
-export default CreateCompany;
+export default CreateUpdateCompany;

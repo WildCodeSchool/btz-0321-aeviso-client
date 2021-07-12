@@ -56,7 +56,7 @@ function UpdateAndDelete(): JSX.Element {
   return (
     <div>
       {isUpdateForm ? (
-        <CreateCompany mutationFn={companies.put} mutationUs={user.create} data={data} />
+        <CreateCompany mutationFn={companies.put} mutationUs={user.update} />
       ) : (
         <div className="p-5 text-black dark:text-white">
           <h2 className="text-xl font-bold mr-2">Modifier ou suprrilmer les informations de {data?.name}</h2>

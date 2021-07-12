@@ -1,4 +1,4 @@
-import React, { useState } from 'react';
+import React from 'react';
 import { Link } from 'react-router-dom';
 import Spinner from '../Spinner';
 import { useQuery } from 'react-query';
@@ -12,14 +12,8 @@ interface IProps {
 }
 
 function CompanyPreview({ company, isFirstElement }: IProps): JSX.Element {
-  const [user, setUser] = useState<User | null>(null);
-
-  const { isLoading, error } = useQuery<User[], AxiosError>(
-    ['companies', company.id],
-    () => companies.getUsers(company.id, 'ADMIN'),
-    {
-      onSuccess: (data) => setUser(data[0]),
-    }
+  const { isLoading, error, data } = useQuery<User[], AxiosError>(['users', { companyId: company.id }], () =>
+    companies.getUsers(company.id, 'ADMIN')
   );
 
   if (isLoading) {
@@ -40,9 +34,11 @@ function CompanyPreview({ company, isFirstElement }: IProps): JSX.Element {
         >
           <p className="font-bold">{company.name}</p>
           <p className="font-thin text-xs mr-2">
-            {user ? `${user.role} - ${user.firstName} ${user.lastName}` : 'Aucun admin enregistré'}
-            {user?.jobId && ' - '}
-            {user?.jobId && <AdminJob jobId={user.jobId} />}
+            {data?.length
+              ? `${data?.[0]?.role} - ${data?.[0]?.firstName} ${data?.[0]?.lastName}`
+              : 'Aucun admin enregistré'}
+            {data?.[0]?.jobId && ' - '}
+            {data?.[0]?.jobId && <AdminJob jobId={data?.[0].jobId} />}
           </p>
         </div>
       </Link>
