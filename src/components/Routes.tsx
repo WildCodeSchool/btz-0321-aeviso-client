@@ -1,6 +1,6 @@
 import React from 'react';
 import { Route } from 'react-router-dom';
-import User from './frontTestRoads/user/User';
+import User from './home/User';
 import Company from './companies/Company';
 import ProjectList from './project/ProjectList';
 import HomePage from '../views/HomePage';
@@ -13,6 +13,7 @@ import ExportRecords from './records/Exporter/ExportRecords';
 
 import DetailsProjects from './companies/DetailsProjects';
 import { useUserFromStore } from '../store/user.slice';
+import RecordsUser from './user/RecordsUser';
 
 function Routes(): JSX.Element {
   const { user } = useUserFromStore();
@@ -29,6 +30,7 @@ function Routes(): JSX.Element {
     return (
       <>
         <Route exact path="/aeviso" component={User} />
+        <Route exact path="/projects/:projectId/records" component={RecordsUser} />
         <Route exact path="/logout" component={Logout} />
       </>
     );

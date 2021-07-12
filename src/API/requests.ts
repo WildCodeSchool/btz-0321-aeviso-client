@@ -18,6 +18,10 @@ export const user = {
     if (!id) throw new Error("ID can't be undefined");
     return axios.put(`${API_URL}/users/${id}`, user).then((res) => res.data);
   },
+
+  getProjects: (id: string): Promise<Project[]> => axios.get(`${API_URL}/users/${id}/projects`).then((res) => res.data),
+
+  getRecords: (id: string): Promise<IRecord> => axios.get(`${API_URL}/users/${id}/records`).then((res) => res.data),
 };
 
 export const jobs = {
@@ -52,9 +56,9 @@ export const project = {
       .get(`${API_URL}/projects/${projectId}/users${projectId ? `?projectId=${projectId}` : ''}`)
       .then((res) => res.data),
 
-  getRecords: (projectId: string, userId: string, start: string, end: string): Promise<IRecord[]> =>
+  getUserRecords: (projectId: string, userId: string, start?: string, end?: string): Promise<IRecord[]> =>
     axios
-      .get(`${API_URL}/projects/${projectId}/users/${userId}/records?start=${start}&end=${end}`)
+      .get(`${API_URL}/projects/${projectId}/users/${userId}/records${start && end ? `start=${start}&end=${end}` : ''}`)
       .then((res) => res.data),
 };
 
