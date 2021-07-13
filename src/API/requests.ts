@@ -18,6 +18,10 @@ export const user = {
     if (!id) throw new Error("ID can't be undefined");
     return axios.put(`${API_URL}/users/${id}`, user).then((res) => res.data);
   },
+
+  getProjects: (id: string): Promise<Project[]> => axios.get(`${API_URL}/users/${id}/projects`).then((res) => res.data),
+
+  getRecords: (id: string): Promise<IRecord> => axios.get(`${API_URL}/users/${id}/records`).then((res) => res.data),
 };
 
 export const jobs = {
@@ -41,9 +45,9 @@ export const project = {
   getUsers: (projectId: string): Promise<IResultUser[]> =>
     axios.get(`${API_URL}/projects/${projectId}/users`).then((res) => res.data),
 
-  getRecords: (projectId: string, userId: string, start: string, end: string): Promise<IRecord[]> =>
+  getUserRecords: (projectId: string, userId: string, start?: string, end?: string): Promise<IRecord[]> =>
     axios
-      .get(`${API_URL}/projects/${projectId}/users/${userId}/records?start=${start}&end=${end}`)
+      .get(`${API_URL}/projects/${projectId}/users/${userId}/records${start && end ? `start=${start}&end=${end}` : ''}`)
       .then((res) => res.data),
 
   // TODO: create a real interface here
@@ -68,14 +72,11 @@ export const companies = {
 
   getOne: (id: string): Promise<Company> => axios.get(`${API_URL}/companies/${id}`).then((res) => res.data),
 
-  post: ({ companyData, userData }: { companyData: ICompanyForm; userData: IUserForm }): Promise<Company> =>
-    axios
-      .post<Company>(`${API_URL}/companies`, companyData)
-      .then((res) => res.data)
-      .then((data) => axios.post(`${API_URL}/users`, { ...userData, companyId: data.id } as User)),
+  post: ({ companyData }: { companyData: ICompanyForm }): Promise<Company> =>
+    axios.post<Company>(`${API_URL}/companies`, companyData).then((res) => res.data),
 
-  put: ({ id, data }: { id: string; data: Company }): Promise<Company> =>
-    axios.put(`${API_URL}/companies/${id}`, data).then((res) => res.data),
+  put: ({ id, companyData }: { id: string; companyData: ICompanyForm }): Promise<Company> =>
+    axios.put<Company>(`${API_URL}/companies/${id}`, companyData).then((res) => res.data),
 
   delete: (id: string): Promise<null> => axios.delete(`${API_URL}/companies/${id}`).then((res) => res.data),
 
