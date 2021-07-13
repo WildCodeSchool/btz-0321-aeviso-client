@@ -53,10 +53,10 @@ export const project = {
       .then((res) => res.data),
 
   // TODO: create a real interface here
-  create: ({ data }: { data: Project }): Promise<Project> =>
+  create: ({ data }: { data: IProjectInput }): Promise<Project> =>
     axios.post(`${API_URL}/projects/`, data).then((res) => res.data),
 
-  update: ({ id, data }: { id: string; data: Project }): Promise<null> =>
+  update: ({ id, data }: { id: string; data: IProjectInput }): Promise<Project> =>
     axios.put(`${API_URL}/projects/${id}`, data).then((res) => res.data),
 
   delete: (id: string): Promise<null> => axios.delete(`${API_URL}/projects/${id}`).then((res) => res.data),
@@ -82,8 +82,8 @@ export const companies = {
 
   delete: (id: string): Promise<null> => axios.delete(`${API_URL}/companies/${id}`).then((res) => res.data),
 
-  getUsers: (id: string, role: User['role']): Promise<User[]> =>
-    axios.get(`${API_URL}/companies/${id}/users?role=${role}`).then((res) => res.data),
+  getUsers: (id: string, role?: User['role']): Promise<IResultUser[]> =>
+    axios.get(`${API_URL}/companies/${id}/users${role ? `?role=${role}` : ''}`).then((res) => res.data),
 };
 
 export const records = {
