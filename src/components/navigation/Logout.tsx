@@ -36,7 +36,7 @@ function Logout(): JSX.Element {
   }
 
   return (
-    <div className="h-full bg-black text-white">
+    <div className="h-screen w-screen bg-black bg-opacity-20 text-white">
       {"Vous allez être redirigé vers la page d'accueil dans"} {time} seconde{time > 1 && 's'}
     </div>
   );

@@ -12,13 +12,13 @@ interface IProps {
 
 function EmailInput({ label, placeholder, register, name, error }: IProps): JSX.Element {
   return (
-    <label className="flex flex-col mt-3 font-bold">
+    <label className="flex flex-col mt-4 font-bold">
       {label}
       <input
         type="email"
         placeholder={placeholder}
         {...register(name, { required: true })}
-        className="mt-1 bg-whiteInput shadow-buttonShadow bg-whiteGray dark:bg-input text-black dark:text-white rounded-sm py-1 px-2 sm:h-12 sm:rounded-md"
+        className="mt-1 dark:bg-input shadow-buttonShadow bg-whiteGray  text-black dark:text-white rounded-sm py-1 px-2 sm:h-12 sm:rounded-md"
       />
       <p className="text-red text-s">{error}</p>
     </label>

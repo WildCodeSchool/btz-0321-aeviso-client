@@ -28,7 +28,7 @@ module.exports = {
       },
       gridTemplateRows: {
         desktop: '1fr 1fr',
-        mobile: '130px 200px 420px 30px',
+        mobile: '130px 200px 420px 600px',
       },
       gridTemplateColumns: {
         desktop: '300px 1fr',
@@ -40,7 +40,9 @@ module.exports = {
     },
   },
   variants: {
-    extend: {},
+    extend: {
+      boxShadow: ['dark'],
+    },
   },
   plugins: [],
 };
