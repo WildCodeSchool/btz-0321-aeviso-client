@@ -49,7 +49,7 @@ function Layout(): JSX.Element {
       <div className="sm:hidden row-start-1 row-end-2 col-start-1 items-end  text-black dark:text-white font-roboto  justify-between mx-4 mt-5 sm:m-0">
         <Head setSideBarClass={setSideBarClass} setIsSidebarVisible={setIsSidebarVisible} />
       </div>
-      <div className="h-full sm:row-start-1 sm:row-end-4 row-start-2 row-end-4 col-start-1 sm:col-start-2">
+      <div className="container mx-auto h-full sm:row-start-1 sm:row-end-4 row-start-2 row-end-4 col-start-1 sm:col-start-2">
         <Switch>
           <Routes />
         </Switch>
