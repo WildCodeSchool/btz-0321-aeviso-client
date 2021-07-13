@@ -81,8 +81,8 @@ function ExportRecords(): JSX.Element {
     <div className="dark:bg-component bg-white border-2 dark:border-componentBorder h-full sm:w-full text-black dark:text-white font-roboto rounded-xl shadow-mainShadow mx-4 sm:mx-0  sm:px-10 p-5">
       <h1 className="sm:text-5xl  text-3xl font-bold">Réglages</h1>
       <form onSubmit={handleSubmit(onSubmit)}>
+        <p>Modifier vos données</p>
         <div>
-          <p>Modifier le nom et prénom</p>
           <TextInput
             label="Nom"
             placeholder="Nom"
@@ -103,8 +103,8 @@ function ExportRecords(): JSX.Element {
 
         <div>
           <EmailInput
-            label="Mail de l'administrateur"
-            placeholder="Nom"
+            label="Email"
+            placeholder="Email"
             register={register}
             name="user.email"
             required={false}
@@ -122,7 +122,7 @@ function ExportRecords(): JSX.Element {
 
           <PasswordInput
             label="Confirmation du mot de passe"
-            placeholder="Confirmation"
+            placeholder="Confirmation de votre mot de passe"
             register={register}
             name="user.confirmPassword"
             required={false}
@@ -130,7 +130,11 @@ function ExportRecords(): JSX.Element {
           />
         </div>
         <div className="form-submit">
-          <input type="submit" value="Envoyer" className="text-blue-600" />
+          <input
+            type="submit"
+            value="Valider"
+            className="focus:outline-none ounded-sm h-9 text-white shadow-buttonShadow px-4 py-1 mr-3 sm:mr-0 bg-customGreen"
+          />
         </div>
       </form>
     </div>
