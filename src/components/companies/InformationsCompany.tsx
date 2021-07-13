@@ -8,7 +8,11 @@ import Spinner from '../Spinner';
 function InformationsCompany(): JSX.Element {
   const { id } = useParams<{ id: string }>();
 
-  const { isLoading, error, data } = useQuery<User[], AxiosError>(['user', id], () => companies.getUsers(id, 'ADMIN'));
+  const {
+    isLoading,
+    error,
+    data: usersCompany,
+  } = useQuery<User[], AxiosError>(['user', id], () => companies.getUsers(id, 'ADMIN'));
 
   if (isLoading) {
     return <Spinner />;
@@ -26,15 +30,9 @@ function InformationsCompany(): JSX.Element {
     <div className="text-black dark:text-white">
       <div className="py-2 px-2 text-lg font-bold flex justify-between items-center bg-white dark:bg-component shadow-inputShadow sm:sticky sm:top-0 ">
         <p className="text-xl mr-2">Informations Clients</p>
-        <div className=" flex justify-between items-stretch p-2">
-          <button className="rounded-sm h-9 text-white shadow-buttonShadow px-4 py-1 mr-3 bg-customGreen">
-            Modifier
-          </button>
-          <button className="rounded-sm h-9 text-white shadow-buttonShadow px-4 py-1 bg-customRed">Supprimer</button>
-        </div>
       </div>
       <div>
-        {data?.map((data) => (
+        {usersCompany?.map((data) => (
           <div key={data.id} className="mt-5 mx-4">
             <div className="mb-3 border-b pb-2">
               <p className="font-bold text-base">Administrateur</p>

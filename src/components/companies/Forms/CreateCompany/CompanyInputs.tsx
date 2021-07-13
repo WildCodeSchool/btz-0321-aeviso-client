@@ -1,5 +1,5 @@
 import React from 'react';
-import TextInput from './CreateCompany/TextInput';
+import TextInput from '../CreateCompany/TextInput';
 import { FieldValues, UseFormRegister } from 'react-hook-form';
 
 interface IProps {
@@ -22,14 +22,6 @@ function CompanyInputs({ register, errors }: IProps): JSX.Element {
         name="company.name"
         required={true}
         error={errors?.company?.name && "Veuillez entrer le nom de l'entreprise"}
-      />
-      <TextInput
-        label="Statut de l'entreprise"
-        placeholder="Statut"
-        register={register}
-        name="company.status"
-        required={true}
-        error={errors?.company?.status && "Veuillez entrer le statut de l'entreprise"}
       />
     </div>
   );

@@ -2,16 +2,16 @@ interface Company {
   id: string;
   name: string;
   logoUrl?: string;
-  createdAt: string;
-  updatedAt: string;
 }
 
 interface ICompanyForm {
+  id?: string;
   name: string;
   logo?: File[] | File;
 }
 
 interface IUserForm {
+  id?: string;
   firstName: string;
   lastName: string;
   email: string;
@@ -63,10 +63,9 @@ interface Project {
 }
 
 interface IRecord {
-  id: string;
-  userId: string;
+  id?: string;
+  userId?: string;
   projectId: string;
-  companyId: string;
   date: string;
   timeslot: 'MORNING' | 'AFTERNOON';
   comment: string;
@@ -99,4 +98,19 @@ interface INavbar {
   Rapport: string;
   Réglages: string;
   NouveauRapport: string;
+}
+
+interface IReduxAction {
+  type: string;
+  payload: UserReduxState;
+}
+
+interface UserReduxState {
+  id?: string;
+  firstName?: string;
+  lastName?: string;
+  email?: string;
+  role?: 'USER' | 'ADMIN' | 'SUPERADMIN' | null;
+  companyId?: string;
+  logged: boolean;
 }

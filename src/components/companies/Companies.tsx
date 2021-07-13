@@ -28,7 +28,7 @@ function Companies(): JSX.Element {
         </Link>
       </div>
 
-      <div className="h-full mt-5 mx-4">
+      <div className="h-full mt-2 sm:mt-5 mx-4">
         {data?.map((company: Company, index) => (
           <CompanyPreview key={company.id} company={company} isFirstElement={index === 0} />
         ))}

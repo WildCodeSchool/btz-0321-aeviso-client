@@ -2,30 +2,38 @@ import React, { useEffect } from 'react';
 import { useForm } from 'react-hook-form';
 import { useQuery } from 'react-query';
 import { AxiosError } from 'axios';
-import { companies } from '../../../API/requests';
+import { companies, user } from '../../../API/requests';
 import { useHistory } from 'react-router-dom';
 import SelectCompany from './SelectCompany';
 import SelectProject from './SelectProject';
 import SelectDate from './SelectDate';
+import Spinner from '../../Spinner';
+import { useUserFromStore } from '../../../store/user.slice';
 
 function ExportRecords(): JSX.Element {
+  const { user: userStore } = useUserFromStore();
   const { register, handleSubmit, watch } = useForm();
   const history = useHistory();
+  let companySelect = watch('company');
 
-  const companySelect = watch('company');
+  if (userStore.role === 'ADMIN') {
+    companySelect = userStore.companyId;
+  }
 
   const {
     isLoading: companiesIsLoading,
     error: companiesError,
     data: companiesData,
-  } = useQuery<Company[], AxiosError>('companies', () => companies.getAll());
+  } = useQuery<Company[], AxiosError>('companies', () => companies.getAll(), {
+    enabled: userStore.role === 'SUPERADMIN',
+  });
 
   const {
     isLoading: projectIsLoading,
     error: projectError,
     data: projectData,
     refetch,
-  } = useQuery<Project[], AxiosError>('project', () => companies.getAllProjects(companySelect), {
+  } = useQuery<Project[], AxiosError>('project', () => user.getProjects(userStore.id as string), {
     enabled: Boolean(companySelect),
   });
 
@@ -36,7 +44,7 @@ function ExportRecords(): JSX.Element {
   }, [companySelect]);
 
   if (companiesIsLoading || projectIsLoading) {
-    return <p className="text-white">Loading...</p>;
+    return <Spinner />;
   }
 
   const error = companiesError || projectError;
