@@ -26,7 +26,12 @@ function ExportRecords(): JSX.Element {
     register,
     formState: { errors },
     handleSubmit,
+    setValue,
   } = useForm();
+
+  setValue('user.firstName', userFromStore.firstName);
+  setValue('user.lastName', userFromStore.lastName);
+  setValue('user.email', userFromStore.email);
 
   const {
     mutateAsync: mutateUser,
