@@ -18,7 +18,7 @@ interface IFormInput {
 }
 
 function ExportRecords(): JSX.Element {
-  const { user: userFromStore } = useUserFromStore();
+  const { user: userFromStore, dispatchUser } = useUserFromStore();
   const { isModal, setIsModal, message, setMessage } = useModal();
   const history = useHistory();
 
@@ -33,9 +33,10 @@ function ExportRecords(): JSX.Element {
     isLoading,
     error,
   } = useMutation<User, AxiosError, { user: User; id: string }>('user', user.update, {
-    onSuccess: () => {
+    onSuccess: (data) => {
       setMessage('Le client a bien été modifié');
       setIsModal(true);
+      dispatchUser(data);
     },
   });
 
@@ -87,7 +88,7 @@ function ExportRecords(): JSX.Element {
             placeholder="Nom"
             register={register}
             name="user.lastName"
-            required={true}
+            required={false}
             error={errors?.user?.lastName && 'Veuillez entrer le nom à modifier'}
           />
           <TextInput
@@ -95,7 +96,7 @@ function ExportRecords(): JSX.Element {
             placeholder="Prénom"
             register={register}
             name="user.firstName"
-            required={true}
+            required={false}
             error={errors?.user?.firstName && 'Veuillez entrer le prénom à modifier'}
           />
         </div>
@@ -106,8 +107,8 @@ function ExportRecords(): JSX.Element {
             placeholder="Nom"
             register={register}
             name="user.email"
-            required={true}
-            error={errors?.user?.email && "Veuillez entrer le mnail de l'administrateur"}
+            required={false}
+            error={errors?.user?.email && "Veuillez entrer l'email de l'administrateur"}
           />
 
           <PasswordInput
@@ -115,7 +116,7 @@ function ExportRecords(): JSX.Element {
             placeholder="Mot de passe"
             register={register}
             name="user.password"
-            required={true}
+            required={false}
             error={errors?.user?.password && 'Veuillez entrer un mot de passe'}
           />
 
@@ -124,7 +125,7 @@ function ExportRecords(): JSX.Element {
             placeholder="Confirmation"
             register={register}
             name="user.confirmPassword"
-            required={true}
+            required={false}
             error={errors?.user?.confirmPassword && 'Mot de passe different'}
           />
         </div>
