@@ -2,16 +2,16 @@ interface Company {
   id: string;
   name: string;
   logoUrl?: string;
-  createdAt: string;
-  updatedAt: string;
 }
 
 interface ICompanyForm {
+  id?: string;
   name: string;
   logo?: File[] | File;
 }
 
 interface IUserForm {
+  id?: string;
   firstName: string;
   lastName: string;
   email: string;

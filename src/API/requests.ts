@@ -69,14 +69,11 @@ export const companies = {
 
   getOne: (id: string): Promise<Company> => axios.get(`${API_URL}/companies/${id}`).then((res) => res.data),
 
-  post: ({ companyData, userData }: { companyData: ICompanyForm; userData: IUserForm }): Promise<Company> =>
-    axios
-      .post<Company>(`${API_URL}/companies`, companyData)
-      .then((res) => res.data)
-      .then((data) => axios.post(`${API_URL}/users`, { ...userData, companyId: data.id } as User)),
+  post: ({ companyData }: { companyData: ICompanyForm }): Promise<Company> =>
+    axios.post<Company>(`${API_URL}/companies`, companyData).then((res) => res.data),
 
-  put: ({ id, data }: { id: string; data: Company }): Promise<Company> =>
-    axios.put(`${API_URL}/companies/${id}`, data).then((res) => res.data),
+  put: ({ id, companyData }: { id: string; companyData: ICompanyForm }): Promise<Company> =>
+    axios.put<Company>(`${API_URL}/companies/${id}`, companyData).then((res) => res.data),
 
   delete: (id: string): Promise<null> => axios.delete(`${API_URL}/companies/${id}`).then((res) => res.data),
 
