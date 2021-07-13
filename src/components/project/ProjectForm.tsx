@@ -53,20 +53,20 @@ function ProjectForm({ projectId }: IProps): JSX.Element {
   };
 
   return (
-    <div className="w-6/12">
+    <div className=" text-black dark:text-white w-6/12">
       <h1 className=" text-2xl font-bold">Créer un nouveau projet</h1>
-      <form onSubmit={handleSubmit(onSubmit)} className="flex flex-col">
+      <form onSubmit={handleSubmit(onSubmit)} className="flex flex-col mt-2 sm:mt-10">
         <label className="mt-5" htmlFor="name">
           Name
-          <input className="p-2 mt-2 border border-black" {...register('name')} type="text" />
+          <input className="p-2 mt-2 border border-black text-gray-700" {...register('name')} type="text" />
         </label>
         <label className="mt-5" htmlFor="description">
           Description
-          <textarea className="h-28 p-2 mt-2 border border-black" {...register('description')}></textarea>
+          <textarea className="h-28 p-2 mt-2 border border-black text-gray-700" {...register('description')}></textarea>
         </label>
         <label className="mt-5" htmlFor="name">
           code
-          <input className="p-2 mt-2 border border-black" {...register('code')} type="text" />
+          <input className="p-2 mt-2 border border-black text-gray-700" {...register('code')} type="text" />
         </label>
         <SelectInput
           label="Fiscalité"

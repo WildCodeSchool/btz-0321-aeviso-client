@@ -41,26 +41,40 @@ function UsersInProject({ projectId }: IProps): JSX.Element {
   });
 
   return (
-    <div>
-      <h3>Collaborateurs affectés au projet :</h3>
-      <div>
-        {usersAlreadyAffected.map((id) => (
-          <div key={id}>
-            <DisplayUser key={id} id={id} />
-            <button onClick={() => removeUser({ projectId, userId: id })}>Supprimer</button>
-          </div>
-        ))}
-      </div>
-      <h3>Ajouter des collaborateurs :</h3>
-      <div>
-        {companyUsers
-          .filter((id) => !usersAlreadyAffected.includes(id))
-          .map((id) => (
-            <div key={id}>
-              <DisplayUser id={id} />
-              <button onClick={() => addUserInProject({ projectId, userId: id })}>Ajouter</button>
+    <div className="users-container flex w-full justify-around mt-10">
+      <div className="flex flex-col">
+        <h3 className="text-2xl">Collaborateurs affectés au projet :</h3>
+        <div>
+          {usersAlreadyAffected.map((id) => (
+            <div key={id} className="flex justify-between items-center mt-4">
+              <DisplayUser key={id} id={id} />
+              <button
+                className="bg-customRed rounded-lg w-1/4 text-white h-8"
+                onClick={() => removeUser({ projectId, userId: id })}
+              >
+                Supprimer
+              </button>
             </div>
           ))}
+        </div>
+      </div>
+      <div className="flex flex-col">
+        <h3 className="text-2xl">Ajouter des collaborateurs :</h3>
+        <div>
+          {companyUsers
+            .filter((id) => !usersAlreadyAffected.includes(id))
+            .map((id) => (
+              <div key={id} className="flex justify-between items-center mt-4">
+                <DisplayUser id={id} />
+                <button
+                  className="bg-customGreen rounded-lg w-1/4 text-white h-8"
+                  onClick={() => addUserInProject({ projectId, userId: id })}
+                >
+                  Ajouter
+                </button>
+              </div>
+            ))}
+        </div>
       </div>
     </div>
   );
