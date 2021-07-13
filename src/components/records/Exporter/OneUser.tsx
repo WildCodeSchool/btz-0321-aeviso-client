@@ -28,7 +28,7 @@ function OneUser({ firstName, lastName, projectId, userId, job, start, end, week
 
   const { isLoading: recordIsLoading, error: recordIsError } = useQuery<IRecord[], AxiosError>(
     ['records', userId],
-    () => project.getRecords(projectId, userId, start!.toISOString(), end!.toISOString()),
+    () => project.getUserRecords(projectId, userId, start!.toISOString(), end!.toISOString()),
     {
       onSuccess: (record) => {
         setRecords(record);
