@@ -2,7 +2,7 @@ import React, { useEffect } from 'react';
 import { useForm } from 'react-hook-form';
 import { useQuery } from 'react-query';
 import { AxiosError } from 'axios';
-import { companies, user } from '../../../API/requests';
+import { companies } from '../../../API/requests';
 import { useHistory } from 'react-router-dom';
 import SelectCompany from './SelectCompany';
 import SelectProject from './SelectProject';
@@ -33,7 +33,7 @@ function ExportRecords(): JSX.Element {
     error: projectError,
     data: projectData,
     refetch,
-  } = useQuery<Project[], AxiosError>('project', () => user.getProjects(userStore.id as string), {
+  } = useQuery<Project[], AxiosError>('project', () => companies.getAllProjects(userStore.companyId as string), {
     enabled: Boolean(companySelect),
   });
 
