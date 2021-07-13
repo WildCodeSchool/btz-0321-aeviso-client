@@ -3,13 +3,13 @@
 Front-en app: Wild Code School project #3
 
 Team:  
- -Aeryle  
- -Chabelle78  
- -ThomasBarrial  
- -MatthiasWanner  
- -Benwade-progldc
+ -Aeryle: https://github.com/Aeryle  
+ -Chabelle78: https://github.com/Chabelle78  
+ -ThomasBarrial: https://github.com/ThomasBarrial  
+ -MatthiasWanner: https://github.com/MatthiasWanner  
+ -Benwade-progldc: https://github.com/Benwade-prog
 
-Works with api: https://github.com/WildCodeSchool/btz-0321-aeviso-api
+THIS APP ONLY WORKS WITH API: https://github.com/WildCodeSchool/btz-0321-aeviso-api
 
 ## Environment Variables
 
