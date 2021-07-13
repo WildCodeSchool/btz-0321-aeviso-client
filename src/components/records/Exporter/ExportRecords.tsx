@@ -23,6 +23,7 @@ function ExportRecords(): JSX.Element {
   const {
     isLoading: companiesIsLoading,
     error: companiesError,
+
     data: companiesData,
   } = useQuery<Company[], AxiosError>('companies', () => companies.getAll(), {
     enabled: userStore.role === 'SUPERADMIN',
