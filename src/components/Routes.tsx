@@ -12,6 +12,7 @@ import Admin from './home/Admin';
 import ExportRecords from './records/Exporter/ExportRecords';
 import DetailsProjects from './companies/DetailsProjects';
 import { useUserFromStore } from '../store/user.slice';
+import Calendar from './records/CreateNew/Calendar';
 import RecordsUser from './user/RecordsUser';
 import Collaborators from './users/Collaborators';
 import OneCollaborator from './users/OneCollaborator';
@@ -21,6 +22,8 @@ function Routes(): JSX.Element {
   if (user?.role === 'ADMIN') {
     return (
       <>
+        <Route exact path="/nouveaurapport" component={Calendar} />
+        <Route path="/records/export" component={ExportRecords} />
         <Route path="/home" component={HomePage} />
         <Route path="/aeviso" component={Admin} />
         <Route exact path="/collaborateurs" component={Collaborators} />

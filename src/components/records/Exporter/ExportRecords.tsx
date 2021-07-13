@@ -7,12 +7,18 @@ import { useHistory } from 'react-router-dom';
 import SelectCompany from './SelectCompany';
 import SelectProject from './SelectProject';
 import SelectDate from './SelectDate';
+import Spinner from '../../Spinner';
+import { useUserFromStore } from '../../../store/user.slice';
 
 function ExportRecords(): JSX.Element {
+  const { user } = useUserFromStore();
   const { register, handleSubmit, watch } = useForm();
   const history = useHistory();
+  let companySelect = watch('company');
 
-  const companySelect = watch('company');
+  if (user.role === 'ADMIN') {
+    companySelect = user.companyId;
+  }
 
   const {
     isLoading: companiesIsLoading,
@@ -36,7 +42,7 @@ function ExportRecords(): JSX.Element {
   }, [companySelect]);
 
   if (companiesIsLoading || projectIsLoading) {
-    return <p className="text-white">Loading...</p>;
+    return <Spinner />;
   }
 
   const error = companiesError || projectError;
