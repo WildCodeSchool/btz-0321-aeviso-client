@@ -39,7 +39,7 @@ function Admin({ Home, report, settings, newReport, handleClose }: ISPNavbar): J
             className="mr-3 mb-1 h-6 w-6 bg-component dark:bg-component shadow-buttonShadow p-1 rounded-full"
             alt="homesvg"
           />
-          <button className="focus:outline-none" onClick={() => handleClickLink('/nouveaurapport')}>
+          <button className="focus:outline-none" onClick={() => handleClickLink('/rapport/nouveau')}>
             Nouveau Rapport
           </button>
         </li>

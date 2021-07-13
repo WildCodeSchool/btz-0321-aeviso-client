@@ -17,6 +17,7 @@ import RecordsUser from './user/RecordsUser';
 import Collaborators from './users/Collaborators';
 import OneCollaborator from './users/OneCollaborator';
 import UniqueProject from './project/UniqueProject';
+import CreateUpdateProjects from './project/CreateUpdateProjects';
 
 function Routes(): JSX.Element {
   const { user } = useUserFromStore();
@@ -28,8 +29,9 @@ function Routes(): JSX.Element {
         <Route path="/home" component={HomePage} />
         <Route path="/aeviso" component={Admin} />
         <Route path="/rapport" component={ExportRecords} />
-        <Route path="/projets" component={ProjectList} />
-        <Route path="/projet/:id" component={UniqueProject} />
+        <Route exact path="/projets" component={ProjectList} />
+        <Route exact path="/projets/:id" component={UniqueProject} />
+        <Route exact path="/projets/creer" component={CreateUpdateProjects} />
         <Route exact path="/collaborateurs" component={Collaborators} />
         <Route path="/collaborateurs/oneuser/:id" component={OneCollaborator} />
         <Route exact path="/records/export/companies/:companyId/projects/:projectId" component={FormResult} />
