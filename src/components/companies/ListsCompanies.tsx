@@ -34,7 +34,7 @@ function ListsCompanies(): JSX.Element {
           setIsCreatForm={setIsCreatForm}
         />
       ) : (
-        <div className="sm:p-7 p-5">
+        <div className="sm:p-10 p-5">
           <div className="flex flex-col sm:flex-row justify-between mb-5 sm:items-center items-start">
             <h1 className="sm:text-4xl text-xl font-bold">Liste de tous les clients</h1>
 
@@ -42,16 +42,16 @@ function ListsCompanies(): JSX.Element {
               onClick={() => setIsCreatForm(true)}
               className="focus:outline-none  sm:text-base text-xs text-white bg-customBlue px-2 py-1 mt-5 sm:mt-0 sm:p-2 shadow-buttonShadow rounded-md flex items-center"
             >
-              Créer Nouveau <img src={Plus} alt="Icône plus" className="ml-2 p-1 rounded-full h-5 w-5 sm:h-6 sm:w-6" />
+              Créer Nouveau <img src={Plus} alt="Icône plus" className="p-1 rounded-full h-5 w-5 sm:h-6 sm:w-6" />
             </button>
           </div>
           <SearchInput register={register} name="search" />
           <div className="sm:mt-10 mt-5">
-            {data
-              ?.filter((company) => company.name.toLowerCase().includes(searchInput?.toLowerCase()))
-              ?.map((company) => {
-                return <CompanyDetails company={company} key={company.id} />;
-              })}
+            {searchInput
+              ? data?.filter((company) => company.name.toLowerCase().includes(searchInput?.toLowerCase()))
+              : data?.map((company) => {
+                  return <CompanyDetails company={company} key={company.id} />;
+                })}
           </div>
         </div>
       )}

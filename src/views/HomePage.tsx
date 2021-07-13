@@ -75,7 +75,7 @@ function HomePage(): JSX.Element {
           Email
         </label>
         <input
-          className=" focus:outline-none bg-white bg-opacity-0 mt-2 mb-5 px-3 w-11/12 h-12 border-b border-white shadow-inputShadow"
+          className=" focus:outline-none bg-white bg-opacity-0 mt-2 mb-5 px-3 w-11/12 h-12 border-b border-white"
           type="text"
           {...register('email', { required: true })}
         />
@@ -83,7 +83,7 @@ function HomePage(): JSX.Element {
           Mots de passe{' '}
         </label>
         <input
-          className="focus:outline-none bg-white bg-opacity-0 mt-2 px-3 w-11/12 h-12 border-b border-white shadow-inputShadow"
+          className="focus:outline-none bg-white bg-opacity-0 mt-2 px-3 w-11/12 h-12 border-b border-white"
           type="password"
           {...register('password', { required: true })}
         />
