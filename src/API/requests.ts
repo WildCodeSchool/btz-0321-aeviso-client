@@ -64,10 +64,10 @@ export const project = {
   deleteDayRecords: ({ projectId, userId, date }: { projectId: string; userId: string; date: string }): Promise<null> =>
     axios.delete(`${API_URL}/projects/${projectId}/users/${userId}/records?date=${date}`).then((res) => res.data),
 
-  addUser: (projectId: string, userId: string): Promise<null> =>
+  addUser: ({ projectId, userId }: { projectId: string; userId: string }): Promise<null> =>
     axios.post(`${API_URL}/projects/${projectId}/users/${userId}`).then((res) => res.data),
 
-  removeUser: (projectId: string, userId: string): Promise<null> =>
+  removeUser: ({ projectId, userId }: { projectId: string; userId: string }): Promise<null> =>
     axios.delete(`${API_URL}/projects/${projectId}/users/${userId}`).then((res) => res.data),
 };
 
