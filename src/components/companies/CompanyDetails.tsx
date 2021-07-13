@@ -44,10 +44,8 @@ function CompanyDetails({ company }: IProps): JSX.Element {
         </Link>
         <Menu>
           <div className="">
-            <Menu.Button>
-              <button className="focus:outline-none">
-                <img src={more} alt="more" />
-              </button>
+            <Menu.Button className="focus:outline-none">
+              <img src={more} alt="more" />
             </Menu.Button>
             <Menu.Items className="absolute right-10 sm:right-28 flex flex-col justify-center w-72 shadow-buttonShadow px-2 py-4 text-black dark:text-white z-10  bg-whiteGray dark:bg-mainBg rounded-md">
               <Menu.Item>

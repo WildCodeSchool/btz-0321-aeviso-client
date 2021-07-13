@@ -23,11 +23,12 @@ function Routes(): JSX.Element {
     return (
       <>
         <Route exact path="/nouveaurapport" component={Calendar} />
-        <Route path="/records/export" component={ExportRecords} />
+        <Route exact path="/records/export" component={ExportRecords} />
         <Route path="/home" component={HomePage} />
         <Route path="/aeviso" component={Admin} />
         <Route exact path="/collaborateurs" component={Collaborators} />
         <Route path="/collaborateurs/oneuser/:id" component={OneCollaborator} />
+        <Route exact path="/records/export/companies/:companyId/projects/:projectId" component={FormResult} />
         <Route path="/logout" component={Logout} />
         <Route />
       </>
