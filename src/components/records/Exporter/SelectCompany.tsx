@@ -39,12 +39,20 @@ function SelectCompany({ companiesData, register }: ISelectCompany): JSX.Element
       </p>
     );
   }
-
   if (user.role === 'ADMIN') {
     return (
-      <div className="mt-5 border-b border-black">
-        <h1 className="text-xl dark:text-white">1. Mon entreprise</h1>
-        <h1 className="mt-2">{userCompany?.name}</h1>
+      <div className="flex flex-col mt-2">
+        <label className="text-xl" htmlFor="select">
+          1. Mon entreprise
+        </label>
+        <select
+          {...register('company')}
+          className="focus:outline-none text-black dark:text-gray-300 text-sm bg-white dark:bg-component border-b pt-3 pb-2 border-black dark:border-white"
+        >
+          <option value={userCompany?.id} key={userCompany?.id}>
+            {userCompany?.name}
+          </option>
+        </select>
       </div>
     );
   } else {

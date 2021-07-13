@@ -37,11 +37,11 @@ function DayRecord({ selectedProject }: IDayRecord): JSX.Element {
 
   const { isLoading: recordLoading } = useQuery<IRecord[], AxiosError>(
     ['records', record.date],
-    () => project.getRecords(selectedProject, user.id as string, record.date.toISOString(), end.toISOString()),
+    () => project.getUserRecords(selectedProject, user.id as string, record.date.toISOString(), end.toISOString()),
     {
       onSuccess: (data) => {
         dispatchCreateRecord(data);
-        if (data) setValue('comment', data[0].comment);
+        if (data.length > 0) setValue('comment', data[0].comment);
       },
     }
   );

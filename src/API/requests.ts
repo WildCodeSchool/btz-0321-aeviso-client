@@ -47,7 +47,9 @@ export const project = {
 
   getUserRecords: (projectId: string, userId: string, start?: string, end?: string): Promise<IRecord[]> =>
     axios
-      .get(`${API_URL}/projects/${projectId}/users/${userId}/records${start && end ? `start=${start}&end=${end}` : ''}`)
+      .get(
+        `${API_URL}/projects/${projectId}/users/${userId}/records${start && end ? `?start=${start}&end=${end}` : ''}`
+      )
       .then((res) => res.data),
 
   // TODO: create a real interface here

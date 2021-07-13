@@ -5,7 +5,7 @@ import { Link } from 'react-router-dom';
 import Spinner from '../../Spinner';
 import { useQuery } from 'react-query';
 import { AxiosError } from 'axios';
-import { companies } from '../../../API/requests';
+import { user } from '../../../API/requests';
 import { useUserFromStore } from '../../../store/user.slice';
 import { FieldValues, UseFormRegister } from 'react-hook-form';
 import { useRecordFromStore } from '../../../store/record.slice';
@@ -24,15 +24,13 @@ function Picker({ setDayActive, register }: IPicker): JSX.Element {
     setDayActive(false);
   };
 
-  const { user } = useUserFromStore();
-
-  const companySelect = user.companyId;
+  const { user: userStore } = useUserFromStore();
 
   const { isLoading, error, data } = useQuery<Project[], AxiosError>(
-    ['projects', user.id],
-    () => companies.getAllProjects(companySelect as string),
+    ['projects', userStore.id],
+    () => user.getProjects(userStore.id as string),
     {
-      enabled: Boolean(companySelect),
+      enabled: Boolean(userStore.id),
     }
   );
 
