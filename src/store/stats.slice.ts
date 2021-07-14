@@ -4,7 +4,7 @@ import { RootState } from '.';
 
 export type UserSelection = {
   name: string;
-  weeklyBasis: 'h35' | 'h39';
+  weeklyBasis: number;
   halfDays: number;
   totalHours: number;
 };
