@@ -1,5 +1,5 @@
 import React, { Dispatch, SetStateAction } from 'react';
-import { Link } from 'react-router-dom';
+import { Link, useHistory } from 'react-router-dom';
 
 import Home from '../../../media/icons/Home.svg';
 import report from '../../../media/icons/folder.svg';
@@ -20,11 +20,19 @@ interface ISideBarProps {
 }
 
 function SideBar({ sideBarClass, setSideBarClass }: ISideBarProps): JSX.Element {
+  const history = useHistory();
+
   const handleClose = () => {
     setSideBarClass(
       'flex flex-col border-2 dark:border-componentBorder dark:bg-component bg-white h-full shadow-buttonShadow dark:shadow-mainShadow rounded-xl text-black dark:text-white font-roboto justify-between invisible sm:visible'
     );
   };
+
+  const handleClickLink = (url: string) => {
+    handleClose();
+    history.push(url);
+  };
+
   const { user } = useUserFromStore();
 
   return (
@@ -46,17 +54,29 @@ function SideBar({ sideBarClass, setSideBarClass }: ISideBarProps): JSX.Element 
           </div>
         </div>
         {user.role === 'SUPERADMIN' ? (
-          <SuperAdmin handleClose={handleClose} Home={Home} report={report} settings={settings} />
+          <SuperAdmin handleClickLink={handleClickLink} Home={Home} report={report} settings={settings} />
         ) : (
           ''
         )}
         {user.role === 'ADMIN' ? (
-          <Admin Home={Home} report={report} settings={settings} newReport={newReport} handleClose={handleClose} />
+          <Admin
+            Home={Home}
+            report={report}
+            settings={settings}
+            newReport={newReport}
+            handleClickLink={handleClickLink}
+          />
         ) : (
           ''
         )}
         {user.role === 'USER' ? (
-          <User handleClose={handleClose} newReport={newReport} Home={Home} report={report} settings={settings} />
+          <User
+            handleClickLink={handleClickLink}
+            newReport={newReport}
+            Home={Home}
+            report={report}
+            settings={settings}
+          />
         ) : (
           ''
         )}

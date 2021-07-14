@@ -1,25 +1,17 @@
 import React from 'react';
-import { useHistory } from 'react-router-dom';
 
 import Collaborateurs from '../../../media/icons/Collaborateurs.svg';
 import project from '../../../media/icons/project.svg';
 
 interface ISPNavbar {
-  handleClose: () => void;
+  handleClickLink: (url: string) => void;
   Home: string;
   report: string;
   settings: string;
   newReport: string;
 }
 
-function Admin({ Home, report, settings, newReport, handleClose }: ISPNavbar): JSX.Element {
-  const history = useHistory();
-
-  const handleClickLink = (url: string) => {
-    handleClose();
-    history.push(url);
-  };
-
+function Admin({ Home, report, settings, newReport, handleClickLink }: ISPNavbar): JSX.Element {
   return (
     <div>
       <nav className="list-none pt-5">
@@ -79,7 +71,7 @@ function Admin({ Home, report, settings, newReport, handleClose }: ISPNavbar): J
             className="mr-3 mb-1 h-6 w-6 bg-component dark:bg-component shadow-buttonShadow p-1 rounded-full"
             alt="homesvg"
           />
-          <button className="focus:outline-none" onClick={() => handleClickLink('reglage')}>
+          <button className="focus:outline-none" onClick={() => handleClickLink('/reglages')}>
             Réglages
           </button>
         </li>
