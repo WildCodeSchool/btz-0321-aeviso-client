@@ -32,6 +32,11 @@ function ExportRecords(): JSX.Element {
         {userStore.role === 'SUPERADMIN' && <SelectCompany register={register} setValue={setValue} />}
         <SelectProject register={register} companyId={watch('company')} />
         <SelectDate register={register} />
+        <input
+          value="Exporter"
+          type="submit"
+          className="focus:outline-none text-white shadow-buttonShadow mt-10 w-12/12 sm:w-4/12 py-2 rounded-lg bg-customGreen "
+        />
       </form>
     </div>
   );
