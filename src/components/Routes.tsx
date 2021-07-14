@@ -59,7 +59,7 @@ function Routes(): JSX.Element {
         <Route path="/home" component={HomePage} />
         <Route exact path="/aeviso" component={ListsCompanies} />
         <Route exact path="/createclient" component={CreateUpdateCompany} />
-        <Route exact path="/records/export/companies/:companyId/projects/:projectId" component={FormResult} />
+        <Route exact path="/exporter/companies/:companyId/projects/:projectId" component={FormResult} />
         <Route exact path="/records/export" component={ExportRecords} />
         <Route exact path="/clients/:id" component={Company} />
         <Route exact path="/projects/:id" component={DetailsProjects} />
