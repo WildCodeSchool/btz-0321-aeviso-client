@@ -12,10 +12,10 @@ interface iProps {
 function SelectInput({ register, items, name, label, defaultValue }: iProps): JSX.Element {
   return (
     <div>
-      <label className="flex flex-col mt-3">
+      <label className="flex flex-col mt-3 sm:mt-4">
         {label}
         <select
-          className="mt-1 bg-whiteInput shadow-buttonShadow dark:bg-input text-white rounded-sm py-1 px-2 sm:h-12 sm:rounded-md"
+          className="focus:outline-none mt-1 bg-whiteInput shadow-buttonShadow dark:bg-input text-white rounded-sm py-1 px-2 sm:h-12 sm:rounded-md"
           defaultValue={defaultValue}
           {...register(name)}
         >

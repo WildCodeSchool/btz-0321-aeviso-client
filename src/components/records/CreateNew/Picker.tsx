@@ -1,7 +1,6 @@
 import React, { Dispatch, SetStateAction } from 'react';
 import Calendar from 'react-calendar';
 import './Calendar.css';
-import { Link } from 'react-router-dom';
 import Spinner from '../../Spinner';
 import { useQuery } from 'react-query';
 import { AxiosError } from 'axios';
@@ -44,16 +43,10 @@ function Picker({ setDayActive, register }: IPicker): JSX.Element {
 
   return (
     <div>
-      <div className="flex w-full sm:mt-10 justify-between sm:items-end flex-col sm:flex-row">
-        <Link to="/records/export">
-          <p className="bg-customGreen text-white ml-4 mt-5 px-4 py-1 rounded-md shadow-buttonShadow text-center w-6/12 sm:w-full">
-            Exporter un rapport
-          </p>
-        </Link>
-      </div>
-      <div className="mx-3 mt-5 sm:mt-16">
-        <label className="mt-5 text-lg font-bold sm:text-xl" htmlFor="select">
-          Sélectionner un projet
+      <div className="flex w-full sm:mt-10 justify-between sm:items-end flex-col sm:flex-row"></div>
+      <div className="mx-3 sm:mx-0 mt-5 ">
+        <label className="font-bold sm:text-2xl mt-10" htmlFor="select">
+          1. Sélectionner un projet
         </label>
 
         <select
@@ -69,8 +62,8 @@ function Picker({ setDayActive, register }: IPicker): JSX.Element {
           })}
         </select>
       </div>
-      <p className="font-bold sm:text-2xl mt-10 mx-4">Pour créer un rapport sélectionnez une journée</p>
-      <div className="flex mt-5 sm:p-10 mb-10 w-12/12 bg-black rounded-xl">
+      <p className="font-bold sm:text-2xl mt-10">2. Pour créer un rapport sélectionnez une journée</p>
+      <div className="flex mt-5 mb-10 w-12/12 bg-white  dark:bg-component rounded-xl">
         <Calendar onChange={handleChange} />
       </div>
     </div>

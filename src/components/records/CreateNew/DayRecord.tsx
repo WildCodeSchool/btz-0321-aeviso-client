@@ -113,7 +113,7 @@ function DayRecord({ selectedProject }: IDayRecord): JSX.Element {
           <p className="text-xl max-w-full">Vous avez déja enregistré {record.records.length} rapport(s) ce jour là</p>
         )}
       </div>
-      <div className="mt-5 md:h-28 flex flex-col sm:flex-row mx-4">
+      <div className="mt-5 sm:h-28 flex flex-col sm:flex-row sm:mx-0 mx-4">
         <TimeSlotButton
           recordId={record.records?.find((record) => record.timeslot === 'MORNING')?.id as string}
           isActive={record.records?.find((record) => record.timeslot === 'MORNING') ? false : true}

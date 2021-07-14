@@ -28,7 +28,7 @@ export default function SelectDate({ register }: { register: UseFormRegister<Fie
         <input
           value="Exporter"
           type="submit"
-          className="focus:outline-none text-white shadow-buttonShadow mt-10 w-12/12 sm:w-4/12 py-2 rounded-lg bg-customGreen "
+          className="focus:outline-none sm:mb-5 text-white shadow-buttonShadow mt-10 w-12/12 sm:w-4/12 py-2 rounded-lg bg-customGreen "
         />
       </div>
     </div>

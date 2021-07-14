@@ -4,6 +4,9 @@ import { useQuery } from 'react-query';
 import { companies } from '../../API/requests';
 import Spinner from '../Spinner';
 import { useUserFromStore } from '../../store/user.slice';
+import Collaborators from '../users/Collaborators';
+import Calendar from '../records/CreateNew/Calendar';
+import ExportRecords from '../records/Exporter/ExportRecords';
 
 function Admin(): JSX.Element {
   const { user } = useUserFromStore();
@@ -36,11 +39,11 @@ function Admin(): JSX.Element {
           <h1 className="text-black dark:text-white text-lg sm:text-2xl font-roboto font-bold">{company?.name}</h1>
           <p className="text-black dark:text-white">ADMIN</p>
         </div>
-        <div className="sm:col-start-2 sm:row-start-1 sm:row-end-2 col-start-1 row-start-2 border-2 dark:border-componentBorder  bg-white dark:bg-component rounded-lg shadow-buttonShadow dark:shadow-mainShadow mx-4 sm:mx-0 overflow-y-auto">
-          <p className="text-black dark:text-white">ADMIN</p>
+        <div className="sm:col-start-1 sm:row-start-2 sm:row-end-4 col-start-1 row-start-2 border-2 dark:border-componentBorder  bg-white dark:bg-component rounded-lg shadow-buttonShadow dark:shadow-mainShadow mx-4 sm:mx-0 overflow-y-auto">
+          <ExportRecords />
         </div>
-        <div className="sm:col-start-1 sm:col-end-3 sm:row-start-2 sm:row-end-4 row-start-3 row-end-4 col-start-1 border-2 dark:border-componentBorder  bg-white dark:bg-component rounded-lg shadow-buttonShadow dark:shadow-mainShadow  mx-4 sm:mx-0">
-          <p className="text-black dark:text-white">ADMIN</p>
+        <div className="sm:col-start-2 mb-10 sm:mb-0 sm:col-end-3 sm:row-start-1 sm:row-end-4 row-start-3 row-end-4 col-start-1 border-2 dark:border-componentBorder  bg-white dark:bg-component rounded-lg shadow-buttonShadow dark:shadow-mainShadow  mx-4 sm:mx-0">
+          <Collaborators />
         </div>
       </div>
     </div>

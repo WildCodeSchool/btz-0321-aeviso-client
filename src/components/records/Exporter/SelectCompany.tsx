@@ -41,7 +41,7 @@ function SelectCompany({ companiesData, register }: ISelectCompany): JSX.Element
   }
   if (user.role === 'ADMIN') {
     return (
-      <div className="flex flex-col mt-10">
+      <div className="flex flex-col">
         <label className="text-xl" htmlFor="select">
           1. Mon entreprise
         </label>

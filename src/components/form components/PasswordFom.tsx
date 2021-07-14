@@ -10,10 +10,10 @@ function PasswordFom({ error, register }: IMdp): JSX.Element {
   return (
     <div>
       <form action="">
-        <label className="flex flex-col mt-3">
+        <label className="flex flex-col mt-3 sm:mt-4">
           Mot de passe
           <input
-            className="mt-1 bg-whiteInput shadow-buttonShadow dark:bg-input text-white rounded-sm py-1 px-2 sm:h-12 sm:rounded-md"
+            className="mt-1 focus:outline-none bg-whiteInput shadow-buttonShadow dark:bg-input text-white rounded-sm py-1 px-2 sm:h-12 sm:rounded-md"
             type="password"
             {...register('password', { minLength: 4, pattern: /(?=.*\d)(?=.*[a-z])(?=.*[A-Z]).+/ })}
           />
@@ -23,10 +23,10 @@ function PasswordFom({ error, register }: IMdp): JSX.Element {
               : error?.password?.message}
           </p>
         </label>
-        <label className="flex flex-col mt-3">
+        <label className="flex flex-col mt-3 sm:mt-4">
           Confirmer le mot de passe
           <input
-            className="mt-1 bg-whiteInput shadow-buttonShadow dark:bg-input text-white rounded-sm py-1 px-2 sm:h-12 sm:rounded-md"
+            className="mt-1 focus:outline-none bg-whiteInput shadow-buttonShadow dark:bg-input text-white rounded-sm py-1 px-2 sm:h-12 sm:rounded-md"
             type="password"
             {...register('confirmPassword', {
               minLength: 4,

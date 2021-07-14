@@ -60,7 +60,7 @@ function ExportRecords(): JSX.Element {
   }
 
   return (
-    <div className="dark:bg-component bg-white border-2 dark:border-componentBorder h-full sm:w-full text-black dark:text-white font-roboto rounded-xl shadow-buttonShadow dark:shadow-mainShadow mx-4 sm:mx-0  sm:px-10 p-5">
+    <div className="dark:bg-component bg-white border-2 dark:border-componentBorder h-full sm:w-full text-black dark:text-white font-roboto rounded-xl shadow-buttonShadow dark:shadow-mainShadow mx-4 sm:mx-0 sm:pb-10 sm:px-8 p-5 overflow-y-auto">
       <form
         onSubmit={handleSubmit((data) => {
           const start = new Date(data.start).toISOString();
