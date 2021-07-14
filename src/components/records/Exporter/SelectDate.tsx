@@ -6,7 +6,8 @@ export default function SelectDate({ register }: { register: UseFormRegister<Fie
     <div>
       <div className="flex flex-col mt-5">
         <label className="mt-5 text-xl" htmlFor="select">
-          3. Sélectionner une date de début
+          <span>{'-> '}</span>
+          Sélectionner une date de début
         </label>
         <input
           {...register('start')}
@@ -16,9 +17,9 @@ export default function SelectDate({ register }: { register: UseFormRegister<Fie
       </div>
 
       <div className="flex flex-col mt-5">
-        {' '}
         <label className="mt-5 text-xl" htmlFor="select">
-          4. Sélectionner une date de fin
+          <span>{'-> '}</span>
+          Sélectionner une date de fin
         </label>
         <input
           {...register('end')}
