@@ -6,7 +6,7 @@ import JobDisplay from '../jobs/JobDisplay';
 function DisplayUser({ id }: { id: string }): JSX.Element {
   const { data } = useQuery(['userInProject', id], () => user.getOne(id));
   return (
-    <div className="flex flex-col">
+    <div className="flex flex-col ">
       <p className="font-bold">
         {data?.firstName} {data?.lastName}
       </p>

@@ -42,11 +42,13 @@ function UsersInProject({ projectId }: IProps): JSX.Element {
 
   return (
     <div className="users-container flex flex-col w-full justify-around">
-      <div className="flex flex-col w-full py-5 dark:bg-component shadow-mainShadow bg-white rounded-xl p-5 mt-5 sm:mt-0 sm:mr-5">
-        <h3 className="text-3xl font-bold">Collaborateurs affectés au projet</h3>
-        <div>
+      <div className="flex flex-col w-full h-96 dark:bg-component shadow-mainShadow bg-white rounded-xl  mt-5 sm:mt-0 sm:mr-5 overflow-y-auto">
+        <h3 className="text-3xl font-bold p-5 rounded-t-lg bg-white shadow-buttonShadow dark:shadow-inputShadow dark:bg-component sticky top-0">
+          Collaborateurs affectés au projet
+        </h3>
+        <div className="mx-5 pb-5">
           {usersAlreadyAffected.map((id) => (
-            <div key={id} className="flex justify-between items-center mt-4">
+            <div key={id} className="flex justify-between items-center mt-4 border-b border-gray-400 pb-2">
               <DisplayUser key={id} id={id} />
               <button
                 className="bg-customRed shadow-buttonShadow rounded-lg w-4/12 ml-2 text-white h-8"
@@ -57,21 +59,21 @@ function UsersInProject({ projectId }: IProps): JSX.Element {
             </div>
           ))}
           {usersAlreadyAffected.length === 0 && (
-            <p className="mt-5 text-4xl font-bold text-mainBg text-opacity-70">
-              {"Aucun Collaborateurs n'est affecter à ce projet"}
+            <p className="mt-5 text-xl font-bold text-mainBg text-opacity-70">
+              {"Aucun Collaborateurs n'est affecté à ce projet"}
             </p>
           )}
         </div>
       </div>
-      <div className="flex flex-col w-full h-full  dark:bg-component shadow-mainShadow bg-white rounded-xl mt-5 overscroll-y-auto">
+      <div className="flex flex-col h-96 w-full pb-5 dark:bg-component shadow-mainShadow bg-white rounded-xl mt-5 overflow-y-auto">
         <h3 className="text-3xl p-5 rounded-t-lg font-bold bg-white shadow-buttonShadow dark:shadow-inputShadow dark:bg-component sticky top-0">
           Ajouter des collaborateurs
         </h3>
-        <div className="mx-4">
+        <div className="mx-4 pb-5">
           {companyUsers
             .filter((id) => !usersAlreadyAffected.includes(id))
             .map((id) => (
-              <div key={id} className="flex justify-between items-center mt-4">
+              <div key={id} className="flex justify-between items-center mt-4  border-b border-gray-400 pb-2">
                 <DisplayUser id={id} />
                 <button
                   className="bg-customGreen shadow-buttonShadow rounded-lg w-1/4 text-white h-8"

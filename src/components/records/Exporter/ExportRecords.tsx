@@ -71,7 +71,7 @@ function ExportRecords(): JSX.Element {
           const end = new Date(data.end).toISOString();
           history.push(`/exporter/companies/${data.company}/projects/${data.project}?&start=${start}&end=${end}`);
         })}
-        className="flex flex-col h-full pb-2 mx-7 mt-5"
+        className="flex flex-col h-full pb-2 mx-7 mt-8"
         action="sumbit"
       >
         {!companiesIsLoading && <SelectCompany register={register} companiesData={companiesData} setValue={setValue} />}
