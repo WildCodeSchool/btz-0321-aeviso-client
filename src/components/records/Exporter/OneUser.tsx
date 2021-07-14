@@ -32,7 +32,12 @@ function OneUser({ firstName, lastName, projectId, userId, job, start, end, week
     {
       onSuccess: (record) => {
         setRecords(record);
-        dispatchAddUser({ name: `${firstName} ${lastName}`, total: getTotalHours(weeklyBasis, record.length) });
+        dispatchAddUser({
+          name: `${firstName} ${lastName}`,
+          weeklyBasis,
+          halfDays: record.length,
+          totalHours: getTotalHours(weeklyBasis, record.length),
+        });
       },
     }
   );
