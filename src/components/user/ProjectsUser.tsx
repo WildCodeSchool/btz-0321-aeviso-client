@@ -1,8 +1,7 @@
 import React from 'react';
 import { useQuery } from 'react-query';
 import { AxiosError } from 'axios';
-import { user, jobs } from '../../API/requests';
-import Spinner from '../Spinner';
+import { user } from '../../API/requests';
 import { useUserFromStore } from '../../store/user.slice';
 import SearchInput from '../SearchInput';
 import { useForm } from 'react-hook-form';
@@ -22,54 +21,40 @@ function ProjectsUser(): JSX.Element {
     user.getProjects(userFromStore.id as string)
   );
 
-  const {
-    isLoading: jobsIsLoading,
-    error: jobsError,
-    data: jobsData,
-  } = useQuery<Job, AxiosError>(['jobs', userFromStore.jobId], () => jobs.getOne(userFromStore.jobId as string));
-
-  if (projectsIsLoading || jobsIsLoading) {
-    return <Spinner />;
+  if (projectsIsLoading) {
+    return <p>...</p>;
   }
 
-  const error = jobsError || projectsError;
+  const error = projectsError;
   if (error) {
     return <p className="text-black dark:text-white">An error occurred: {error.message}</p>;
   }
 
   return (
-    <div className="text-black dark:text-white">
-      <div className="py-4 px-5 text-lg font-bold flex flex-col justify-start items-start bg-white dark:bg-component  sm:sticky sm:top-0 ">
-        <p className="text-2xl font-bold ">
-          {userFromStore.firstName} {userFromStore.lastName}
-        </p>
-        <p>{userFromStore.email}</p>
-        <p>{jobsData?.label}</p>
-      </div>
+    <div className="dark:bg-component h-full bg-white sm:w-full text-black dark:text-white font-roboto rounded-xl shadow-buttonShadow dark:shadow-mainShadow mx-4 sm:mx-0  overflow-y-auto">
       <div className="py-4 px-5 text-lg font-bold flex items-center justify-between bg-white dark:bg-component shadow-inputShadow sm:sticky sm:top-0 ">
-        <p className="text-2xl font-bold">Projets</p>
+        <p className="text-3xl font-bold">Projets en cours</p>
         <SearchInput register={register} name="search" />
       </div>
-      {projectsData
-        ?.filter((project) => {
-          const included = project.name.toLowerCase().includes(searchInput?.toLowerCase());
-
-          // at first mount searchInput is undefined,
-          // so we use a ternary to ensure we have list at first render
-          return searchInput ? included : true;
-        })
-        ?.map((project) => {
-          return (
-            <div key={project.id} className="flex-row justify-around mt-3 mx-4 border-b pb-2">
-              <Link to={`/projects/${project.id}/records`}>
-                <p className="font-bold" key={project.id}>
-                  {project.name}
-                </p>
-                <p>{project.description}</p>
-              </Link>
-            </div>
-          );
-        })}
+      <div className="mx-2">
+        {projectsData
+          ?.filter((project) => {
+            const included = project.name.toLowerCase().includes(searchInput?.toLowerCase());
+            return searchInput ? included : true;
+          })
+          ?.map((project) => {
+            return (
+              <div key={project.id} className="flex-row justify-around mt-5 mx-4 border-b pb-2">
+                <Link to={`/projets/${project.id}`}>
+                  <p className="font-bold" key={project.id}>
+                    {project.name}
+                  </p>
+                  <p className="truncate w-56 text-gray-400 sm:w-96">{project.description}</p>
+                </Link>
+              </div>
+            );
+          })}
+      </div>
     </div>
   );
 }
