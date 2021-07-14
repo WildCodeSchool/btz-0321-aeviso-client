@@ -5,7 +5,6 @@ import Company from './companies/Company';
 import ProjectList from './project/ProjectList';
 import HomePage from '../views/HomePage';
 import Logout from '../components/navigation/Logout';
-import SuperAdmin from './home/SuperAdmin';
 import ListsCompanies from './companies/ListsCompanies';
 import FormResult from './records/Exporter/FormResult';
 import Admin from './home/Admin';
@@ -17,6 +16,7 @@ import RecordsUser from './user/RecordsUser';
 import Collaborators from './users/Collaborators';
 import OneCollaborator from './users/OneCollaborator';
 import Settings from './settings/Settings';
+import CreateUpdateCompany from './companies/CreateUpdateCompany';
 
 function Routes(): JSX.Element {
   const { user } = useUserFromStore();
@@ -39,6 +39,7 @@ function Routes(): JSX.Element {
   if (user?.role === 'USER') {
     return (
       <>
+        <Route path="/home" component={HomePage} />
         <Route exact path="/aeviso" component={User} />
         <Route exact path="/projects/:projectId/records" component={RecordsUser} />
         <Route exact path="/logout" component={Logout} />
@@ -50,8 +51,8 @@ function Routes(): JSX.Element {
     return (
       <>
         <Route path="/home" component={HomePage} />
-        <Route path="/aeviso" component={SuperAdmin} />
-        <Route exact path="/clients" component={ListsCompanies} />
+        <Route exact path="/aeviso" component={ListsCompanies} />
+        <Route exact path="/createclient" component={CreateUpdateCompany} />
         <Route exact path="/records/export/companies/:companyId/projects/:projectId" component={FormResult} />
         <Route exact path="/records/export" component={ExportRecords} />
         <Route exact path="/clients/:id" component={Company} />

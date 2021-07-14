@@ -12,14 +12,14 @@ module.exports = {
       }),
       colors: {
         whiteGray: '#DEDDDD',
-        mainBg: '#3E3E3E',
-        input: '#404040',
+        mainBg: '#202225',
+        input: '#202225',
         whiteInput: '#858585',
-        componentBorder: '#111111',
+        componentBorder: '#37393F',
         customGreen: '#58926F',
         customRed: '#976C6C',
         customBlue: '#5A73A3',
-        component: '#111111',
+        component: '#37393F',
       },
       boxShadow: {
         mainShadow: '5px 5px 10px rgba(0, 0, 0, 0.50)',
@@ -28,7 +28,7 @@ module.exports = {
       },
       gridTemplateRows: {
         desktop: '1fr 1fr',
-        mobile: '130px 200px 420px 30px',
+        mobile: '130px full',
       },
       gridTemplateColumns: {
         desktop: '300px 1fr',
@@ -40,7 +40,9 @@ module.exports = {
     },
   },
   variants: {
-    extend: {},
+    extend: {
+      boxShadow: ['dark'],
+    },
   },
   plugins: [],
 };

@@ -70,7 +70,7 @@ function OneCollaborator(): JSX.Element {
       {isForm ? (
         <CreateNewUser setIsForm={setIsForm} mutationFn={user.update} />
       ) : (
-        <div className="dark:bg-component bg-white border-2 dark:border-componentBorder h-full sm:w-full text-black dark:text-white font-roboto rounded-xl shadow-mainShadow mx-4 sm:mx-0  sm:px-10 p-5 overflow-y-auto">
+        <div className="dark:bg-component bg-white border-2 dark:border-componentBorder h-full sm:w-full text-black dark:text-white font-roboto rounded-xl shadow-buttonShadow dark:shadow-mainShadow mx-4 sm:mx-0  sm:px-10 p-5 overflow-y-auto">
           <div className="flex w-full flex-col sm:flex-row justify-between">
             <div className="flex  font-bold text-2xl items-center sm:text-4xl">
               <p className="mr-2">{data?.lastName} /</p>

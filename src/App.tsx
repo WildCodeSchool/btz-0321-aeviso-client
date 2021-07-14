@@ -10,7 +10,7 @@ function App(): JSX.Element {
   const { darkMode } = useDarkModeFromStore();
   return (
     <div className={`${darkMode.active ? 'bg-mainBg dark' : 'bg-whiteGray'}`}>
-      <div className="container m-auto">
+      <div className="">
         <QueryClientProvider client={queryClient}>
           <Router>
             <Layout />

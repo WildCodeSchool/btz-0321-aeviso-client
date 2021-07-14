@@ -2,9 +2,7 @@ import React from 'react';
 import { useQuery } from 'react-query';
 import { AxiosError } from 'axios';
 import { records } from '../../API/requests';
-
 import CardTitle from '../CardTitle';
-import { Link } from 'react-router-dom';
 import RecordPreview from './RecordPreview';
 import Spinner from '../Spinner';
 
@@ -23,13 +21,6 @@ function Records(): JSX.Element {
     <div className="text-black dark:text-white font-roboto">
       <div className="py-4 px-5 text-lg font-bold flex justify-between items-center shadow-inputShadow bg-white dark:bg-component sm:sticky sm:top-0">
         <CardTitle>Derniers rapports</CardTitle>
-
-        <Link
-          to="/records/export"
-          className="p-2 text-white bg-customGreen rounded text-xs font-light shadow-buttonShadow"
-        >
-          Exporter un rapport
-        </Link>
       </div>
       {data?.map((record: IRecord, index) => (
         <RecordPreview
