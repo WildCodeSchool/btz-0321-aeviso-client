@@ -1,63 +1,20 @@
 import React, { useEffect } from 'react';
 import { useForm } from 'react-hook-form';
-import { useQuery } from 'react-query';
-import { AxiosError } from 'axios';
-import { companies, user } from '../../../API/requests';
 import { useHistory } from 'react-router-dom';
 import SelectCompany from './SelectCompany';
 import SelectProject from './SelectProject';
 import SelectDate from './SelectDate';
-import Spinner from '../../Spinner';
 import { useUserFromStore } from '../../../store/user.slice';
 
 function ExportRecords(): JSX.Element {
   const { user: userStore } = useUserFromStore();
-  const { register, handleSubmit, watch } = useForm();
+
+  const { register, handleSubmit, watch, setValue } = useForm();
   const history = useHistory();
-  let companySelect = watch('company');
-
-  if (userStore.role === 'ADMIN') {
-    companySelect = userStore.companyId;
-  }
-
-  const {
-    isLoading: companiesIsLoading,
-    error: companiesError,
-
-    data: companiesData,
-  } = useQuery<Company[], AxiosError>('companies', () => companies.getAll(), {
-    enabled: userStore.role === 'SUPERADMIN',
-  });
-
-  let mutateProject = companies.getAllProjects(companySelect as string);
-  if (userStore.role === 'ADMIN') {
-    mutateProject = user.getProjects(userStore.id as string);
-  }
-
-  const {
-    isLoading: projectIsLoading,
-    error: projectError,
-    data: projectData,
-    refetch,
-  } = useQuery<Project[], AxiosError>('project', () => mutateProject, {
-    enabled: Boolean(companySelect),
-  });
 
   useEffect(() => {
-    if (companySelect) {
-      refetch();
-    }
-  }, [companySelect]);
-
-  if (companiesIsLoading || projectIsLoading) {
-    return <Spinner />;
-  }
-
-  const error = companiesError || projectError;
-
-  if (error) {
-    return <p className="text-white">An error occurred: {error.message}</p>;
-  }
+    if (userStore.role === 'ADMIN') setValue('company', userStore.companyId);
+  }, []);
 
   return (
     <div className="dark:bg-component bg-white border-2 dark:border-componentBorder h-full sm:w-full text-black dark:text-white font-roboto rounded-xl shadow-buttonShadow dark:shadow-mainShadow mx-4 sm:mx-0  sm:px-10 p-5">
@@ -72,9 +29,14 @@ function ExportRecords(): JSX.Element {
       >
         <h1 className="sm:text-5xl  text-3xl font-bold">Exporter un Rapport</h1>
         <h2 className="sm:text-base text-sm mb-5 sm:mb-10 mt-3">{`Attention vous devez obligatoirement remplir tous les champs afin d'exporter un rapport`}</h2>
-        {!companiesIsLoading && <SelectCompany register={register} companiesData={companiesData} />}
-        <SelectProject register={register} projectData={projectData} />
+        {userStore.role === 'SUPERADMIN' && <SelectCompany register={register} setValue={setValue} />}
+        <SelectProject register={register} companyId={watch('company')} />
         <SelectDate register={register} />
+        <input
+          value="Exporter"
+          type="submit"
+          className="focus:outline-none text-white shadow-buttonShadow mt-10 w-12/12 sm:w-4/12 py-2 rounded-lg bg-customGreen "
+        />
       </form>
     </div>
   );
