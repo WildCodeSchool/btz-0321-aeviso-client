@@ -96,7 +96,7 @@ function CreateNewUser({ mutationFn, setIsForm }: IFromCreateUser): JSX.Element 
       className={
         mutationFn === user.update
           ? 'dark:bg-component bg-white border-2 dark:border-componentBorder h-full sm:w-full text-black dark:text-white font-roboto rounded-xl shadow-buttonShadow dark:shadow-mainShadow mx-4 sm:mx-0  sm:px-10 p-5 overflow-y-auto'
-          : ''
+          : 'mx-4 sm:mx-0  sm:px-10 p-5 '
       }
     >
       <div className="flex w-full justify-between items-center">
@@ -110,27 +110,27 @@ function CreateNewUser({ mutationFn, setIsForm }: IFromCreateUser): JSX.Element 
           Retour
         </button>
       </div>
-      <form className="flex-col mt-2 sm:mt-10" onSubmit={handleSubmit(onSubmit)}>
+      <form className="flex-col mt-2 px-2 sm:mt-5" onSubmit={handleSubmit(onSubmit)}>
         <label className="flex flex-col">
           Prénom
           <input
-            className="mt-1 bg-whiteInput shadow-buttonShadow dark:bg-input text-white rounded-sm py-1 px-2 sm:h-12 sm:rounded-md"
+            className="focus:outline-none mt-1 bg-whiteGray shadow-buttonShadow dark:bg-input text-white rounded-sm py-1 px-2 sm:h-12 sm:rounded-md"
             {...register('firstName')}
           />
         </label>
 
-        <label className="flex flex-col mt-3 ">
+        <label className="flex flex-col mt-3 sm:mt-4">
           Nom:
           <input
-            className="mt-1 bg-whiteInput shadow-buttonShadow dark:bg-input text-white rounded-sm py-1 sm:h-12 sm:rounded-md px-2"
+            className="focus:outline-none mt-1 bg-whiteGray shadow-buttonShadow dark:bg-input text-white rounded-sm py-1 sm:h-12 sm:rounded-md px-2"
             {...register('lastName')}
           />
         </label>
 
-        <label className="flex flex-col mt-3">
+        <label className="flex flex-col mt-3 sm:mt-4">
           Email:
           <input
-            className="mt-1 bg-whiteInput shadow-buttonShadow dark:bg-input text-white rounded-sm py-1 px-2 sm:h-12 sm:rounded-md"
+            className="focus:outline-none mt-1 bg-whiteGray shadow-buttonShadow dark:bg-input text-white rounded-sm py-1 px-2 sm:h-12 sm:rounded-md"
             {...register('email')}
           />
         </label>

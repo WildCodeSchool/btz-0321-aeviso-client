@@ -67,7 +67,7 @@ function OneUser({ firstName, lastName, projectId, userId, job, start, end, week
     <div className="flex items-end mt-5 justify-between w-full py-2 border-b border-gray-500">
       <div className="flex flex-col sm:flex-row sm:items-end items-start">
         <p className="sm:text-xl text-base">
-          {firstName} - {lastName}
+          {firstName} {lastName}
         </p>
         <p className="sm:text-sm text-xs sm:ml-3 font-thin">/ {jobName?.label}</p>
       </div>

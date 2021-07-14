@@ -4,7 +4,6 @@ import { AxiosError } from 'axios';
 import { companies } from '../../API/requests';
 import AdminJob from './AdminJob';
 import { Menu } from '@headlessui/react';
-import Spinner from '../Spinner';
 import { Link } from 'react-router-dom';
 import more from '../../../media/icons/more.svg';
 
@@ -24,7 +23,7 @@ function CompanyDetails({ company }: IProps): JSX.Element {
   );
 
   if (isLoading) {
-    return <Spinner />;
+    return <p>...</p>;
   }
 
   if (error) {

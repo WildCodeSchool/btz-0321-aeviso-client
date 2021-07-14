@@ -28,14 +28,14 @@ function UserPreview({ id }: IProps): JSX.Element {
           {data?.firstName} {data?.lastName}
         </p>
         <div className=" flex flex-col sm:flex-row">
-          <p className="text-gray-300">
+          <p className="text-sm text-gray-400">
             Fonction:{' '}
             <span>
               <JobDisplay id={data?.jobId as string} />
             </span>{' '}
             /{' '}
           </p>
-          <p className="text-gray-300">email: {data?.email}</p>
+          <p className="text-sm text-gray-400">email: {data?.email}</p>
         </div>
       </Link>
     </div>

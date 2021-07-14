@@ -45,9 +45,9 @@ function TimeSlotButton({ setValue, isActive, children, isTimeslot, value, recor
     );
 
   return (
-    <div className="flex flex-col items-center m-4">
+    <div className="flex flex-col items-center m-4 sm:m-0 sm:mr-4">
       <label
-        className={`text-black dark:text-white text-center rounded-xl px-12 py-4 ${
+        className={`text-black dark:text-white text-center rounded-xl px-12 py-4 w-full ${
           isTimeslot === value ? ' bg-customGreen text-white' : 'border border-black dark:border-white'
         } ${!isActive ? 'dark:text-gray-500 dark:border-gray-500' : 'hover:bg-customGreen'}`}
       >

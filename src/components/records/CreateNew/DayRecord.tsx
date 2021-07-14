@@ -103,17 +103,21 @@ function DayRecord({ selectedProject }: IDayRecord): JSX.Element {
 
   return (
     <div>
-      <div className="flex text-black dark:text-white items-center mx-4 mt-5 sm:mt-20 justify-between">
-        <h1 className="font-bold text-sm sm:text-4xl">Projet : {data?.name}</h1>
-
-        <h2 className="font-bold sm:text-2xl">{record.date.toLocaleDateString()}</h2>
+      <div className="flex flex-col text-black dark:text-white  mx-4 sm:mx-0 mt-5 sm:mt-20">
+        <h1 className="font-bold text-xl sm:text-4xl">Projet : {data?.name}</h1>
+        <h2 className="font-bold sm:text-2xl mt-2 sm:mt-5">{record.date.toLocaleDateString()}</h2>
       </div>
-      <div className="w-full md:h-10 mt-5 mx-4 flex items-center">
-        {record.records?.length > 0 && (
+      <div className="w-full md:h-10 mt-5 mx-4 sm:mx-0 flex items-center">
+        {record.records?.length > 0 ? (
           <p className="text-xl max-w-full">Vous avez déja enregistré {record.records.length} rapport(s) ce jour là</p>
+        ) : (
+          <p className="sm:text-lg max-w-full">
+            Pour enregistrer un rapport veuillez sélectionnez combien de temps vous avez travaillez le{' '}
+            {record.date.toLocaleDateString()}{' '}
+          </p>
         )}
       </div>
-      <div className="mt-5 md:h-28 flex flex-col sm:flex-row mx-4">
+      <div className="mt-5 sm:h-28 w-full flex flex-col sm:flex-row">
         <TimeSlotButton
           recordId={record.records?.find((record) => record.timeslot === 'MORNING')?.id as string}
           isActive={record.records?.find((record) => record.timeslot === 'MORNING') ? false : true}
@@ -145,17 +149,17 @@ function DayRecord({ selectedProject }: IDayRecord): JSX.Element {
           </TimeSlotButton>
         </span>
       </div>
-      <form className="sm:mt-20" onSubmit={handleSubmit(onSubmit)}>
-        <div className="flex flex-col mt-10 sm:mt-10  mx-4">
+      <form className="" onSubmit={handleSubmit(onSubmit)}>
+        <div className="flex flex-col mt-5  mx-4 sm:mx-0">
           <label htmlFor="text" className="text-white text-xl">
             Commentaire
           </label>
           <textarea
             {...register('comment')}
-            className=" bg-input shadow-inputShadow text-white rounded-xl mt-2 h-32 p-3"
+            className=" focus:outline-none bg-input shadow-inputShadow text-white rounded-lg mt-2 h-52 p-3"
           />
+          <ValidateFormButton text={record.records?.length > 0 ? 'Modifier' : 'Créer'} />
         </div>
-        <ValidateFormButton text={record.records?.length > 0 ? 'Modifier' : 'Créer'} />
       </form>
     </div>
   );

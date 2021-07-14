@@ -8,14 +8,14 @@ function CreateUpdateProjects(): JSX.Element {
 
   if (id)
     return (
-      <div className="dark:bg-component bg-white h-full sm:w-full text-black dark:text-white font-roboto rounded-xl shadow-mainShadow mx-4 sm:mx-0 sm:px-10 px-5 py-5 overflow-y-auto">
-        <ProjectForm projectId={id} />
+      <div className="flex flex-col p-5 sm:flex-row h-full w-full text-black dark:text-white font-roboto overflow-y-auto">
         {id && <UsersInProject projectId={id} />}
+        <ProjectForm projectId={id} />
       </div>
     );
 
   return (
-    <div className="dark:bg-component bg-white h-full sm:w-full text-black dark:text-white font-roboto rounded-xl shadow-mainShadow mx-4 sm:mx-0 sm:px-10 px-5 py-5 overflow-y-auto">
+    <div className="dark:bg-component bg-white h-full sm:w-full text-black dark:text-white font-roboto rounded-xl shadow-mainShadow  overflow-y-auto">
       <ProjectForm />
     </div>
   );

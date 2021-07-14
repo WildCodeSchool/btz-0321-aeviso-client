@@ -77,9 +77,10 @@ function FormResult(): JSX.Element {
     <div className="flex flex-col justify-between dark:bg-component bg-white border dark:border-componentBorder h-full sm:w-full text-black dark:text-white font-roboto rounded-lg shadow-buttonShadow dark:shadow-mainShadow mx-4 sm:mx-0">
       <div>
         <div className="flex justify-between items-start mx-4 mt-5">
-          <h1 className="sm:text-4xl text-xl mr-5">
-            {company?.name} / {prjt?.name}{' '}
-          </h1>
+          <div>
+            <h1 className="sm:text-4xl text-xl mr-5">Entreprise : {company?.name}</h1>
+            <h1 className="sm:text-4xl mt-2 text-xl mr-5">Projet : {prjt?.name} </h1>
+          </div>
           <Link to="/records/export">
             <button className="focus:outline-none w-12/12 py-1 bg-customGreen text-white shadow-buttonShadow px-5 rounded-sm ">
               Retour

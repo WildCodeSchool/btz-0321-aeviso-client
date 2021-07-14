@@ -10,7 +10,7 @@ export default function SelectDate({ register }: { register: UseFormRegister<Fie
           Sélectionner une date de début
         </label>
         <input
-          {...(register('start'), { required: true })}
+          {...register('start', { required: true })}
           className="focus:outline-none text-black dark:text-gray-300 text-sm bg-white dark:bg-component border-b pt-3 pb-2 border-black dark:border-white"
           type="date"
         />
@@ -22,7 +22,7 @@ export default function SelectDate({ register }: { register: UseFormRegister<Fie
           Sélectionner une date de fin
         </label>
         <input
-          {...(register('end'), { required: true })}
+          {...register('end', { required: true })}
           className="focus:outline-none text-black dark:text-gray-300 text-sm bg-white dark:bg-component border-b pt-3 pb-2 border-black dark:border-white"
           type="date"
         />
