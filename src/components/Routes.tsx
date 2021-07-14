@@ -15,6 +15,7 @@ import Calendar from './records/CreateNew/Calendar';
 import RecordsUser from './user/RecordsUser';
 import Collaborators from './users/Collaborators';
 import OneCollaborator from './users/OneCollaborator';
+import Settings from './settings/Settings';
 import CreateUpdateCompany from './companies/CreateUpdateCompany';
 
 function Routes(): JSX.Element {
@@ -57,6 +58,7 @@ function Routes(): JSX.Element {
         <Route exact path="/clients/:id" component={Company} />
         <Route exact path="/projects/:id" component={DetailsProjects} />
         <Route exact path="/projects" component={ProjectList} />
+        <Route exact path="/reglages" component={Settings} />
         <Route path="/logout" component={Logout} />
       </>
     );
