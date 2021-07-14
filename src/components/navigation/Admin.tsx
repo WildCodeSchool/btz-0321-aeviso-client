@@ -2,6 +2,7 @@ import React from 'react';
 import { useHistory } from 'react-router-dom';
 
 import Collaborateurs from '../../../media/icons/Collaborateurs.svg';
+import project from '../../../media/icons/project.svg';
 
 interface ISPNavbar {
   handleClose: () => void;
@@ -38,7 +39,7 @@ function Admin({ Home, report, settings, newReport, handleClose }: ISPNavbar): J
             className="mr-3 mb-1 h-6 w-6 bg-component dark:bg-component shadow-buttonShadow p-1 rounded-full"
             alt="homesvg"
           />
-          <button className="focus:outline-none" onClick={() => handleClickLink('/nouveaurapport')}>
+          <button className="focus:outline-none" onClick={() => handleClickLink('/rapport/nouveau')}>
             Nouveau Rapport
           </button>
         </li>
@@ -60,6 +61,16 @@ function Admin({ Home, report, settings, newReport, handleClose }: ISPNavbar): J
           />
           <button className="focus:outline-none" onClick={() => handleClickLink(`/collaborateurs`)}>
             Collaborateurs
+          </button>
+        </li>
+        <li className="flex  text-lg  pl-5 mt-5 items-center h-14">
+          <img
+            src={project}
+            className="mr-3 mb-1 h-6 w-6 bg-component dark:bg-component shadow-buttonShadow p-1 rounded-full"
+            alt="homesvg"
+          />
+          <button className="focus:outline-none" onClick={() => handleClickLink(`/projets`)}>
+            Projet
           </button>
         </li>
         <li className="flex  text-lg  pl-5 mt-5 items-center h-14">

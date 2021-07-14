@@ -38,16 +38,18 @@ function SuperAdmin({ report, settings, handleClose }: ISPNavbar): JSX.Element {
             </button>
           </li>
         </Link>
-        <li className="flex text-lg mt-3 items-center h-14">
-          <img
-            src={settings}
-            className="mr-3 h-6 w-6 bg-component dark:bg-component shadow-buttonShadow p-1 rounded-full mb-1"
-            alt="homesvg"
-          />
-          <button className="focus:outline-none" onClick={handleClose}>
-            Réglages
-          </button>
-        </li>
+        <Link to="/reglages">
+          <li className="flex text-lg mt-3 items-center h-14">
+            <img
+              src={settings}
+              className="mr-3 h-6 w-6 bg-component dark:bg-component shadow-buttonShadow p-1 rounded-full mb-1"
+              alt="homesvg"
+            />
+            <button className="focus:outline-none" onClick={handleClose}>
+              Réglages
+            </button>
+          </li>
+        </Link>
       </nav>
     </div>
   );

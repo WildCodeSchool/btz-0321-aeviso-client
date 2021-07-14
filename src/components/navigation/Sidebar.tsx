@@ -69,7 +69,7 @@ function SideBar({ sideBarClass, setSideBarClass }: ISideBarProps): JSX.Element 
               {user.firstName} {user.lastName}
             </h2>
             <Link
-              className="focus:outline-none w-12/12 mt-2 text-xs text-white bg-customRed py-1 px-2 rounded-sm shadow-buttonShadow"
+              className="focus:outline-none w-12/12  text-xs text-white bg-customRed py-1 px-2 rounded-sm shadow-buttonShadow"
               to="/logout"
             >
               Déconnexion
