@@ -22,7 +22,7 @@ interface ISideBarProps {
 function SideBar({ sideBarClass, setSideBarClass }: ISideBarProps): JSX.Element {
   const handleClose = () => {
     setSideBarClass(
-      'flex flex-col border-2 dark:border-componentBorder dark:bg-component bg-white h-full shadow-mainShadow rounded-xl text-black dark:text-white font-roboto justify-between invisible sm:visible'
+      'flex flex-col border-2 dark:border-componentBorder dark:bg-component bg-white h-full shadow-buttonShadow dark:shadow-mainShadow rounded-xl text-black dark:text-white font-roboto justify-between invisible sm:visible'
     );
   };
   const { user } = useUserFromStore();
@@ -65,7 +65,7 @@ function SideBar({ sideBarClass, setSideBarClass }: ISideBarProps): JSX.Element 
         <h2 className="text-base mr-3 text-right mb-2">{today()}</h2>
         <div className="flex flex-row justify-between p-5 border-t border-black dark:border-componentBorder">
           <div className="">
-            <h2 className="text-xl font-bold">
+            <h2 className="text-xl font-bold mb-2">
               {user.firstName} {user.lastName}
             </h2>
             <Link
