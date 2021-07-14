@@ -15,7 +15,7 @@ function MainComponentHeader({ register, title, setIsForm }: IProps): JSX.Elemen
     setIsForm(true);
   };
   return (
-    <div className="bg-component shadow-buttonShadow dark:shadow-mainShadow sm:sticky p-3 sm:p-5 sm:top-0">
+    <div className="dark:bg-component bg-white shadow-buttonShadow dark:shadow-mainShadow sm:sticky p-3 sm:p-5 sm:top-0">
       <div className="flex flex-col sm:flex-row justify-between sm:items-center items-start mb-5">
         <h1 className="sm:text-4xl text-xl font-bold">{title}</h1>
         <button

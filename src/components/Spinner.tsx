@@ -15,7 +15,7 @@ export default function Spinner({ fullScreen, transparent, fixed, text }: IProps
       ${fullScreen ? 'h-screen w-screen backdrop-filter backdrop-blur-sm' : ' h-full w-full'}
       ${transparent ? 'bg-opacity-70' : ''}
       ${fixed ? 'fixed top-0 left-0 z-50' : ''}
-      grid place-items-center bg-black
+      grid place-items-center bg-component bg-opacity-25
     `}
     >
       <div className="flex flex-col items-center space-y-10">

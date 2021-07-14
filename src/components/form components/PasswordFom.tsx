@@ -13,7 +13,7 @@ function PasswordFom({ error, register }: IMdp): JSX.Element {
         <label className="flex flex-col mt-3 sm:mt-4">
           Mot de passe
           <input
-            className="mt-1 focus:outline-none bg-whiteInput shadow-buttonShadow dark:bg-input text-white rounded-sm py-1 px-2 sm:h-12 sm:rounded-md"
+            className="mt-1 focus:outline-none bg-whiteGray shadow-buttonShadow dark:bg-input text-white rounded-sm py-1 px-2 sm:h-12 sm:rounded-md"
             type="password"
             {...register('password', { minLength: 4, pattern: /(?=.*\d)(?=.*[a-z])(?=.*[A-Z]).+/ })}
           />
@@ -26,7 +26,7 @@ function PasswordFom({ error, register }: IMdp): JSX.Element {
         <label className="flex flex-col mt-3 sm:mt-4">
           Confirmer le mot de passe
           <input
-            className="mt-1 focus:outline-none bg-whiteInput shadow-buttonShadow dark:bg-input text-white rounded-sm py-1 px-2 sm:h-12 sm:rounded-md"
+            className="mt-1 focus:outline-none bg-whiteGray shadow-buttonShadow dark:bg-input text-white rounded-sm py-1 px-2 sm:h-12 sm:rounded-md"
             type="password"
             {...register('confirmPassword', {
               minLength: 4,

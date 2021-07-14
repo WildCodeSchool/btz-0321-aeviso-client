@@ -53,20 +53,49 @@ function ProjectForm({ projectId }: IProps): JSX.Element {
   };
 
   return (
-    <div className=" text-black dark:text-white w-6/12">
-      <h1 className=" text-2xl font-bold">Créer un nouveau projet</h1>
-      <form onSubmit={handleSubmit(onSubmit)} className="flex flex-col mt-2 sm:mt-10">
-        <label className="mt-5" htmlFor="name">
+    <div
+      className={
+        projectId
+          ? 'w-full sm:w-9/12 sm:ml-5 dark:bg-component shadow-mainShadow bg-white rounded-xl p-5 '
+          : 'w-full h-full dark:bg-component shadow-mainShadow bg-white rounded-xl p-5 '
+      }
+    >
+      <div className="flex w-full justify-between items-center sm:items-end">
+        {projectId ? (
+          <h1 className="text-2xl mr-10 sm:mr-0 sm:text-5xl font-bold"> Modifier le projet </h1>
+        ) : (
+          <h1 className="text-2xl mr-10 sm:mr-0 sm:text-5xl font-bold"> Crée un nouveau projet</h1>
+        )}
+        <button
+          onClick={() => history.goBack()}
+          className="text-white h-8 sm:h-10 bg-customGreen py-1 px-6 rounded-md shadow-buttonShadow"
+        >
+          Retour
+        </button>
+      </div>
+      <form onSubmit={handleSubmit(onSubmit)} className="flex flex-col mt-2 sm:mt-2">
+        <label className="mt-5 flex flex-col" htmlFor="name">
           Name
-          <input className="p-2 mt-2 border border-black text-gray-700" {...register('name')} type="text" />
+          <input
+            className="focus:outline-none mt-1 bg-whiteGray shadow-buttonShadow dark:bg-input text-black dark:text-white rounded-sm py-1 px-2 sm:h-12 sm:rounded-md"
+            {...register('name')}
+            type="text"
+          />
         </label>
-        <label className="mt-5" htmlFor="description">
+        <label className="mt-5 font-bold text-lg flex flex-col" htmlFor="description">
           Description
-          <textarea className="h-28 p-2 mt-2 border border-black text-gray-700" {...register('description')}></textarea>
+          <textarea
+            className="focus:outline-none mt-1 bg-whiteGray shadow-buttonShadow dark:bg-input text-black dark:text-white rounded-sm py-1 px-2 sm:h-44 sm:rounded-md"
+            {...register('description')}
+          ></textarea>
         </label>
-        <label className="mt-5" htmlFor="name">
+        <label className="mt-5 flex flex-col" htmlFor="name">
           code
-          <input className="p-2 mt-2 border border-black text-gray-700" {...register('code')} type="text" />
+          <input
+            className="focus:outline-none mt-1 bg-whiteGray shadow-buttonShadow dark:bg-input text-black dark:text-white rounded-sm py-1 px-2 sm:h-12 sm:rounded-md"
+            {...register('code')}
+            type="text"
+          />
         </label>
         <SelectInput
           label="Fiscalité"
@@ -78,7 +107,11 @@ function ProjectForm({ projectId }: IProps): JSX.Element {
           register={register}
           name="taxation"
         />
-        <input className="mt-5 py-1 border border-black" type="submit" value={projectId ? 'Modifier' : 'Créer'} />
+        <input
+          className="mt-5 w-4/12 py-2 rounded-lg text-white  shadow-buttonShadow bg-customGreen"
+          type="submit"
+          value={projectId ? 'Modifier' : 'Créer'}
+        />
       </form>
     </div>
   );

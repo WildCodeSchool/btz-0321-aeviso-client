@@ -1,6 +1,6 @@
 import { AxiosError } from 'axios';
-import React, { useState } from 'react';
-import { FieldValues, UseFormRegister } from 'react-hook-form';
+import React, { useEffect, useState } from 'react';
+import { FieldValues, UseFormRegister, UseFormSetValue } from 'react-hook-form';
 import { useQuery } from 'react-query';
 import { useUserFromStore } from '../../../store/user.slice';
 import { companies } from '../../../API/requests';
@@ -10,9 +10,10 @@ import Spinner from '../../Spinner';
 interface ISelectCompany {
   companiesData: Company[] | undefined;
   register: UseFormRegister<FieldValues>;
+  setValue: UseFormSetValue<FieldValues>;
 }
 
-function SelectCompany({ companiesData, register }: ISelectCompany): JSX.Element {
+function SelectCompany({ companiesData, register, setValue }: ISelectCompany): JSX.Element {
   const { user } = useUserFromStore();
   const userCompanyId = user.companyId;
 
@@ -28,6 +29,12 @@ function SelectCompany({ companiesData, register }: ISelectCompany): JSX.Element
     }
   );
 
+  useEffect(() => {
+    if (user.role === 'ADMIN') {
+      setValue('company', userCompany?.id);
+    }
+  }, []);
+
   if (isLoading) {
     return <Spinner />;
   }
@@ -39,6 +46,7 @@ function SelectCompany({ companiesData, register }: ISelectCompany): JSX.Element
       </p>
     );
   }
+
   if (user.role === 'ADMIN') {
     return (
       <div className="flex flex-col">
@@ -47,9 +55,10 @@ function SelectCompany({ companiesData, register }: ISelectCompany): JSX.Element
         </label>
         <select
           {...register('company')}
+          defaultValue={userCompany?.name}
           className="focus:outline-none text-black dark:text-gray-300 text-sm bg-white dark:bg-component border-b pt-3 pb-2 border-black dark:border-white"
         >
-          <option value={userCompany?.id} key={userCompany?.id}>
+          <option value={userCompanyId} key={userCompanyId}>
             {userCompany?.name}
           </option>
         </select>

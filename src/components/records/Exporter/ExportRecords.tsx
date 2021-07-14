@@ -12,7 +12,7 @@ import { useUserFromStore } from '../../../store/user.slice';
 
 function ExportRecords(): JSX.Element {
   const { user: userStore } = useUserFromStore();
-  const { register, handleSubmit, watch } = useForm();
+  const { register, handleSubmit, watch, setValue } = useForm();
   const history = useHistory();
   let companySelect = watch('company');
 
@@ -60,19 +60,21 @@ function ExportRecords(): JSX.Element {
   }
 
   return (
-    <div className="dark:bg-component bg-white border-2 dark:border-componentBorder h-full sm:w-full text-black dark:text-white font-roboto rounded-xl shadow-buttonShadow dark:shadow-mainShadow mx-4 sm:mx-0 sm:pb-10 sm:px-8 p-5 overflow-y-auto">
+    <div className="dark:bg-component bg-white border-2 dark:border-componentBorder h-full sm:w-full text-black dark:text-white font-roboto rounded-lg shadow-buttonShadow dark:shadow-mainShadow overflow-y-auto">
+      <div className="px-5 py-2 bg-white dark:bg-component shadow-buttonShadow dark:shadow-mainShadow sm:sticky top-0">
+        <h1 className="sm:text-4xl  text-3xl font-bold">Exporter un Rapport</h1>
+        <h2 className="sm:text-base text-sm mb-2 sm:mb-2 mt-3">{`Attention vous devez obligatoirement remplir tous les champs afin d'exporter un rapport`}</h2>
+      </div>
       <form
         onSubmit={handleSubmit((data) => {
           const start = new Date(data.start).toISOString();
           const end = new Date(data.end).toISOString();
           history.push(`/exporter/companies/${data.company}/projects/${data.project}?&start=${start}&end=${end}`);
         })}
-        className="flex flex-col h-full pb-2"
+        className="flex flex-col h-full pb-2 mx-7 mt-5"
         action="sumbit"
       >
-        <h1 className="sm:text-5xl  text-3xl font-bold">Exporter un Rapport</h1>
-        <h2 className="sm:text-base text-sm mb-5 sm:mb-10 mt-3">{`Attention vous devez obligatoirement remplir tous les champs afin d'exporter un rapport`}</h2>
-        {!companiesIsLoading && <SelectCompany register={register} companiesData={companiesData} />}
+        {!companiesIsLoading && <SelectCompany register={register} companiesData={companiesData} setValue={setValue} />}
         <SelectProject register={register} projectData={projectData} />
         <SelectDate register={register} />
       </form>
