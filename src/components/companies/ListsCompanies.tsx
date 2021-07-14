@@ -25,7 +25,7 @@ function ListsCompanies(): JSX.Element {
   }
 
   return (
-    <div className="dark:bg-component bg-white sm:w-full text-black dark:text-white font-roboto rounded-xl shadow-buttonShadow dark:shadow-mainShadow mx-4 sm:mx-0  overflow-y-auto">
+    <div className="dark:bg-component h-full bg-white sm:w-full text-black dark:text-white font-roboto rounded-xl shadow-buttonShadow dark:shadow-mainShadow mx-4 sm:mx-0  overflow-y-auto">
       {isCreatForm ? (
         <CreateCompany
           mutationFn={companies.post}
