@@ -36,6 +36,7 @@ function Routes(): JSX.Element {
         <Route exact path="/collaborateurs" component={Collaborators} />
         <Route path="/collaborateurs/oneuser/:id" component={OneCollaborator} />
         <Route exact path="/exporter/companies/:companyId/projects/:projectId" component={FormResult} />
+        <Route exact path="/reglages" component={Settings} />
         <Route path="/logout" component={Logout} />
         <Route />
       </>
@@ -49,6 +50,8 @@ function Routes(): JSX.Element {
         <Route exact path="/aeviso" component={User} />
         <Route exact path="/projects/:projectId/records" component={RecordsUser} />
         <Route exact path="/logout" component={Logout} />
+        <Route exact path="/rapport/nouveau" component={Calendar} />
+        <Route exact path="/reglages" component={Settings} />
       </>
     );
   }
