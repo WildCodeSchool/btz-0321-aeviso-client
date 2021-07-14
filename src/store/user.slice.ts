@@ -19,6 +19,7 @@ interface ReturnUseUserFromStore {
   user: UserState;
   dispatchLogin: (payload: UserState) => any; // TODO: find the good type
   dispatchLogout: () => any;
+  dispatchUser: (payload: UserState) => any;
 }
 
 const initialState: UserStateWithLogged = {
@@ -33,17 +34,21 @@ export const userSlice = createSlice({
       return { ...action.payload, logged: true };
     },
     logout: () => initialState,
+    update: (state, action: PayloadAction<UserState>) => {
+      return { ...state, ...action.payload };
+    },
   },
 });
 
-export const { login, logout } = userSlice.actions;
+export const { login, logout, update } = userSlice.actions;
 
 export const useUserFromStore = (): ReturnUseUserFromStore => {
   const user = useSelector((state: RootState) => state.user);
   const dispatch = useDispatch();
   const dispatchLogin = (payload: UserState) => dispatch(login(payload));
   const dispatchLogout = () => dispatch(logout());
-  return { user, dispatchLogin, dispatchLogout };
+  const dispatchUser = (payload: UserState) => dispatch(update(payload));
+  return { user, dispatchLogin, dispatchLogout, dispatchUser };
 };
 
 export default userSlice.reducer;

@@ -1,10 +1,8 @@
-import React from 'react';
+import React, { Dispatch, SetStateAction } from 'react';
 import { useForm } from 'react-hook-form';
 import { useMutation, useQuery, useQueryClient } from 'react-query';
 import { AxiosError } from 'axios';
-
-import { companies, jobs, user } from '../../API/requests';
-
+import { companies, jobs } from '../../API/requests';
 import JobsInput from './Forms/CreateCompany/JobsInput';
 import Spinner from '../Spinner';
 import CompanyInputs from './Forms/CreateCompany/CompanyInputs';
@@ -22,9 +20,11 @@ interface IProps {
   mutationFn: (variables: { companyData: ICompanyForm; id: string }) => Promise<Company>;
   mutationUs: (variables: { user: User; id: string }) => Promise<User>;
   data?: Company;
+  setIsCreatForm: Dispatch<SetStateAction<boolean>>;
+  isCreatForm: boolean;
 }
 
-function CreateUpdateCompany({ mutationFn, mutationUs }: IProps): JSX.Element {
+function CreateUpdateCompany({ mutationFn, mutationUs, setIsCreatForm }: IProps): JSX.Element {
   const { isLoading, error, data: jobsData } = useQuery<Job[], AxiosError>('jobs', jobs.getAll);
   const { isModal, setIsModal, message, setMessage } = useModal();
   const history = useHistory();
@@ -48,6 +48,7 @@ function CreateUpdateCompany({ mutationFn, mutationUs }: IProps): JSX.Element {
     ['companies', id],
     () => Promise.all([companies.getOne(id), companies.getUsers(id, 'ADMIN')]),
     {
+      enabled: Boolean(id),
       onSuccess: ([company, [admin]]) => {
         setValue('company.name', company.name);
         setValue('user.firstName', admin.firstName);
@@ -121,9 +122,23 @@ function CreateUpdateCompany({ mutationFn, mutationUs }: IProps): JSX.Element {
   }
 
   return (
-    <div className="dark:bg-component bg-white border-2 dark:border-componentBorder h-full w-full sm:w-full text-black dark:text-white font-roboto rounded-xl shadow-mainShadow  sm:mx-0  sm:px-10 p-5 overflow-y-auto">
+    <div className="dark:bg-component bg-white border-2 dark:border-componentBorder h-full w-full sm:w-full text-black dark:text-white font-roboto rounded-xl shadow-buttonShadow dark:shadow-mainShadow  sm:mx-0  sm:px-5 p-5 overflow-y-auto">
       <div className="flex w-full justify-between">
-        <p className="text-2xl sm:text-5xl font-bold ">Créer un nouveau client</p>
+        {mutationFn === companies.put ? (
+          <div className="flex w-full justify-between items-center sm:mb-5">
+            <p className="text-2xl sm:text-4xl font-bold ">Modifier le client</p>
+          </div>
+        ) : (
+          <div className="flex w-full justify-between items-center sm:mb-5">
+            <p className="text-2xl sm:text-5xl font-bold ">Créer un nouveau client</p>
+            <button
+              onClick={() => setIsCreatForm(false)}
+              className="focus:outline-none bg-customGreen px-5 h-9 rounded-sm"
+            >
+              retour
+            </button>
+          </div>
+        )}
       </div>
 
       <form action="" onSubmit={handleSubmit(onSubmit)} className="">
@@ -135,7 +150,8 @@ function CreateUpdateCompany({ mutationFn, mutationUs }: IProps): JSX.Element {
 
         <input
           type="submit"
-          className="flex sm:w-2/12 w-full mt-5 text-sm sm:text-base text-white items-center bg-customGreen px-4 py-1 shadow-buttonShadow rounded-lg  sm:mx-0"
+          value={mutationFn === companies.put ? 'Modifier' : 'Créer'}
+          className="flex sm:w-full w-full mt-5 sm:mt-10 justify-center text-sm sm:text-xl text-white items-center bg-customGreen px-4 py-1 shadow-buttonShadow rounded-lg  sm:mx-0"
         />
       </form>
     </div>

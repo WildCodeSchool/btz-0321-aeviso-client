@@ -22,7 +22,7 @@ interface ISideBarProps {
 function SideBar({ sideBarClass, setSideBarClass }: ISideBarProps): JSX.Element {
   const handleClose = () => {
     setSideBarClass(
-      'flex flex-col border-2 dark:border-componentBorder dark:bg-component bg-white h-full shadow-mainShadow rounded-xl text-black dark:text-white font-roboto justify-between invisible sm:visible'
+      'flex flex-col border-2 dark:border-componentBorder dark:bg-component bg-white h-full shadow-buttonShadow dark:shadow-mainShadow rounded-xl text-black dark:text-white font-roboto justify-between invisible sm:visible'
     );
   };
   const { user } = useUserFromStore();

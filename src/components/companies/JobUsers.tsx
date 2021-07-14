@@ -20,7 +20,7 @@ function JobUsers({ id }: { id: string }): JSX.Element {
     );
   }
 
-  return <>{data?.label}</>;
+  return <p className="text-sm text-gray-400">{data?.label}</p>;
 }
 
 export default JobUsers;
