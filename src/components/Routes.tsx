@@ -15,6 +15,7 @@ import Calendar from './records/CreateNew/Calendar';
 import RecordsUser from './user/RecordsUser';
 import Collaborators from './users/Collaborators';
 import OneCollaborator from './users/OneCollaborator';
+import CreateUpdateProjects from './project/CreateUpdateProjects';
 import Settings from './settings/Settings';
 import CreateUpdateCompany from './companies/CreateUpdateCompany';
 
@@ -23,13 +24,18 @@ function Routes(): JSX.Element {
   if (user?.role === 'ADMIN') {
     return (
       <>
-        <Route exact path="/nouveaurapport" component={Calendar} />
+        <Route exact path="/rapport/nouveau" component={Calendar} />
         <Route exact path="/records/export" component={ExportRecords} />
         <Route path="/home" component={HomePage} />
         <Route path="/aeviso" component={Admin} />
+        <Route exact path="/rapport" component={ExportRecords} />
+        <Route exact path="/projets" component={ProjectList} />
+        <Route exact path="/projets/:id" component={DetailsProjects} />
+        <Route exact path="/nouveau/projet" component={CreateUpdateProjects} />
+        <Route exact path="/modifier/projets/:id" component={CreateUpdateProjects} />
         <Route exact path="/collaborateurs" component={Collaborators} />
         <Route path="/collaborateurs/oneuser/:id" component={OneCollaborator} />
-        <Route exact path="/records/export/companies/:companyId/projects/:projectId" component={FormResult} />
+        <Route exact path="/exporter/companies/:companyId/projects/:projectId" component={FormResult} />
         <Route path="/logout" component={Logout} />
         <Route />
       </>

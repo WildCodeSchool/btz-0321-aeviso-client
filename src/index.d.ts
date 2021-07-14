@@ -62,6 +62,13 @@ interface Project {
   taxation: string;
 }
 
+interface IProjectInput {
+  name: string;
+  description: string;
+  code: string;
+  taxation: 'CIR' | 'CII' | 'NA';
+}
+
 interface IRecord {
   id?: string;
   userId?: string;

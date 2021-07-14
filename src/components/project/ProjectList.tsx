@@ -1,65 +1,56 @@
-import React, { useState } from 'react';
-import { useForm } from 'react-hook-form';
-import { useMutation, useQuery } from 'react-query';
-import { Link } from 'react-router-dom';
-import { project } from '../../API/requests';
+import { AxiosError } from 'axios';
+import React from 'react';
+import { useQuery } from 'react-query';
+import { companies } from '../../API/requests';
+import { useUserFromStore } from '../../store/user.slice';
+import Spinner from '../Spinner';
+import Plus from '../../../media/icons/Plus.svg';
+import { Link, useHistory } from 'react-router-dom';
 
 function ProjectList(): JSX.Element {
-  const { register, handleSubmit } = useForm<Project>();
-  const [projectList, setListProject] = useState<Project[]>([]);
+  const { user } = useUserFromStore();
 
-  const { isLoading: projectLoading, error: projectError } = useQuery<Project[]>('projects', project.getAll, {
-    onSuccess: (data) => setListProject(data),
-  });
+  const history = useHistory();
 
-  const {
-    isLoading: postLoading,
-    error: postError,
-    mutate,
-  } = useMutation(project.create, {
-    onSuccess: (data: Project) => {
-      setListProject((project) => [...project, data]);
-    },
-  });
+  // const { isLoading: projectLoading, error: projectError } = useQuery<Project[]>('projects', project.getAll, {
+  //   onSuccess: (data) => setListProject(data),
+  // })
+  const companyId = user.companyId;
+  const { isLoading, error, data } = useQuery<Project[], AxiosError>(['project', companyId], () =>
+    companies.getAllProjects(companyId as string)
+  );
 
-  const loading = projectLoading || postLoading;
-  const error = postError || projectError;
-
-  if (loading) {
-    return <p>IsLoading...</p>;
-  } else if (error) {
-    return <h1>Error Sorry...</h1>;
+  if (isLoading) {
+    return <Spinner />;
+  }
+  if (error) {
+    return <p className="text-black dark:text-white">An error occurred: {error.message}</p>;
   }
 
   return (
-    <div className="flex font-roboto mx-10 my-10">
-      <div className="w-6/12">
-        <h1 className="text-4xl font-bold">Project List</h1>
-        {projectList.map((project) => {
+    <div className="dark:bg-component bg-white h-full sm:w-full text-black dark:text-white font-roboto rounded-xl shadow-mainShadow mx-4 sm:mx-0 sm:px-10 px-5 py-5 overflow-y-auto">
+      <div className="flex flex-col sm:flex-row justify-between mt-5 sm:items-center items-start">
+        <h1 className="sm:text-4xl text-2xl font-bold">Liste de tous les Projets</h1>
+        <button
+          className="focus:outline-none sm:text-base text-xs text-white bg-customBlue px-2 py-1 mt-5 sm:mt-0 sm:p-2 shadow-buttonShadow rounded-md flex items-center"
+          onClick={() => history.push('/nouveau/projet')}
+        >
+          Créer Nouveau <img src={Plus} alt="Icône plus" className="p-1 rounded-full h-5 w-5 sm:h-6 sm:w-6" />
+        </button>
+      </div>
+      <div className="sm:mt-10 mt-5">
+        {data?.map((project) => {
           return (
-            <div className=" mr-10 mt-8" key={project.id}>
-              <h1 className="text-xl font-medium">{project.name}</h1>
-              <p className="mt-2 mb-5">{project.description}</p>
-              <Link className="w-60 px-5 py-2 border-black border" to={`/projects/${project.id}`}>
-                See more ...
+            <div key={project.id} className="mt-7">
+              <Link to={`/projets/${project.id}`}>
+                <div className="w-full border-b border-gray-500 pb-2">
+                  <p className="font-bold text-xl">{project.name}</p>
+                  <p className="truncate w-56 text-gray-400 sm:w-96">{project.description}</p>
+                </div>
               </Link>
             </div>
           );
         })}
-      </div>
-      <div className="w-6/12">
-        <h1 className=" text-2xl font-bold">Post a new project</h1>
-        <form onSubmit={handleSubmit((data) => mutate({ data }))} className="flex flex-col">
-          <label className="mt-5" htmlFor="name">
-            Name
-          </label>
-          <input className="p-2 mt-2 border border-black" {...register('name')} type="text" />
-          <label className="mt-5" htmlFor="description">
-            Description
-          </label>
-          <textarea className="h-28 p-2 mt-2 border border-black" {...register('description')}></textarea>
-          <input className="mt-5 py-1 border border-black" type="submit" />
-        </form>
       </div>
     </div>
   );
