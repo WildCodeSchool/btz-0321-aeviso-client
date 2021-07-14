@@ -7,6 +7,8 @@ import OneUser from './OneUser';
 import Spinner from '../../Spinner';
 import TotalHours from './TotalHours';
 import cloud from '../../../../media/icons/cloud.svg';
+import { exportToCsv } from '../../../assets/exportToCsv';
+import { useStats } from '../../../store/stats.slice';
 
 function FormResult(): JSX.Element {
   const [company, setCompany] = useState<Company>({} as Company);
@@ -14,6 +16,8 @@ function FormResult(): JSX.Element {
   const [end, setEnd] = useState<Date | null>(null);
   const [prjt, setPrjt] = useState<Project>({} as Project);
   const [users, setUsers] = useState<IResultUser[]>([]);
+
+  const { users: usersStats } = useStats();
 
   const { search } = useLocation();
 
@@ -111,7 +115,18 @@ function FormResult(): JSX.Element {
         </div>
       </div>
       <div>
-        <button className="flex text-sm sm:text-base text-white items-center bg-customBlue px-4 py-1 shadow-buttonShadow rounded-lg mx-4 sm:mx-6">
+        <button
+          className="flex text-sm sm:text-base text-white items-center bg-customBlue px-4 py-1 shadow-buttonShadow rounded-lg mx-4 sm:mx-6"
+          onClick={() =>
+            exportToCsv({
+              company: company?.name,
+              project: prjt?.name,
+              start: start?.toLocaleDateString() as string,
+              end: end?.toLocaleDateString() as string,
+              records: usersStats,
+            })
+          }
+        >
           télécharger le rapport <img className="ml-2" src={cloud} alt="cloud" />
         </button>
         <TotalHours />
