@@ -31,7 +31,7 @@ function SelectProject({ register, companyId }: ISelectProject): JSX.Element {
         Sélectionner un projet
       </label>
       <select
-        {...register('project')}
+        {...register('project', { required: true })}
         className="focus:outline-none text-black dark:text-gray-300 text-sm bg-white dark:bg-component border-b pt-3 pb-2 border-black dark:border-white"
       >
         {projectData?.map((project) => {
