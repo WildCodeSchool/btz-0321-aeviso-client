@@ -1,5 +1,7 @@
 import React from 'react';
 import projet from '../../../media/icons/project.svg';
+import Plus from '../../../media/icons/Plus.svg';
+
 interface ISPNavbar {
   handleClickLink: (url: string) => void;
   Home: string;

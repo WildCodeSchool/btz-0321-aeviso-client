@@ -33,7 +33,7 @@ function ProjectsUser(): JSX.Element {
   return (
     <div className="dark:bg-component h-full bg-white sm:w-full text-black dark:text-white font-roboto rounded-xl shadow-buttonShadow dark:shadow-mainShadow mx-4 sm:mx-0  overflow-y-auto">
       <div className="py-4 px-5 text-lg font-bold flex items-center justify-between bg-white dark:bg-component shadow-inputShadow sm:sticky sm:top-0 ">
-        <p className="text-3xl font-bold">Projets en cours</p>
+        <p className="text-3xl font-bold">Projets</p>
         <SearchInput register={register} name="search" />
       </div>
       <div className="mx-2">

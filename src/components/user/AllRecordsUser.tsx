@@ -27,7 +27,7 @@ function AllRecordsUser(): JSX.Element {
         <p className="text-3xl font-bold">Rapports</p>
         <Link to="/rapport/nouveau">
           <p className="focus:outline-none sm:text-base text-xs text-white bg-customBlue px-2 py-1 mt-5 sm:mt-0 sm:p-2 shadow-buttonShadow rounded-md flex items-center">
-            Crée un nouveau rapport
+            Nouveau rapport
           </p>
         </Link>
       </div>
@@ -37,7 +37,7 @@ function AllRecordsUser(): JSX.Element {
           return (
             <div key={record.id} className="flex-row justify-around border-b mt-4 pb-2">
               <p className="font-bold text-lg">Rapport du {date}</p>
-              {record.timeslot === 'AFTERNOON' && <p className="sm:text-sm">{"Durée : 3h30 heures l'après midi"}</p>}
+              {record.timeslot === 'AFTERNOON' && <p className="sm:text-sm">{"Durée : 3h30 heures l'après-midii"}</p>}
               {record.timeslot === 'MORNING' && <p className="sm:text-sm">Durée : 3h30 heures le matin</p>}
               <p className="sm:text-sm text-gray-400 truncate w-96" key={record.id}>
                 {record.comment}
