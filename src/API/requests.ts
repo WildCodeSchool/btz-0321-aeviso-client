@@ -31,9 +31,9 @@ export const jobs = {
 
   delete: ({ id }: { id: string }): Promise<null> => axios.delete(`${API_URL}/jobs/${id}`).then((res) => res.data),
 
-  create: (job: Job): Promise<Job> => axios.post(`${API_URL}/jobs`, job).then((res) => res.data),
+  create: (job: { label: string }): Promise<Job> => axios.post(`${API_URL}/jobs`, job).then((res) => res.data),
 
-  update: ({ job, id }: { job: Job; id?: string }): Promise<null> =>
+  update: ({ job, id }: { job: string; id?: string }): Promise<null> =>
     axios.put(`${API_URL}/jobs/${id}`, job).then((res) => res.data),
 };
 
