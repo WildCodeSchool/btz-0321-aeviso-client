@@ -8,10 +8,10 @@ function ToggleButton(): JSX.Element {
   };
 
   return (
-    <div className="bg-black flex items-center dark:bg-white h-8 w-14 shadow-buttonShadow rounded-full mt-2 px-1">
+    <div className="bg-black flex items-center dark:bg-white h-6 w-12 shadow-buttonShadow rounded-full mt-2 px-1">
       <button
         onClick={handleDarkMode}
-        className={`focus:outline-none rounded-full w-7 h-7 ${darkMode.active ? 'bg-component ml-5' : 'bg-white mr-5'}`}
+        className={`focus:outline-none rounded-full w-5 h-5 ${darkMode.active ? 'bg-component ml-5' : 'bg-white mr-5'}`}
       ></button>
     </div>
   );

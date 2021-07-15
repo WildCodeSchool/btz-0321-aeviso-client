@@ -4,11 +4,9 @@ import { AxiosError } from 'axios';
 import { project } from '../../API/requests';
 import { useUserFromStore } from '../../store/user.slice';
 import { useForm } from 'react-hook-form';
-
 import Spinner from '../Spinner';
 import SearchInput from '../SearchInput';
 import { Link } from 'react-router-dom';
-import Plus from '../../../media/icons/Plus.svg';
 
 function RecordsUser({ projectId }: { projectId: string }): JSX.Element {
   const { user: userFromStore } = useUserFromStore();
@@ -40,8 +38,8 @@ function RecordsUser({ projectId }: { projectId: string }): JSX.Element {
       <div className="flex w-full justify-between items-center sm:items-start">
         <p className="text-3xl font-bold mb-6">Mes rapports</p>
         <Link to="/rapport/nouveau">
-          <p className="focus:outline-none px-5 py-1 rounded-md shadow-buttonShadow ml-2 bg-customBlue text-white">
-            Nouveau <img src={Plus} alt="Icône plus" className="p-1 rounded-full h-5 w-5 sm:h-6 sm:w-6" />
+          <p className="focus:outline-none flex items-center px-5 py-1 rounded-md shadow-buttonShadow ml-2 bg-customBlue text-white">
+            Nouveau
           </p>
         </Link>
       </div>

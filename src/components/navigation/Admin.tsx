@@ -1,5 +1,4 @@
 import React from 'react';
-
 import Collaborateurs from '../../../media/icons/Collaborateurs.svg';
 import project from '../../../media/icons/project.svg';
 

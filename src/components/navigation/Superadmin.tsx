@@ -13,7 +13,7 @@ function SuperAdmin({ report, settings, handleClickLink }: ISPNavbar): JSX.Eleme
     <div>
       {' '}
       <nav className="list-none pt-10">
-        <li className="flex text-lg mt-3 items-center h-14 ">
+        <li className="flex text-sm mt-1 items-center h-14 ">
           <img
             src={Client}
             className="mr-3 h-6 w-6 bg-component dark:bg-component shadow-buttonShadow p-1 rounded-full mb-1"
@@ -23,7 +23,7 @@ function SuperAdmin({ report, settings, handleClickLink }: ISPNavbar): JSX.Eleme
             Clients
           </button>
         </li>
-        <li className="flex text-lg mt-3 items-center h-14">
+        <li className="flex text-sm mt-1 items-center h-14">
           <img
             src={report}
             className="mr-3 h-6 w-6 bg-component dark:bg-component shadow-buttonShadow p-1 rounded-full mb-1"
@@ -33,7 +33,7 @@ function SuperAdmin({ report, settings, handleClickLink }: ISPNavbar): JSX.Eleme
             Rapport
           </button>
         </li>
-        <li className="flex text-lg mt-3 items-center h-14">
+        <li className="flex text-sm mt-1 items-center h-14">
           <img
             src={settings}
             className="mr-3 h-6 w-6 bg-component dark:bg-component shadow-buttonShadow p-1 rounded-full mb-1"

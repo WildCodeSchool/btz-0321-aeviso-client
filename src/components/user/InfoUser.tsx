@@ -32,20 +32,20 @@ function InfoUser(): JSX.Element {
   }
 
   return (
-    <div className="p-5 text-black dark:text-white text-lg font-bold flex flex-col justify-start items-start bg-white dark:bg-component  sm:sticky sm:top-0 ">
+    <div className="p-3 text-black dark:text-white text-lg  flex flex-col justify-start items-start bg-white dark:bg-component  sm:sticky sm:top-0 ">
       <div className="flex w-full justify-between">
-        <p className="text-2xl font-bold ">
+        <p className="text-xl font-bold ">
           {userFromStore.firstName} {userFromStore.lastName}
         </p>
         <Link to="/reglages">
-          <p className="focus:outline-none sm:text-sm text-xs p-2 text-white shadow-buttonShadow rounded-md bg-customBlue">
+          <p className="focus:outline-none sm:text-xs font-bold text-xs p-2 text-white shadow-buttonShadow rounded-md bg-customBlue">
             Modifier mes informations
           </p>
         </Link>
       </div>
-      <p className="mt-2 text-sm">Entreprise : {companyData?.name}</p>
-      <p className="mt-2 text-sm">Email : {userFromStore.email}</p>
-      <p className="mt-2 text-sm">Fonction : {jobsData?.label}</p>
+      <p className="mt-2 text-xs">Entreprise : {companyData?.name}</p>
+      <p className="mt-2 text-xs">Email : {userFromStore.email}</p>
+      <p className="mt-2 text-xs">Fonction : {jobsData?.label}</p>
     </div>
   );
 }
