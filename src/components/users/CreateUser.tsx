@@ -83,7 +83,7 @@ function CreateNewUser({ mutationFn, setIsForm }: IFromCreateUser): JSX.Element 
         title="Crée un nouvel utilisateur"
         buttons={
           !error
-            ? [{ text: 'ok', handleClick: () => setIsModal(false) }]
+            ? [{ text: 'Valider', handleClick: () => setIsModal(false) }]
             : [{ text: 'Nouvel essai', handleClick: () => setIsModal(false) }]
         }
       >

@@ -58,7 +58,7 @@ function OneCollaborator(): JSX.Element {
         title="Supprimer un utilisateur"
         buttons={
           !error
-            ? [{ text: 'ok', handleClick: () => history.push('/collaborateurs') }]
+            ? [{ text: 'Valider', handleClick: () => history.push('/collaborateurs') }]
             : [{ text: 'Nouvel essai', handleClick: () => setIsModal((prevState) => !prevState) }]
         }
       >

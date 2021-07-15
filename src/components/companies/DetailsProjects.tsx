@@ -66,7 +66,7 @@ function DetailsProjects(): JSX.Element {
         title="Supprimer un client"
         buttons={
           !error
-            ? [{ text: 'ok', handleClick: () => history.push('/aeviso') }]
+            ? [{ text: 'Valider', handleClick: () => history.push('/aeviso') }]
             : [{ text: 'Nouvel essai', handleClick: () => setIsModal((prevState) => !prevState) }]
         }
       >

@@ -33,7 +33,7 @@ function TimeSlotButton({ setValue, isActive, children, isTimeslot, value, recor
         title="Supression de rappport"
         buttons={[
           {
-            text: 'OK',
+            text: 'Valider',
             handleClick: () => {
               setIsModal(false);
             },

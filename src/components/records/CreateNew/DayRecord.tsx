@@ -90,7 +90,7 @@ function DayRecord({ selectedProject }: IDayRecord): JSX.Element {
         title="Création de rappport"
         buttons={[
           {
-            text: 'OK',
+            text: 'Valider',
             handleClick: () => {
               setIsModal(false);
             },
