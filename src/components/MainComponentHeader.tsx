@@ -22,7 +22,7 @@ function MainComponentHeader({ register, title, setIsForm }: IProps): JSX.Elemen
           onClick={handleClick}
           className="sm:text-base text-xs text-white bg-customBlue px-2 py-1 mt-5 sm:mt-0 sm:p-2 shadow-buttonShadow rounded-md flex items-center"
         >
-          Nouveau rapport
+          Nouveau rapport <img src={Plus} alt="Icône plus" className="p-1 rounded-full h-5 w-5 sm:h-5 sm:w-5" />
         </button>
       </div>
       <SearchInput register={register} name="search" />
