@@ -115,20 +115,19 @@ function FormResult(): JSX.Element {
         </div>
       </div>
       <div>
-        <button
-          className="flex text-sm sm:text-base text-white items-center bg-customBlue px-4 py-1 shadow-buttonShadow rounded-lg mx-4 sm:mx-6"
-          onClick={() =>
-            exportToCsv({
-              company: company?.name,
-              project: prjt?.name,
-              start: start?.toLocaleDateString() as string,
-              end: end?.toLocaleDateString() as string,
-              records: usersStats,
-            })
-          }
+        <a
+          href={exportToCsv({
+            company: company?.name,
+            project: prjt?.name,
+            start: start?.toLocaleDateString() as string,
+            end: end?.toLocaleDateString() as string,
+            records: usersStats,
+          })}
+          download={`${company?.name}_${prjt?.name}_${start?.toLocaleDateString()}_${end?.toLocaleDateString()}.csv`}
+          className="flex text-sm sm:text-base text-white items-center bg-customBlue px-4 py-1 shadow-buttonShadow rounded-lg mx-4 sm:mx-6 w-max"
         >
-          télécharger le rapport <img className="ml-2" src={cloud} alt="cloud" />
-        </button>
+          Télécharger le rapport <img className="ml-2" src={cloud} alt="cloud" />
+        </a>
         <TotalHours />
       </div>
     </div>

@@ -22,12 +22,12 @@ export const calculateTotalHours = (array: UserSelection[]): number => {
   }, 0);
 };
 
-export const exportToCsv = (data: IDatas): void => {
+export const exportToCsv = (data: IDatas): string => {
   const { company, project, start, end, records } = data;
   const header = [
     ['sep=,\r\n,Client :', company, '\r\n'],
     ['Projet : ', project, '\r\n'],
-    ['Période du', end, 'au', start, '\r\n'],
+    ['Période du', start, 'au', end, '\r\n'],
     ['', '', '', '', '\r\n'],
     ['Collaborateur', 'Base hebdomadaire', 'Demi-journées', 'Total(h)', '\r\n'],
   ];
@@ -35,11 +35,7 @@ export const exportToCsv = (data: IDatas): void => {
   const totalHours = ['', '', 'Total projet', calculateTotalHours(records)];
   const content = [...header, ...parsedRecords, ...totalHours];
   const blob = new Blob([`${content}`], {
-    type: 'data:text/csv;charset=utf-8;',
+    type: 'text/csv;charset=utf-8',
   });
-  const url = URL.createObjectURL(blob);
-  const hiddenElement = document.createElement('a');
-  hiddenElement.href = encodeURI(url);
-  hiddenElement.download = `${company}-${project}-${start}-${end}.csv`;
-  hiddenElement.click();
+  return URL.createObjectURL(blob);
 };
