@@ -10,6 +10,8 @@ import Modal from '../Modal';
 import { useParams } from 'react-router-dom';
 import PasswordFom from '../form components/PasswordFom';
 import JobsInput from '../form components/JobsInput';
+import Spinner from '../Spinner';
+
 
 interface INewUser extends User {
   confirmPassword?: string;
@@ -68,14 +70,14 @@ function CreateNewUser({ mutationFn, setIsForm }: IFromCreateUser): JSX.Element 
     mutate({ user: { ...data }, id });
   };
 
-  if (isLoading) return <p>Envoie dans la base de données</p>;
+  if (isLoading) return <Spinner />;
   if (isModal)
     return (
       <Modal
-        title="Crée un nouvel utilisateur"
+        title="Créer un nouvel utilisateur"
         buttons={
           !error
-            ? [{ text: 'ok', handleClick: () => setIsModal(false) }]
+            ? [{ text: 'Valider', handleClick: () => setIsModal(false) }]
             : [{ text: 'Nouvel essai', handleClick: () => setIsModal(false) }]
         }
       >
@@ -87,14 +89,18 @@ function CreateNewUser({ mutationFn, setIsForm }: IFromCreateUser): JSX.Element 
     <div
       className={
         mutationFn === user.update
-          ? 'dark:bg-component bg-white border-2 dark:border-componentBorder h-full sm:w-full text-black dark:text-white font-roboto rounded-xl shadow-buttonShadow dark:shadow-mainShadow mx-4 sm:mx-0  sm:px-10 p-5 overflow-y-auto'
-          : 'mx-4 sm:mx-0  sm:px-10 p-5 '
+          ? 'dark:bg-component bg-white border-2 dark:border-componentBorder h-full sm:w-full text-black dark:text-white font-roboto p-5'
+          : 'mx-4 sm:mx-0  sm:px-6 p-5 '
       }
     >
       <div className="flex w-full justify-between items-center">
-        <h3 className="text-xl sm:mt-2 sm:text-5xl font-bold">Crée/Modifier nouveau collaborateur</h3>
+        {mutationFn === user.update ? (
+          <h3 className="text-xl sm:mt-2 mr-5 sm:text-2xl font-bold">Modifier un nouveau collaborateur</h3>
+        ) : (
+          <h3 className="text-xl sm:mt-2 mr-5 sm:text-2xl font-bold">Créer un nouveau collaborateur</h3>
+        )}
         <button
-          className="focus:outline-none text-white shadow-buttonShadow mt-5 w-full sm:w-2/12 py-2 sm:h-12 sm:rounded-md rounded-lg bg-customGreen "
+          className="focus:outline-none text-white shadow-buttonShadow mt-5 w-full sm:w-3/12 sm:h-7 sm:rounded-lg rounded-lg bg-customGreen "
           onClick={() => {
             setIsForm(false);
           }}
@@ -102,8 +108,15 @@ function CreateNewUser({ mutationFn, setIsForm }: IFromCreateUser): JSX.Element 
           Retour
         </button>
       </div>
-      <form className="flex-col mt-2 px-2 sm:mt-5" onSubmit={handleSubmit(onSubmit)}>
+      <form className="flex-col mt-5" onSubmit={handleSubmit(onSubmit)}>
         <label className="flex flex-col">
+          Nom
+          <input
+            className="focus:outline-none mt-1 bg-whiteGray shadow-buttonShadow dark:bg-input text-white rounded-sm py-1 sm:h-12 sm:rounded-md px-2"
+            {...register('lastName')}
+          />
+        </label>
+        <label className="flex flex-col mt-3 sm:mt-4">
           Prénom
           <input
             className="focus:outline-none mt-1 bg-whiteGray shadow-buttonShadow dark:bg-input text-white rounded-sm py-1 px-2 sm:h-12 sm:rounded-md"
@@ -112,15 +125,7 @@ function CreateNewUser({ mutationFn, setIsForm }: IFromCreateUser): JSX.Element 
         </label>
 
         <label className="flex flex-col mt-3 sm:mt-4">
-          Nom:
-          <input
-            className="focus:outline-none mt-1 bg-whiteGray shadow-buttonShadow dark:bg-input text-white rounded-sm py-1 sm:h-12 sm:rounded-md px-2"
-            {...register('lastName')}
-          />
-        </label>
-
-        <label className="flex flex-col mt-3 sm:mt-4">
-          Email:
+          Email
           <input
             className="focus:outline-none mt-1 bg-whiteGray shadow-buttonShadow dark:bg-input text-white rounded-sm py-1 px-2 sm:h-12 sm:rounded-md"
             {...register('email')}
@@ -128,9 +133,9 @@ function CreateNewUser({ mutationFn, setIsForm }: IFromCreateUser): JSX.Element 
         </label>
 
         <JobsInput register={register} setValue={setValue} />
-        {/* <SelectInput label="Fonction :" name="jobId" register={register} items={listOfJobs} /> */}
+
         <SelectInput
-          label={'Heures hebdomadaires :'}
+          label={'Heures hebdomadaires'}
           name="weeklyBasis"
           register={register}
           items={[
@@ -140,7 +145,7 @@ function CreateNewUser({ mutationFn, setIsForm }: IFromCreateUser): JSX.Element 
         />
         {mutationFn === user.create ? <PasswordFom register={register} error={errors} /> : ''}
         <button
-          className="focus:outline-none text-white shadow-buttonShadow mt-5 sm:mt-7 w-full sm:w-4/12 py-2 sm:h-12 sm:rounded-md rounded-lg bg-customGreen "
+          className="focus:outline-none text-white shadow-buttonShadow mt-5 sm:mt-7 w-full sm:w-4/12  sm:h-9 sm:rounded-md rounded-lg bg-customGreen "
           type="submit"
         >
           Envoyer

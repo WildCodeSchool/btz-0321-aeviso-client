@@ -66,7 +66,7 @@ function DetailsProjects(): JSX.Element {
         title="Supprimer un client"
         buttons={
           !error
-            ? [{ text: 'ok', handleClick: () => history.push('/aeviso') }]
+            ? [{ text: 'Valider', handleClick: () => history.push('/aeviso') }]
             : [{ text: 'Nouvel essai', handleClick: () => setIsModal((prevState) => !prevState) }]
         }
       >
@@ -79,8 +79,7 @@ function DetailsProjects(): JSX.Element {
       <div className="p-5 bg-component">
         <div className="flex justify-between items-center">
           <div>
-            <p className="sm:text-xl text-lg">Nom du Projet</p>
-            <p className="sm:text-3xl mt-2 text-xl font-bold">{projectData?.name}</p>
+            <p className="sm:text-3xl mt-2 text-xl font-bold">Projet : {projectData?.name}</p>
           </div>
           <button
             onClick={history.goBack}
@@ -93,7 +92,7 @@ function DetailsProjects(): JSX.Element {
         <p className="text-3xl font-bold mt-8">Informations</p>
 
         <div className=" flex items-end mt-2 sm:mt-5">
-          <p className="text-lg">Status Juridique : {projectData?.taxation} </p>
+          <p className="text-lg">Fiscalité : {projectData?.taxation} </p>
           {projectData?.taxation === 'CIR' && <p className="ml-2">Credit Impôt Recherche</p>}
           {projectData?.taxation === 'CII' && <p className="ml-2">Credit Impôt Innovation</p>}
           {projectData?.taxation === 'CII' && <p className="ml-2">{"N'est pas éligible"}</p>}
@@ -103,11 +102,11 @@ function DetailsProjects(): JSX.Element {
         {userFromStore.role === 'USER' && <RecordsUser projectId={projectData!.id} />}
 
         <div className="mt-12">
-          <div className="flex w-ulff justify-between">
+          <div className="flex w-full flex-col sm:flex-row justify-between">
             <p className="text-3xl font-bold">Collaborateurs</p>
             {userFromStore.role === 'ADMIN' && (
               <Link to={`/modifier/projets/${projectData?.id}`}>
-                <p className="focus:outline-none sm:text-sm text-xs p-2 text-white shadow-buttonShadow rounded-md bg-customBlue">
+                <p className="focus:outline-none sm:text-sm mt-3 sm:mt-0 text-xs p-2 text-white shadow-buttonShadow rounded-md bg-customBlue">
                   Modifier les informations et les collaborateurs
                 </p>
               </Link>

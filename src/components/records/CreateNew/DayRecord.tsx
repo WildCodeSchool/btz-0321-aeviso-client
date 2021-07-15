@@ -50,7 +50,7 @@ function DayRecord({ selectedProject }: IDayRecord): JSX.Element {
 
   const { mutate: postRecord } = useMutation(records.post, {
     onSuccess: (data) => {
-      setMessage('Votre rapport à bien été éffectué');
+      setMessage('Rapport créé');
       setIsModal(true);
       dispatchAddRecord(data);
       setValue('timeslot', '');
@@ -87,10 +87,10 @@ function DayRecord({ selectedProject }: IDayRecord): JSX.Element {
   if (isModal)
     return (
       <Modal
-        title="Création de rappport"
+        title="Création de rapport"
         buttons={[
           {
-            text: 'OK',
+            text: 'Valider',
             handleClick: () => {
               setIsModal(false);
             },
@@ -109,11 +109,10 @@ function DayRecord({ selectedProject }: IDayRecord): JSX.Element {
       </div>
       <div className="w-full md:h-10 mt-5 mx-4 sm:mx-0 flex items-center">
         {record.records?.length > 0 ? (
-          <p className="text-xl max-w-full">Vous avez déja enregistré {record.records.length} rapport(s) ce jour là</p>
+          <p className="text-xl max-w-full">Vous avez enregistré {record.records.length} rapport(s) ce jour-là.</p>
         ) : (
           <p className="sm:text-lg max-w-full">
-            Pour enregistrer un rapport veuillez sélectionnez combien de temps vous avez travaillez le{' '}
-            {record.date.toLocaleDateString()}{' '}
+            Pour créer un rapport, veuillez sélectionner votre plage horaire du {record.date.toLocaleDateString()}.
           </p>
         )}
       </div>

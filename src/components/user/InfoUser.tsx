@@ -34,7 +34,7 @@ function InfoUser(): JSX.Element {
   return (
     <div className="p-5 text-black dark:text-white text-lg font-bold flex flex-col justify-start items-start bg-white dark:bg-component  sm:sticky sm:top-0 ">
       <div className="flex w-full justify-between">
-        <p className="text-3xl font-bold ">
+        <p className="text-2xl font-bold ">
           {userFromStore.firstName} {userFromStore.lastName}
         </p>
         <Link to="/reglages">
@@ -43,9 +43,9 @@ function InfoUser(): JSX.Element {
           </p>
         </Link>
       </div>
-      <p className="mt-5">Entreprise : {companyData?.name}</p>
-      <p className="mt-2">Email : {userFromStore.email}</p>
-      <p className="mt-2">Fonction : {jobsData?.label}</p>
+      <p className="mt-2 text-sm">Entreprise : {companyData?.name}</p>
+      <p className="mt-2 text-sm">Email : {userFromStore.email}</p>
+      <p className="mt-2 text-sm">Fonction : {jobsData?.label}</p>
     </div>
   );
 }
