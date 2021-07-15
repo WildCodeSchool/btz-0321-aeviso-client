@@ -35,7 +35,9 @@ function OneCollaborator(): JSX.Element {
     isLoading: jobLoading,
     error: jobError,
     data: job,
-  } = useQuery(['job', jobId], () => jobs.getOne(jobId as string));
+  } = useQuery(['job', jobId], () => jobs.getOne(jobId as string), {
+    enabled: Boolean(jobId),
+  });
 
   const handleClick = () => {
     setIsForm(true);
@@ -52,21 +54,21 @@ function OneCollaborator(): JSX.Element {
         Une erreur est survenue
       </Modal>
     );
-  if (isModal)
-    return (
-      <Modal
-        title="Supprimer un utilisateur"
-        buttons={
-          !error
-            ? [{ text: 'Valider', handleClick: () => history.push('/collaborateurs') }]
-            : [{ text: 'Nouvel essai', handleClick: () => setIsModal((prevState) => !prevState) }]
-        }
-      >
-        {message}
-      </Modal>
-    );
+
   return (
     <div>
+      {isModal && (
+        <Modal
+          title="Supprimer un utilisateur"
+          buttons={
+            !error
+              ? [{ text: 'Valider', handleClick: () => history.push('/collaborateurs') }]
+              : [{ text: 'Nouvel essai', handleClick: () => setIsModal((prevState) => !prevState) }]
+          }
+        >
+          {message}
+        </Modal>
+      )}
       {isForm ? (
         <CreateNewUser setIsForm={setIsForm} mutationFn={user.update} />
       ) : (

@@ -85,14 +85,14 @@ function SideBar({ sideBarClass, setSideBarClass }: ISideBarProps): JSX.Element 
         )}
       </div>
       <div className=" flex flex-col w-full h-40 justify-end">
-        <h2 className="text-base mr-3 text-right mb-2">{todayDate()}</h2>
+        <h2 className="text-base mr-3 text-right">{todayDate()}</h2>
         <div className="flex flex-row justify-between p-5 border-t border-black dark:border-componentBorder">
           <div className="">
-            <h2 className="text-xl font-bold mb-2">
+            <h2 className="text-sm font-bold mb-2">
               {user.firstName} {user.lastName}
             </h2>
             <Link to="/home">
-              <p className="focus:outline-none w-12/12 text-center  text-xs text-white bg-customRed py-1 px-2 rounded-sm shadow-buttonShadow">
+              <p className="focus:outline-none w-12/12 text-center text-xs h-6 text-white bg-customRed py-1 px-2 rounded-sm shadow-buttonShadow">
                 Déconnexion
               </p>
             </Link>

@@ -32,8 +32,8 @@ function CompanyDetails({ company }: IProps): JSX.Element {
     <div>
       <div className="text-black dark:text-white flex justify-between mt-6 border-b pb-2 border-gray-400">
         <Link to={`/clients/${company.id}`}>
-          <p className="font-bold text-base">{company.name}</p>
-          <p className="font-thin text-xs mr-2">
+          <p className="font-bold text-sm">{company.name}</p>
+          <p className="font-thin text-xs mt-1 mr-2">
             {user ? `${user.role} - ${user.firstName} ${user.lastName}` : 'Aucun admin enregistré'}
             {user?.jobId && ' - '}
             {user?.jobId && <AdminJob jobId={user.jobId} />}

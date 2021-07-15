@@ -67,23 +67,20 @@ function ExportRecords(): JSX.Element {
     return <p className="text-black dark:text-white">An error occurred: {error.message}</p>;
   }
 
-  if (isModal) {
-    return (
-      <Modal
-        title="Vos données ont bien été modifiées"
-        buttons={
-          !error
-            ? [{ text: 'Valider', handleClick: () => history.push('/aeviso') }]
-            : [{ text: 'Nouvel essai', handleClick: () => setIsModal(false) }]
-        }
-      >
-        {message}
-      </Modal>
-    );
-  }
-
   return (
-    <div className="dark:bg-component bg-white border-2 dark:border-componentBorder h-full sm:w-full text-black dark:text-white font-roboto rounded-xl shadow-mainShadow mx-4 sm:mx-0  sm:px-10 p-5">
+    <div className="dark:bg-component bg-white border-2 dark:border-componentBorder h-full sm:w-full text-black dark:text-white font-roboto rounded-xl shadow-mainShadow mx-4 sm:mx-0  sm:px-5 p-5">
+      {isModal && (
+        <Modal
+          title="Vos données ont bien été modifiées"
+          buttons={
+            !error
+              ? [{ text: 'Valider', handleClick: () => history.push('/aeviso') }]
+              : [{ text: 'Nouvel essai', handleClick: () => setIsModal(false) }]
+          }
+        >
+          {message}
+        </Modal>
+      )}
       <h1 className="sm:text-4xl  text-3xl font-bold">Réglages</h1>
       <form onSubmit={handleSubmit(onSubmit)}>
         <p className="text-base mt-2">Modifier vos informations personnelles</p>
@@ -138,7 +135,7 @@ function ExportRecords(): JSX.Element {
           <input
             type="submit"
             value="Valider"
-            className="focus:outline-none sm:w-4/12 rounded-md mt-10 h-9 text-white shadow-buttonShadow px-4 py-1 mr-3 sm:mr-0 bg-customGreen"
+            className="focus:outline-none sm:w-4/12 rounded-md mt-8 h-9 text-white shadow-buttonShadow px-4 py-1 mr-3 sm:mr-0 bg-customGreen"
           />
         </div>
       </form>

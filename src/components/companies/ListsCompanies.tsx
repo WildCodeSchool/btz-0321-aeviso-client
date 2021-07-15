@@ -5,7 +5,6 @@ import { AxiosError } from 'axios';
 import { companies, user } from '../../API/requests';
 import { useForm } from 'react-hook-form';
 import CompanyDetails from './CompanyDetails';
-import Plus from '../../../media/icons/Plus.svg';
 import CreateCompany from './CreateUpdateCompany';
 import Spinner from '../Spinner';
 
@@ -34,20 +33,21 @@ function ListsCompanies(): JSX.Element {
           setIsCreatForm={setIsCreatForm}
         />
       ) : (
-        <div className="sm:p-10 p-5">
-          <div className="flex flex-col sm:flex-row justify-between mb-5 sm:items-center items-start">
-            <h1 className="sm:text-4xl text-xl font-bold">Liste de tous les clients</h1>
+        <div className="">
+          <div className="flex flex-col justify-between mb-5 sm:items-center items-start bg-white dark:bg-component shadow-inputShadow px-3 py-5">
+            <div className="flex w-full justify-between mb-2">
+              <h1 className="sm:text-2xl text-xl font-bold">Liste de tous les clients</h1>
 
-            <button
-              onClick={() => setIsCreatForm(true)}
-              className="focus:outline-none  sm:text-base text-xs text-white bg-customBlue px-2 py-1 mt-5 sm:mt-0 sm:p-2 shadow-buttonShadow rounded-md flex items-center"
-            >
-              Nouveau <img src={Plus} alt="Icône plus" className="p-1 rounded-full h-5 w-5 sm:h-6 sm:w-6" />
-            </button>
+              <button
+                onClick={() => setIsCreatForm(true)}
+                className="focus:outline-none w-28 h-8 sm:text-sm text-xs text-white bg-customBlue px-2 py-1 mt-5 sm:mt-0 sm:p-2 shadow-buttonShadow rounded-md flex justify-center items-center"
+              >
+                Nouveau
+              </button>
+            </div>
+            <SearchInput register={register} name="search" />
           </div>
-          <SearchInput register={register} name="search" />
-          <div className="sm:mt-10 mt-5">
-            {/* data?.filter((company) => company.name.toLowerCase().includes(searchInput?.toLowerCase())) */}
+          <div className="mt-5 mx-4">
             {data
               ?.filter((company) => {
                 const included = company.name.toLowerCase().includes(searchInput?.toLowerCase());

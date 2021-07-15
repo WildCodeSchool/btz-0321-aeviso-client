@@ -59,19 +59,19 @@ function InformationsCompany(): JSX.Element {
   return (
     <div className="text-black dark:text-white">
       <div className="py-4 px-4 text-lg font-bold flex justify-between items-center bg-white dark:bg-component shadow-inputShadow sm:sticky sm:top-0 ">
-        <p className="text-2xl mr-2">{companyData?.name}</p>
+        <p className="text-xl mr-2">{companyData?.name}</p>
       </div>
       <div>
         {usersCompany?.map((data) => (
           <div key={data.id} className="mt-5 mx-4">
             <div className="mb-3 border-b pb-2">
-              <p className="font-bold text-base">Administrateur</p>
+              <p className="font-bold text-sm">Administrateur</p>
               <p className="text-sm font-thin">
                 {data.firstName} {data.lastName}
               </p>
             </div>
             <div className="border-b pb-2 mt-5">
-              <p className="font-bold text-base">Contact</p>
+              <p className="font-bold text-sm">Contact</p>
               <a className="text-sm font-thin" href={`mailto: ${data.email}`}>
                 Envoyer un email: {data.email}
               </a>
@@ -81,7 +81,7 @@ function InformationsCompany(): JSX.Element {
       </div>
       <button
         onClick={() => mutate()}
-        className="rounded-lg h-9 mb-5 mt-5 ml-4 text-white shadow-buttonShadow px-4 py-1 bg-customRed"
+        className="rounded-lg text-sm h-7 mb-5 mt-5 ml-4 text-white shadow-buttonShadow px-4 py-1 bg-customRed"
       >
         Supprimer le client
       </button>

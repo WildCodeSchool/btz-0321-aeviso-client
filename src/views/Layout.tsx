@@ -16,7 +16,7 @@ function Layout(): JSX.Element {
   );
 
   const history = useHistory();
-  const { pathname } = useLocation();
+  const { pathname, search } = useLocation();
 
   const { dispatchLogin } = useUserFromStore();
 
@@ -26,7 +26,7 @@ function Layout(): JSX.Element {
       const { user } = data;
       dispatchLogin(user);
 
-      history.push(pathname);
+      history.push(pathname + search);
     },
     onError: () => history.push('/home'),
   });
