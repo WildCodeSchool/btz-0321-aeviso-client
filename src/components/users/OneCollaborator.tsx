@@ -70,47 +70,39 @@ function OneCollaborator(): JSX.Element {
       {isForm ? (
         <CreateNewUser setIsForm={setIsForm} mutationFn={user.update} />
       ) : (
-        <div className="dark:bg-component bg-white border-2 dark:border-componentBorder h-full sm:w-full text-black dark:text-white font-roboto rounded-xl shadow-buttonShadow dark:shadow-mainShadow mx-4 sm:mx-0  sm:px-10 p-5 overflow-y-auto">
+        <div className="dark:bg-component p-5 bg-white border-2 dark:border-componentBorder h-full sm:w-full text-black dark:text-white font-roboto">
           <div className="flex w-full flex-col sm:flex-row justify-between">
-            <div className="flex  font-bold text-2xl items-center sm:text-4xl">
+            <div className="flex font-bold text-xl items-center sm:text-3xl">
               <p className="mr-2">{data?.lastName} /</p>
               <p>{data?.firstName}</p>
             </div>
-            <button
-              className="focus:outline-none text-white shadow-buttonShadow mt-5 sm:mt-7 w-full sm:w-2/12 py-2 sm:h-12 sm:rounded-md rounded-lg bg-customGreen"
-              onClick={() => {
-                history.push('/collaborateurs');
-              }}
-            >
-              retour
-            </button>
           </div>
           <div className="mt-5 sm:mt-10 border-b border-gray-300 pb-2">
             <p>Email</p>
-            <p className=" text-xl font-bold">{data?.email}</p>
+            <p className=" text-sm font-bold">{data?.email}</p>
           </div>
           <div className="mt-5 sm:mt-10 border-b border-gray-300 pb-2">
             <p>Poste</p>
-            <p className=" text-xl font-bold">{job?.label}</p>
+            <p className=" text-sm font-bold">{job?.label}</p>
           </div>
           <div className="mt-5 sm:mt-10 border-b border-gray-300 pb-2">
             <p>Base Hebdomadaire</p>
             {data?.weeklyBasis === 'h35' ? (
-              <p className="font-bold text-xl">35 heures</p>
+              <p className="font-bold text-sm">35 heures</p>
             ) : (
-              <p className="font-bold text-xl">39 heures</p>
+              <p className="font-bold text-sm">39 heures</p>
             )}
           </div>
-          <div className="flex flex-col sm:flex-row w-full justify-between sm:mt-10">
+          <div className="flex flex-col sm:flex-row w-full justify-between sm:mt-5">
             <button
               onClick={handleClick}
-              className="focus:outline-none text-white shadow-buttonShadow mt-5 w-full sm:w-4/12 py-2 sm:h-12 sm:rounded-md rounded-lg bg-customGreen "
+              className="focus:outline-none text-white shadow-buttonShadow mt-5 w-full sm:w-4/12 py-1 sm:h-8 sm:rounded-md rounded-lg bg-customGreen "
             >
               Modifier
             </button>
             <button
               onClick={() => mutate()}
-              className="focus:outline-none text-white shadow-buttonShadow mt-5 w-full sm:w-4/12 py-2 sm:h-12 sm:rounded-md rounded-lg bg-customRed"
+              className="focus:outline-none text-white shadow-buttonShadow mt-5 w-full sm:w-4/12 py-1 sm:h-8 sm:rounded-md rounded-lg bg-customRed"
             >
               Supprimer
             </button>

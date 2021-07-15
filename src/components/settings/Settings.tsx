@@ -84,9 +84,9 @@ function ExportRecords(): JSX.Element {
 
   return (
     <div className="dark:bg-component bg-white border-2 dark:border-componentBorder h-full sm:w-full text-black dark:text-white font-roboto rounded-xl shadow-mainShadow mx-4 sm:mx-0  sm:px-10 p-5">
-      <h1 className="sm:text-5xl  text-3xl font-bold">Réglages</h1>
+      <h1 className="sm:text-4xl  text-3xl font-bold">Réglages</h1>
       <form onSubmit={handleSubmit(onSubmit)}>
-        <p className="text-lg mt-2">Modifier vos informations personnelles</p>
+        <p className="text-base mt-2">Modifier vos informations personnelles</p>
         <div>
           <TextInput
             label="Nom"

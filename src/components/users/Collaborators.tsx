@@ -35,7 +35,7 @@ function Collaborators(): JSX.Element {
         <div>
           <MainComponentHeader setIsForm={setIsForm} register={register} title="Liste des collaborateurs" />
 
-          <div className="sm:mt-7 mt-5 mx-3 sm:mx-8">
+          <div className="sm:mt-2 mt-5 mx-3 sm:mx-4">
             {data?.map((user) => {
               return <UserPreview key={user.id} id={user.id as string} />;
             })}
