@@ -12,7 +12,6 @@ import PasswordFom from '../form components/PasswordFom';
 import JobsInput from '../form components/JobsInput';
 import Spinner from '../Spinner';
 
-
 interface INewUser extends User {
   confirmPassword?: string;
 }
