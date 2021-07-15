@@ -24,7 +24,7 @@ function Calendar(): JSX.Element {
       <div className="flex sm:items-end items-center w-full justify-between px-4 sm:px-0">
         <h1 className="font-bold text-2xl sm:text-5xl mr-5 sm:mx-0 mt-3 sm:mt-10">Créer un nouveau rapport</h1>
         {dayActive === false || user.role === 'USER' ? (
-          <button className="text-white bg-customGreen py-1 px-6 rounded-sm shadow-buttonShadow" onClick={handleClose}>
+          <button className="text-white bg-customGreen py-1 px-6 rounded-md shadow-buttonShadow" onClick={handleClose}>
             Retour
           </button>
         ) : (
