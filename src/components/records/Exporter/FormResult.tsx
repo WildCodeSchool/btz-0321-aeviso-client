@@ -82,7 +82,7 @@ function FormResult(): JSX.Element {
             <h1 className="sm:text-4xl mt-2 text-xl mr-5">Projet : {prjt?.name} </h1>
           </div>
           <Link to="/records/export">
-            <button className="focus:outline-none w-12/12 py-1 bg-customGreen text-white shadow-buttonShadow px-5 rounded-sm ">
+            <button className="focus:outline-none w-12/12 py-1 bg-customGreen text-white shadow-buttonShadow px-5 rounded-lg">
               Retour
             </button>
           </Link>

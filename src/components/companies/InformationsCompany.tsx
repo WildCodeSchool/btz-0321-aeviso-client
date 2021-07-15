@@ -25,7 +25,7 @@ function InformationsCompany(): JSX.Element {
       setIsModal(true);
     },
     onError: () => {
-      setMessage('Une erreur est survenue');
+      setMessage('Une erreur est survenue : Veuillez effacez les projets et les collaborateurs avant');
       setIsModal(true);
     },
   });
@@ -48,7 +48,7 @@ function InformationsCompany(): JSX.Element {
         title="Supprimer un client"
         buttons={
           !error
-            ? [{ text: 'ok', handleClick: () => history.push('/clients') }]
+            ? [{ text: 'ok', handleClick: () => history.push('/aeviso') }]
             : [{ text: 'Nouvel essai', handleClick: () => setIsModal((prevState) => !prevState) }]
         }
       >
@@ -59,11 +59,7 @@ function InformationsCompany(): JSX.Element {
   return (
     <div className="text-black dark:text-white">
       <div className="py-4 px-4 text-lg font-bold flex justify-between items-center bg-white dark:bg-component shadow-inputShadow sm:sticky sm:top-0 ">
-        <p className="text-xl mr-2">Informations Clients</p>
-      </div>
-      <div className="border-b pb-2 mt-5 mx-4">
-        <p className="font-bold text-base">{"Nom de l'entreprise"}</p>
-        <p className="text-sm font-thin">{companyData?.name}</p>
+        <p className="text-2xl mr-2">{companyData?.name}</p>
       </div>
       <div>
         {usersCompany?.map((data) => (
@@ -85,7 +81,7 @@ function InformationsCompany(): JSX.Element {
       </div>
       <button
         onClick={() => mutate()}
-        className="rounded-sm h-9 mt-10 ml-4 text-white shadow-buttonShadow px-4 py-1 bg-customRed"
+        className="rounded-lg h-9 mb-5 mt-5 ml-4 text-white shadow-buttonShadow px-4 py-1 bg-customRed"
       >
         Supprimer le client
       </button>

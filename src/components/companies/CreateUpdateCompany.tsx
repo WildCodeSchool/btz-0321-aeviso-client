@@ -133,7 +133,7 @@ function CreateUpdateCompany({ mutationFn, mutationUs, setIsCreatForm }: IProps)
             <p className="text-2xl sm:text-5xl font-bold ">Créer un nouveau client</p>
             <button
               onClick={() => setIsCreatForm(false)}
-              className="focus:outline-none bg-customGreen px-5 h-9 rounded-sm"
+              className="focus:outline-none bg-customGreen px-5 h-9 rounded-lg shadow-buttonShadow"
             >
               retour
             </button>
@@ -146,7 +146,7 @@ function CreateUpdateCompany({ mutationFn, mutationUs, setIsCreatForm }: IProps)
 
         {jobsData && <JobsInput register={register} name={'user.job'} jobs={jobsData} />}
 
-        <AdministratorInputs register={register} errors={errors} />
+        <AdministratorInputs mutationUs={mutationUs} register={register} errors={errors} />
 
         <input
           type="submit"

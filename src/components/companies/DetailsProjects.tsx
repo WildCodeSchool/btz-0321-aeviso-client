@@ -1,5 +1,5 @@
 import React from 'react';
-import { useQuery } from 'react-query';
+import { useMutation, useQuery } from 'react-query';
 import { useHistory, useParams } from 'react-router-dom';
 import { AxiosError } from 'axios';
 import { Link } from 'react-router-dom';
@@ -8,10 +8,13 @@ import Spinner from '../Spinner';
 import JobUsers from './JobUsers';
 import { useUserFromStore } from '../../store/user.slice';
 import RecordsUser from '../user/RecordsUser';
+import Modal from '../Modal';
+import useModal from '../../hooks/useModal';
 
 function DetailsProjects(): JSX.Element {
   const history = useHistory();
   const { id } = useParams<{ id: string }>();
+  const { isModal, setIsModal, setMessage, message } = useModal();
   const { user: userFromStore } = useUserFromStore();
 
   const {
@@ -32,6 +35,17 @@ function DetailsProjects(): JSX.Element {
     }
   );
 
+  const { mutate } = useMutation(() => project.delete(id), {
+    onSuccess: () => {
+      setMessage('Client supprimé');
+      setIsModal(true);
+    },
+    onError: () => {
+      setMessage('Une erreur est survenue : Veuillez effacez les projets et les collaborateurs avant');
+      setIsModal(true);
+    },
+  });
+
   if (projectIsLoading || usersIsLoading) {
     return <Spinner />;
   }
@@ -46,12 +60,26 @@ function DetailsProjects(): JSX.Element {
     );
   }
 
+  if (isModal)
+    return (
+      <Modal
+        title="Supprimer un client"
+        buttons={
+          !error
+            ? [{ text: 'ok', handleClick: () => history.push('/aeviso') }]
+            : [{ text: 'Nouvel essai', handleClick: () => setIsModal((prevState) => !prevState) }]
+        }
+      >
+        {message}
+      </Modal>
+    );
+
   return (
     <div className="flex flex-col p-2 dark:bg-component bg-white h-full sm:w-full text-black dark:text-white font-roboto rounded-lg shadow-buttonShadow dark:shadow-mainShadow overflow-y-auto">
       <div className="p-5 bg-component">
         <div className="flex justify-between items-center">
           <div>
-            <p className="sm:text-xl text-lg">Nom du Projets</p>
+            <p className="sm:text-xl text-lg">Nom du Projet</p>
             <p className="sm:text-3xl mt-2 text-xl font-bold">{projectData?.name}</p>
           </div>
           <button
@@ -94,7 +122,7 @@ function DetailsProjects(): JSX.Element {
                 {user.firstName} {user.lastName}
               </p>
 
-              <div className="flex flex-col sm:flex-row items-center text-xs sm:text-sm text-gray-400">
+              <div className="flex flex-col sm:flex-row items-start sm:items-center text-xs sm:text-sm text-gray-400">
                 <JobUsers id={user.jobId} />
                 <p className="mt-1 sm:mt-0 sm:ml-2">Contact : {user.email} </p>
               </div>
@@ -108,14 +136,17 @@ function DetailsProjects(): JSX.Element {
         )}
       </div>
 
-      {userFromStore.role === 'USER' ? (
-        ' '
-      ) : (
+      {userFromStore.role === 'ADMIN' ? (
         <div className="py-5 flex w-full h-44  px-5 items-center justify-between bg-white dark:bg-component">
-          <button className="focus:outline-none  sm:text-sm text-xs p-2 text-white shadow-buttonShadow rounded-md bg-customRed">
+          <button
+            onClick={() => mutate}
+            className="focus:outline-none  sm:text-sm text-xs p-2 text-white shadow-buttonShadow rounded-md bg-customRed"
+          >
             Supprimer le projet
           </button>
         </div>
+      ) : (
+        ''
       )}
     </div>
   );
