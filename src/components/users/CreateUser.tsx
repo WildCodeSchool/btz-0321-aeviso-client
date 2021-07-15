@@ -1,14 +1,15 @@
-import React, { Dispatch, SetStateAction, useState } from 'react';
+import React, { Dispatch, SetStateAction } from 'react';
 import { useMutation, useQuery } from 'react-query';
 import SelectInput from '../../components/form components/SelectInput';
 import { AxiosError } from 'axios';
-import { jobs, user } from '../../API/requests';
+import { user } from '../../API/requests';
 import { SubmitHandler, useForm } from 'react-hook-form';
 import { useUserFromStore } from '../../store/user.slice';
 import useModal from '../../hooks/useModal';
 import Modal from '../Modal';
 import { useParams } from 'react-router-dom';
 import PasswordFom from '../form components/PasswordFom';
+import JobsInput from '../form components/JobsInput';
 
 interface INewUser extends User {
   confirmPassword?: string;
@@ -20,18 +21,9 @@ interface IFromCreateUser {
 }
 
 function CreateNewUser({ mutationFn, setIsForm }: IFromCreateUser): JSX.Element {
-  const [listOfJobs, setListOfJobs] = useState<SelectItem[]>([]);
   const { user: currentUser } = useUserFromStore();
 
   const { isModal, setIsModal, message, setMessage } = useModal();
-  useQuery<Job[], AxiosError>('jobs', jobs.getAll, {
-    onSuccess: (data) => {
-      const jobs = data.map((job) => {
-        return { value: job.id, text: job.label };
-      });
-      setListOfJobs(jobs);
-    },
-  });
 
   const {
     register,
@@ -135,7 +127,8 @@ function CreateNewUser({ mutationFn, setIsForm }: IFromCreateUser): JSX.Element 
           />
         </label>
 
-        <SelectInput label="Fonction :" name="jobId" register={register} items={listOfJobs} />
+        <JobsInput register={register} setValue={setValue} />
+        {/* <SelectInput label="Fonction :" name="jobId" register={register} items={listOfJobs} /> */}
         <SelectInput
           label={'Heures hebdomadaires :'}
           name="weeklyBasis"
