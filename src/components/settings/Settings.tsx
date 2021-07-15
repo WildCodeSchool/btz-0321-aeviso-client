@@ -86,7 +86,7 @@ function ExportRecords(): JSX.Element {
     <div className="dark:bg-component bg-white border-2 dark:border-componentBorder h-full sm:w-full text-black dark:text-white font-roboto rounded-xl shadow-mainShadow mx-4 sm:mx-0  sm:px-10 p-5">
       <h1 className="sm:text-5xl  text-3xl font-bold">Réglages</h1>
       <form onSubmit={handleSubmit(onSubmit)}>
-        <p>Modifier vos données</p>
+        <p className="text-lg mt-2">Modifier vos informations personnelles</p>
         <div>
           <TextInput
             label="Nom"
@@ -138,7 +138,7 @@ function ExportRecords(): JSX.Element {
           <input
             type="submit"
             value="Valider"
-            className="focus:outline-none ounded-sm h-9 text-white shadow-buttonShadow px-4 py-1 mr-3 sm:mr-0 bg-customGreen"
+            className="focus:outline-none sm:w-4/12 rounded-md mt-10 h-9 text-white shadow-buttonShadow px-4 py-1 mr-3 sm:mr-0 bg-customGreen"
           />
         </div>
       </form>

@@ -1,4 +1,5 @@
 import React from 'react';
+import projet from '../../../media/icons/project.svg';
 interface ISPNavbar {
   handleClickLink: (url: string) => void;
   Home: string;
@@ -7,7 +8,7 @@ interface ISPNavbar {
   newReport: string;
 }
 
-function User({ newReport, Home, settings, handleClickLink }: ISPNavbar): JSX.Element {
+function User({ newReport, Home, settings, report, handleClickLink }: ISPNavbar): JSX.Element {
   return (
     <div>
       <nav className="list-none pt-5">
@@ -30,6 +31,28 @@ function User({ newReport, Home, settings, handleClickLink }: ISPNavbar): JSX.El
           />
           <button className="focus:outline-none" onClick={() => handleClickLink('/rapport/nouveau')}>
             Nouveau Rapport
+          </button>
+        </li>
+
+        <li className="flex text-lg  pl-5 mt-5 items-center h-14">
+          <img
+            src={report}
+            className="mr-3 mb-1 h-6 w-6 bg-component dark:bg-component shadow-buttonShadow p-1 rounded-full"
+            alt="homesvg"
+          />
+          <button className="focus:outline-none" onClick={() => handleClickLink('/tousmesrapports')}>
+            Mes rapports
+          </button>
+        </li>
+
+        <li className="flex text-lg  pl-5 mt-5 items-center h-14">
+          <img
+            src={projet}
+            className="mr-3 mb-1 h-6 w-6 bg-component dark:bg-component shadow-buttonShadow p-1 rounded-full"
+            alt="homesvg"
+          />
+          <button className="focus:outline-none" onClick={() => handleClickLink('/mesprojets')}>
+            Projets
           </button>
         </li>
 

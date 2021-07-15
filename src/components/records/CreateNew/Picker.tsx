@@ -19,8 +19,9 @@ function Picker({ setDayActive, register }: IPicker): JSX.Element {
   const { dispatchSelectDate } = useRecordFromStore();
 
   const handleChange = (date: Date) => {
-    dispatchSelectDate(getLocaleDate(date));
     setDayActive(false);
+
+    dispatchSelectDate(getLocaleDate(date));
   };
 
   const { user: userStore } = useUserFromStore();
@@ -64,7 +65,7 @@ function Picker({ setDayActive, register }: IPicker): JSX.Element {
       </div>
       <p className="font-bold sm:text-2xl mx-4 sm:mx-0 mt-10">2. Pour créer un rapport sélectionnez une journée</p>
       <div className="flex mt-5 mb-10 w-12/12 mx-4 sm:mx-0 bg-white  dark:bg-component rounded-xl">
-        <Calendar onChange={handleChange} />
+        <Calendar onChange={handleChange} maxDate={new Date()} />
       </div>
     </div>
   );

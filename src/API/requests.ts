@@ -21,7 +21,7 @@ export const user = {
 
   getProjects: (id: string): Promise<Project[]> => axios.get(`${API_URL}/users/${id}/projects`).then((res) => res.data),
 
-  getRecords: (id: string): Promise<IRecord> => axios.get(`${API_URL}/users/${id}/records`).then((res) => res.data),
+  getRecords: (id: string): Promise<IRecord[]> => axios.get(`${API_URL}/users/${id}/records`).then((res) => res.data),
 };
 
 export const jobs = {

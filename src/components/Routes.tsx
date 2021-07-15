@@ -18,6 +18,8 @@ import OneCollaborator from './users/OneCollaborator';
 import CreateUpdateProjects from './project/CreateUpdateProjects';
 import Settings from './settings/Settings';
 import CreateUpdateCompany from './companies/CreateUpdateCompany';
+import ProjectsUser from './user/ProjectsUser';
+import AllRecordsUser from './user/AllRecordsUser';
 
 function Routes(): JSX.Element {
   const { user } = useUserFromStore();
@@ -48,8 +50,11 @@ function Routes(): JSX.Element {
       <>
         <Route path="/home" component={HomePage} />
         <Route exact path="/aeviso" component={User} />
+        <Route exact path="/projets/:id" component={DetailsProjects} />
         <Route exact path="/projects/:projectId/records" component={RecordsUser} />
         <Route exact path="/logout" component={Logout} />
+        <Route exact path="/mesprojets" component={ProjectsUser} />
+        <Route exact path="/tousmesrapports" component={AllRecordsUser} />
         <Route exact path="/rapport/nouveau" component={Calendar} />
         <Route exact path="/reglages" component={Settings} />
       </>
