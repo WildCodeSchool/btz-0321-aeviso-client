@@ -39,7 +39,7 @@ function ExportRecords(): JSX.Element {
     error,
   } = useMutation<User, AxiosError, { user: User; id: string }>('user', user.update, {
     onSuccess: (data) => {
-      setMessage('Le client a bien été modifié');
+      setMessage('Les données ont bien été modifiées');
       setIsModal(true);
       dispatchUser(data);
     },
@@ -73,7 +73,7 @@ function ExportRecords(): JSX.Element {
         title="Vos données ont bien été modifiées"
         buttons={
           !error
-            ? [{ text: 'Ok', handleClick: () => history.push('/aeviso') }]
+            ? [{ text: 'Valider', handleClick: () => history.push('/aeviso') }]
             : [{ text: 'Nouvel essai', handleClick: () => setIsModal(false) }]
         }
       >

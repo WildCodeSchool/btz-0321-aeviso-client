@@ -8,6 +8,7 @@ import { useForm } from 'react-hook-form';
 import Spinner from '../Spinner';
 import SearchInput from '../SearchInput';
 import { Link } from 'react-router-dom';
+import Plus from '../../../media/icons/Plus.svg';
 
 function RecordsUser({ projectId }: { projectId: string }): JSX.Element {
   const { user: userFromStore } = useUserFromStore();
@@ -37,10 +38,10 @@ function RecordsUser({ projectId }: { projectId: string }): JSX.Element {
   return (
     <div className="text-black dark:text-white mt-10">
       <div className="flex w-full justify-between items-center sm:items-start">
-        <p className="text-3xl font-bold mb-6">Mes Rapports</p>
+        <p className="text-3xl font-bold mb-6">Mes rapports</p>
         <Link to="/rapport/nouveau">
           <p className="focus:outline-none px-5 py-1 rounded-md shadow-buttonShadow ml-2 bg-customBlue text-white">
-            Crée un nouveau Rapport
+            Nouveau <img src={Plus} alt="Icône plus" className="p-1 rounded-full h-5 w-5 sm:h-6 sm:w-6" />
           </p>
         </Link>
       </div>
@@ -57,7 +58,7 @@ function RecordsUser({ projectId }: { projectId: string }): JSX.Element {
             return (
               <div key={record.id} className="flex-row justify-around border-b mt-4 pb-2">
                 <p className="font-bold text-lg">Rapport du {date}</p>
-                {record.timeslot === 'AFTERNOON' && <p className="sm:text-sm">{"Durée : 3h30 heures l'après midi"}</p>}
+                {record.timeslot === 'AFTERNOON' && <p className="sm:text-sm">{"Durée : 3h30 heures l'après-midii"}</p>}
                 {record.timeslot === 'MORNING' && <p className="sm:text-sm">Durée : 3h30 heures le matin</p>}
                 <p className="sm:text-sm text-gray-400" key={record.id}>
                   Commentaire : {record.comment}
@@ -66,9 +67,7 @@ function RecordsUser({ projectId }: { projectId: string }): JSX.Element {
             );
           })}
         {recordsData?.length === 0 && (
-          <p className="mt-5 text-2xl font-bold text-mainBg text-opacity-70">
-            {"Aucun Rapport n'a été effectué sur ce projet"}
-          </p>
+          <p className="mt-5 text-2xl font-bold text-mainBg text-opacity-70">{'Aucun rapport sur ce projet'}</p>
         )}
       </div>
     </div>

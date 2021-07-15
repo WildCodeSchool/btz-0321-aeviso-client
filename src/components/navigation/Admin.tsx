@@ -32,7 +32,7 @@ function Admin({ Home, report, settings, newReport, handleClickLink }: ISPNavbar
             alt="homesvg"
           />
           <button className="focus:outline-none" onClick={() => handleClickLink('/rapport/nouveau')}>
-            Nouveau Rapport
+            Nouveau rapport
           </button>
         </li>
         <li className="flex text-sm mt-1 pl-5 items-center h-14">
@@ -42,7 +42,7 @@ function Admin({ Home, report, settings, newReport, handleClickLink }: ISPNavbar
             alt="homesvg"
           />
           <button className="focus:outline-none" onClick={() => handleClickLink('/records/export')}>
-            Rapport
+            Exporter un rapport
           </button>
         </li>
         <li className="flex  text-sm mt-1  pl-5  items-center h-14">
@@ -62,7 +62,7 @@ function Admin({ Home, report, settings, newReport, handleClickLink }: ISPNavbar
             alt="homesvg"
           />
           <button className="focus:outline-none" onClick={() => handleClickLink(`/projets`)}>
-            Projet
+            Projets
           </button>
         </li>
         <li className="flex  text-sm mt-1  pl-5  items-center h-14">

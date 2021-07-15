@@ -28,8 +28,8 @@ function AdministratorCredentials({ register, errors, mutationUs }: IProps): JSX
   return (
     <>
       <EmailInput
-        label="Mail de l'administrateur"
-        placeholder="Nom"
+        label="Email de l'administrateur"
+        placeholder="Email"
         register={register}
         name="user.email"
         required={true}

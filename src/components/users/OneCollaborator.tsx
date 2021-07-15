@@ -58,7 +58,7 @@ function OneCollaborator(): JSX.Element {
         title="Supprimer un utilisateur"
         buttons={
           !error
-            ? [{ text: 'ok', handleClick: () => history.push('/collaborateurs') }]
+            ? [{ text: 'Valider', handleClick: () => history.push('/collaborateurs') }]
             : [{ text: 'Nouvel essai', handleClick: () => setIsModal((prevState) => !prevState) }]
         }
       >
@@ -82,11 +82,11 @@ function OneCollaborator(): JSX.Element {
             <p className=" text-sm font-bold">{data?.email}</p>
           </div>
           <div className="mt-5 sm:mt-10 border-b border-gray-300 pb-2">
-            <p>Poste</p>
+            <p>Fonction</p>
             <p className=" text-sm font-bold">{job?.label}</p>
           </div>
           <div className="mt-5 sm:mt-10 border-b border-gray-300 pb-2">
-            <p>Base Hebdomadaire</p>
+            <p>Base hebdomadaire</p>
             {data?.weeklyBasis === 'h35' ? (
               <p className="font-bold text-sm">35 heures</p>
             ) : (

@@ -27,7 +27,7 @@ function AllRecordsUser(): JSX.Element {
         <p className="text-2xl font-bold">Rapports</p>
         <Link to="/rapport/nouveau">
           <p className="focus:outline-none sm:text-xs text-xs text-white bg-customBlue px-2 mt-5 sm:mt-0 sm:py-2 shadow-buttonShadow rounded-md flex items-center">
-            Crée un nouveau rapport
+            Nouveau rapport
           </p>
         </Link>
       </div>

@@ -19,10 +19,9 @@ function SelectCompany({ register, setValue }: ISelectCompany): JSX.Element {
   });
 
   return (
-    <div className="flex flex-col mt-5">
-      <label className="text-base" htmlFor="select">
-        <span>{'-> '}</span>
-        Sélectionner une entreprise
+    <div className="flex flex-col mt-10">
+      <label className="text-xl" htmlFor="select">
+        Sélectionner une entreprise *
       </label>
       <select
         {...register('company', { required: true })}

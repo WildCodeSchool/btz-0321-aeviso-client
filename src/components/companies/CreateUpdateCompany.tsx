@@ -61,7 +61,7 @@ function CreateUpdateCompany({ mutationFn, mutationUs, setIsCreatForm }: IProps)
 
   const { mutateAsync: mutateUser } = useMutation<User, AxiosError, { user: User; id: string }>('user', mutationUs, {
     onSuccess: () => {
-      setMessage('Le client a bien été crée');
+      setMessage('Le client a bien été créé');
       setIsModal(true);
     },
   });
@@ -112,7 +112,7 @@ function CreateUpdateCompany({ mutationFn, mutationUs, setIsCreatForm }: IProps)
         title="Le client a bien été créé ou modifié"
         buttons={
           !error
-            ? [{ text: 'ok', handleClick: () => history.push('/aeviso') }]
+            ? [{ text: 'Valider', handleClick: () => history.push('/aeviso') }]
             : [{ text: 'Nouvel essai', handleClick: () => setIsModal(false) }]
         }
       >
@@ -130,12 +130,12 @@ function CreateUpdateCompany({ mutationFn, mutationUs, setIsCreatForm }: IProps)
           </div>
         ) : (
           <div className="flex w-full justify-between items-center sm:mb-5">
-            <p className="text-2xl sm:text-5xl font-bold ">Créer un nouveau client</p>
+            <p className="text-2xl sm:text-5xl font-bold ">Créer un client</p>
             <button
               onClick={() => setIsCreatForm(false)}
               className="focus:outline-none bg-customGreen px-5 h-9 rounded-lg shadow-buttonShadow"
             >
-              retour
+              Retour
             </button>
           </div>
         )}
