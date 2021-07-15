@@ -47,11 +47,15 @@ function ListsCompanies(): JSX.Element {
           </div>
           <SearchInput register={register} name="search" />
           <div className="sm:mt-10 mt-5">
-            {searchInput
-              ? data?.filter((company) => company.name.toLowerCase().includes(searchInput?.toLowerCase()))
-              : data?.map((company) => {
-                  return <CompanyDetails company={company} key={company.id} />;
-                })}
+            {/* data?.filter((company) => company.name.toLowerCase().includes(searchInput?.toLowerCase())) */}
+            {data
+              ?.filter((company) => {
+                const included = company.name.toLowerCase().includes(searchInput?.toLowerCase());
+                return searchInput ? included : true;
+              })
+              .map((company) => {
+                return <CompanyDetails company={company} key={company.id} />;
+              })}
           </div>
         </div>
       )}
