@@ -32,8 +32,8 @@ function ProjectsUser(): JSX.Element {
 
   return (
     <div className="dark:bg-component h-full bg-white sm:w-full text-black dark:text-white font-roboto rounded-xl shadow-buttonShadow dark:shadow-mainShadow mx-4 sm:mx-0  overflow-y-auto">
-      <div className="py-4 px-5 text-lg font-bold flex items-center justify-between bg-white dark:bg-component shadow-inputShadow sm:sticky sm:top-0 ">
-        <p className="text-3xl font-bold">Projets</p>
+      <div className="py-4 px-3 text-lg font-bold flex flex-col justify-between bg-white dark:bg-component shadow-inputShadow sm:sticky sm:top-0 ">
+        <p className="text-xl font-bold">Projets</p>
         <SearchInput register={register} name="search" />
       </div>
       <div className="mx-2">
@@ -44,12 +44,12 @@ function ProjectsUser(): JSX.Element {
           })
           ?.map((project) => {
             return (
-              <div key={project.id} className="flex-row justify-around mt-5 mx-4 border-b pb-2">
+              <div key={project.id} className="flex-row justify-around mt-5 mx-2 border-b pb-2">
                 <Link to={`/projets/${project.id}`}>
-                  <p className="font-bold" key={project.id}>
+                  <p className="font-bold text-sm" key={project.id}>
                     {project.name}
                   </p>
-                  <p className="truncate w-56 text-gray-400 sm:w-96">{project.description}</p>
+                  <p className="truncate w-56 text-gray-400 sm:w-96 text-xs">{project.description}</p>
                 </Link>
               </div>
             );

@@ -18,9 +18,9 @@ function ExportRecords(): JSX.Element {
 
   return (
     <div className="dark:bg-component bg-white border-2 dark:border-componentBorder h-full sm:w-full text-black dark:text-white font-roboto rounded-lg shadow-buttonShadow dark:shadow-mainShadow overflow-y-auto">
-      <div className="px-5 py-3 bg-white dark:bg-component shadow-buttonShadow dark:shadow-mainShadow sm:sticky top-0">
-        <h1 className="sm:text-4xl  text-3xl font-bold">Exporter un rapport</h1>
-        <h2 className="sm:text-base text-sm mb-2 sm:mb-2 mt-3">{`Attention: pour exporter un rapport merci de remplir tous les champs ci-dessous.`}</h2>
+      <div className="px-3 py-3 bg-white dark:bg-component shadow-buttonShadow dark:shadow-mainShadow sm:sticky top-0">
+        <h1 className="text-xl font-bold">Exporter un rapport</h1>
+        <h2 className="sm:text-sm text-sm mt-1">{`Attention vous devez obligatoirement remplir tous les champs afin d'exporter un rapport`}</h2>
       </div>
       <form
         onSubmit={handleSubmit((data) => {
@@ -28,7 +28,7 @@ function ExportRecords(): JSX.Element {
           const end = new Date(data.end).toISOString();
           history.push(`/exporter/companies/${data.company}/projects/${data.project}?&start=${start}&end=${end}`);
         })}
-        className="flex flex-col h-full pb-2 mx-7"
+        className="flex flex-col pb-2 mx-4"
         action="sumbit"
       >
         {userStore.role === 'SUPERADMIN' && <SelectCompany register={register} setValue={setValue} />}
@@ -37,7 +37,7 @@ function ExportRecords(): JSX.Element {
         <input
           value="Exporter"
           type="submit"
-          className="focus:outline-none text-white shadow-buttonShadow mt-10 w-12/12 sm:w-4/12 py-2 rounded-lg bg-customGreen "
+          className="focus:outline-none text-xs text-white shadow-buttonShadow mt-7 w-12/12 sm:w-2/12 py-1 rounded-lg bg-customGreen "
         />
       </form>
     </div>

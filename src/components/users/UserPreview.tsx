@@ -24,18 +24,17 @@ function UserPreview({ id }: IProps): JSX.Element {
   return (
     <div className="my-5 border-b border-gray-400 pb-2">
       <Link to={`/collaborateurs/oneuser/${data?.id}`}>
-        <p className="font-bold sm:text-xl mb-1">
+        <p className="font-bold sm:text-sm mb-1">
           {data?.firstName} {data?.lastName}
         </p>
-        <div className=" flex flex-col sm:flex-row">
-          <p className="text-sm text-gray-400">
+        <div className=" flex flex-col">
+          <p className="text-xs text-gray-400">
             Fonction:{' '}
             <span>
               <JobDisplay id={data?.jobId as string} />
             </span>{' '}
-            /{' '}
           </p>
-          <p className="text-sm text-gray-400">email: {data?.email}</p>
+          <p className="text-xs mt-1 text-gray-400">email: {data?.email}</p>
         </div>
       </Link>
     </div>
