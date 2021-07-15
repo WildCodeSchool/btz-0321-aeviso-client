@@ -30,7 +30,7 @@ function User({ newReport, Home, settings, report, handleClickLink }: ISPNavbar)
             alt="homesvg"
           />
           <button className="focus:outline-none" onClick={() => handleClickLink('/rapport/nouveau')}>
-            Nouveau Rapport
+            Nouveau rapport
           </button>
         </li>
 

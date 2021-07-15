@@ -80,7 +80,7 @@ function CreateNewUser({ mutationFn, setIsForm }: IFromCreateUser): JSX.Element 
   if (isModal)
     return (
       <Modal
-        title="Crée un nouvel utilisateur"
+        title="Créer un nouvel utilisateur"
         buttons={
           !error
             ? [{ text: 'Valider', handleClick: () => setIsModal(false) }]
@@ -100,7 +100,7 @@ function CreateNewUser({ mutationFn, setIsForm }: IFromCreateUser): JSX.Element 
       }
     >
       <div className="flex w-full justify-between items-center">
-        <h3 className="text-xl sm:mt-2 sm:text-5xl font-bold">Crée/Modifier nouveau collaborateur</h3>
+        <h3 className="text-xl sm:mt-2 sm:text-5xl font-bold">Créer ou modifier un collaborateur</h3>
         <button
           className="focus:outline-none text-white shadow-buttonShadow mt-5 w-full sm:w-2/12 py-2 sm:h-12 sm:rounded-md rounded-lg bg-customGreen "
           onClick={() => {
@@ -111,7 +111,14 @@ function CreateNewUser({ mutationFn, setIsForm }: IFromCreateUser): JSX.Element 
         </button>
       </div>
       <form className="flex-col mt-2 px-2 sm:mt-5" onSubmit={handleSubmit(onSubmit)}>
-        <label className="flex flex-col">
+        <label className="flex flex-col ">
+          Nom
+          <input
+            className="focus:outline-none mt-1 bg-whiteGray shadow-buttonShadow dark:bg-input text-white rounded-sm py-1 sm:h-12 sm:rounded-md px-2"
+            {...register('lastName')}
+          />
+        </label>
+        <label className="flex flex-col mt-3 sm:mt-4">
           Prénom
           <input
             className="focus:outline-none mt-1 bg-whiteGray shadow-buttonShadow dark:bg-input text-white rounded-sm py-1 px-2 sm:h-12 sm:rounded-md"
@@ -120,24 +127,16 @@ function CreateNewUser({ mutationFn, setIsForm }: IFromCreateUser): JSX.Element 
         </label>
 
         <label className="flex flex-col mt-3 sm:mt-4">
-          Nom:
-          <input
-            className="focus:outline-none mt-1 bg-whiteGray shadow-buttonShadow dark:bg-input text-white rounded-sm py-1 sm:h-12 sm:rounded-md px-2"
-            {...register('lastName')}
-          />
-        </label>
-
-        <label className="flex flex-col mt-3 sm:mt-4">
-          Email:
+          Email
           <input
             className="focus:outline-none mt-1 bg-whiteGray shadow-buttonShadow dark:bg-input text-white rounded-sm py-1 px-2 sm:h-12 sm:rounded-md"
             {...register('email')}
           />
         </label>
 
-        <SelectInput label="Fonction :" name="jobId" register={register} items={listOfJobs} />
+        <SelectInput label="Fonction" name="jobId" register={register} items={listOfJobs} />
         <SelectInput
-          label={'Heures hebdomadaires :'}
+          label={'Heures hebdomadaires'}
           name="weeklyBasis"
           register={register}
           items={[

@@ -79,8 +79,7 @@ function DetailsProjects(): JSX.Element {
       <div className="p-5 bg-component">
         <div className="flex justify-between items-center">
           <div>
-            <p className="sm:text-xl text-lg">Nom du Projet</p>
-            <p className="sm:text-3xl mt-2 text-xl font-bold">{projectData?.name}</p>
+            <p className="sm:text-3xl mt-2 text-xl font-bold">Projet : {projectData?.name}</p>
           </div>
           <button
             onClick={history.goBack}
@@ -93,7 +92,7 @@ function DetailsProjects(): JSX.Element {
         <p className="text-3xl font-bold mt-8">Informations</p>
 
         <div className=" flex items-end mt-2 sm:mt-5">
-          <p className="text-lg">Status Juridique : {projectData?.taxation} </p>
+          <p className="text-lg">Fiscalité : {projectData?.taxation} </p>
           {projectData?.taxation === 'CIR' && <p className="ml-2">Credit Impôt Recherche</p>}
           {projectData?.taxation === 'CII' && <p className="ml-2">Credit Impôt Innovation</p>}
           {projectData?.taxation === 'CII' && <p className="ml-2">{"N'est pas éligible"}</p>}

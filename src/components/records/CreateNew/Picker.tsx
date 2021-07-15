@@ -47,7 +47,7 @@ function Picker({ setDayActive, register }: IPicker): JSX.Element {
       <div className="flex w-full sm:mt-10  justify-between sm:items-end flex-col sm:flex-row"></div>
       <div className="mx-3 sm:mx-0 mt-5 ">
         <label className="font-bold sm:text-2xl mt-10" htmlFor="select">
-          1. Sélectionner un projet
+          Sélectionner un projet
         </label>
 
         <select
@@ -63,7 +63,9 @@ function Picker({ setDayActive, register }: IPicker): JSX.Element {
           })}
         </select>
       </div>
-      <p className="font-bold sm:text-2xl mx-4 sm:mx-0 mt-10">2. Pour créer un rapport sélectionnez une journée</p>
+      <p className="font-bold sm:text-2xl mx-4 sm:mx-0 mt-10">
+        Pour créer un rapport, veuillez sélectionner une journée
+      </p>
       <div className="flex mt-5 mb-10 w-12/12 mx-4 sm:mx-0 bg-white  dark:bg-component rounded-xl">
         <Calendar onChange={handleChange} maxDate={new Date()} />
       </div>

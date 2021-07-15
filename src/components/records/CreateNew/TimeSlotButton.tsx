@@ -30,7 +30,7 @@ function TimeSlotButton({ setValue, isActive, children, isTimeslot, value, recor
   if (isModal)
     return (
       <Modal
-        title="Supression de rappport"
+        title="Supression de rapport"
         buttons={[
           {
             text: 'Valider',
