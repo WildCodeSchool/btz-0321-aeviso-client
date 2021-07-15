@@ -42,7 +42,7 @@ function ListsCompanies(): JSX.Element {
               onClick={() => setIsCreatForm(true)}
               className="focus:outline-none  sm:text-base text-xs text-white bg-customBlue px-2 py-1 mt-5 sm:mt-0 sm:p-2 shadow-buttonShadow rounded-md flex items-center"
             >
-              Créer Nouveau <img src={Plus} alt="Icône plus" className="p-1 rounded-full h-5 w-5 sm:h-6 sm:w-6" />
+              Nouveau <img src={Plus} alt="Icône plus" className="p-1 rounded-full h-5 w-5 sm:h-6 sm:w-6" />
             </button>
           </div>
           <SearchInput register={register} name="search" />

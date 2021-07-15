@@ -64,7 +64,7 @@ function ProjectForm({ projectId }: IProps): JSX.Element {
         {projectId ? (
           <h1 className="text-2xl mr-10 sm:mr-0 sm:text-5xl font-bold"> Modifier le projet </h1>
         ) : (
-          <h1 className="text-2xl mr-10 sm:mr-0 sm:text-5xl font-bold"> Crée un nouveau projet</h1>
+          <h1 className="text-2xl mr-10 sm:mr-0 sm:text-5xl font-bold"> Créer un projet</h1>
         )}
         <button
           onClick={() => history.goBack()}
@@ -75,7 +75,7 @@ function ProjectForm({ projectId }: IProps): JSX.Element {
       </div>
       <form onSubmit={handleSubmit(onSubmit)} className="flex flex-col mt-2 sm:mt-2">
         <label className="mt-5 flex flex-col" htmlFor="name">
-          Name
+          Nom
           <input
             className="focus:outline-none mt-1 bg-whiteGray shadow-buttonShadow dark:bg-input text-black dark:text-white rounded-sm py-1 px-2 sm:h-12 sm:rounded-md"
             {...register('name')}
@@ -90,7 +90,7 @@ function ProjectForm({ projectId }: IProps): JSX.Element {
           ></textarea>
         </label>
         <label className="mt-5 flex flex-col" htmlFor="name">
-          code
+          Code
           <input
             className="focus:outline-none mt-1 bg-whiteGray shadow-buttonShadow dark:bg-input text-black dark:text-white rounded-sm py-1 px-2 sm:h-12 sm:rounded-md"
             {...register('code')}

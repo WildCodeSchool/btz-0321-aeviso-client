@@ -35,6 +35,10 @@ function SideBar({ sideBarClass, setSideBarClass }: ISideBarProps): JSX.Element 
 
   const { user } = useUserFromStore();
 
+  const todayDate = () => {
+    return today().charAt(0).toUpperCase() + today().slice(1);
+  };
+
   return (
     <div className={sideBarClass}>
       <div className="py-8 px-8 ">
@@ -42,7 +46,7 @@ function SideBar({ sideBarClass, setSideBarClass }: ISideBarProps): JSX.Element 
           <div className="flex justify-between w-full">
             <div className="flex-col h-full">
               <h1 className="sm:text-5xl text-5xl  font-bold">aeviso</h1>
-              <h2 className="text-sm">Expert Comptable.audit.conseil</h2>
+              <h2 className="text-sm">Expert Comptable.Audit.Conseil</h2>
             </div>
             <button className="focus:outline-none sm:hidden" onClick={handleClose}>
               <img
@@ -82,7 +86,7 @@ function SideBar({ sideBarClass, setSideBarClass }: ISideBarProps): JSX.Element 
         )}
       </div>
       <div className=" flex flex-col w-full h-40 justify-end">
-        <h2 className="text-base mr-3 text-right mb-2">{today()}</h2>
+        <h2 className="text-base mr-3 text-right mb-2">{todayDate()}</h2>
         <div className="flex flex-row justify-between p-5 border-t border-black dark:border-componentBorder">
           <div className="">
             <h2 className="text-xl font-bold mb-2">

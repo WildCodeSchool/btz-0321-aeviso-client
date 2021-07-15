@@ -1,5 +1,6 @@
 import React from 'react';
 import projet from '../../../media/icons/project.svg';
+
 interface ISPNavbar {
   handleClickLink: (url: string) => void;
   Home: string;
@@ -30,7 +31,7 @@ function User({ newReport, Home, settings, report, handleClickLink }: ISPNavbar)
             alt="homesvg"
           />
           <button className="focus:outline-none" onClick={() => handleClickLink('/rapport/nouveau')}>
-            Nouveau Rapport
+            Nouveau rapport
           </button>
         </li>
 

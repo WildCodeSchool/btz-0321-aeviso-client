@@ -113,31 +113,25 @@ function userForm(props: UserIProps | BaseIProps): JSX.Element {
       <h3 className="mb-6">Create User</h3>
       <div className="border border-black mb-2">
         <form onSubmit={handleSubmit(onSubmit)}>
-          <div className="form-firstname">
-            <label>
-              Prénom:
-              <input defaultValue={user.firstName} {...register('firstName')} />
-            </label>
-          </div>
           <div className="form-lastname">
             <label>
-              Nom:
+              Nom
               <input defaultValue={user.lastName} {...register('lastName')} />
+            </label>
+          </div>
+          <div className="form-firstname">
+            <label>
+              Prénom
+              <input defaultValue={user.firstName} {...register('firstName')} />
             </label>
           </div>
           <div className="form-mail">
             <label>
-              Email:
+              Email
               <input defaultValue={user.email} {...register('email')} />
             </label>
           </div>
-          <SelectInput
-            label="Fonction :"
-            name="jobId"
-            register={register}
-            items={listOfJobs}
-            defaultValue={user.jobId}
-          />
+          <SelectInput label="Fonction" name="jobId" register={register} items={listOfJobs} defaultValue={user.jobId} />
           <SelectInput
             label={`Droits d'accès:`}
             name="role"
@@ -150,7 +144,7 @@ function userForm(props: UserIProps | BaseIProps): JSX.Element {
             defaultValue={user.role}
           />
           <SelectInput
-            label={'Heures hebdomadaires :'}
+            label={'Heures hebdomadaires'}
             name="weeklyBasis"
             register={register}
             items={[
