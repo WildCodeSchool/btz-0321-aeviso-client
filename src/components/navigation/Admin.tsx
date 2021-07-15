@@ -1,26 +1,17 @@
 import React from 'react';
-import { useHistory } from 'react-router-dom';
 
 import Collaborateurs from '../../../media/icons/Collaborateurs.svg';
-import { useUserFromStore } from '../../store/user.slice';
+import project from '../../../media/icons/project.svg';
 
 interface ISPNavbar {
-  handleClose: () => void;
+  handleClickLink: (url: string) => void;
   Home: string;
   report: string;
   settings: string;
   newReport: string;
 }
 
-function Admin({ Home, report, settings, newReport, handleClose }: ISPNavbar): JSX.Element {
-  const history = useHistory();
-  const { user } = useUserFromStore();
-
-  const handleClickLink = (url: string) => {
-    handleClose();
-    history.push(url);
-  };
-
+function Admin({ Home, report, settings, newReport, handleClickLink }: ISPNavbar): JSX.Element {
   return (
     <div>
       <nav className="list-none pt-5">
@@ -40,7 +31,7 @@ function Admin({ Home, report, settings, newReport, handleClose }: ISPNavbar): J
             className="mr-3 mb-1 h-6 w-6 bg-component dark:bg-component shadow-buttonShadow p-1 rounded-full"
             alt="homesvg"
           />
-          <button className="focus:outline-none" onClick={() => handleClickLink('/nouveaurapport')}>
+          <button className="focus:outline-none" onClick={() => handleClickLink('/rapport/nouveau')}>
             Nouveau Rapport
           </button>
         </li>
@@ -50,7 +41,7 @@ function Admin({ Home, report, settings, newReport, handleClose }: ISPNavbar): J
             className="mr-3 mb-1 h-6 w-6 bg-component dark:bg-component shadow-buttonShadow p-1 rounded-full"
             alt="homesvg"
           />
-          <button className="focus:outline-none" onClick={() => handleClickLink('/rapport')}>
+          <button className="focus:outline-none" onClick={() => handleClickLink('/records/export')}>
             Rapport
           </button>
         </li>
@@ -60,11 +51,18 @@ function Admin({ Home, report, settings, newReport, handleClose }: ISPNavbar): J
             className="mr-3 mb-1 h-6 w-6 bg-component dark:bg-component shadow-buttonShadow p-1 rounded-full"
             alt="homesvg"
           />
-          <button
-            className="focus:outline-none"
-            onClick={() => handleClickLink(`/clients/${user.companyId}/collaborateurs`)}
-          >
+          <button className="focus:outline-none" onClick={() => handleClickLink(`/collaborateurs`)}>
             Collaborateurs
+          </button>
+        </li>
+        <li className="flex  text-lg  pl-5 mt-5 items-center h-14">
+          <img
+            src={project}
+            className="mr-3 mb-1 h-6 w-6 bg-component dark:bg-component shadow-buttonShadow p-1 rounded-full"
+            alt="homesvg"
+          />
+          <button className="focus:outline-none" onClick={() => handleClickLink(`/projets`)}>
+            Projet
           </button>
         </li>
         <li className="flex  text-lg  pl-5 mt-5 items-center h-14">
@@ -73,7 +71,7 @@ function Admin({ Home, report, settings, newReport, handleClose }: ISPNavbar): J
             className="mr-3 mb-1 h-6 w-6 bg-component dark:bg-component shadow-buttonShadow p-1 rounded-full"
             alt="homesvg"
           />
-          <button className="focus:outline-none" onClick={() => handleClickLink('reglage')}>
+          <button className="focus:outline-none" onClick={() => handleClickLink('/reglages')}>
             Réglages
           </button>
         </li>

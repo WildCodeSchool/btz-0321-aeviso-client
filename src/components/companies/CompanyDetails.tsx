@@ -4,7 +4,6 @@ import { AxiosError } from 'axios';
 import { companies } from '../../API/requests';
 import AdminJob from './AdminJob';
 import { Menu } from '@headlessui/react';
-import Spinner from '../Spinner';
 import { Link } from 'react-router-dom';
 import more from '../../../media/icons/more.svg';
 
@@ -24,7 +23,7 @@ function CompanyDetails({ company }: IProps): JSX.Element {
   );
 
   if (isLoading) {
-    return <Spinner />;
+    return <p>...</p>;
   }
 
   if (error) {
@@ -44,10 +43,8 @@ function CompanyDetails({ company }: IProps): JSX.Element {
         </Link>
         <Menu>
           <div className="">
-            <Menu.Button>
-              <button className="focus:outline-none">
-                <img src={more} alt="more" />
-              </button>
+            <Menu.Button className="focus:outline-none">
+              <img src={more} alt="more" />
             </Menu.Button>
             <Menu.Items className="absolute right-10 sm:right-28 flex flex-col justify-center w-72 shadow-buttonShadow px-2 py-4 text-black dark:text-white z-10  bg-whiteGray dark:bg-mainBg rounded-md">
               <Menu.Item>

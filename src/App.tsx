@@ -5,12 +5,13 @@ import { BrowserRouter as Router } from 'react-router-dom';
 import Layout from './views/Layout';
 import { ReactQueryDevtools } from 'react-query/devtools';
 import { useDarkModeFromStore } from './store/darkmode.slice';
+import './assets/scrollbar.css';
 
 function App(): JSX.Element {
   const { darkMode } = useDarkModeFromStore();
   return (
     <div className={`${darkMode.active ? 'bg-mainBg dark' : 'bg-whiteGray'}`}>
-      <div className="container m-auto">
+      <div className="">
         <QueryClientProvider client={queryClient}>
           <Router>
             <Layout />

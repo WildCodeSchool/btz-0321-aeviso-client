@@ -1,19 +1,31 @@
+import { AxiosError } from 'axios';
 import React from 'react';
-import { FieldValues, UseFormRegister } from 'react-hook-form';
+import { FieldValues, UseFormRegister, UseFormSetValue } from 'react-hook-form';
+import { useQuery } from 'react-query';
+import { useUserFromStore } from '../../../store/user.slice';
+import { companies } from '../../../API/requests';
 
 interface ISelectCompany {
-  companiesData: Company[] | undefined;
   register: UseFormRegister<FieldValues>;
+  setValue: UseFormSetValue<FieldValues>;
 }
 
-function SelectCompany({ companiesData, register }: ISelectCompany): JSX.Element {
+function SelectCompany({ register, setValue }: ISelectCompany): JSX.Element {
+  const { user } = useUserFromStore();
+
+  const { data: companiesData } = useQuery<Company[], AxiosError>('companies', () => companies.getAll(), {
+    enabled: user.role === 'SUPERADMIN',
+    onSuccess: (data: Company[]) => setValue('company', data[0]),
+  });
+
   return (
-    <div className="flex flex-col mt-5">
+    <div className="flex flex-col mt-2">
       <label className="text-xl" htmlFor="select">
-        1. Sélectionner une entreprise
+        <span>{'-> '}</span>
+        Sélectionner une entreprise
       </label>
       <select
-        {...register('company')}
+        {...register('company', { required: true })}
         className="focus:outline-none text-black dark:text-gray-300 text-sm bg-white dark:bg-component border-b pt-3 pb-2 border-black dark:border-white"
       >
         {companiesData?.map((company: Company) => {

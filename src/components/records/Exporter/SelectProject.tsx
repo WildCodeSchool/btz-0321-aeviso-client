@@ -1,20 +1,37 @@
-import React from 'react';
+import { AxiosError } from 'axios';
+import React, { useEffect } from 'react';
 import { FieldValues, UseFormRegister } from 'react-hook-form';
+import { useQuery } from 'react-query';
+import { companies } from '../../../API/requests';
 
 interface ISelectProject {
-  projectData: Project[] | undefined;
+  companyId?: string;
   register: UseFormRegister<FieldValues>;
 }
 
-function SelectProject({ projectData, register }: ISelectProject): JSX.Element {
+function SelectProject({ register, companyId }: ISelectProject): JSX.Element {
+  const { refetch, data: projectData } = useQuery<Project[], AxiosError>(
+    'project',
+    () => companies.getAllProjects(companyId as string),
+    {
+      enabled: Boolean(companyId),
+    }
+  );
+
+  useEffect(() => {
+    if (companyId) {
+      refetch();
+    }
+  }, [companyId]);
+
   return (
     <div className="flex flex-col mt-5">
-      {' '}
       <label className="mt-5 text-xl" htmlFor="select">
-        2. Sélectionner un projet
+        <span>{'-> '}</span>
+        Sélectionner un projet
       </label>
       <select
-        {...register('project', { value: projectData?.[0]?.id || '' })}
+        {...register('project', { required: true })}
         className="focus:outline-none text-black dark:text-gray-300 text-sm bg-white dark:bg-component border-b pt-3 pb-2 border-black dark:border-white"
       >
         {projectData?.map((project) => {
