@@ -24,7 +24,6 @@ function ExportRecords(): JSX.Element {
       </div>
       <form
         onSubmit={handleSubmit((data) => {
-          console.log(data);
           const start = new Date(data.start).toISOString();
           const end = new Date(data.end).toISOString();
           history.push(`/exporter/companies/${data.company}/projects/${data.project}?&start=${start}&end=${end}`);

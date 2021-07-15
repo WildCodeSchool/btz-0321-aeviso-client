@@ -2,9 +2,11 @@ import { createSlice, PayloadAction } from '@reduxjs/toolkit';
 import { useDispatch, useSelector } from 'react-redux';
 import { RootState } from '.';
 
-type UserSelection = {
+export type UserSelection = {
   name: string;
-  total: number;
+  weeklyBasis: number;
+  halfDays: number;
+  totalHours: number;
 };
 
 interface StatsState {
