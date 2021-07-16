@@ -33,8 +33,8 @@ export const jobs = {
 
   create: (job: { label: string }): Promise<Job> => axios.post(`${API_URL}/jobs`, job).then((res) => res.data),
 
-  update: ({ job, id }: { job: string; id?: string }): Promise<null> =>
-    axios.put(`${API_URL}/jobs/${id}`, job).then((res) => res.data),
+  update: ({ data, id }: { data: { label: string }; id?: string }): Promise<Job> =>
+    axios.put(`${API_URL}/jobs/${id}`, data).then((res) => res.data),
 };
 
 export const project = {
