@@ -138,7 +138,7 @@ function DetailsProjects(): JSX.Element {
       {userFromStore.role === 'ADMIN' ? (
         <div className="py-5 flex w-full h-44  px-5 items-center justify-between bg-white dark:bg-component">
           <button
-            onClick={() => mutate}
+            onClick={() => mutate()}
             className="focus:outline-none  sm:text-sm text-xs p-2 text-white shadow-buttonShadow rounded-md bg-customRed"
           >
             Supprimer le projet

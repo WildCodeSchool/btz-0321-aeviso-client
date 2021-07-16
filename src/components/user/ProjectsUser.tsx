@@ -56,7 +56,7 @@ function ProjectsUser(): JSX.Element {
           })}
         {projectsData?.length === 0 && (
           <p className="mt-5 text-xl mx-5 font-bold text-mainBg text-opacity-70">
-            {"Vous n'êtes affecter à aucun projet pour le moment"}
+            {"Vous n'êtes pas affecté à un projet pour le moment"}
           </p>
         )}
       </div>
