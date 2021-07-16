@@ -29,7 +29,7 @@ function ProjectsCieAdmin(): JSX.Element {
   return (
     <div className="text-black dark:text-white">
       <div className="sm:py-4 py-2 px-5 text-lg font-bold flex items-center justify-between bg-white dark:bg-component shadow-inputShadow sm:sticky sm:top-0 ">
-        <p className="text-xl font-bold">Projets</p>
+        <p className="text-2xl font-bold">Projets</p>
       </div>
       {data?.map((project) => {
         return (
