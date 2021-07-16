@@ -19,6 +19,12 @@ export const user = {
     return axios.put(`${API_URL}/users/${id}`, user).then((res) => res.data);
   },
 
+  updateSelf: ({ user }: { user: User; id: string }): Promise<User> =>
+    axios.put(`${API_URL}/users/self`, user).then((res) => res.data),
+
+  updatePassword: ({ oldPassword, newPassword }: { oldPassword: string; newPassword: string }): Promise<User> =>
+    axios.put(`${API_URL}/users/self/password`, { oldPassword, newPassword }).then((res) => res.data),
+
   getProjects: (id: string): Promise<Project[]> => axios.get(`${API_URL}/users/${id}/projects`).then((res) => res.data),
 
   getRecords: (id: string): Promise<IRecord[]> => axios.get(`${API_URL}/users/${id}/records`).then((res) => res.data),

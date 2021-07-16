@@ -12,8 +12,13 @@ import PasswordInput from '../companies/Forms/CreateCompany/PasswordInput';
 import Modal from '../Modal';
 import useModal from '../../hooks/useModal';
 
+interface ISettingsForm extends Omit<IUserForm, 'role' | 'password'> {
+  oldPassword: string;
+  newPassword: string;
+}
+
 interface IFormInput {
-  user: IUserForm;
+  user: ISettingsForm;
   id: string;
 }
 
@@ -27,6 +32,7 @@ function ExportRecords(): JSX.Element {
     formState: { errors },
     handleSubmit,
     setValue,
+    setError,
   } = useForm();
 
   setValue('user.firstName', userFromStore.firstName);
@@ -34,29 +40,50 @@ function ExportRecords(): JSX.Element {
   setValue('user.email', userFromStore.email);
 
   const {
-    mutateAsync: mutateUser,
+    mutateAsync: userMutate,
     isLoading,
     error,
-  } = useMutation<User, AxiosError, { user: User; id: string }>('user', user.update, {
+  } = useMutation<User, AxiosError, { user: User; id: string }>('user', user.updateSelf, {
     onSuccess: (data) => {
-      setMessage('Les données ont bien été modifiées');
-      setIsModal(true);
       dispatchUser(data);
     },
   });
+
+  const { mutateAsync: passwordMutate } = useMutation<User, AxiosError, { oldPassword: string; newPassword: string }>(
+    'user',
+    user.updatePassword,
+    {
+      onSuccess: (data) => {
+        setMessage('Les données ont bien été modifiées');
+        setIsModal(true);
+        dispatchUser(data);
+      },
+      onError: () => setError('user.oldPassword', { message: "L'ancien mot de passe est incorrect." }),
+    }
+  );
 
   const onSubmit = async (data: IFormInput) => {
     const user: User = {
       firstName: data.user.firstName,
       lastName: data.user.lastName,
       email: data.user.email,
-      password: data.user.password,
       jobId: data.user.jobId,
     };
-    await mutateUser({
-      user: { ...user },
+
+    await userMutate({
+      user,
       id: userFromStore.id as string,
     });
+
+    if (data.user.oldPassword !== data.user.newPassword) {
+      await passwordMutate({
+        oldPassword: data.user.oldPassword,
+        newPassword: data.user.newPassword,
+      });
+    }
+
+    setMessage('Les données ont bien été modifiées');
+    setIsModal(true);
   };
 
   if (isLoading) {
@@ -114,14 +141,28 @@ function ExportRecords(): JSX.Element {
           />
 
           <PasswordInput
+            label="Ancien mot de passe"
+            placeholder="Ancien mot de passe"
+            register={register}
+            name="user.oldPassword"
+            required={false}
+            error={
+              errors?.user?.oldPassword
+                ? errors.user.oldPassword.type === 'required'
+                  ? 'Veuillez entrer votre ancien mot de passe'
+                  : errors.user.oldPassword.message
+                : undefined
+            }
+          />
+
+          <PasswordInput
             label="Mot de passe"
             placeholder="Mot de passe"
             register={register}
-            name="user.password"
+            name="user.newPassword"
             required={false}
-            error={errors?.user?.password && 'Veuillez entrer un mot de passe'}
+            error={errors?.user?.newPassword && 'Veuillez entrer un mot de passe'}
           />
-
           <PasswordInput
             label="Confirmation du mot de passe"
             placeholder="Confirmation de votre mot de passe"
