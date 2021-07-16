@@ -4,7 +4,7 @@ import { useMutation, useQuery } from 'react-query';
 import { useHistory } from 'react-router-dom';
 import { project } from '../../API/requests';
 import { useUserFromStore } from '../../store/user.slice';
-import SelectInput from '../form components/SelectInput';
+import SelectInput from '../formComponents/SelectInput';
 
 interface IProps {
   projectId?: string;

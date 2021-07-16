@@ -19,6 +19,12 @@ export const user = {
     return axios.put(`${API_URL}/users/${id}`, user).then((res) => res.data);
   },
 
+  updateSelf: ({ user }: { user: User; id: string }): Promise<User> =>
+    axios.put(`${API_URL}/users/self`, user).then((res) => res.data),
+
+  updatePassword: ({ oldPassword, newPassword }: { oldPassword: string; newPassword: string }): Promise<User> =>
+    axios.put(`${API_URL}/users/self/password`, { oldPassword, newPassword }).then((res) => res.data),
+
   getProjects: (id: string): Promise<Project[]> => axios.get(`${API_URL}/users/${id}/projects`).then((res) => res.data),
 
   getRecords: (id: string): Promise<IRecord[]> => axios.get(`${API_URL}/users/${id}/records`).then((res) => res.data),
@@ -33,8 +39,8 @@ export const jobs = {
 
   create: (job: { label: string }): Promise<Job> => axios.post(`${API_URL}/jobs`, job).then((res) => res.data),
 
-  update: ({ job, id }: { job: string; id?: string }): Promise<null> =>
-    axios.put(`${API_URL}/jobs/${id}`, job).then((res) => res.data),
+  update: ({ data, id }: { data: { label: string }; id?: string }): Promise<Job> =>
+    axios.put(`${API_URL}/jobs/${id}`, data).then((res) => res.data),
 };
 
 export const project = {

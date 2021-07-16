@@ -1,6 +1,6 @@
 import React, { Dispatch, SetStateAction } from 'react';
 import { useMutation, useQuery } from 'react-query';
-import SelectInput from '../../components/form components/SelectInput';
+import SelectInput from '../formComponents/SelectInput';
 import { AxiosError } from 'axios';
 import { user } from '../../API/requests';
 import { SubmitHandler, useForm } from 'react-hook-form';
@@ -8,8 +8,8 @@ import { useUserFromStore } from '../../store/user.slice';
 import useModal from '../../hooks/useModal';
 import Modal from '../Modal';
 import { useParams } from 'react-router-dom';
-import PasswordFom from '../form components/PasswordFom';
-import JobsInput from '../form components/JobsInput';
+import PasswordFom from '../formComponents/PasswordFom';
+import JobsInput from '../formComponents/JobsInput';
 import Spinner from '../Spinner';
 
 interface INewUser extends User {
