@@ -38,11 +38,16 @@ function ProjectsCieAdmin(): JSX.Element {
               <p className="font-bold text-sm" key={project.id}>
                 {project.name} / {project.code}
               </p>
-              <p className="text-xs font-thin truncate">{project.description} || Total demi journées déclarées:</p>
+              <p className="text-xs mt-1 font-thin truncate">{project.description}</p>
             </Link>
           </div>
         );
       })}
+      {data?.length === 0 && (
+        <p className="mt-5 text-2xl mx-3 font-bold text-mainBg text-opacity-70">
+          {"Cette entreprise n'a pas encore de projet de recherche et développement"}
+        </p>
+      )}
     </div>
   );
 }

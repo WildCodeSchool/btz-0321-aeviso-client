@@ -106,23 +106,20 @@ function CreateUpdateCompany({ mutationFn, mutationUs, setIsCreatForm }: IProps)
     );
   }
 
-  if (isModal) {
-    return (
-      <Modal
-        title="Le client a bien été créé ou modifié"
-        buttons={
-          !error
-            ? [{ text: 'Valider', handleClick: () => history.push('/aeviso') }]
-            : [{ text: 'Nouvel essai', handleClick: () => setIsModal(false) }]
-        }
-      >
-        {message}
-      </Modal>
-    );
-  }
-
   return (
     <div className="dark:bg-component bg-white border-2 dark:border-componentBorder h-full w-full sm:w-full text-black dark:text-white font-roboto rounded-xl shadow-buttonShadow dark:shadow-mainShadow  sm:mx-0  sm:px-5 p-5 overflow-y-auto">
+      {isModal && (
+        <Modal
+          title="Le client a bien été créé ou modifié"
+          buttons={
+            !error
+              ? [{ text: 'Valider', handleClick: () => history.push('/aeviso') }]
+              : [{ text: 'Nouvel essai', handleClick: () => setIsModal(false) }]
+          }
+        >
+          {message}
+        </Modal>
+      )}
       <div className="flex w-full justify-between">
         {mutationFn === companies.put ? (
           <div className="flex w-full justify-between items-center sm:mb-5">
@@ -133,7 +130,7 @@ function CreateUpdateCompany({ mutationFn, mutationUs, setIsCreatForm }: IProps)
             <p className="text-2xl sm:text-5xl font-bold ">Créer un client</p>
             <button
               onClick={() => setIsCreatForm(false)}
-              className="focus:outline-none bg-customGreen px-5 h-9 rounded-lg shadow-buttonShadow"
+              className="focus:outline-none bg-customGreen px-5 h-9 rounded-md shadow-buttonShadow"
             >
               Retour
             </button>
@@ -151,7 +148,7 @@ function CreateUpdateCompany({ mutationFn, mutationUs, setIsCreatForm }: IProps)
         <input
           type="submit"
           value={mutationFn === companies.put ? 'Modifier' : 'Créer'}
-          className="flex sm:w-full w-full mt-5 sm:mt-10 justify-center text-sm sm:text-xl text-white items-center bg-customGreen px-4 py-1 shadow-buttonShadow rounded-lg  sm:mx-0"
+          className="flex sm:w-full w-full mt-5 sm:mt-10 justify-center text-sm sm:text-xl text-white items-center bg-customGreen px-4 py-1 shadow-buttonShadow rounded-md  sm:mx-0"
         />
       </form>
     </div>

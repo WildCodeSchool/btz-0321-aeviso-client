@@ -12,7 +12,7 @@ import { useUserFromStore } from '../store/user.slice';
 function Layout(): JSX.Element {
   const [isSidebarVisible, setIsSidebarVisible] = useState<boolean>(true);
   const [sideBarClass, setSideBarClass] = useState(
-    'sm:flex flex-col border-2 dark:border-componentBorder bg-white dark:bg-component w-full h-full rounded-lg text-black dark:text-white font-roboto justify-between shadow-buttonShadow dark:shadow-mainShadow invisible sm:visible'
+    'sm:flex flex-col border-2 dark:border-componentBorder bg-white dark:bg-component w-full h-full rounded-md text-black dark:text-white font-roboto justify-between shadow-buttonShadow dark:shadow-mainShadow invisible sm:visible'
   );
 
   const history = useHistory();

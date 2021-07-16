@@ -75,8 +75,8 @@ function DetailsProjects(): JSX.Element {
     );
 
   return (
-    <div className="flex flex-col p-2 dark:bg-component bg-white h-full sm:w-full text-black dark:text-white font-roboto rounded-lg shadow-buttonShadow dark:shadow-mainShadow overflow-y-auto">
-      <div className="p-5 bg-component">
+    <div className="flex flex-col p-2 dark:bg-component bg-white h-full sm:w-full text-black dark:text-white font-roboto rounded-md shadow-buttonShadow dark:shadow-mainShadow overflow-y-auto">
+      <div className="p-5 bg-white dark:bg-component">
         <div className="flex justify-between items-center">
           <div>
             <p className="sm:text-3xl mt-2 text-xl font-bold">Projet : {projectData?.name}</p>
@@ -98,7 +98,7 @@ function DetailsProjects(): JSX.Element {
           {projectData?.taxation === 'CII' && <p className="ml-2">{"N'est pas éligible"}</p>}
         </div>
         <p className="mt-2 text-lg">Description du projet :</p>
-        <p className="mt-1 sm:w-6/12 text-sm sm:text-base">{projectData?.description}</p>
+        <p className="mt-1 text-sm sm:text-base">{projectData?.description}</p>
         {userFromStore.role === 'USER' && <RecordsUser projectId={projectData!.id} />}
 
         <div className="mt-12">

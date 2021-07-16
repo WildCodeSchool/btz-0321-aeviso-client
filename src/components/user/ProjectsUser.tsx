@@ -54,6 +54,11 @@ function ProjectsUser(): JSX.Element {
               </div>
             );
           })}
+        {projectsData?.length === 0 && (
+          <p className="mt-5 text-xl mx-5 font-bold text-mainBg text-opacity-70">
+            {"Vous n'êtes affecter à aucun projet pour le moment"}
+          </p>
+        )}
       </div>
     </div>
   );

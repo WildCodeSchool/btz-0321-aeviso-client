@@ -22,7 +22,7 @@ function AllRecordsUser(): JSX.Element {
     </p>;
   }
   return (
-    <div className="dark:bg-component h-full bg-white sm:w-full text-black dark:text-white font-roboto rounded-xl shadow-buttonShadow dark:shadow-mainShadow overflow-y-auto">
+    <div className="dark:bg-component h-full w-full bg-white sm:w-full text-black dark:text-white font-roboto rounded-xl shadow-buttonShadow dark:shadow-mainShadow overflow-y-auto">
       <div className="py-4 px-3 text-lg font-bold flex items-center justify-between bg-white dark:bg-component shadow-inputShadow sm:sticky sm:top-0 ">
         <p className="text-2xl font-bold">Rapports</p>
         <Link to="/rapport/nouveau">
@@ -39,7 +39,7 @@ function AllRecordsUser(): JSX.Element {
               <p className="font-bold text-sm">Rapport du {date}</p>
               {record.timeslot === 'AFTERNOON' && <p className="text-xs mt-1">{"Durée : 3h30 heures l'après midi"}</p>}
               {record.timeslot === 'MORNING' && <p className="text-xs mt-1">Durée : 3h30 heures le matin</p>}
-              <p className="text-xs text-gray-400 truncate w-96 mt-1" key={record.id}>
+              <p className="text-xs text-gray-400 truncate w-72 sm:w-96 mt-1" key={record.id}>
                 {record.comment}
               </p>
             </div>

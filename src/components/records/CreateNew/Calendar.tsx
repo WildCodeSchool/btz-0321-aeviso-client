@@ -24,7 +24,10 @@ function Calendar(): JSX.Element {
       <div className="flex sm:items-end items-center w-full justify-between px-4 sm:px-0">
         <h1 className="font-bold text-2xl sm:text-4xl mr-5 sm:mx-0 mt-3 sm:mt-5">Créer un rapport</h1>
         {dayActive === false || user.role === 'USER' ? (
-          <button className="text-white bg-customGreen py-1 px-6 rounded-md shadow-buttonShadow" onClick={handleClose}>
+          <button
+            className="text-white bg-customGreen mt-4 sm:mt-0 py-1 px-6 rounded-md shadow-buttonShadow"
+            onClick={handleClose}
+          >
             Retour
           </button>
         ) : (
@@ -34,7 +37,7 @@ function Calendar(): JSX.Element {
       {dayActive ? (
         <Picker setDayActive={setDayActive} register={register} />
       ) : (
-        <DayRecord selectedProject={selectedProject} />
+        <DayRecord selectedProject={selectedProject} handleClose={handleClose} />
       )}
     </div>
   );

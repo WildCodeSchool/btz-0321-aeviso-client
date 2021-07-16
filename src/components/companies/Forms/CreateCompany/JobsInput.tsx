@@ -13,7 +13,7 @@ function JobsInput({ register, name, jobs }: IProps): JSX.Element {
       {"Fonction de l'administrateur"}
       <select
         {...register(name)}
-        className="mt-1 dark:bg-input shadow-buttonShadow bg-whiteGray text-black dark:text-white rounded-sm py-1 px-2 sm:h-12 sm:rounded-md"
+        className="focus:outline-none mt-1 dark:bg-input shadow-buttonShadow bg-whiteGray text-black dark:text-white rounded-sm py-1 px-2 sm:h-12 sm:rounded-md"
       >
         {jobs.map((job: Job) => (
           <option key={job.id} value={job.id}>

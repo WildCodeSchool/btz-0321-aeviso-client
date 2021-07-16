@@ -99,7 +99,7 @@ function CreateNewUser({ mutationFn, setIsForm }: IFromCreateUser): JSX.Element 
           <h3 className="text-xl sm:mt-2 mr-5 sm:text-2xl font-bold">Créer un nouveau collaborateur</h3>
         )}
         <button
-          className="focus:outline-none text-white shadow-buttonShadow mt-5 w-full sm:w-3/12 sm:h-7 sm:rounded-lg rounded-lg bg-customGreen "
+          className="focus:outline-none text-white shadow-buttonShadow mt-5 w-full sm:w-3/12 sm:h-7 sm:rounded-md rounded-md bg-customGreen "
           onClick={() => {
             setIsForm(false);
           }}
@@ -144,7 +144,7 @@ function CreateNewUser({ mutationFn, setIsForm }: IFromCreateUser): JSX.Element 
         />
         {mutationFn === user.create ? <PasswordFom register={register} error={errors} /> : ''}
         <button
-          className="focus:outline-none text-white shadow-buttonShadow mt-5 sm:mt-7 w-full sm:w-4/12  sm:h-9 sm:rounded-md rounded-lg bg-customGreen "
+          className="focus:outline-none text-white shadow-buttonShadow mt-5 sm:mt-7 w-full sm:w-4/12  sm:h-9 sm:rounded-md rounded-md bg-customGreen "
           type="submit"
         >
           Envoyer

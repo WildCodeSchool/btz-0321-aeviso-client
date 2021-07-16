@@ -81,7 +81,7 @@ function InformationsCompany(): JSX.Element {
       </div>
       <button
         onClick={() => mutate()}
-        className="rounded-lg text-sm h-7 mb-5 mt-5 ml-4 text-white shadow-buttonShadow px-4 py-1 bg-customRed"
+        className="rounded-md text-sm h-7 mb-5 mt-5 ml-4 text-white shadow-buttonShadow px-4 py-1 bg-customRed"
       >
         Supprimer le client
       </button>

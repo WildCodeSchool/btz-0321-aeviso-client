@@ -51,7 +51,7 @@ function UsersInProject({ projectId }: IProps): JSX.Element {
             <div key={id} className="flex justify-between items-center mt-4 border-b border-gray-400 pb-2">
               <DisplayUser key={id} id={id} />
               <button
-                className="bg-customRed shadow-buttonShadow rounded-lg w-4/12 ml-2 text-white h-8"
+                className="bg-customRed shadow-buttonShadow rounded-md w-4/12 ml-2 text-white h-8"
                 onClick={() => removeUser({ projectId, userId: id })}
               >
                 Supprimer
@@ -76,7 +76,7 @@ function UsersInProject({ projectId }: IProps): JSX.Element {
               <div key={id} className="flex justify-between items-center mt-4  border-b border-gray-400 pb-2">
                 <DisplayUser id={id} />
                 <button
-                  className="bg-customGreen shadow-buttonShadow rounded-lg w-1/4 text-white h-8"
+                  className="bg-customGreen shadow-buttonShadow rounded-md w-1/4 text-white h-8"
                   onClick={() => addUserInProject({ projectId, userId: id })}
                 >
                   Ajouter

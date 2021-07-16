@@ -21,7 +21,7 @@ function Button({ children, handleClick, color }: IProps): JSX.Element {
   return (
     <button
       type="button"
-      className={`focus:outline-none text-white shadow-buttonShadow mt-5 sm:mt-7 w-5/12 md:w-1/4 sm:ml-5 sm:w-4/12 py-2 sm:h-10 sm:rounded-md rounded-lg ${getTheClasses(
+      className={`focus:outline-none text-white shadow-buttonShadow mt-5 sm:mt-7 w-5/12 md:w-1/4 sm:ml-5 sm:w-4/12 py-2 sm:h-10 sm:rounded-md rounded-md ${getTheClasses(
         color
       )}`}
       onClick={handleClick}

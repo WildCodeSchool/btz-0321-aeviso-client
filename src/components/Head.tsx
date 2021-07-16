@@ -29,7 +29,7 @@ function Head({ setIsSidebarVisible, setSideBarClass }: IProps): JSX.Element {
         <h2 className="text-sm mt-5 sm:text-lg">{todayDate()}</h2>
       </div>
       <button onClick={handleSidebar} className="mt-3 sm:hidden focus:outline-none">
-        <img className="bg-component rounded-lg shadow-buttonShadow px-2 h-12  w-12" src={Burger} alt="" />
+        <img className="bg-component rounded-md shadow-buttonShadow px-2 h-12  w-12" src={Burger} alt="" />
       </button>
     </div>
   );
