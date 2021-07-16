@@ -28,7 +28,7 @@ function Collaborators(): JSX.Element {
   }
 
   return (
-    <div className="dark:bg-component bg-white border-2 dark:border-componentBorder h-full sm:w-full text-black dark:text-white font-roboto rounded-lg shadow-buttonShadow dark:shadow-mainShadow sm:mx-0 overflow-y-auto">
+    <div className="dark:bg-component bg-white border-2 dark:border-componentBorder h-full sm:w-full text-black dark:text-white font-roboto rounded-md shadow-buttonShadow dark:shadow-mainShadow sm:mx-0 overflow-y-auto">
       {isForm ? (
         <CreateNewUser setIsForm={setIsForm} mutationFn={user.create} />
       ) : (

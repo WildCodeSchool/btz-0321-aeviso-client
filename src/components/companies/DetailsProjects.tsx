@@ -75,8 +75,8 @@ function DetailsProjects(): JSX.Element {
     );
 
   return (
-    <div className="flex flex-col p-2 dark:bg-component bg-white h-full sm:w-full text-black dark:text-white font-roboto rounded-lg shadow-buttonShadow dark:shadow-mainShadow overflow-y-auto">
-      <div className="p-5 bg-component">
+    <div className="flex flex-col p-2 dark:bg-component bg-white h-full sm:w-full text-black dark:text-white font-roboto rounded-md shadow-buttonShadow dark:shadow-mainShadow overflow-y-auto">
+      <div className="p-5 bg-white dark:bg-component">
         <div className="flex justify-between items-center">
           <div>
             <p className="sm:text-3xl mt-2 text-xl font-bold">Projet : {projectData?.name}</p>
@@ -98,12 +98,12 @@ function DetailsProjects(): JSX.Element {
           {projectData?.taxation === 'CII' && <p className="ml-2">{"N'est pas éligible"}</p>}
         </div>
         <p className="mt-2 text-lg">Description du projet :</p>
-        <p className="mt-1 sm:w-6/12 text-sm sm:text-base">{projectData?.description}</p>
+        <p className="mt-1 text-sm sm:text-base">{projectData?.description}</p>
         {userFromStore.role === 'USER' && <RecordsUser projectId={projectData!.id} />}
 
         <div className="mt-12">
           <div className="flex w-full flex-col sm:flex-row justify-between">
-            <p className="text-3xl font-bold">Collaborateurs</p>
+            <p className="text-3xl font-bold">Collaborateurs sur ce projet</p>
             {userFromStore.role === 'ADMIN' && (
               <Link to={`/modifier/projets/${projectData?.id}`}>
                 <p className="focus:outline-none sm:text-sm mt-3 sm:mt-0 text-xs p-2 text-white shadow-buttonShadow rounded-md bg-customBlue">
@@ -138,7 +138,7 @@ function DetailsProjects(): JSX.Element {
       {userFromStore.role === 'ADMIN' ? (
         <div className="py-5 flex w-full h-44  px-5 items-center justify-between bg-white dark:bg-component">
           <button
-            onClick={() => mutate}
+            onClick={() => mutate()}
             className="focus:outline-none  sm:text-sm text-xs p-2 text-white shadow-buttonShadow rounded-md bg-customRed"
           >
             Supprimer le projet

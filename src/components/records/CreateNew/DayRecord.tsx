@@ -14,6 +14,7 @@ import { useRecordFromStore } from '../../../store/record.slice';
 
 interface IDayRecord {
   selectedProject: string;
+  handleClose: () => void;
 }
 
 interface IData {
@@ -21,7 +22,7 @@ interface IData {
   comment: string;
 }
 
-function DayRecord({ selectedProject }: IDayRecord): JSX.Element {
+function DayRecord({ selectedProject, handleClose }: IDayRecord): JSX.Element {
   const { user } = useUserFromStore();
   const { record, dispatchAddRecord, dispatchCreateRecord } = useRecordFromStore();
   const { isModal, setIsModal, message, setMessage } = useModal();
@@ -31,14 +32,19 @@ function DayRecord({ selectedProject }: IDayRecord): JSX.Element {
   const end = new Date(record.date);
   end.setDate(end.getDate() + 1);
 
-  const { isLoading: projectLoading, data } = useQuery<Project, AxiosError>(['project', selectedProject], () =>
-    project.getOne(selectedProject)
+  const { isLoading: projectLoading, data } = useQuery<Project, AxiosError>(
+    ['project', selectedProject],
+    () => project.getOne(selectedProject),
+    {
+      enabled: Boolean(selectedProject),
+    }
   );
 
   const { isLoading: recordLoading } = useQuery<IRecord[], AxiosError>(
     ['records', record.date],
     () => project.getUserRecords(selectedProject, user.id as string, record.date.toISOString(), end.toISOString()),
     {
+      enabled: Boolean(selectedProject),
       onSuccess: (data) => {
         dispatchCreateRecord(data);
         if (data.length > 0) setValue('comment', data[0].comment);
@@ -84,25 +90,24 @@ function DayRecord({ selectedProject }: IDayRecord): JSX.Element {
     return <Spinner />;
   }
 
-  if (isModal)
-    return (
-      <Modal
-        title="Création de rapport"
-        buttons={[
-          {
-            text: 'Valider',
-            handleClick: () => {
-              setIsModal(false);
-            },
-          },
-        ]}
-      >
-        {message}
-      </Modal>
-    );
-
   return (
     <div>
+      {isModal && (
+        <Modal
+          title="Création de rapport"
+          buttons={[
+            {
+              text: 'Valider',
+              handleClick: () => {
+                setIsModal(false);
+                handleClose();
+              },
+            },
+          ]}
+        >
+          {message}
+        </Modal>
+      )}
       <div className="flex flex-col text-black dark:text-white  mx-4 sm:mx-0 mt-5 sm:mt-20">
         <h1 className="font-bold text-xl sm:text-4xl">Projet : {data?.name}</h1>
         <h2 className="font-bold sm:text-2xl mt-2 sm:mt-5">{record.date.toLocaleDateString()}</h2>
@@ -155,9 +160,15 @@ function DayRecord({ selectedProject }: IDayRecord): JSX.Element {
           </label>
           <textarea
             {...register('comment')}
-            className=" focus:outline-none bg-input shadow-inputShadow text-white rounded-lg mt-2 h-52 p-3"
+            className=" focus:outline-none bg-input shadow-inputShadow text-white rounded-md mt-2 h-52 p-3"
           />
-          <ValidateFormButton text={record.records?.length > 0 ? 'Modifier' : 'Créer'} />
+          {isTimeslot ? (
+            <ValidateFormButton text={record.records?.length > 0 ? 'Modifier' : 'Créer'} />
+          ) : (
+            <p className="my-5 font-bold sm:text-xl">
+              {"Veuillez d'abord resélectionner vos crénaux horaire avant de modifier le rapport"}
+            </p>
+          )}
         </div>
       </form>
     </div>

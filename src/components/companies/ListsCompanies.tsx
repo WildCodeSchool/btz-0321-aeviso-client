@@ -34,7 +34,7 @@ function ListsCompanies(): JSX.Element {
         />
       ) : (
         <div className="">
-          <div className="flex flex-col justify-between mb-5 sm:items-center items-start bg-white dark:bg-component shadow-inputShadow px-3 py-5">
+          <div className="flex flex-col justify-between mb-5 sm:items-center items-start bg-white dark:bg-component shadow-inputShadow px-3 py-5 sm:sticky top-0">
             <div className="flex w-full justify-between mb-2">
               <h1 className="sm:text-2xl text-xl font-bold">Liste de tous les clients</h1>
 

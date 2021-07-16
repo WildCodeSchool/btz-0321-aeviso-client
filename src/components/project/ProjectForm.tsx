@@ -108,7 +108,7 @@ function ProjectForm({ projectId }: IProps): JSX.Element {
           name="taxation"
         />
         <input
-          className="mt-5 w-4/12 py-2 rounded-lg text-white  shadow-buttonShadow bg-customGreen"
+          className="mt-5 w-4/12 py-2 rounded-md text-white  shadow-buttonShadow bg-customGreen"
           type="submit"
           value={projectId ? 'Modifier' : 'Créer'}
         />

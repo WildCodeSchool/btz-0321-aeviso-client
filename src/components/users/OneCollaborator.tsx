@@ -98,13 +98,13 @@ function OneCollaborator(): JSX.Element {
           <div className="flex flex-col sm:flex-row w-full justify-between sm:mt-5">
             <button
               onClick={handleClick}
-              className="focus:outline-none text-white shadow-buttonShadow mt-5 w-full sm:w-4/12 py-1 sm:h-8 sm:rounded-md rounded-lg bg-customGreen "
+              className="focus:outline-none text-white shadow-buttonShadow mt-5 w-full sm:w-4/12 py-1 sm:h-8 sm:rounded-md rounded-md bg-customGreen "
             >
               Modifier
             </button>
             <button
               onClick={() => mutate()}
-              className="focus:outline-none text-white shadow-buttonShadow mt-5 w-full sm:w-4/12 py-1 sm:h-8 sm:rounded-md rounded-lg bg-customRed"
+              className="focus:outline-none text-white shadow-buttonShadow mt-5 w-full sm:w-4/12 py-1 sm:h-8 sm:rounded-md rounded-md bg-customRed"
             >
               Supprimer
             </button>

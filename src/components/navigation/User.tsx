@@ -1,4 +1,4 @@
-import React from 'react';
+import React, { useState } from 'react';
 import projet from '../../../media/icons/project.svg';
 
 interface ISPNavbar {
@@ -10,60 +10,121 @@ interface ISPNavbar {
 }
 
 function User({ newReport, Home, settings, report, handleClickLink }: ISPNavbar): JSX.Element {
+  const [isActive, setIsactive] = useState<string>('');
   return (
     <div>
       <nav className="list-none pt-5">
-        <li className="flex text-sm  items-center pl-5 h-14 rounded-xl">
+        <li
+          className={`flex text-base mt-2 pl-2 items-center h-12 rounded-lg ${
+            isActive === 'acceuil'
+              ? 'bg-white dark:bg-input dark:to-customGray shadow-buttonShadow transform scale-110'
+              : 'hover:bg-mainBg hover:shadow-buttonShadow  transform hover:scale-110'
+          } `}
+        >
           <img
             src={Home}
             className="mr-3 mb-1 h-6 w-6 bg-component dark:bg-component shadow-buttonShadow p-1 rounded-full"
             alt="homesvg"
           />
-          <button className="focus:outline-none" onClick={() => handleClickLink('/aeviso')}>
+          <button
+            className="focus:outline-none"
+            onClick={() => {
+              handleClickLink('/aeviso');
+              setIsactive('accueil');
+            }}
+          >
             Accueil
           </button>
         </li>
 
-        <li className="flex text-sm  pl-5 mt-1 items-center h-14">
+        <li
+          className={`flex text-base mt-5 pl-2 items-center h-12 rounded-lg ${
+            isActive === 'nouveau rapport'
+              ? 'bg-white dark:bg-input dark:to-customGray shadow-buttonShadow transform scale-110'
+              : 'hover:bg-mainBg hover:shadow-buttonShadow  transform hover:scale-110'
+          } `}
+        >
           <img
             src={newReport}
             className="mr-3 mb-1 h-6 w-6 bg-component dark:bg-component shadow-buttonShadow p-1 rounded-full"
             alt="homesvg"
           />
-          <button className="focus:outline-none" onClick={() => handleClickLink('/rapport/nouveau')}>
+          <button
+            className="focus:outline-none"
+            onClick={() => {
+              handleClickLink('/rapport/nouveau');
+              setIsactive('nouveau rapport');
+            }}
+          >
             Nouveau rapport
           </button>
         </li>
 
-        <li className="flex text-sm  pl-5 mt-1 items-center h-14">
+        <li
+          className={`flex text-base mt-5 pl-2 items-center h-12 rounded-lg ${
+            isActive === 'rapport'
+              ? 'bg-white dark:bg-input dark:to-customGray shadow-buttonShadow transform scale-110'
+              : 'hover:bg-mainBg hover:shadow-buttonShadow  transform hover:scale-110'
+          } `}
+        >
           <img
             src={report}
             className="mr-3 mb-1 h-6 w-6 bg-component dark:bg-component shadow-buttonShadow p-1 rounded-full"
             alt="homesvg"
           />
-          <button className="focus:outline-none" onClick={() => handleClickLink('/tousmesrapports')}>
+          <button
+            className="focus:outline-none"
+            onClick={() => {
+              handleClickLink('/tousmesrapports');
+              setIsactive('rapport');
+            }}
+          >
             Mes rapports
           </button>
         </li>
 
-        <li className="flex text-sm  pl-5 mt-1 items-center h-14">
+        <li
+          className={`flex text-base mt-5 pl-2 items-center h-12 rounded-lg ${
+            isActive === 'projet'
+              ? 'bg-white dark:bg-input dark:to-customGray shadow-buttonShadow transform scale-110'
+              : 'hover:bg-mainBg hover:shadow-buttonShadow  transform hover:scale-110'
+          } `}
+        >
           <img
             src={projet}
             className="mr-3 mb-1 h-6 w-6 bg-component dark:bg-component shadow-buttonShadow p-1 rounded-full"
             alt="homesvg"
           />
-          <button className="focus:outline-none" onClick={() => handleClickLink('/mesprojets')}>
+          <button
+            className="focus:outline-none"
+            onClick={() => {
+              handleClickLink('/mesprojets');
+              setIsactive('projet');
+            }}
+          >
             Projets
           </button>
         </li>
 
-        <li className="flex  text-sm  pl-5 mt-1 items-center h-14">
+        <li
+          className={`flex text-base mt-5 pl-2 items-center h-12 rounded-lg ${
+            isActive === 'settings'
+              ? 'bg-white dark:bg-input dark:to-customGray shadow-buttonShadow transform scale-110'
+              : 'hover:bg-mainBg hover:shadow-buttonShadow  transform hover:scale-110'
+          } `}
+        >
           <img
             src={settings}
             className="mr-3 mb-1 h-6 w-6 bg-component dark:bg-component shadow-buttonShadow p-1 rounded-full"
             alt="homesvg"
           />
-          <button className="focus:outline-none" onClick={() => handleClickLink('/reglages')}>
+          <button
+            className="focus:outline-none"
+            onClick={() => {
+              handleClickLink('/reglages');
+              setIsactive('settings');
+            }}
+          >
             Réglages
           </button>
         </li>

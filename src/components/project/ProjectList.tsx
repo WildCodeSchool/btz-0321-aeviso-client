@@ -24,9 +24,9 @@ function ProjectList(): JSX.Element {
   }
 
   return (
-    <div className="dark:bg-component bg-white h-full sm:w-full text-black dark:text-white font-roboto rounded-lg shadow-mainShadow  sm:mx-0 sm:px-0  overflow-y-auto">
+    <div className="dark:bg-component bg-white h-full sm:w-full text-black dark:text-white font-roboto rounded-md shadow-mainShadow  sm:mx-0 sm:px-0  overflow-y-auto">
       <div className="flex flex-col sm:flex-row p-5 justify-between bg-white dark:bg-component shadow-buttonShadow dark:shadow-mainShadow sm:items-center items-start sm:sticky top-0">
-        <h1 className="sm:text-xl text-2xl font-bold">Projets</h1>
+        <h1 className="text-2xl font-bold">Projets</h1>
         <button
           className="focus:outline-none sm:text-xs text-xs text-white bg-customBlue px-2 mt-5 sm:mt-0 sm:py-1 shadow-buttonShadow rounded-md flex items-center"
           onClick={() => history.push('/nouveau/projet')}

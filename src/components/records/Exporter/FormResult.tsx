@@ -78,24 +78,42 @@ function FormResult(): JSX.Element {
   }
 
   return (
-    <div className="flex flex-col justify-between dark:bg-component bg-white border dark:border-componentBorder h-full sm:w-full text-black dark:text-white font-roboto rounded-lg shadow-buttonShadow dark:shadow-mainShadow mx-4 sm:mx-0">
+    <div className="flex flex-col justify-between dark:bg-component bg-white border dark:border-componentBorder h-full sm:w-full text-black dark:text-white font-roboto rounded-md shadow-buttonShadow dark:shadow-mainShadow mx-4 sm:mx-0 overflow-y-auto">
       <div>
-        <div className="flex justify-between items-start mx-4 mt-5">
-          <div>
-            <h1 className="sm:text-4xl text-xl mr-5">Entreprise : {company?.name}</h1>
-            <h1 className="sm:text-4xl mt-2 text-xl mr-5">Projet : {prjt?.name} </h1>
+        <div className="bg-white dark:bg-component shadow-buttonShadow  sm:sticky top-0">
+          <div className="flex justify-between items-start mx-4 py-3">
+            <div>
+              <h1 className="font-bold text-xl mr-5">Entreprise : {company?.name}</h1>
+              <h1 className="font-bold mt-2 text-xl mr-5">Projet : {prjt?.name} </h1>
+            </div>
+            <Link to="/records/export">
+              <button className="focus:outline-none sm:w-full rounded-md mt-8 h-9 text-white shadow-buttonShadow px-4 py-1 mr-3 sm:mr-0 bg-customGreen">
+                Retour
+              </button>
+            </Link>
           </div>
-          <Link to="/records/export">
-            <button className="focus:outline-none w-12/12 py-1 bg-customGreen text-white shadow-buttonShadow px-5 rounded-lg">
-              Retour
-            </button>
-          </Link>
+          <div className="flex mt-5 w-full justify-between">
+            <h1 className="text-base sm:text-lg mx-4 sm:mx-6 sm:mb-8">
+              Rapport du {start && start.toLocaleDateString()} au {end && end.toLocaleDateString()}
+            </h1>
+            <a
+              href={exportToCsv({
+                company: company?.name,
+                project: prjt?.name,
+                start: start?.toLocaleDateString() as string,
+                end: end?.toLocaleDateString() as string,
+                records: usersStats,
+              })}
+              download={`${company?.name}_${
+                prjt?.name
+              }_${start?.toLocaleDateString()}_${end?.toLocaleDateString()}.csv`}
+              className="flex text-sm h-8 sm:text-base text-white items-center bg-customBlue px-4 py-1 shadow-buttonShadow rounded-md mx-4 sm:mx-6 w-max"
+            >
+              Télécharger le rapport <img className="ml-2" src={cloud} alt="cloud" />
+            </a>
+          </div>
         </div>
-        <div className="mt-10">
-          <h1 className="text-base sm:text-xl mx-4 sm:mx-6 sm:mb-10">
-            Rapport du {start && start.toLocaleDateString()} au {end && end.toLocaleDateString()}
-          </h1>
-
+        <div className="mb-20">
           {users.map((user) => {
             return (
               <div className="dark:text-white text-black mx-4 sm:mx-6 flex " key={user.id}>
@@ -114,20 +132,7 @@ function FormResult(): JSX.Element {
           })}
         </div>
       </div>
-      <div>
-        <a
-          href={exportToCsv({
-            company: company?.name,
-            project: prjt?.name,
-            start: start?.toLocaleDateString() as string,
-            end: end?.toLocaleDateString() as string,
-            records: usersStats,
-          })}
-          download={`${company?.name}_${prjt?.name}_${start?.toLocaleDateString()}_${end?.toLocaleDateString()}.csv`}
-          className="flex text-sm sm:text-base text-white items-center bg-customBlue px-4 py-1 shadow-buttonShadow rounded-lg mx-4 sm:mx-6 w-max"
-        >
-          Télécharger le rapport <img className="ml-2" src={cloud} alt="cloud" />
-        </a>
+      <div className="shadow-inputShadow sm:sticky bottom-0 ">
         <TotalHours />
       </div>
     </div>
