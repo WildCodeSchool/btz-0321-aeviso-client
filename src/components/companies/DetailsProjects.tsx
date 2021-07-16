@@ -103,7 +103,7 @@ function DetailsProjects(): JSX.Element {
 
         <div className="mt-12">
           <div className="flex w-full flex-col sm:flex-row justify-between">
-            <p className="text-3xl font-bold">Collaborateurs</p>
+            <p className="text-3xl font-bold">Collaborateurs sur ce projet</p>
             {userFromStore.role === 'ADMIN' && (
               <Link to={`/modifier/projets/${projectData?.id}`}>
                 <p className="focus:outline-none sm:text-sm mt-3 sm:mt-0 text-xs p-2 text-white shadow-buttonShadow rounded-md bg-customBlue">
