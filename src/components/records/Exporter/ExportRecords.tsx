@@ -19,7 +19,7 @@ function ExportRecords(): JSX.Element {
   return (
     <div className="dark:bg-component bg-white border-2 dark:border-componentBorder h-full sm:w-full text-black dark:text-white font-roboto rounded-md shadow-buttonShadow dark:shadow-mainShadow overflow-y-auto">
       <div className="px-3 py-3 bg-white dark:bg-component shadow-buttonShadow dark:shadow-mainShadow sm:sticky top-0">
-        <h1 className="text-3xl font-bold">Exporter un rapport</h1>
+        <h1 className="text-2xl font-bold">Exporter un rapport</h1>
         <h2 className="sm:text-sm text-sm mt-1">{`Attention vous devez obligatoirement remplir tous les champs afin d'exporter un rapport`}</h2>
       </div>
       <form

@@ -11,14 +11,14 @@ interface ISPNavbar {
 }
 
 function Admin({ Home, report, settings, newReport, handleClickLink }: ISPNavbar): JSX.Element {
-  const [isActive, setIsactive] = useState<string>('acceuil');
+  const [isActive, setIsactive] = useState<string>('');
   return (
     <div>
       <nav className="list-none pt-5">
         <li
           className={`flex text-base mt-2 pl-2 items-center h-12 rounded-lg ${
             isActive === 'accueil'
-              ? 'bg-whiteGray dark:bg-mainBg dark:to-customGray shadow-buttonShadow transform scale-110'
+              ? 'bg-whiteGray dark:bg-input shadow-buttonShadow transform scale-110'
               : 'dark:hover:bg-mainBg hover:bg-whiteGray hover:shadow-buttonShadow  transform hover:scale-110'
           } `}
         >
@@ -40,7 +40,7 @@ function Admin({ Home, report, settings, newReport, handleClickLink }: ISPNavbar
         <li
           className={`flex text-base mt-5 pl-2 items-center h-12 rounded-lg ${
             isActive === 'Nouveau Rapport'
-              ? 'bg-whiteGray dark:bg-mainBg dark:to-customGray shadow-buttonShadow transform scale-110'
+              ? 'bg-whiteGray dark:bg-input shadow-buttonShadow transform scale-110'
               : 'dark:hover:bg-mainBg hover:bg-whiteGray hover:shadow-buttonShadow  transform hover:scale-110'
           } `}
         >
@@ -62,7 +62,7 @@ function Admin({ Home, report, settings, newReport, handleClickLink }: ISPNavbar
         <li
           className={`flex text-base mt-5 pl-2 items-center h-12 rounded-lg ${
             isActive === 'Exporter un rapport'
-              ? 'bg-whiteGray dark:bg-mainBg dark:to-customGray shadow-buttonShadow transform scale-110'
+              ? 'bg-whiteGray dark:bg-input dark:to-customGray shadow-buttonShadow transform scale-110'
               : 'dark:hover:bg-mainBg hover:bg-whiteGray hover:shadow-buttonShadow  transform hover:scale-110'
           } `}
         >
@@ -84,7 +84,7 @@ function Admin({ Home, report, settings, newReport, handleClickLink }: ISPNavbar
         <li
           className={`flex text-base mt-5 pl-2 items-center h-12 rounded-lg ${
             isActive === 'Collaborateurs'
-              ? 'bg-whiteGray dark:bg-mainBg dark:to-customGray shadow-buttonShadow transform scale-110'
+              ? 'bg-whiteGray dark:bg-input dark:to-customGray shadow-buttonShadow transform scale-110'
               : 'dark:hover:bg-mainBg hover:bg-whiteGray hover:shadow-buttonShadow  transform hover:scale-110'
           } `}
         >
@@ -106,7 +106,7 @@ function Admin({ Home, report, settings, newReport, handleClickLink }: ISPNavbar
         <li
           className={`flex text-base mt-5 pl-2 items-center h-12 rounded-lg ${
             isActive === 'projet'
-              ? 'bg-whiteGray dark:bg-mainBg dark:to-customGray shadow-buttonShadow transform scale-110'
+              ? 'bg-whiteGray dark:bg-input dark:to-customGray shadow-buttonShadow transform scale-110'
               : 'dark:hover:bg-mainBg hover:bg-whiteGray hover:shadow-buttonShadow  transform hover:scale-110'
           } `}
         >
@@ -128,7 +128,7 @@ function Admin({ Home, report, settings, newReport, handleClickLink }: ISPNavbar
         <li
           className={`flex text-base mt-5 pl-2 items-center h-12 rounded-lg ${
             isActive === 'settings'
-              ? 'bg-whiteGray dark:bg-mainBg dark:to-customGray shadow-buttonShadow transform scale-110'
+              ? 'bg-whiteGray dark:bg-input dark:to-customGray shadow-buttonShadow transform scale-110'
               : 'dark:hover:bg-mainBg hover:bg-whiteGray hover:shadow-buttonShadow  transform hover:scale-110'
           } `}
         >
