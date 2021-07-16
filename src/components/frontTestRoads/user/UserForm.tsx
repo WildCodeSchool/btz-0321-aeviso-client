@@ -2,7 +2,7 @@ import React, { Dispatch, SetStateAction, useState } from 'react';
 import { useMutation, useQuery } from 'react-query';
 import { useParams } from 'react-router';
 import { SubmitHandler, useForm } from 'react-hook-form';
-import SelectInput from '../../form components/SelectInput';
+import SelectInput from '../../formComponents/SelectInput';
 import { AxiosError } from 'axios';
 import { jobs } from '../../../API/requests';
 

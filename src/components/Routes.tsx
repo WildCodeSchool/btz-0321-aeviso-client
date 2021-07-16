@@ -19,6 +19,7 @@ import Settings from './settings/Settings';
 import CreateUpdateCompany from './companies/CreateUpdateCompany';
 import ProjectsUser from './user/ProjectsUser';
 import AllRecordsUser from './user/AllRecordsUser';
+import JobsList from './jobs/JobsList';
 
 function Routes(): JSX.Element {
   const { user } = useUserFromStore();
@@ -39,7 +40,6 @@ function Routes(): JSX.Element {
         <Route exact path="/exporter/companies/:companyId/projects/:projectId" component={FormResult} />
         <Route exact path="/reglages" component={Settings} />
         <Route path="/logout" component={Logout} />
-        <Route />
       </>
     );
   }
@@ -73,6 +73,7 @@ function Routes(): JSX.Element {
         <Route exact path="/clients/:id" component={Company} />
         <Route exact path="/projects/:id" component={DetailsProjects} />
         <Route exact path="/projects" component={ProjectList} />
+        <Route exact path="/fonctions" component={JobsList} />
         <Route exact path="/reglages" component={Settings} />
         <Route path="/logout" component={Logout} />
       </>
