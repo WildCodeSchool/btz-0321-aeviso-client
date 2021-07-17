@@ -122,8 +122,8 @@ function CreateUpdateCompany({ mutationFn, mutationUs, setIsCreatForm }: IProps)
       )}
       <div className="flex w-full justify-between">
         {mutationFn === companies.put ? (
-          <div className="flex w-full justify-between items-center sm:mb-5">
-            <p className="text-2xl sm:text-4xl font-bold ">Modifier le client</p>
+          <div className="flex w-full justify-between items-center">
+            <p className="text-2xl sm:text-2xl font-bold ">Modifier le client</p>
           </div>
         ) : (
           <div className="flex w-full justify-between items-center sm:mb-5">
@@ -148,7 +148,7 @@ function CreateUpdateCompany({ mutationFn, mutationUs, setIsCreatForm }: IProps)
         <input
           type="submit"
           value={mutationFn === companies.put ? 'Modifier' : 'Créer'}
-          className="flex sm:w-full w-full mt-5 sm:mt-10 justify-center text-sm sm:text-xl text-white items-center bg-customGreen px-4 py-1 shadow-buttonShadow rounded-md  sm:mx-0"
+          className="flex sm:w-full w-full mt-5 sm:mt-5 justify-center text-sm  text-white items-center bg-customGreen px-4 py-1 shadow-buttonShadow rounded-md  sm:mx-0"
         />
       </form>
     </div>
