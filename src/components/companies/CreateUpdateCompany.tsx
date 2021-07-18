@@ -25,7 +25,7 @@ interface IProps {
 }
 
 function CreateUpdateCompany({ mutationFn, mutationUs, setIsCreatForm }: IProps): JSX.Element {
-  const { isLoading, error, data: jobsData } = useQuery<Job[], AxiosError>('jobs', jobs.getAll);
+  const { isLoading, error, data: jobsData } = useQuery<Job[], AxiosError>('jobs', () => jobs.getAll());
   const { isModal, setIsModal, message, setMessage } = useModal();
   const history = useHistory();
   const queryClient = useQueryClient();
