@@ -31,7 +31,8 @@ export const user = {
 };
 
 export const jobs = {
-  getAll: (): Promise<Job[]> => axios.get(`${API_URL}/jobs`).then((res) => res.data),
+  getAll: (users?: boolean): Promise<Job[]> =>
+    axios.get(`${API_URL}/jobs${users ? '?users=true' : ''}`).then((res) => res.data),
 
   getOne: (id: string): Promise<Job> => axios.get(`${API_URL}/jobs/${id}`).then((res) => res.data),
 
