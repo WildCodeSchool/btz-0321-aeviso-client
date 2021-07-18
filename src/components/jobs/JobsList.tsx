@@ -9,7 +9,7 @@ import JobsHeader from './JobsHeader';
 function JobsList(): JSX.Element {
   const [isModifying, setIsModifying] = useState('');
 
-  const { refetch, data } = useQuery<Job[], AxiosError>('jobs', jobs.getAll);
+  const { refetch, data } = useQuery<Job[], AxiosError>('jobs', () => jobs.getAll(true));
 
   const { mutate: deleteJob } = useMutation(jobs.delete, { onSuccess: () => refetch() });
 
@@ -69,9 +69,13 @@ function JobsList(): JSX.Element {
                       setIsModifying(job.id);
                     }}
                   >
-                    {job.label}
+                    {job.label} {`(${job?.users?.length})`}
                   </button>
-                  <Button handleClick={() => deleteJob({ id: job.id })} color="red">
+                  <Button
+                    handleClick={() => deleteJob({ id: job.id })}
+                    color={job?.users && job?.users?.length > 0 ? 'grey' : 'red'}
+                    isDisabled={job?.users && job?.users?.length > 0 ? true : false}
+                  >
                     Supprimer
                   </Button>
                 </li>
