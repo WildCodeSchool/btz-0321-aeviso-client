@@ -52,6 +52,7 @@ interface IOneUser {
 interface Job {
   id: string;
   label: string;
+  users?: string[];
 }
 
 interface Project {
