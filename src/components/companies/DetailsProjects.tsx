@@ -130,7 +130,7 @@ function DetailsProjects(): JSX.Element {
         })}
         {usersData?.length === 0 && (
           <p className="mt-5 text-4xl font-bold text-mainBg text-opacity-70">
-            {"Aucun Collaborateurs n'est affecté à ce projet"}
+            {"Aucun collaborateur n'est affecté à ce projet"}
           </p>
         )}
       </div>
