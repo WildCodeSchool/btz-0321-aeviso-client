@@ -31,7 +31,7 @@ function AllRecordsUser(): JSX.Element {
           </p>
         </Link>
       </div>
-      <div className="mx-4">
+      <div className="mx-4 mb-5">
         {data?.map((record) => {
           const date = new Date(record.date).toLocaleDateString();
           return (

@@ -56,7 +56,7 @@ function ProjectForm({ projectId }: IProps): JSX.Element {
     <div
       className={
         projectId
-          ? 'w-full sm:w-9/12 sm:ml-5 mt-5 sm:mt-0 dark:bg-component shadow-mainShadow bg-white rounded-xl p-5 '
+          ? 'w-full sm:w-9/12 sm:ml-5 mt-5 sm:mt-0 dark:bg-component shadow-mainShadow bg-white rounded-xl p-5 overflow-y-auto'
           : 'w-full h-full dark:bg-component shadow-mainShadow bg-white rounded-xl p-5 '
       }
     >
