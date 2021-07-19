@@ -15,7 +15,7 @@ function JobsInput({ register, setValue }: IProps): JSX.Element {
   const [isActive, setIsActive] = useState<boolean>(false);
   const [listOfJobs, setListOfJobs] = useState<SelectItem[]>([]);
 
-  const { refetch } = useQuery<Job[], AxiosError>('jobs', jobs.getAll, {
+  const { refetch } = useQuery<Job[], AxiosError>('jobs', () => jobs.getAll(), {
     onSuccess: (data) =>
       setListOfJobs(
         data.map((job) => {

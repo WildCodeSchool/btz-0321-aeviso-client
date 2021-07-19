@@ -59,7 +59,7 @@ function userForm(props: UserIProps | BaseIProps): JSX.Element {
 
   const [listOfJobs, setListOfJobs] = useState<SelectItem[]>([]);
 
-  useQuery<Job[], AxiosError>('jobs', jobs.getAll, {
+  useQuery<Job[], AxiosError>('jobs', () => jobs.getAll(), {
     onSuccess: (data) => {
       const jobs = data.map((job) => {
         return { value: job.id, text: job.label };
