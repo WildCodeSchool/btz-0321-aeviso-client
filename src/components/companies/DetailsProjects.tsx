@@ -41,7 +41,7 @@ function DetailsProjects(): JSX.Element {
       setIsModal(true);
     },
     onError: () => {
-      setMessage('Une erreur est survenue : Veuillez effacer les rapports et les collaborateurs avant');
+      setMessage('Une erreur est survenue : veuillez effacer les rapports et les collaborateurs avant');
       setIsModal(true);
     },
   });

@@ -25,7 +25,7 @@ function InformationsCompany(): JSX.Element {
       setIsModal(true);
     },
     onError: () => {
-      setMessage('Une erreur est survenue : Veuillez effacez les projets et les collaborateurs avant');
+      setMessage('Une erreur est survenue : veuillez effacer les projets et les collaborateurs avant');
       setIsModal(true);
     },
   });
