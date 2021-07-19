@@ -18,7 +18,7 @@ function User({ newReport, Home, settings, report, handleClickLink }: ISPNavbar)
           className={`flex text-base mt-2 pl-2 items-center h-12 rounded-lg ${
             isActive === 'acceuil'
               ? 'bg-white dark:bg-input dark:to-customGray shadow-buttonShadow transform scale-110'
-              : 'hover:bg-mainBg hover:shadow-buttonShadow  transform hover:scale-110'
+              : 'dark:hover:bg-mainBg hover:bg-whiteGray hover:shadow-buttonShadow  transform hover:scale-110'
           } `}
         >
           <img
@@ -41,7 +41,7 @@ function User({ newReport, Home, settings, report, handleClickLink }: ISPNavbar)
           className={`flex text-base mt-5 pl-2 items-center h-12 rounded-lg ${
             isActive === 'nouveau rapport'
               ? 'bg-white dark:bg-input dark:to-customGray shadow-buttonShadow transform scale-110'
-              : 'hover:bg-mainBg hover:shadow-buttonShadow  transform hover:scale-110'
+              : 'dark:hover:bg-mainBg hover:bg-whiteGray  hover:shadow-buttonShadow  transform hover:scale-110'
           } `}
         >
           <img
@@ -64,7 +64,7 @@ function User({ newReport, Home, settings, report, handleClickLink }: ISPNavbar)
           className={`flex text-base mt-5 pl-2 items-center h-12 rounded-lg ${
             isActive === 'rapport'
               ? 'bg-white dark:bg-input dark:to-customGray shadow-buttonShadow transform scale-110'
-              : 'hover:bg-mainBg hover:shadow-buttonShadow  transform hover:scale-110'
+              : 'dark:hover:bg-mainBg hover:bg-whiteGray hover:shadow-buttonShadow  transform hover:scale-110'
           } `}
         >
           <img
@@ -87,7 +87,7 @@ function User({ newReport, Home, settings, report, handleClickLink }: ISPNavbar)
           className={`flex text-base mt-5 pl-2 items-center h-12 rounded-lg ${
             isActive === 'projet'
               ? 'bg-white dark:bg-input dark:to-customGray shadow-buttonShadow transform scale-110'
-              : 'hover:bg-mainBg hover:shadow-buttonShadow  transform hover:scale-110'
+              : 'dark:hover:bg-mainBg hover:bg-whiteGray  hover:shadow-buttonShadow  transform hover:scale-110'
           } `}
         >
           <img
@@ -110,7 +110,7 @@ function User({ newReport, Home, settings, report, handleClickLink }: ISPNavbar)
           className={`flex text-base mt-5 pl-2 items-center h-12 rounded-lg ${
             isActive === 'settings'
               ? 'bg-white dark:bg-input dark:to-customGray shadow-buttonShadow transform scale-110'
-              : 'hover:bg-mainBg hover:shadow-buttonShadow  transform hover:scale-110'
+              : 'dark:hover:bg-mainBg hover:bg-whiteGray  hover:shadow-buttonShadow  transform hover:scale-110'
           } `}
         >
           <img
