@@ -1,4 +1,6 @@
+/* eslint-disable @typescript-eslint/ban-ts-comment */
 import axios from 'axios';
+// @ts-ignore
 const API_URL = import.meta.env.VITE_API_URL || 'http://localhost:5000/api/v1';
 
 axios.defaults.withCredentials = true;

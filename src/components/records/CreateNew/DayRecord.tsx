@@ -62,7 +62,7 @@ function DayRecord({ selectedProject, handleClose }: IDayRecord): JSX.Element {
       setValue('timeslot', '');
     },
     onError: () => {
-      setMessage('Une erreur est survenue lors de la création');
+      setMessage('Une erreur est survenue lors de la création. Avez-vous ajouté un commentaire ? ');
       setIsModal(true);
     },
   });

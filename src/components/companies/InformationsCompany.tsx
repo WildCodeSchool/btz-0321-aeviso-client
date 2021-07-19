@@ -25,7 +25,7 @@ function InformationsCompany(): JSX.Element {
       setIsModal(true);
     },
     onError: () => {
-      setMessage('Une erreur est survenue : Veuillez effacez les projets et les collaborateurs avant');
+      setMessage('Une erreur est survenue : veuillez effacer les projets et les collaborateurs avant');
       setIsModal(true);
     },
   });
@@ -62,7 +62,7 @@ function InformationsCompany(): JSX.Element {
         <p className="text-2xl mr-2">{companyData?.name}</p>
         <button
           onClick={() => mutate()}
-          className="rounded-md text-sm h-7 mb-5 mt-5 ml-4 text-white shadow-buttonShadow px-4 py-1 bg-customRed"
+          className="rounded-md text-sm w-4/12 h-7 mb-5 mt-5 ml-4 text-white shadow-buttonShadow px-4 py-1 bg-customRed"
         >
           Supprimer le client
         </button>

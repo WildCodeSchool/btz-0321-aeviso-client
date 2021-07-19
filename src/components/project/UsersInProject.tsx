@@ -43,7 +43,7 @@ function UsersInProject({ projectId }: IProps): JSX.Element {
   return (
     <div className="users-container flex flex-col w-full justify-around">
       <div className="flex flex-col w-full h-full dark:bg-component shadow-mainShadow bg-white rounded-xl  mt-5 sm:mt-0 sm:mr-5 overflow-y-auto">
-        <h3 className="text-3xl font-bold p-5 rounded-t-lg bg-white shadow-buttonShadow dark:shadow-inputShadow dark:bg-component sticky top-0">
+        <h3 className="text-2xl font-bold p-5 rounded-t-lg bg-white shadow-buttonShadow dark:shadow-inputShadow dark:bg-component sm:sticky top-0">
           Collaborateurs affectés au projet
         </h3>
         <div className="mx-5 pb-5">
@@ -60,13 +60,13 @@ function UsersInProject({ projectId }: IProps): JSX.Element {
           ))}
           {usersAlreadyAffected.length === 0 && (
             <p className="mt-5 text-xl font-bold text-mainBg text-opacity-70">
-              {"Aucun Collaborateurs n'est affecté à ce projet"}
+              {"Aucun Collaborateur n'est affecté à ce projet"}
             </p>
           )}
         </div>
       </div>
       <div className="flex flex-col h-full w-full pb-5 dark:bg-component shadow-mainShadow bg-white rounded-xl mt-5 overflow-y-auto">
-        <h3 className="text-3xl p-5 rounded-t-lg font-bold bg-white shadow-buttonShadow dark:shadow-inputShadow dark:bg-component sticky top-0">
+        <h3 className="text-2xl p-5 rounded-t-lg font-bold bg-white shadow-buttonShadow dark:shadow-inputShadow dark:bg-component sm:sticky top-0">
           Ajouter des collaborateurs
         </h3>
         <div className="mx-4 pb-5">

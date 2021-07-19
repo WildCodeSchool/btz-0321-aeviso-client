@@ -130,7 +130,7 @@ function CreateUpdateCompany({ mutationFn, mutationUs, setIsCreatForm }: IProps)
             <p className="text-2xl sm:text-5xl font-bold ">Créer un client</p>
             <button
               onClick={() => setIsCreatForm(false)}
-              className="focus:outline-none bg-customGreen px-5 h-9 rounded-md shadow-buttonShadow"
+              className="focus:outline-none text-white bg-customGreen px-5 h-9 rounded-md shadow-buttonShadow"
             >
               Retour
             </button>

@@ -37,11 +37,11 @@ function DetailsProjects(): JSX.Element {
 
   const { mutate } = useMutation(() => project.delete(id), {
     onSuccess: () => {
-      setMessage('Client supprimé');
+      setMessage('Projet supprimé');
       setIsModal(true);
     },
     onError: () => {
-      setMessage('Une erreur est survenue : Veuillez effacez les projets et les collaborateurs avant');
+      setMessage('Une erreur est survenue : veuillez effacer les rapports et les collaborateurs avant');
       setIsModal(true);
     },
   });
@@ -63,7 +63,7 @@ function DetailsProjects(): JSX.Element {
   if (isModal)
     return (
       <Modal
-        title="Supprimer un client"
+        title="Supprimer un projet"
         buttons={
           !error
             ? [{ text: 'Valider', handleClick: () => history.push('/aeviso') }]
@@ -99,7 +99,7 @@ function DetailsProjects(): JSX.Element {
         </div>
         <p className="mt-2 text-lg">Description du projet :</p>
         <p className="mt-1 text-sm sm:text-base">{projectData?.description}</p>
-        {userFromStore.role === 'USER' && <RecordsUser projectId={projectData!.id} />}
+        {userFromStore.role === 'USER' && <RecordsUser projectId={projectData?.id as string} />}
 
         <div className="mt-12">
           <div className="flex w-full flex-col sm:flex-row justify-between">
@@ -130,7 +130,7 @@ function DetailsProjects(): JSX.Element {
         })}
         {usersData?.length === 0 && (
           <p className="mt-5 text-4xl font-bold text-mainBg text-opacity-70">
-            {"Aucun Collaborateurs n'est affecter à ce projet"}
+            {"Aucun collaborateur n'est affecté à ce projet"}
           </p>
         )}
       </div>
