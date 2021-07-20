@@ -80,24 +80,24 @@ Run Project in preview mode
 
 ## Current issues reported
 
-. TypeScript Environment Variables for the API requests.
-Localisation : /scr/API/request.ts
-Issues:
-Currently there is a conflict between TypeScript and vite.js for this environment variables.
+. TypeScript Environment Variables for the API requests.  
+Localisation : /scr/API/request.ts  
+Issues:  
+Currently there is a conflict between TypeScript and vite.js for this environment variables.  
 We have temporarily fixed the problem by ignoring the Typescript error on the affected line.
 
-Don't worry, all resquests work well !!!
+Don't worry, all requests work well !!!
 
 Looking forward to an update from vite.js
 
 . Improve the redux dispatch interfaces. You can observe TODO taggs on the affected line.
 
-. 401 Error Landing page.
+. 401 Error Landing page.  
 When you run the landing page of the app, the API verifies your token, but your are not logged in yet, so the backend will send you an 401 Unauthorized Error and ask you to log in.
 
 Once you are logged in, the error goes away.
 
-. UX issue on the navigation sidebar
+. UX issue on the navigation sidebar  
 Currently, if you click on a button in the interfaces to change a component by a link method, the sidebar design doesn't update. The Url changes but the sideBar doesn't !
 
 . SUPERADMIN / UX issue : "CreateUpdateCompanyForm" component
