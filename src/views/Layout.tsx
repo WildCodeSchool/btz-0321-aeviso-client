@@ -28,7 +28,7 @@ function Layout(): JSX.Element {
 
       history.push(pathname + search);
     },
-    onError: () => history.push('/home'),
+    onError: () => history.push('/connexion'),
   });
 
   return (

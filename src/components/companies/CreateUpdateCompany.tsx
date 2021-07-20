@@ -113,7 +113,7 @@ function CreateUpdateCompany({ mutationFn, mutationUs, setIsCreatForm }: IProps)
           title="Le client a bien été créé ou modifié"
           buttons={
             !error
-              ? [{ text: 'Valider', handleClick: () => history.push('/aeviso') }]
+              ? [{ text: 'Valider', handleClick: () => history.push('/') }]
               : [{ text: 'Nouvel essai', handleClick: () => setIsModal(false) }]
           }
         >

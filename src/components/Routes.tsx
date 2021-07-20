@@ -26,20 +26,19 @@ function Routes(): JSX.Element {
   if (user?.role === 'ADMIN') {
     return (
       <>
-        <Route exact path="/rapport/nouveau" component={Calendar} />
-        <Route exact path="/records/export" component={ExportRecords} />
-        <Route path="/home" component={HomePage} />
-        <Route path="/aeviso" component={Admin} />
-        <Route exact path="/rapport" component={ExportRecords} />
+        <Route path="/connexion" component={HomePage} />
+        <Route exact path="/" component={Admin} />
+        <Route exact path="/saisie" component={Calendar} />
+        <Route exact path="/rapport/exporter" component={ExportRecords} />
         <Route exact path="/projets" component={ProjectList} />
         <Route exact path="/projets/:id" component={DetailsProjects} />
         <Route exact path="/nouveau/projet" component={CreateUpdateProjects} />
         <Route exact path="/modifier/projets/:id" component={CreateUpdateProjects} />
         <Route exact path="/collaborateurs" component={Collaborators} />
-        <Route path="/collaborateurs/oneuser/:id" component={User} />
-        <Route exact path="/exporter/companies/:companyId/projects/:projectId" component={FormResult} />
+        <Route path="/collaborateurs/:id" component={User} />
+        <Route exact path="/exporter/:companyId/projets/:projectId" component={FormResult} />
         <Route exact path="/reglages" component={Settings} />
-        <Route path="/logout" component={Logout} />
+        <Route path="/deconnexion" component={Logout} />
       </>
     );
   }
@@ -47,15 +46,16 @@ function Routes(): JSX.Element {
   if (user?.role === 'USER') {
     return (
       <>
-        <Route path="/home" component={HomePage} />
-        <Route exact path="/aeviso" component={User} />
+        <Route path="/connexion" component={HomePage} />
+        <Route exact path="/" component={User} />
         <Route exact path="/projets/:id" component={DetailsProjects} />
-        <Route exact path="/projects/:projectId/records" component={RecordsUser} />
-        <Route exact path="/logout" component={Logout} />
+        <Route exact path="/projets/:projectId/rapports" component={RecordsUser} />
+        <Route exact path="/deconnexion" component={Logout} />
         <Route exact path="/mesprojets" component={ProjectsUser} />
         <Route exact path="/tousmesrapports" component={AllRecordsUser} />
         <Route exact path="/rapport/nouveau" component={Calendar} />
         <Route exact path="/reglages" component={Settings} />
+        <Route path="/deconnexion" component={Logout} />
       </>
     );
   }
@@ -63,24 +63,24 @@ function Routes(): JSX.Element {
   if (user?.role === 'SUPERADMIN') {
     return (
       <>
-        <Route path="/home" component={HomePage} />
-        <Route exact path="/aeviso" component={ListsCompanies} />
-        <Route exact path="/createclient" component={CreateUpdateCompany} />
+        <Route path="/connexion" component={HomePage} />
+        <Route exact path="/" component={ListsCompanies} />
+        <Route exact path="/client/nouveau" component={CreateUpdateCompany} />
         <Route exact path="/nouveau/projet/:companyId" component={CreateUpdateProjects} />
-        <Route exact path="/exporter/companies/:companyId/projects/:projectId" component={FormResult} />
-        <Route exact path="/records/export" component={ExportRecords} />
+        <Route exact path="/exporter/:companyId/projets/:projectId" component={FormResult} />
+        <Route exact path="/rapport/exporter" component={ExportRecords} />
         <Route exact path="/modifier/projets/:id" component={CreateUpdateProjects} />
         <Route exact path="/clients/:id" component={Company} />
-        <Route exact path="/projects/:id" component={DetailsProjects} />
-        <Route exact path="/projects" component={ProjectList} />
+        <Route exact path="/projets/:id" component={DetailsProjects} />
+        <Route exact path="/projets" component={ProjectList} />
         <Route exact path="/fonctions" component={JobsList} />
         <Route exact path="/reglages" component={Settings} />
-        <Route path="/logout" component={Logout} />
+        <Route path="/deconnexion" component={Logout} />
       </>
     );
   }
 
-  return <Route exact path="/home" component={HomePage} />;
+  return <Route exact path="/connexion" component={HomePage} />;
 }
 
 export default Routes;

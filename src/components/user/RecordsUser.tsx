@@ -37,7 +37,7 @@ function RecordsUser({ projectId }: { projectId: string }): JSX.Element {
     <div className="text-black dark:text-white mt-10">
       <div className="flex w-full justify-between items-center sm:items-start">
         <p className="text-3xl font-bold mb-6">Mes rapports</p>
-        <Link to="/rapport/nouveau">
+        <Link to="/saisie">
           <p className="focus:outline-none flex items-center px-5 py-1 rounded-md shadow-buttonShadow ml-2 bg-customBlue text-white">
             Nouveau
           </p>

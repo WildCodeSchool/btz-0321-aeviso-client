@@ -11,7 +11,7 @@ function Header(): JSX.Element {
       <Link to="/companies" className="border-r border-black">
         Test companies
       </Link>
-      <Link to="/projects">Test projects</Link>
+      <Link to="/projets">Test projects</Link>
       <Link to="/Professions" className="border-r border-black">
         Test Professions
       </Link>

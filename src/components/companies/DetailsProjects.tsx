@@ -66,7 +66,7 @@ function DetailsProjects(): JSX.Element {
         title="Supprimer un projet"
         buttons={
           !error
-            ? [{ text: 'Valider', handleClick: () => history.push('/aeviso') }]
+            ? [{ text: 'Valider', handleClick: () => history.push('/') }]
             : [{ text: 'Nouvel essai', handleClick: () => setIsModal((prevState) => !prevState) }]
         }
       >

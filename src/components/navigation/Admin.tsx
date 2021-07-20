@@ -30,7 +30,7 @@ function Admin({ Home, report, settings, newReport, handleClickLink }: ISPNavbar
           <button
             className="focus:outline-none"
             onClick={() => {
-              handleClickLink('/aeviso');
+              handleClickLink('/');
               setIsactive('accueil');
             }}
           >
@@ -52,11 +52,11 @@ function Admin({ Home, report, settings, newReport, handleClickLink }: ISPNavbar
           <button
             className="focus:outline-none"
             onClick={() => {
-              handleClickLink('/rapport/nouveau');
+              handleClickLink('/saisie');
               setIsactive('Nouveau Rapport');
             }}
           >
-            Nouveau rapport
+            Saisie
           </button>
         </li>
         <li
@@ -74,7 +74,7 @@ function Admin({ Home, report, settings, newReport, handleClickLink }: ISPNavbar
           <button
             className="focus:outline-none"
             onClick={() => {
-              handleClickLink('/records/export');
+              handleClickLink('/rapport/exporter');
               setIsactive('Exporter un rapport');
             }}
           >

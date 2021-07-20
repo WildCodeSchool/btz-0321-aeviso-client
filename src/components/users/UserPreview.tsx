@@ -23,7 +23,7 @@ function UserPreview({ id }: IProps): JSX.Element {
     );
   return (
     <div className="my-5 border-b border-gray-400 pb-2">
-      <Link to={`/collaborateurs/oneuser/${data?.id}`}>
+      <Link to={`/collaborateurs/${data?.id}`}>
         <p className="font-bold sm:text-sm mb-1">
           {data?.firstName} {data?.lastName}
         </p>

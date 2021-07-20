@@ -101,7 +101,7 @@ function ExportRecords(): JSX.Element {
           title="Vos données ont bien été modifiées"
           buttons={
             !error
-              ? [{ text: 'Valider', handleClick: () => history.push('/aeviso') }]
+              ? [{ text: 'Valider', handleClick: () => history.push('/') }]
               : [{ text: 'Nouvel essai', handleClick: () => setIsModal(false) }]
           }
         >
