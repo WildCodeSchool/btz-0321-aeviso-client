@@ -53,7 +53,7 @@ function Routes(): JSX.Element {
         <Route exact path="/deconnexion" component={Logout} />
         <Route exact path="/mesprojets" component={ProjectsUser} />
         <Route exact path="/tousmesrapports" component={AllRecordsUser} />
-        <Route exact path="/rapport/nouveau" component={Calendar} />
+        <Route exact path="/saisie" component={Calendar} />
         <Route exact path="/reglages" component={Settings} />
         <Route path="/deconnexion" component={Logout} />
       </>
