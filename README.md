@@ -95,7 +95,7 @@ We didn't find yet the good type for the dispatch function use in each slices of
 
 The probleme come from the TypeScript interface. You can observe a TODO comment on the affected line.
 
-The Url change but the sideBar doesn't !
+.Improve the redux dispatch interfaces. You can observe TODO taggs on the affected line.
 
 . 401 Error Landing page.
 When you run the landing page of the app, the API verify your token, but your not loggin yet, so the backend will send you 401 Unauthorized error and ask you to loggin.
@@ -104,6 +104,8 @@ Once your logging the error go away
 
 . UX issue on the navigation sidebar
 Currently if you click on a button in the interfaces to change a component by a link methode, the sidebar design don't update.
+
+The Url change but the sideBar doesn't !
 
 . SUPERADMIN / UX issue create a new company form.
 
