@@ -36,7 +36,7 @@ function CreateNewUser({ mutationFn, setIsForm }: IFromCreateUser): JSX.Element 
 
   const { mutate, isLoading, error } = useMutation<User, AxiosError, { user: User; id?: string }>(mutationFn, {
     onSuccess: () => {
-      setMessage('Utilisateur correctement créé/modifier');
+      setMessage('Utilisateur correctement créé/modifié');
       setIsModal(true);
     },
     onError: () => {
@@ -94,7 +94,7 @@ function CreateNewUser({ mutationFn, setIsForm }: IFromCreateUser): JSX.Element 
     >
       <div className="flex w-full justify-between items-center">
         {mutationFn === user.update ? (
-          <h3 className="text-xl sm:mt-2 mr-5 sm:text-2xl font-bold">Modifier un nouveau collaborateur</h3>
+          <h3 className="text-xl sm:mt-2 mr-5 sm:text-2xl font-bold">Modifier un collaborateur</h3>
         ) : (
           <h3 className="text-xl sm:mt-2 mr-5 sm:text-2xl font-bold">Créer un nouveau collaborateur</h3>
         )}
