@@ -43,7 +43,7 @@ Don't forget to run the API before start the client : https://github.com/WildCod
 
 ## First Logging
 
-At the launch of the serve if you followed the
+Use the USER_EMAIL and USER_PASSWORD in the Environment Variables from the API to log you in.
 
 ## Development
 
