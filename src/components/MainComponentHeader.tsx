@@ -17,12 +17,12 @@ function MainComponentHeader({ register, title, setIsForm }: IProps): JSX.Elemen
   return (
     <div className="dark:bg-component bg-white shadow-buttonShadow dark:shadow-mainShadow sm:sticky p-3 sm:p-5 sm:top-0">
       <div className="flex flex-col sm:flex-row justify-between sm:items-center items-start mb-5">
-        <h1 className="sm:text-4xl text-xl font-bold">{title}</h1>
+        <h1 className="text-2xl font-bold">{title}</h1>
         <button
           onClick={handleClick}
-          className="sm:text-base text-xs text-white bg-customBlue px-2 py-1 mt-5 sm:mt-0 sm:p-2 shadow-buttonShadow rounded-md flex items-center"
+          className="focus:outline-none sm:text-xs text-xs text-white bg-customBlue px-2 mt-5 sm:mt-0 sm:py-1 shadow-buttonShadow rounded-md flex items-center"
         >
-          Créer Nouveau <img src={Plus} alt="Icône plus" className="p-1 rounded-full h-5 w-5 sm:h-6 sm:w-6" />
+          Nouveau <img src={Plus} alt="Icône plus" className="p-1 rounded-full h-5 w-5 sm:h-5 sm:w-5" />
         </button>
       </div>
       <SearchInput register={register} name="search" />

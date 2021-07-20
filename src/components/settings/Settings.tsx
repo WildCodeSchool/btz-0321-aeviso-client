@@ -12,8 +12,13 @@ import PasswordInput from '../companies/Forms/CreateCompany/PasswordInput';
 import Modal from '../Modal';
 import useModal from '../../hooks/useModal';
 
+interface ISettingsForm extends Omit<IUserForm, 'role' | 'password'> {
+  oldPassword: string;
+  newPassword: string;
+}
+
 interface IFormInput {
-  user: IUserForm;
+  user: ISettingsForm;
   id: string;
 }
 
@@ -27,6 +32,7 @@ function ExportRecords(): JSX.Element {
     formState: { errors },
     handleSubmit,
     setValue,
+    setError,
   } = useForm();
 
   setValue('user.firstName', userFromStore.firstName);
@@ -34,29 +40,50 @@ function ExportRecords(): JSX.Element {
   setValue('user.email', userFromStore.email);
 
   const {
-    mutateAsync: mutateUser,
+    mutateAsync: userMutate,
     isLoading,
     error,
-  } = useMutation<User, AxiosError, { user: User; id: string }>('user', user.update, {
+  } = useMutation<User, AxiosError, { user: User; id: string }>('user', user.updateSelf, {
     onSuccess: (data) => {
-      setMessage('Le client a bien été modifié');
-      setIsModal(true);
       dispatchUser(data);
     },
   });
+
+  const { mutateAsync: passwordMutate } = useMutation<User, AxiosError, { oldPassword: string; newPassword: string }>(
+    'user',
+    user.updatePassword,
+    {
+      onSuccess: (data) => {
+        setMessage('Les données ont bien été modifiées');
+        setIsModal(true);
+        dispatchUser(data);
+      },
+      onError: () => setError('user.oldPassword', { message: "L'ancien mot de passe est incorrect." }),
+    }
+  );
 
   const onSubmit = async (data: IFormInput) => {
     const user: User = {
       firstName: data.user.firstName,
       lastName: data.user.lastName,
       email: data.user.email,
-      password: data.user.password,
       jobId: data.user.jobId,
     };
-    await mutateUser({
-      user: { ...user },
+
+    await userMutate({
+      user,
       id: userFromStore.id as string,
     });
+
+    if (data.user.oldPassword !== data.user.newPassword) {
+      await passwordMutate({
+        oldPassword: data.user.oldPassword,
+        newPassword: data.user.newPassword,
+      });
+    }
+
+    setMessage('Les données ont bien été modifiées');
+    setIsModal(true);
   };
 
   if (isLoading) {
@@ -67,26 +94,23 @@ function ExportRecords(): JSX.Element {
     return <p className="text-black dark:text-white">An error occurred: {error.message}</p>;
   }
 
-  if (isModal) {
-    return (
-      <Modal
-        title="Vos données ont bien été modifiées"
-        buttons={
-          !error
-            ? [{ text: 'Ok', handleClick: () => history.push('/aeviso') }]
-            : [{ text: 'Nouvel essai', handleClick: () => setIsModal(false) }]
-        }
-      >
-        {message}
-      </Modal>
-    );
-  }
-
   return (
-    <div className="dark:bg-component bg-white border-2 dark:border-componentBorder h-full sm:w-full text-black dark:text-white font-roboto rounded-xl shadow-mainShadow mx-4 sm:mx-0  sm:px-10 p-5">
-      <h1 className="sm:text-5xl  text-3xl font-bold">Réglages</h1>
+    <div className="dark:bg-component bg-white border-2 dark:border-componentBorder h-full sm:w-full text-black dark:text-white font-roboto rounded-xl shadow-mainShadow mx-4 sm:mx-0  sm:px-5 p-5 overflow-y-auto">
+      {isModal && (
+        <Modal
+          title="Vos données ont bien été modifiées"
+          buttons={
+            !error
+              ? [{ text: 'Valider', handleClick: () => history.push('/') }]
+              : [{ text: 'Nouvel essai', handleClick: () => setIsModal(false) }]
+          }
+        >
+          {message}
+        </Modal>
+      )}
+      <h1 className="sm:text-4xl  text-3xl font-bold">Réglages</h1>
       <form onSubmit={handleSubmit(onSubmit)}>
-        <p>Modifier vos données</p>
+        <p className="text-base mt-2">Modifier vos informations personnelles</p>
         <div>
           <TextInput
             label="Nom"
@@ -117,28 +141,47 @@ function ExportRecords(): JSX.Element {
           />
 
           <PasswordInput
-            label="Mot de passe"
-            placeholder="Mot de passe"
+            label="Ancien mot de passe"
+            placeholder="Ancien mot de passe"
             register={register}
-            name="user.password"
+            name="user.oldPassword"
             required={false}
-            error={errors?.user?.password && 'Veuillez entrer un mot de passe'}
+            error={
+              errors?.user?.oldPassword
+                ? errors.user.oldPassword.type === 'required'
+                  ? 'Veuillez entrer votre ancien mot de passe'
+                  : errors.user.oldPassword.message
+                : undefined
+            }
           />
-
-          <PasswordInput
-            label="Confirmation du mot de passe"
-            placeholder="Confirmation de votre mot de passe"
-            register={register}
-            name="user.confirmPassword"
-            required={false}
-            error={errors?.user?.confirmPassword && 'Mot de passe different'}
-          />
+          <div className="flex flex-col sm:flex-row w-full justify-between">
+            <div className="sm:w-5/12 w-full">
+              <PasswordInput
+                label="Mot de passe"
+                placeholder="Mot de passe"
+                register={register}
+                name="user.newPassword"
+                required={false}
+                error={errors?.user?.newPassword && 'Veuillez entrer un mot de passe'}
+              />
+            </div>
+            <div className="sm:w-6/12 w-full">
+              <PasswordInput
+                label="Confirmation du mot de passe"
+                placeholder="Confirmation de votre mot de passe"
+                register={register}
+                name="user.confirmPassword"
+                required={false}
+                error={errors?.user?.confirmPassword && 'Mot de passe different'}
+              />
+            </div>
+          </div>
         </div>
         <div className="form-submit">
           <input
             type="submit"
             value="Valider"
-            className="focus:outline-none ounded-sm h-9 text-white shadow-buttonShadow px-4 py-1 mr-3 sm:mr-0 bg-customGreen"
+            className="focus:outline-none sm:w-4/12 w-full rounded-md mt-8 h-9 text-white shadow-buttonShadow px-4 py-1 mr-3 sm:mr-0 bg-customGreen"
           />
         </div>
       </form>

@@ -30,10 +30,10 @@ function TimeSlotButton({ setValue, isActive, children, isTimeslot, value, recor
   if (isModal)
     return (
       <Modal
-        title="Supression de rappport"
+        title="Supression de rapport"
         buttons={[
           {
-            text: 'OK',
+            text: 'Valider',
             handleClick: () => {
               setIsModal(false);
             },
@@ -47,8 +47,10 @@ function TimeSlotButton({ setValue, isActive, children, isTimeslot, value, recor
   return (
     <div className="flex flex-col items-center m-4 sm:m-0 sm:mr-4">
       <label
-        className={`text-black dark:text-white text-center rounded-xl px-12 py-4 w-full ${
-          isTimeslot === value ? ' bg-customGreen text-white' : 'border border-black dark:border-white'
+        className={`text-black dark:text-white text-center rounded-md px-12 py-4 w-full shadow-buttonShadow ${
+          isTimeslot === value
+            ? ' bg-customGreen text-white border border-black dark:border-white'
+            : 'border border-black dark:border-white'
         } ${!isActive ? 'dark:text-gray-500 dark:border-gray-500' : 'hover:bg-customGreen'}`}
       >
         {children}
@@ -62,7 +64,10 @@ function TimeSlotButton({ setValue, isActive, children, isTimeslot, value, recor
         />
       </label>
       {!isActive && (
-        <button className="rounded-lg mt-4 bg-customRed p-2" onClick={() => deleteRecord(recordId as string)}>
+        <button
+          className="rounded-md mt-4 bg-customRed shadow-buttonShadow p-2"
+          onClick={() => deleteRecord(recordId as string)}
+        >
           Supprimer
         </button>
       )}

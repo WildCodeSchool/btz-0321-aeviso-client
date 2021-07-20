@@ -1,9 +1,11 @@
 import { AxiosError } from 'axios';
 import React, { useState } from 'react';
 import { useQuery } from 'react-query';
+
 import { jobs, project } from '../../../API/requests';
 import { useStats } from '../../../store/stats.slice';
 import Spinner from '../../Spinner';
+import { getTotalHours, transformWeeklyBasisToNumber } from '../../../assets/exportToCsv';
 
 interface IOneUser {
   firstName: string;
@@ -20,10 +22,6 @@ function OneUser({ firstName, lastName, projectId, userId, job, start, end, week
   const [jobName, setJobName] = useState<Job>();
   const [records, setRecords] = useState<IRecord[]>([]);
 
-  const getTotalHours = (basis: 'h35' | 'h39', number: number): number => {
-    return basis === 'h35' ? number * 3.5 : number * 4;
-  };
-
   const { dispatchAddUser } = useStats();
 
   const { isLoading: recordIsLoading, error: recordIsError } = useQuery<IRecord[], AxiosError>(
@@ -32,7 +30,12 @@ function OneUser({ firstName, lastName, projectId, userId, job, start, end, week
     {
       onSuccess: (record) => {
         setRecords(record);
-        dispatchAddUser({ name: `${firstName} ${lastName}`, total: getTotalHours(weeklyBasis, record.length) });
+        dispatchAddUser({
+          name: `${firstName} ${lastName}`,
+          weeklyBasis: transformWeeklyBasisToNumber(weeklyBasis),
+          halfDays: record.length,
+          totalHours: getTotalHours(weeklyBasis, record.length),
+        });
       },
     }
   );
@@ -64,14 +67,19 @@ function OneUser({ firstName, lastName, projectId, userId, job, start, end, week
   }
 
   return (
-    <div className="flex items-end mt-5 justify-between w-full py-2 border-b border-gray-500">
+    <div className="flex items-end mt-3 justify-between w-full py-2 border-b border-gray-500">
       <div className="flex flex-col sm:flex-row sm:items-end items-start">
-        <p className="sm:text-xl text-base">
+        <p className="font-bold text-base">
           {firstName} {lastName}
         </p>
         <p className="sm:text-sm text-xs sm:ml-3 font-thin">/ {jobName?.label}</p>
       </div>
-      <p>{getTotalHours(weeklyBasis, totalHalfDays)} heures</p>
+
+      {getTotalHours(weeklyBasis, totalHalfDays) === 0 ? (
+        <p className="text-opacity-90 text-xs sm:text-sm text-mainBg">{'Aucun rapport effectué'}</p>
+      ) : (
+        <p>{getTotalHours(weeklyBasis, totalHalfDays)} heures</p>
+      )}
     </div>
   );
 }

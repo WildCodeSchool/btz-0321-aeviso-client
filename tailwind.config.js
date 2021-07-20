@@ -13,6 +13,7 @@ module.exports = {
       colors: {
         whiteGray: '#DEDDDD',
         mainBg: '#202225',
+        customGray: '#333436',
         input: '#202225',
         whiteInput: '#858585',
         componentBorder: '#37393F',

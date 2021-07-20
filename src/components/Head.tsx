@@ -14,17 +14,22 @@ function Head({ setIsSidebarVisible, setSideBarClass }: IProps): JSX.Element {
       'flex flex-col bg-white border-2 dark:border-componentBorder dark:bg-component w-screen fixed  h-screen  text-dark dark:text-white font-roboto justify-between visible sm:visible'
     );
   };
+
+  const todayDate = () => {
+    return today().charAt(0).toUpperCase() + today().slice(1);
+  };
+
   return (
     <div className="flex justify-between w-full h-full items-start sm:items-end px-2 py-1">
       <div className="flex sm:flex-row-reverse flex-col w-10/12 justify-between h-full ">
         <div className="flex-col h-full sm:hidden sm:items-end">
           <h1 className="text-4xl  font-bold">aeviso</h1>
-          <h2 className="text-sm">Expert Comptable.audit.conseil</h2>
+          <h2 className="text-sm">Expert Comptable.Audit.Conseil</h2>
         </div>
-        <h2 className="text-sm mt-5 sm:text-lg">{today()}</h2>
+        <h2 className="text-sm mt-5 sm:text-lg">{todayDate()}</h2>
       </div>
       <button onClick={handleSidebar} className="mt-3 sm:hidden focus:outline-none">
-        <img className="bg-component rounded-lg shadow-buttonShadow px-2 h-12  w-12" src={Burger} alt="" />
+        <img className="bg-component rounded-md shadow-buttonShadow px-2 h-12  w-12" src={Burger} alt="" />
       </button>
     </div>
   );

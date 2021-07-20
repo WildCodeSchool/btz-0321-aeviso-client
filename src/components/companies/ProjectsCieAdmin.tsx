@@ -34,15 +34,20 @@ function ProjectsCieAdmin(): JSX.Element {
       {data?.map((project) => {
         return (
           <div key={project.id} className="flex-row justify-around mt-5 mx-4 border-b pb-2">
-            <Link to={`/projects/${project.id}`}>
-              <p className="font-bold" key={project.id}>
+            <Link to={`/projets/${project.id}`}>
+              <p className="font-bold text-sm" key={project.id}>
                 {project.name} / {project.code}
               </p>
-              <p className="text-xs font-thin truncate">{project.description} || Total demi journées déclarées:</p>
+              <p className="text-xs mt-1 font-thin truncate">{project.description}</p>
             </Link>
           </div>
         );
       })}
+      {data?.length === 0 && (
+        <p className="mt-5 text-2xl mx-3 font-bold text-mainBg text-opacity-70">
+          {"Cette entreprise n'a pas encore de projet de recherche et développement"}
+        </p>
+      )}
     </div>
   );
 }

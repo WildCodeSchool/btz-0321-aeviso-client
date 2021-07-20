@@ -19,8 +19,9 @@ function Picker({ setDayActive, register }: IPicker): JSX.Element {
   const { dispatchSelectDate } = useRecordFromStore();
 
   const handleChange = (date: Date) => {
-    dispatchSelectDate(getLocaleDate(date));
     setDayActive(false);
+
+    dispatchSelectDate(getLocaleDate(date));
   };
 
   const { user: userStore } = useUserFromStore();
@@ -43,29 +44,41 @@ function Picker({ setDayActive, register }: IPicker): JSX.Element {
 
   return (
     <div>
-      <div className="flex w-full sm:mt-10  justify-between sm:items-end flex-col sm:flex-row"></div>
-      <div className="mx-3 sm:mx-0 mt-5 ">
-        <label className="font-bold sm:text-2xl mt-10" htmlFor="select">
-          1. Sélectionner un projet
-        </label>
+      {data?.length === 0 ? (
+        <p className="mx-4 sm:mx-2 mt-5 text-lg">
+          {"Vous n'êtes actuellement affilez à aucun projet vous ne pouvez donc pas encore effectuer de rapport"}
+        </p>
+      ) : (
+        <div>
+          <div className="flex w-full sm:mt-5  justify-between sm:items-end flex-col sm:flex-row"></div>
 
-        <select
-          {...register('project', { value: data?.[0]?.id || '' })}
-          className="focus:outline-none w-full text-black dark:text-gray-300 text-sm bg-white dark:bg-component border-b pt-3 pb-2 border-black dark:border-white"
-        >
-          {data?.map((project) => {
-            return (
-              <option value={project.id} key={project.id}>
-                {project.name}
-              </option>
-            );
-          })}
-        </select>
-      </div>
-      <p className="font-bold sm:text-2xl mx-4 sm:mx-0 mt-10">2. Pour créer un rapport sélectionnez une journée</p>
-      <div className="flex mt-5 mb-10 w-12/12 mx-4 sm:mx-0 bg-white  dark:bg-component rounded-xl">
-        <Calendar onChange={handleChange} />
-      </div>
+          <div className="mx-3 sm:mx-0 mt-2">
+            <label className="font-bold sm:text-xl mt-5" htmlFor="select">
+              Sélectionner un projet
+            </label>
+
+            <select
+              {...register('project', { value: data?.[0]?.id || '' })}
+              className="focus:outline-none w-full text-black dark:text-gray-300 text-sm bg-white dark:bg-component border-b pt-3 pb-2 border-black dark:border-white"
+            >
+              {data?.map((project) => {
+                return (
+                  <option value={project.id} key={project.id}>
+                    {project.name}
+                  </option>
+                );
+              })}
+            </select>
+          </div>
+
+          <p className="font-bold sm:text-lg mx-4 sm:mx-0 mt-7">
+            Pour créer un rapport, veuillez sélectionner une journée
+          </p>
+          <div className="flex mt-5 mb-10 w-12/12 mx-4 sm:mx-0 bg-white  dark:bg-component rounded-xl">
+            <Calendar onChange={handleChange} maxDate={new Date()} />
+          </div>
+        </div>
+      )}
     </div>
   );
 }

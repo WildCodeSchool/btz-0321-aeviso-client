@@ -16,13 +16,14 @@ interface IProps {
       confirmPassword?: string;
     };
   };
+  mutationUs: (variables: { user: User; id: string }) => Promise<User>;
 }
 
-function AdministratorInputs({ register, errors }: IProps): JSX.Element {
+function AdministratorInputs({ register, errors, mutationUs }: IProps): JSX.Element {
   return (
     <>
       <AdministratorIdentity register={register} errors={errors} />
-      <AdministratorCredentials register={register} errors={errors} />
+      <AdministratorCredentials mutationUs={mutationUs} register={register} errors={errors} />
     </>
   );
 }

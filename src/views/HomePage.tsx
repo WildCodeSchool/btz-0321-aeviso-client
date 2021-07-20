@@ -42,7 +42,7 @@ function HomePage(): JSX.Element {
 
   const handleLogin = () => {
     if (data) dispatchLogin(data?.user);
-    history.push('/aeviso');
+    history.push('/');
   };
 
   if (isLoading) return <Spinner />;
@@ -87,7 +87,7 @@ function HomePage(): JSX.Element {
           type="password"
           {...register('password', { required: true })}
         />
-        <input className="bg-customGreen py-1 rounded-lg w-11/12 mt-16 shadow-inputShadow" type="submit" />
+        <input className="bg-customGreen py-1 rounded-md w-11/12 mt-16 shadow-inputShadow" type="submit" />
       </form>
     </div>
   );

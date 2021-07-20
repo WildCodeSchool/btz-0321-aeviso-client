@@ -24,7 +24,10 @@ function Users(): JSX.Element {
 
   if (isModal)
     return (
-      <Modal title="Utilisateurs" buttons={[{ text: 'Ok', handleClick: () => setIsModal((prevState) => !prevState) }]}>
+      <Modal
+        title="Utilisateurs"
+        buttons={[{ text: 'Valider', handleClick: () => setIsModal((prevState) => !prevState) }]}
+      >
         {message}
       </Modal>
     );

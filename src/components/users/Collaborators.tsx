@@ -28,14 +28,14 @@ function Collaborators(): JSX.Element {
   }
 
   return (
-    <div className="dark:bg-component bg-white border-2 dark:border-componentBorder h-full sm:w-full text-black dark:text-white font-roboto rounded-lg shadow-buttonShadow dark:shadow-mainShadow sm:mx-0 overflow-y-auto">
+    <div className="dark:bg-component bg-white border-2 dark:border-componentBorder h-full sm:w-full text-black dark:text-white font-roboto rounded-md shadow-buttonShadow dark:shadow-mainShadow sm:mx-0 overflow-y-auto">
       {isForm ? (
         <CreateNewUser setIsForm={setIsForm} mutationFn={user.create} />
       ) : (
         <div>
-          <MainComponentHeader setIsForm={setIsForm} register={register} title="Liste des collaborateurs" />
+          <MainComponentHeader setIsForm={setIsForm} register={register} title="Collaborateurs" />
 
-          <div className="sm:mt-7 mt-5 mx-3 sm:mx-8">
+          <div className="sm:mt-2 mt-5 mx-3 sm:mx-4">
             {data?.map((user) => {
               return <UserPreview key={user.id} id={user.id as string} />;
             })}

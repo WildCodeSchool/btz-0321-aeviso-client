@@ -26,12 +26,12 @@ function AdministratorIdentity({ register, errors }: IProps): JSX.Element {
       />
 
       <TextInput
-        label="Prenom de l'administrateur"
-        placeholder="Prenom"
+        label="Prénom de l'administrateur"
+        placeholder="Prénom"
         register={register}
         name="user.firstName"
         required={true}
-        error={errors?.user?.firstName && "Veuillez entrer le prenom de l'administrateur"}
+        error={errors?.user?.firstName && "Veuillez entrer le prénom de l'administrateur"}
       />
     </>
   );

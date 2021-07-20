@@ -1,4 +1,6 @@
+/* eslint-disable @typescript-eslint/ban-ts-comment */
 import axios from 'axios';
+// @ts-ignore
 const API_URL = import.meta.env.VITE_API_URL || 'http://localhost:5000/api/v1';
 
 axios.defaults.withCredentials = true;
@@ -19,22 +21,29 @@ export const user = {
     return axios.put(`${API_URL}/users/${id}`, user).then((res) => res.data);
   },
 
+  updateSelf: ({ user }: { user: User; id: string }): Promise<User> =>
+    axios.put(`${API_URL}/users/self`, user).then((res) => res.data),
+
+  updatePassword: ({ oldPassword, newPassword }: { oldPassword: string; newPassword: string }): Promise<User> =>
+    axios.put(`${API_URL}/users/self/password`, { oldPassword, newPassword }).then((res) => res.data),
+
   getProjects: (id: string): Promise<Project[]> => axios.get(`${API_URL}/users/${id}/projects`).then((res) => res.data),
 
-  getRecords: (id: string): Promise<IRecord> => axios.get(`${API_URL}/users/${id}/records`).then((res) => res.data),
+  getRecords: (id: string): Promise<IRecord[]> => axios.get(`${API_URL}/users/${id}/records`).then((res) => res.data),
 };
 
 export const jobs = {
-  getAll: (): Promise<Job[]> => axios.get(`${API_URL}/jobs`).then((res) => res.data),
+  getAll: (users?: boolean): Promise<Job[]> =>
+    axios.get(`${API_URL}/jobs${users ? '?users=true' : ''}`).then((res) => res.data),
 
   getOne: (id: string): Promise<Job> => axios.get(`${API_URL}/jobs/${id}`).then((res) => res.data),
 
   delete: ({ id }: { id: string }): Promise<null> => axios.delete(`${API_URL}/jobs/${id}`).then((res) => res.data),
 
-  create: (job: Job): Promise<Job> => axios.post(`${API_URL}/jobs`, job).then((res) => res.data),
+  create: (job: { label: string }): Promise<Job> => axios.post(`${API_URL}/jobs`, job).then((res) => res.data),
 
-  update: ({ job, id }: { job: Job; id?: string }): Promise<null> =>
-    axios.put(`${API_URL}/jobs/${id}`, job).then((res) => res.data),
+  update: ({ data, id }: { data: { label: string }; id?: string }): Promise<Job> =>
+    axios.put(`${API_URL}/jobs/${id}`, data).then((res) => res.data),
 };
 
 export const project = {

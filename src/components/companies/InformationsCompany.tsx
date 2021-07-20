@@ -25,7 +25,7 @@ function InformationsCompany(): JSX.Element {
       setIsModal(true);
     },
     onError: () => {
-      setMessage('Une erreur est survenue');
+      setMessage('Une erreur est survenue : veuillez effacer les projets et les collaborateurs avant');
       setIsModal(true);
     },
   });
@@ -48,7 +48,7 @@ function InformationsCompany(): JSX.Element {
         title="Supprimer un client"
         buttons={
           !error
-            ? [{ text: 'ok', handleClick: () => history.push('/clients') }]
+            ? [{ text: 'Valider', handleClick: () => history.push('/') }]
             : [{ text: 'Nouvel essai', handleClick: () => setIsModal((prevState) => !prevState) }]
         }
       >
@@ -58,24 +58,26 @@ function InformationsCompany(): JSX.Element {
 
   return (
     <div className="text-black dark:text-white">
-      <div className="py-4 px-4 text-lg font-bold flex justify-between items-center bg-white dark:bg-component shadow-inputShadow sm:sticky sm:top-0 ">
-        <p className="text-xl mr-2">Informations Clients</p>
-      </div>
-      <div className="border-b pb-2 mt-5 mx-4">
-        <p className="font-bold text-base">{"Nom de l'entreprise"}</p>
-        <p className="text-sm font-thin">{companyData?.name}</p>
+      <div className="px-4 text-lg font-bold flex justify-between items-center bg-white dark:bg-component shadow-inputShadow sm:sticky sm:top-0 ">
+        <p className="text-2xl mr-2">{companyData?.name}</p>
+        <button
+          onClick={() => mutate()}
+          className="rounded-md text-sm w-4/12 h-7 mb-5 mt-5 ml-4 text-white shadow-buttonShadow px-4 py-1 bg-customRed"
+        >
+          Supprimer le client
+        </button>
       </div>
       <div>
         {usersCompany?.map((data) => (
           <div key={data.id} className="mt-5 mx-4">
             <div className="mb-3 border-b pb-2">
-              <p className="font-bold text-base">Administrateur</p>
+              <p className="font-bold text-sm">Administrateur</p>
               <p className="text-sm font-thin">
                 {data.firstName} {data.lastName}
               </p>
             </div>
-            <div className="border-b pb-2 mt-5">
-              <p className="font-bold text-base">Contact</p>
+            <div className="border-b pb-2 mt-5 mb-2">
+              <p className="font-bold text-sm">Contact</p>
               <a className="text-sm font-thin" href={`mailto: ${data.email}`}>
                 Envoyer un email: {data.email}
               </a>
@@ -83,12 +85,6 @@ function InformationsCompany(): JSX.Element {
           </div>
         ))}
       </div>
-      <button
-        onClick={() => mutate()}
-        className="rounded-sm h-9 mt-10 ml-4 text-white shadow-buttonShadow px-4 py-1 bg-customRed"
-      >
-        Supprimer le client
-      </button>
     </div>
   );
 }
