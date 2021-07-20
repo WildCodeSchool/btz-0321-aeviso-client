@@ -56,7 +56,7 @@ function Admin({ Home, report, settings, newReport, handleClickLink }: ISPNavbar
               setIsactive('Nouveau Rapport');
             }}
           >
-            Saisie
+            Effectuer une saisie
           </button>
         </li>
         <li
