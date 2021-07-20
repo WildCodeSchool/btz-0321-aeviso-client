@@ -11,41 +11,48 @@ Team:
 
 THIS APP ONLY WORKS WITH API: https://github.com/WildCodeSchool/btz-0321-aeviso-api
 
+## Description of the project
+
+As part of our wildcode training, we have the pleasur to present our last project of the session. The main goal of this webapp is to report the serach and devellopement working hours from a collaborators of a company. An then send the datas to a accounting firm who's the project holder. These data allow a company to obtain a specific legal status. which allows them to have a reduced taxation.
+
+Our goal is to create a interfaces that is quick and easy to use. In order to optimize the working time and help companies to get there juridic status.
+
 ## Environment Variables
 
 To run this project, you will need to add the following environment variables to your .env file
 
 `VITE_API_URL=url-of-the-api`
+`CI= npm run build`
 
 ## Setup
 
-```bash
-  npm install
-```
+Don't forget to run the API before start the client : https://github.com/WildCodeSchool/btz-0321-aeviso-api
+
+- run `$ git clone https://github.com/WildCodeSchool/btz-0321-aeviso-client.git` in your terminal
+- run `$ cd btz-0321-aeviso-client`
+- run `npm install `
+
+## First Logging
+
+At the launch of the serve if you followed the
 
 ## Development
 
 Run development server
 
-```bash
-  npm run dev
-```
+- run `npm run dev`
 
 ## Production
 
 Build the project
 
-```bash
-  npm run build
-```
+- run `npm run build`
 
 ## ES lint
 
 Run ES lint checks
 
-```bash
-  npm run lint
-```
+- run `npm run lint`
 
 ## Build preview
 
@@ -54,3 +61,36 @@ Run Project in preview mode
 ```bash
   npm run serve
 ```
+
+## Librairy used
+
+. React hook form : https://react-hook-form.com/
+. React Query : https://react-query.tanstack.com/
+. Axios : https://axios-http.com/docs/intro
+. React Calendar : https://www.npmjs.com/package/react-calendar
+
+## Current issues reported
+
+. TypeScript Environment Variables for the API requests.
+Localisation : /scr/API/request.ts
+issues: Currently there is a conflit between TypeScript and vite.js for this environment varibales.
+we temporarily fixed the problem by ignored typescript on the affected line.
+
+don't worry, all resquests works well !!!
+
+Looking forward to an update from vite.js
+
+. Type Any in redux.
+We didn't find yet the good type for the dispatch function use in each slices of redux.
+
+The probleme come from the TypeScript interface. You can observe a TODO comment on the affected line.
+
+. UX issue on the navigation sidebar
+Currently if you click on a button in the interfaces to change a component by a link methode, the sidebar design don't update.
+
+The Url change but the sideBar doesn't !
+
+. 401 Error Landing page.
+When you run the landing page of the app, the API verify your token, but your not loggin yet, so the backend will send you 401 Unauthorized error and ask you to loggin.
+
+Once your logging the error go away

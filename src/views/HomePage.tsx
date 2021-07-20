@@ -86,7 +86,7 @@ function HomePage(): JSX.Element {
           {...register('email', { required: true })}
         />
         <label className="mt-5" htmlFor="Password">
-          Mots de passe{' '}
+          Mot de passe{' '}
         </label>
         <input
           className="focus:outline-none bg-white bg-opacity-0 mt-2 px-3 w-11/12 h-12 border-b border-white"
