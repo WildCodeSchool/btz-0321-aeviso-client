@@ -8,10 +8,16 @@ import Modal from '../components/Modal';
 import Spinner from '../components/Spinner';
 import useModal from '../hooks/useModal';
 import { useUserFromStore } from '../store/user.slice';
+import { AxiosError } from 'axios';
 
 interface IFormInput {
   email: string;
   password: string;
+}
+
+interface IResMutation {
+  message: string;
+  user: User;
 }
 
 function HomePage(): JSX.Element {
@@ -21,11 +27,11 @@ function HomePage(): JSX.Element {
   const { isModal, setIsModal, message, setMessage } = useModal();
   const { dispatchLogin } = useUserFromStore();
 
-  const { mutate, isLoading, isError, data } = useMutation(auth.login, {
-    onError: () => {
-      setMessage('Une erreur est survenue');
-      setIsModal((prevState) => !prevState);
-    },
+  const { mutate, isLoading, isError, data, error } = useMutation<
+    IResMutation,
+    AxiosError<{ message_en: string; message_fr: string }>,
+    IFormInput
+  >(auth.login, {
     onSuccess: () => {
       setMessage('Vous êtes bien authentifié');
       setIsModal((prevState) => !prevState);
@@ -88,6 +94,7 @@ function HomePage(): JSX.Element {
           {...register('password', { required: true })}
         />
         <input className="bg-customGreen py-1 rounded-md w-11/12 mt-16 shadow-inputShadow" type="submit" />
+        <p className="text-red-500 mt-10 underline">{error?.response?.data?.message_fr}</p>
       </form>
     </div>
   );
