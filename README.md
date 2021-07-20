@@ -73,10 +73,10 @@ Run Project in preview mode
 
 ## Librairy used
 
-. React hook form : https://react-hook-form.com/
-. React Query : https://react-query.tanstack.com/
-. Axios : https://axios-http.com/docs/intro
-. React Calendar : https://www.npmjs.com/package/react-calendar
+- React hook form : https://react-hook-form.com/
+- React Query : https://react-query.tanstack.com/
+- Axios : https://axios-http.com/docs/intro
+- React Calendar : https://www.npmjs.com/package/react-calendar
 
 ## Current issues reported
 
