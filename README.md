@@ -1,6 +1,6 @@
 # AE Viso - Client project
 
-Front-en app: Wild Code School project #3
+Front-End App: Wild Code School project #3
 
 Team:  
  -Aeryle: https://github.com/Aeryle  
@@ -35,13 +35,14 @@ To run this project, you will need to add the following environment variables to
 
 ## Setup
 
-Don't forget to run the API before start the client : https://github.com/WildCodeSchool/btz-0321-aeviso-api
+Don't forget to run the API before starting the client : https://github.com/WildCodeSchool/btz-0321-aeviso-api
 
-- run `$ git clone https://github.com/WildCodeSchool/btz-0321-aeviso-client.git` in your terminal
+- run `$ git clone https://github.com/WildCodeSchool/btz-0321-aeviso-client.git`  
+  in your terminal
 - run `$ cd btz-0321-aeviso-client`
 - run `npm install `
 
-## First Logging
+## First Log
 
 Use the USER_EMAIL and USER_PASSWORD in the Environment Variables from the API to log you in.
 
@@ -71,9 +72,9 @@ Run Project in preview mode
   npm run serve
 ```
 
-## Librairy used
+## Library used
 
-- React hook form : https://react-hook-form.com/
+- React Hook Form : https://react-hook-form.com/
 - React Query : https://react-query.tanstack.com/
 - Axios : https://axios-http.com/docs/intro
 - React Calendar : https://www.npmjs.com/package/react-calendar
@@ -81,14 +82,14 @@ Run Project in preview mode
 ## Current issues reported
 
 . TypeScript Environment Variables for the API requests.  
-Localisation : /scr/API/request.ts  
+path : /src/API/request.ts  
 Issues:  
-Currently there is a conflict between TypeScript and vite.js for this environment variables.  
+Currently there is a conflict between TypeScript and Vite.js for this environment variables.  
 We have temporarily fixed the problem by ignoring the Typescript error on the affected line.
 
 Don't worry, all requests work well !!!
 
-Looking forward to an update from vite.js
+Looking forward to an update from Vite.js
 
 . Improve the redux dispatch interfaces. You can observe TODO taggs on the affected line.
 
@@ -97,10 +98,12 @@ When you run the landing page of the app, the API verifies your token, but your 
 
 Once you are logged in, the error goes away.
 
-. UX issue on the navigation sidebar  
-Currently, if you click on a button in the interfaces to change a component by a link method, the sidebar design doesn't update. The Url changes but the sideBar doesn't !
+. UX issue on the navigation sidebar.  
+Currently, if you click on a button in the interfaces to change a component by a link method, the sidebar design doesn't update.Url change but the sideBar doesn't !
 
 . SUPERADMIN / UX issue : "CreateUpdateCompanyForm" component
 
 If you try to create a new job for one of the company's administrator, you will arrive on the job component.
 Then, if you click on the return button you will be redirected to the companies list instead of the form.
+
+ps: we are frenchies, sorry about the english ;)
