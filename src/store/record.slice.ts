@@ -9,15 +9,36 @@ export interface RecordState {
   records: IRecord[];
 }
 
+// TODO: find the good dispatch types
 interface ReturnUseRecordsFromStore {
   record: RecordState;
-  dispatchSelectDate: (payload: Date) => any;
-  dispatchConnectUser: (payload: string) => any;
-  dispatchConnectProject: (payload: string) => any;
-  dispatchCreateRecord: (payload: IRecord[]) => any; // TODO: find the good type
-  dispatchDeleteRecord: (payload: string) => any;
-  dispatchAddRecord: (payload: IRecord) => any;
-  dispatchResetState: () => any;
+  dispatchSelectDate: (payload: Date) => {
+    type: string;
+    payload: Date;
+  };
+  dispatchConnectUser: (payload: string) => {
+    type: string;
+    payload: string;
+  };
+  dispatchConnectProject: (payload: string) => {
+    type: string;
+    payload: string;
+  };
+  dispatchCreateRecord: (payload: IRecord[]) => {
+    type: string;
+    payload: IRecord[];
+  };
+  dispatchDeleteRecord: (payload: string) => {
+    type: string;
+    payload: string;
+  };
+  dispatchAddRecord: (payload: IRecord) => {
+    type: string;
+    payload: IRecord;
+  };
+  dispatchResetState: () => {
+    type: string;
+  };
 }
 
 const initialState: RecordState = {

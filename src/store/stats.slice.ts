@@ -30,10 +30,16 @@ export const statsSlice = createSlice({
 
 export const { addUser, reset } = statsSlice.actions;
 
+// TODO: Improve dispatch types
 interface ReturnUseState {
   users: UserSelection[];
-  dispatchAddUser: (payload: UserSelection) => any; // TODO: find the good type
-  dispatchReset: () => any;
+  dispatchAddUser: (payload: UserSelection) => {
+    payload: UserSelection;
+    type: string;
+  };
+  dispatchReset: () => {
+    type: string;
+  };
 }
 
 export const useStats = (): ReturnUseState => {
