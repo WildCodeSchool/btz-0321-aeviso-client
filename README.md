@@ -13,9 +13,9 @@ THIS APP ONLY WORKS WITH API: https://github.com/WildCodeSchool/btz-0321-aeviso-
 
 ## Description of the project
 
-As part of our wildcode training, we have the pleasur to present our last project of the session. The main goal of this webapp is to report the search and development working hours from collaborators of a company. An then send the datas to a accounting firm who's the project holder. These data allow a company to obtain a specific legal status. which allows them to have a reduced taxation.
+As part of our wildcode training, we have the pleasure to present our last project of the session. The main goal of this webapp is to report the search and development working hours from company's collaborators. An then send the datas to a accounting firm who's the project holder. These data allow a company to obtain a specific legal status. which allows them to have a reduced taxation.
 
-Our goal is to create a interfaces that is quick and easy to use. In order to optimize the working time and help companies to get there juridic status.
+Our goal is to create interfaces that is quick and easy to use. In order to optimize the working time and help companies to get there juridic status.
 
 How the application works :
 
@@ -23,16 +23,15 @@ How the application works :
 
 Role 1 : SUPERADMIN if you logging as a superadmin you will acces to the accounting firm interface.
 
-Role 2 : ADMIN if you logging as a admin you will acces to the R&D manager interfaces.
+Role 2 : ADMIN if you logging as a admin you will acces to the R&D manager interface.
 
-Role 3 : USER if you logging as user you will acces to the collaborators interfaces.
+Role 3 : USER if you logging as user you will acces to the collaborators interface.
 
 ## Environment Variables
 
 To run this project, you will need to add the following environment variables to your .env file
 
 `VITE_API_URL=url-of-the-api`
-`CI= npm run build`
 
 ## Setup
 
