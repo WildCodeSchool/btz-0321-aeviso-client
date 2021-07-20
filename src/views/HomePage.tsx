@@ -42,7 +42,7 @@ function HomePage(): JSX.Element {
 
   const handleLogin = () => {
     if (data) dispatchLogin(data?.user);
-    history.push('/aeviso');
+    history.push('/');
   };
 
   if (isLoading) return <Spinner />;

@@ -29,7 +29,7 @@ function SuperAdmin({ report, settings, handleClickLink }: ISPNavbar): JSX.Eleme
           <button
             className="focus:outline-none"
             onClick={() => {
-              handleClickLink('/aeviso');
+              handleClickLink('/');
               setIsactive('client');
             }}
           >
@@ -51,7 +51,7 @@ function SuperAdmin({ report, settings, handleClickLink }: ISPNavbar): JSX.Eleme
           <button
             className="focus:outline-none"
             onClick={() => {
-              handleClickLink('/records/export');
+              handleClickLink('/rapport/exporter');
               setIsactive('export');
             }}
           >

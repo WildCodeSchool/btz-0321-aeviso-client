@@ -29,7 +29,7 @@ function User({ newReport, Home, settings, report, handleClickLink }: ISPNavbar)
           <button
             className="focus:outline-none"
             onClick={() => {
-              handleClickLink('/aeviso');
+              handleClickLink('/');
               setIsactive('accueil');
             }}
           >
@@ -52,11 +52,11 @@ function User({ newReport, Home, settings, report, handleClickLink }: ISPNavbar)
           <button
             className="focus:outline-none"
             onClick={() => {
-              handleClickLink('/rapport/nouveau');
+              handleClickLink('/saisie');
               setIsactive('nouveau rapport');
             }}
           >
-            Nouveau rapport
+            Effectuer une saisie
           </button>
         </li>
 

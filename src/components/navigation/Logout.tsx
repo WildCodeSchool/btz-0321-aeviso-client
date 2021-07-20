@@ -17,7 +17,7 @@ function Logout(): JSX.Element {
     const timeout = setTimeout(() => setTime((prevTime) => prevTime - 1), 1000);
 
     if (time === 0) {
-      history.push('/home');
+      history.push('/connexion');
     }
 
     return () => clearTimeout(timeout);

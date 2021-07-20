@@ -26,7 +26,7 @@ function ExportRecords(): JSX.Element {
         onSubmit={handleSubmit((data) => {
           const start = new Date(data.start).toISOString();
           const end = new Date(data.end).toISOString();
-          history.push(`/exporter/companies/${data.company}/projects/${data.project}?&start=${start}&end=${end}`);
+          history.push(`/exporter/${data.company}/projets/${data.project}?&start=${start}&end=${end}`);
         })}
         className="flex flex-col pb-2 mx-4"
         action="sumbit"

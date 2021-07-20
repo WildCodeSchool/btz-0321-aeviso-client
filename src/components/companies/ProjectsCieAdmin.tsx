@@ -34,7 +34,7 @@ function ProjectsCieAdmin(): JSX.Element {
       {data?.map((project) => {
         return (
           <div key={project.id} className="flex-row justify-around mt-5 mx-4 border-b pb-2">
-            <Link to={`/projects/${project.id}`}>
+            <Link to={`/projets/${project.id}`}>
               <p className="font-bold text-sm" key={project.id}>
                 {project.name} / {project.code}
               </p>

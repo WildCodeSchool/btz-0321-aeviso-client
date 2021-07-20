@@ -91,7 +91,7 @@ function SideBar({ sideBarClass, setSideBarClass }: ISideBarProps): JSX.Element 
             <h2 className="text-sm font-bold mb-2">
               {user.firstName} {user.lastName}
             </h2>
-            <Link to="/home">
+            <Link to="/deconnexion">
               <p className="focus:outline-none w-12/12 text-center text-xs h-6 text-white bg-customRed py-1 px-2 rounded-sm shadow-buttonShadow">
                 Déconnexion
               </p>

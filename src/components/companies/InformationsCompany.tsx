@@ -48,7 +48,7 @@ function InformationsCompany(): JSX.Element {
         title="Supprimer un client"
         buttons={
           !error
-            ? [{ text: 'Valider', handleClick: () => history.push('/aeviso') }]
+            ? [{ text: 'Valider', handleClick: () => history.push('/') }]
             : [{ text: 'Nouvel essai', handleClick: () => setIsModal((prevState) => !prevState) }]
         }
       >

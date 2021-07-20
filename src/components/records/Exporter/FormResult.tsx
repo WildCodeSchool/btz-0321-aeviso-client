@@ -86,7 +86,7 @@ function FormResult(): JSX.Element {
               <h1 className="font-bold text-xl mr-5">Entreprise : {company?.name}</h1>
               <h1 className="font-bold mt-2 text-xl mr-5">Projet : {prjt?.name} </h1>
             </div>
-            <Link to="/records/export">
+            <Link to="/rapport/exporter">
               <button className="focus:outline-none sm:w-full rounded-md mt-8 h-9 text-white shadow-buttonShadow px-4 py-1 mr-3 sm:mr-0 bg-customGreen">
                 Retour
               </button>
