@@ -89,17 +89,13 @@ don't worry, all resquests works well !!!
 
 Looking forward to an update from vite.js
 
-. Type Any in redux.
-We didn't find yet the good type for the dispatch function use in each slices of redux.
-
-The probleme come from the TypeScript interface. You can observe a TODO comment on the affected line.
-
 .Improve the redux dispatch interfaces. You can observe TODO taggs on the affected line.
 
 . 401 Error Landing page.
-When you run the landing page of the app, the API verify your token, but your not loggin yet, so the backend will send you 401 Unauthorized error and ask you to loggin.
+When you run the landing page of the app, the API verify your token, but your
+are not logged in yet, so the backend will send you 401 Unauthorized error and ask you to logged in.
 
-Once your logging the error go away
+Once your logged in the error go away
 
 . UX issue on the navigation sidebar
 Currently if you click on a button in the interfaces to change a component by a link methode, the sidebar design don't update.
