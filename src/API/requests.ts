@@ -61,7 +61,6 @@ export const project = {
       )
       .then((res) => res.data),
 
-  // TODO: create a real interface here
   create: ({ data }: { data: IProjectInput }): Promise<Project> =>
     axios.post(`${API_URL}/projects/`, data).then((res) => res.data),
 
