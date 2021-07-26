@@ -40,7 +40,7 @@ function SideBar({ sideBarClass, setSideBarClass }: ISideBarProps): JSX.Element 
 
   return (
     <div className={sideBarClass}>
-      <div className="py-5 px-5 ">
+      <div className="py-5 px-5">
         <div className="flex justify-between">
           <div className="flex justify-between w-full">
             <div className="flex-col h-full">

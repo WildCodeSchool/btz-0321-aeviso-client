@@ -4,31 +4,34 @@ import { useHistory } from 'react-router-dom';
 import { useMutation } from 'react-query';
 
 import { auth } from '../API/requests';
-import Modal from '../components/Modal';
 import Spinner from '../components/Spinner';
-import useModal from '../hooks/useModal';
 import { useUserFromStore } from '../store/user.slice';
+import { AxiosError } from 'axios';
 
 interface IFormInput {
   email: string;
   password: string;
 }
 
+interface IResMutation {
+  message: string;
+  user: User;
+}
+
 function HomePage(): JSX.Element {
   const history = useHistory();
   const { register, handleSubmit } = useForm();
 
-  const { isModal, setIsModal, message, setMessage } = useModal();
   const { dispatchLogin } = useUserFromStore();
 
-  const { mutate, isLoading, isError, data } = useMutation(auth.login, {
-    onError: () => {
-      setMessage('Une erreur est survenue');
-      setIsModal((prevState) => !prevState);
-    },
-    onSuccess: () => {
-      setMessage('Vous êtes bien authentifié');
-      setIsModal((prevState) => !prevState);
+  const { mutate, isLoading, error } = useMutation<
+    IResMutation,
+    AxiosError<{ message_en: string; message_fr: string }>,
+    IFormInput
+  >(auth.login, {
+    onSuccess: (data) => {
+      dispatchLogin(data?.user as User);
+      history.push('/');
     },
   });
 
@@ -40,25 +43,7 @@ function HomePage(): JSX.Element {
     mutate(user);
   };
 
-  const handleLogin = () => {
-    if (data) dispatchLogin(data?.user);
-    history.push('/');
-  };
-
   if (isLoading) return <Spinner />;
-  if (isModal)
-    return (
-      <Modal
-        title="Authentification"
-        buttons={
-          !isError && data
-            ? [{ text: 'Accueil', handleClick: () => handleLogin() }]
-            : [{ text: 'Nouvel essai', handleClick: () => setIsModal((prevState) => !prevState) }]
-        }
-      >
-        {message}
-      </Modal>
-    );
 
   return (
     <div className="h-full w-full sm:w-screen sm:h-screen flex flex-col justify-center items-center bg-bgImg bg-center bg-cover absolute top-0 right-0">
@@ -80,7 +65,7 @@ function HomePage(): JSX.Element {
           {...register('email', { required: true })}
         />
         <label className="mt-5" htmlFor="Password">
-          Mots de passe{' '}
+          Mot de passe{' '}
         </label>
         <input
           className="focus:outline-none bg-white bg-opacity-0 mt-2 px-3 w-11/12 h-12 border-b border-white"
@@ -88,6 +73,7 @@ function HomePage(): JSX.Element {
           {...register('password', { required: true })}
         />
         <input className="bg-customGreen py-1 rounded-md w-11/12 mt-16 shadow-inputShadow" type="submit" />
+        <p className="text-red-500 mt-10 underline">{error?.response?.data?.message_fr}</p>
       </form>
     </div>
   );

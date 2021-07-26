@@ -24,9 +24,14 @@ function ExportRecords(): JSX.Element {
       </div>
       <form
         onSubmit={handleSubmit((data) => {
-          const start = new Date(data.start).toISOString();
-          const end = new Date(data.end).toISOString();
-          history.push(`/exporter/${data.company}/projets/${data.project}?&start=${start}&end=${end}`);
+          const start = new Date(data.start);
+          const end = new Date(data.end);
+
+          if (start.getTime() < end.getTime()) {
+            history.push(`/exporter/${data.company}/projets/${data.project}?start=${data.start}&end=${data.end}`);
+          } else {
+            history.push(`/exporter/${data.company}/projets/${data.project}?start=${data.end}&end=${data.start}`);
+          }
         })}
         className="flex flex-col pb-2 mx-4"
         action="sumbit"

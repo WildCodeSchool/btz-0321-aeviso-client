@@ -6,9 +6,12 @@ interface DarkModeState {
   active: boolean;
 }
 
+// TODO: Improve dispatch types
 interface ReturnDarkModeFromStore {
   darkMode: DarkModeState;
-  dispatchToggleDarkMode: () => any; // TODO: find the good type
+  dispatchToggleDarkMode: () => {
+    type: string;
+  };
 }
 
 const initialState: DarkModeState = {

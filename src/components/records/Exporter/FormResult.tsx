@@ -83,16 +83,16 @@ function FormResult(): JSX.Element {
         <div className="bg-white dark:bg-component shadow-buttonShadow  sm:sticky top-0">
           <div className="flex justify-between items-start mx-4 py-3">
             <div>
-              <h1 className="font-bold text-xl mr-5">Entreprise : {company?.name}</h1>
-              <h1 className="font-bold mt-2 text-xl mr-5">Projet : {prjt?.name} </h1>
+              <h1 className="font-bold sm:text-xl mr-5">Entreprise : {company?.name}</h1>
+              <h1 className="font-bold mt-2 sm:text-xl mr-5">Projet : {prjt?.name} </h1>
             </div>
             <Link to="/rapport/exporter">
-              <button className="focus:outline-none sm:w-full rounded-md mt-8 h-9 text-white shadow-buttonShadow px-4 py-1 mr-3 sm:mr-0 bg-customGreen">
+              <button className="focus:outline-none sm:w-full rounded-md sm:mt-8 h-9 text-white shadow-buttonShadow px-4 py-1 mr-3 sm:mr-0 bg-customGreen">
                 Retour
               </button>
             </Link>
           </div>
-          <div className="flex mt-5 w-full justify-between">
+          <div className="flex flex-col sm:flex-row mt-5 pb-5 sm:pb-0 w-full justify-between">
             <h1 className="text-base sm:text-lg mx-4 sm:mx-6 sm:mb-8">
               Rapport du {start && start.toLocaleDateString()} au {end && end.toLocaleDateString()}
             </h1>
@@ -107,7 +107,7 @@ function FormResult(): JSX.Element {
               download={`${company?.name}_${
                 prjt?.name
               }_${start?.toLocaleDateString()}_${end?.toLocaleDateString()}.csv`}
-              className="flex text-sm h-8 sm:text-base text-white items-center bg-customBlue px-4 py-1 shadow-buttonShadow rounded-md mx-4 sm:mx-6 w-max"
+              className="flex text-sm h-8 sm:text-base text-white items-center bg-customBlue px-4 py-1 shadow-buttonShadow rounded-md mx-3 mt-2 sm:mt-0 sm:mx-6 w-max"
             >
               Télécharger le rapport <img className="ml-2" src={cloud} alt="cloud" />
             </a>

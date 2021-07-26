@@ -166,7 +166,7 @@ function DayRecord({ selectedProject, handleClose }: IDayRecord): JSX.Element {
             <ValidateFormButton text={record.records?.length > 0 ? 'Modifier' : 'Créer'} />
           ) : (
             <p className="my-5 font-bold sm:text-xl">
-              {"Veuillez d'abord resélectionner vos crénaux horaire avant de modifier le rapport"}
+              {"Veuillez d'abord resélectionner vos créneaux horaires avant de modifier le rapport"}
             </p>
           )}
         </div>

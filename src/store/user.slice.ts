@@ -15,11 +15,21 @@ export interface UserState {
 interface UserStateWithLogged extends UserState {
   logged: boolean;
 }
+
+// TODO: improve dispatch types
 interface ReturnUseUserFromStore {
   user: UserState;
-  dispatchLogin: (payload: UserState) => any; // TODO: find the good type
-  dispatchLogout: () => any;
-  dispatchUser: (payload: UserState) => any;
+  dispatchLogin: (payload: UserState) => {
+    type: string;
+    payload: UserState;
+  };
+  dispatchLogout: () => {
+    type: string;
+  };
+  dispatchUser: (payload: UserState) => {
+    type: string;
+    payload: UserState;
+  };
 }
 
 const initialState: UserStateWithLogged = {
