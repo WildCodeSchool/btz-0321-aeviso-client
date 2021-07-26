@@ -27,7 +27,7 @@ function ExportRecords(): JSX.Element {
           const start = new Date(data.start);
           const end = new Date(data.end);
           
-          if (start.getTime() > end.getTime()) {
+          if (start.getTime() < end.getTime()) {
             history.push(`/exporter/${data.company}/projets/${data.project}?start=${data.start}&end=${data.end}`);
           } else {
             history.push(`/exporter/${data.company}/projets/${data.project}?start=${data.end}&end=${data.start}`);
