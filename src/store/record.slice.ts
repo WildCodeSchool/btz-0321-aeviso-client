@@ -28,10 +28,7 @@ interface ReturnUseRecordsFromStore {
     type: string;
     payload: IRecord[];
   };
-  dispatchDeleteRecord: (payload: string) => {
-    type: string;
-    payload: string;
-  };
+  dispatchDeleteRecord: (payload: string) => void;
   dispatchAddRecord: (payload: IRecord) => {
     type: string;
     payload: IRecord;

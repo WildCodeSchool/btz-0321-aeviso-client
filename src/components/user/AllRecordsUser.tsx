@@ -3,13 +3,16 @@ import React from 'react';
 import { useQuery } from 'react-query';
 import { user } from '../../API/requests';
 import { useUserFromStore } from '../../store/user.slice';
-import { Link } from 'react-router-dom';
+import { Link, useParams } from 'react-router-dom';
 
 function AllRecordsUser(): JSX.Element {
   const { user: userFromStore } = useUserFromStore();
+  const { id } = useParams<{ id: string | undefined }>();
 
-  const { isLoading, error, data } = useQuery<IRecord[], AxiosError>(['record', userFromStore.id], () =>
-    user.getRecords(userFromStore.id as string)
+  const userId = id ?? userFromStore.id;
+
+  const { isLoading, error, data } = useQuery<IRecord[], AxiosError>(['record', userId], () =>
+    user.getRecords(userId as string)
   );
 
   if (isLoading) {
@@ -25,11 +28,13 @@ function AllRecordsUser(): JSX.Element {
     <div className="dark:bg-component h-full w-full bg-white sm:w-full text-black dark:text-white font-roboto rounded-xl shadow-buttonShadow dark:shadow-mainShadow overflow-y-auto">
       <div className="py-4 px-3 text-lg font-bold flex items-center justify-between bg-white dark:bg-component shadow-inputShadow sm:sticky sm:top-0 ">
         <p className="text-2xl font-bold">Rapports</p>
-        <Link to="/saisie">
-          <p className="focus:outline-none sm:text-xs text-xs text-white bg-customBlue p-2 shadow-buttonShadow rounded-md flex items-center">
-            Nouveau
-          </p>
-        </Link>
+        {userId === userFromStore.id && (
+          <Link to="/saisie">
+            <p className="focus:outline-none sm:text-xs text-xs text-white bg-customBlue p-2 shadow-buttonShadow rounded-md flex items-center">
+              Nouveau
+            </p>
+          </Link>
+        )}
       </div>
       <div className="mx-4 mb-5">
         {data?.map((record) => {
@@ -45,6 +50,9 @@ function AllRecordsUser(): JSX.Element {
             </div>
           );
         })}
+        {data?.length === 0 && (
+          <p className="mt-5 text-2xl mx-5 font-bold text-mainBg text-opacity-70">{'Aucun rapport pour le moment'}</p>
+        )}
       </div>
     </div>
   );
