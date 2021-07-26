@@ -1,27 +1,26 @@
-import React, { useEffect, useState } from 'react';
+import React from 'react';
 import { useQuery } from 'react-query';
 import { AxiosError } from 'axios';
 import { useHistory } from 'react-router-dom';
 
 import { auth } from '../../API/requests';
 
+import { useUserFromStore } from '../../store/user.slice';
+
 import Spinner from '../Spinner';
 
-function Logout(): JSX.Element {
-  const { isLoading, error, data } = useQuery<{ message: string }, AxiosError>('auth', auth.logout);
-  const history = useHistory();
+function Logout(): JSX.Element | null {
+  const { dispatchLogout } = useUserFromStore();
 
-  const [time, setTime] = useState(3);
+  const { isLoading, error } = useQuery<{ message: string }, AxiosError>('auth', auth.logout, {
+    onSuccess: () => {
+      dispatchLogout();
 
-  useEffect(() => {
-    const timeout = setTimeout(() => setTime((prevTime) => prevTime - 1), 1000);
-
-    if (time === 0) {
       history.push('/connexion');
-    }
+    },
+  });
 
-    return () => clearTimeout(timeout);
-  }, [data, time]);
+  const history = useHistory();
 
   if (isLoading) {
     return <Spinner />;
@@ -35,15 +34,7 @@ function Logout(): JSX.Element {
     );
   }
 
-  return (
-    <div className="flex items-center justify-center h-screen w-screen fixed top-0 left-0 bg-black bg-opacity-50 text-white">
-      <div className="w-96 h-52 bg-component shadow-mainShadow p-5 rounded-md">
-        <p className="text-white text-xl font-bold font-roboto">
-          {"Vous allez être redirigé vers la page d'accueil dans"} {time} seconde{time > 1 && 's'}
-        </p>
-      </div>
-    </div>
-  );
+  return null;
 }
 
 export default Logout;
