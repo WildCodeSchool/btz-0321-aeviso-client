@@ -28,11 +28,13 @@ function AllRecordsUser(): JSX.Element {
     <div className="dark:bg-component h-full w-full bg-white sm:w-full text-black dark:text-white font-roboto rounded-xl shadow-buttonShadow dark:shadow-mainShadow overflow-y-auto">
       <div className="py-4 px-3 text-lg font-bold flex items-center justify-between bg-white dark:bg-component shadow-inputShadow sm:sticky sm:top-0 ">
         <p className="text-2xl font-bold">Rapports</p>
-        <Link to="/saisie">
-          <p className="focus:outline-none sm:text-xs text-xs text-white bg-customBlue p-2 shadow-buttonShadow rounded-md flex items-center">
-            Nouveau
-          </p>
-        </Link>
+        {userId === userFromStore.id && (
+          <Link to="/saisie">
+            <p className="focus:outline-none sm:text-xs text-xs text-white bg-customBlue p-2 shadow-buttonShadow rounded-md flex items-center">
+              Nouveau
+            </p>
+          </Link>
+        )}
       </div>
       <div className="mx-4 mb-5">
         {data?.map((record) => {
@@ -48,6 +50,9 @@ function AllRecordsUser(): JSX.Element {
             </div>
           );
         })}
+        {data?.length === 0 && (
+          <p className="mt-5 text-2xl mx-5 font-bold text-mainBg text-opacity-70">{'Aucun rapport pour le moment'}</p>
+        )}
       </div>
     </div>
   );
