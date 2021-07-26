@@ -26,7 +26,7 @@ function ExportRecords(): JSX.Element {
         onSubmit={handleSubmit((data) => {
           const start = new Date(data.start);
           const end = new Date(data.end);
-          
+
           if (start.getTime() < end.getTime()) {
             history.push(`/exporter/${data.company}/projets/${data.project}?start=${data.start}&end=${data.end}`);
           } else {
