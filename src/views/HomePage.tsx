@@ -4,9 +4,7 @@ import { useHistory } from 'react-router-dom';
 import { useMutation } from 'react-query';
 
 import { auth } from '../API/requests';
-import Modal from '../components/Modal';
 import Spinner from '../components/Spinner';
-import useModal from '../hooks/useModal';
 import { useUserFromStore } from '../store/user.slice';
 import { AxiosError } from 'axios';
 
@@ -24,17 +22,16 @@ function HomePage(): JSX.Element {
   const history = useHistory();
   const { register, handleSubmit } = useForm();
 
-  const { isModal, setIsModal, message, setMessage } = useModal();
   const { dispatchLogin } = useUserFromStore();
 
-  const { mutate, isLoading, isError, data, error } = useMutation<
+  const { mutate, isLoading, error } = useMutation<
     IResMutation,
     AxiosError<{ message_en: string; message_fr: string }>,
     IFormInput
   >(auth.login, {
-    onSuccess: () => {
-      setMessage('Vous êtes bien authentifié');
-      setIsModal((prevState) => !prevState);
+    onSuccess: (data) => {
+      dispatchLogin(data?.user as User);
+      history.push('/');
     },
   });
 
@@ -46,25 +43,7 @@ function HomePage(): JSX.Element {
     mutate(user);
   };
 
-  const handleLogin = () => {
-    if (data) dispatchLogin(data?.user);
-    history.push('/');
-  };
-
   if (isLoading) return <Spinner />;
-  if (isModal)
-    return (
-      <Modal
-        title="Authentification"
-        buttons={
-          !isError && data
-            ? [{ text: 'Accueil', handleClick: () => handleLogin() }]
-            : [{ text: 'Nouvel essai', handleClick: () => setIsModal((prevState) => !prevState) }]
-        }
-      >
-        {message}
-      </Modal>
-    );
 
   return (
     <div className="h-full w-full sm:w-screen sm:h-screen flex flex-col justify-center items-center bg-bgImg bg-center bg-cover absolute top-0 right-0">
