@@ -18,7 +18,7 @@ function SuperAdmin({ report, settings, handleClickLink }: ISPNavbar): JSX.Eleme
           className={`flex text-base mt-2 pl-2 items-center h-12 rounded-lg ${
             isActive === 'client'
               ? 'bg-white dark:bg-input dark:to-customGray shadow-buttonShadow transform scale-110'
-              : 'hover:bg-mainBg hover:shadow-buttonShadow  transform hover:scale-110'
+              : 'dark:hover:bg-mainBg hover:bg-whiteGray hover:shadow-buttonShadow  transform hover:scale-110'
           } `}
         >
           <img
@@ -40,7 +40,7 @@ function SuperAdmin({ report, settings, handleClickLink }: ISPNavbar): JSX.Eleme
           className={`flex text-base mt-5 pl-2 items-center h-12 rounded-lg ${
             isActive === 'export'
               ? 'bg-white dark:bg-input dark:to-customGray shadow-buttonShadow transform scale-110'
-              : 'hover:bg-mainBg hover:shadow-buttonShadow  transform hover:scale-110'
+              : 'dark:hover:bg-mainBg hover:bg-whiteGray hover:shadow-buttonShadow  transform hover:scale-110'
           } `}
         >
           <img
@@ -62,7 +62,7 @@ function SuperAdmin({ report, settings, handleClickLink }: ISPNavbar): JSX.Eleme
           className={`flex text-base mt-5 pl-2 items-center h-12 rounded-lg ${
             isActive === 'settings'
               ? ' bg-white dark:bg-input shadow-buttonShadow transform scale-110'
-              : 'hover:bg-mainBg hover:shadow-buttonShadow  transform hover:scale-110'
+              : 'dark:hover:bg-mainBg hover:bg-whiteGray hover:shadow-buttonShadow  transform hover:scale-110'
           } `}
         >
           <img
