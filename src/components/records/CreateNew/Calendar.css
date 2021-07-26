@@ -47,8 +47,7 @@
   background-color: #58926f;
 }
 .react-calendar__navigation button[disabled] {
-  @apply bg-white dark:bg-whiteInput;
-  opacity: 0.5;
+  @apply bg-whiteGray dark:bg-whiteInput border border-black dark:border-white text-gray-400;
 }
 .react-calendar__month-view__weekdays {
   text-align: center;
