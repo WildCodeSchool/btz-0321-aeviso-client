@@ -108,4 +108,6 @@ Then, if you click on the return button you will be redirected to the companies 
 
 . SideBar Mobile / on the clalendar component if you open the sidebar on the phone there is a css issue. You can resolve it by using redux.
 
+. Component UpdateCreateCompany : have to improve logic to switch the state with a Link methode and add the component in the router. Use the id to switch from post to update.
+
 ps: we are frenchies, sorry about the english ;)
