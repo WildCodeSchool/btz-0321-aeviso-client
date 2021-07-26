@@ -5,11 +5,14 @@ import { user } from '../../API/requests';
 import { useUserFromStore } from '../../store/user.slice';
 import SearchInput from '../SearchInput';
 import { useForm } from 'react-hook-form';
-import { Link } from 'react-router-dom';
+import { Link, useParams } from 'react-router-dom';
 
 function ProjectsUser(): JSX.Element {
   const { user: userFromStore } = useUserFromStore();
+  const { id } = useParams<{ id: string }>();
   const { register, watch } = useForm();
+
+  const userId = id ?? userFromStore.id;
 
   const searchInput = watch('search');
 
@@ -17,9 +20,7 @@ function ProjectsUser(): JSX.Element {
     isLoading: projectsIsLoading,
     error: projectsError,
     data: projectsData,
-  } = useQuery<Project[], AxiosError>(['projects', userFromStore.id], () =>
-    user.getProjects(userFromStore.id as string)
-  );
+  } = useQuery<Project[], AxiosError>(['projects', userId], () => user.getProjects(userId as string));
 
   if (projectsIsLoading) {
     return <p>...</p>;

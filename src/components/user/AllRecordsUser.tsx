@@ -3,13 +3,16 @@ import React from 'react';
 import { useQuery } from 'react-query';
 import { user } from '../../API/requests';
 import { useUserFromStore } from '../../store/user.slice';
-import { Link } from 'react-router-dom';
+import { Link, useParams } from 'react-router-dom';
 
 function AllRecordsUser(): JSX.Element {
   const { user: userFromStore } = useUserFromStore();
+  const { id } = useParams<{ id: string | undefined }>();
 
-  const { isLoading, error, data } = useQuery<IRecord[], AxiosError>(['record', userFromStore.id], () =>
-    user.getRecords(userFromStore.id as string)
+  const userId = id ?? userFromStore.id;
+
+  const { isLoading, error, data } = useQuery<IRecord[], AxiosError>(['record', userId], () =>
+    user.getRecords(userId as string)
   );
 
   if (isLoading) {
