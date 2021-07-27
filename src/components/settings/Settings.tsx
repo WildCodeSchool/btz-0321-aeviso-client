@@ -15,6 +15,7 @@ import useModal from '../../hooks/useModal';
 interface ISettingsForm extends Omit<IUserForm, 'role' | 'password'> {
   oldPassword: string;
   newPassword: string;
+  confirmPassword: string;
 }
 
 interface IFormInput {
@@ -34,6 +35,8 @@ function ExportRecords(): JSX.Element {
     setValue,
     setError,
   } = useForm();
+
+  console.log(errors);
 
   setValue('user.firstName', userFromStore.firstName);
   setValue('user.lastName', userFromStore.lastName);
@@ -75,7 +78,7 @@ function ExportRecords(): JSX.Element {
       id: userFromStore.id as string,
     });
 
-    if (data.user.oldPassword !== data.user.newPassword) {
+    if (data.user.oldPassword !== data.user.newPassword && data.user.newPassword === data.user.confirmPassword) {
       await passwordMutate({
         oldPassword: data.user.oldPassword,
         newPassword: data.user.newPassword,
@@ -162,7 +165,11 @@ function ExportRecords(): JSX.Element {
                 register={register}
                 name="user.newPassword"
                 required={false}
-                error={errors?.user?.newPassword && 'Veuillez entrer un mot de passe'}
+                error={
+                  errors?.user?.newPassword?.type === 'pattern'
+                    ? 'Règle: une lettre majuscule, une lettre minuscule, un chiffre'
+                    : errors?.user?.newPassword?.message
+                }
               />
             </div>
             <div className="sm:w-6/12 w-full">
@@ -172,7 +179,11 @@ function ExportRecords(): JSX.Element {
                 register={register}
                 name="user.confirmPassword"
                 required={false}
-                error={errors?.user?.confirmPassword && 'Mot de passe different'}
+                error={
+                  errors?.user?.confirmPassword?.type === 'pattern'
+                    ? 'Règle: une lettre majuscule, une lettre minuscule, un chiffre'
+                    : errors?.user?.confirmPassword?.message
+                }
               />
             </div>
           </div>
