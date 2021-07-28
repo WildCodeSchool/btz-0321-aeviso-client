@@ -46,10 +46,7 @@ function JobsList(): JSX.Element {
   return (
     <div className="dark:bg-component bg-white border-2 dark:border-componentBorder h-full w-full sm:w-full text-black dark:text-white font-roboto rounded-xl shadow-buttonShadow dark:shadow-mainShadow sm:mx-0 overflow-y-auto relative">
       {isModal && (
-        <Modal
-          title="Le client a bien été créé ou modifié"
-          buttons={[{ text: 'Valider', handleClick: () => setIsModal(false) }]}
-        >
+        <Modal title="Tous c'est bien passé" buttons={[{ text: 'Valider', handleClick: () => setIsModal(false) }]}>
           {message}
         </Modal>
       )}

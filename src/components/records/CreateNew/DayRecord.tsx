@@ -108,8 +108,8 @@ function DayRecord({ selectedProject, handleClose }: IDayRecord): JSX.Element {
           {message}
         </Modal>
       )}
-      <div className="flex flex-col text-black dark:text-white  mx-4 sm:mx-0 mt-5 sm:mt-20">
-        <h1 className="font-bold text-xl sm:text-4xl">Projet : {data?.name}</h1>
+      <div className="flex flex-col text-black dark:text-white  mx-4 sm:mx-0 mt-5 sm:mt-5">
+        <h1 className="font-bold text-xl sm:text-2xl">Projet : {data?.name}</h1>
         <h2 className="font-bold sm:text-2xl mt-2 sm:mt-5">{record.date.toLocaleDateString()}</h2>
       </div>
       <div className="w-full md:h-10 mt-5 mx-4 sm:mx-0 flex items-center">

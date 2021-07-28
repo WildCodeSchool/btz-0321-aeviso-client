@@ -84,7 +84,7 @@ function ProjectForm({ projectId }: IProps): JSX.Element {
       >
         <div className="flex w-full justify-between items-center sm:items-end">
           {projectId ? (
-            <h1 className="text-2xl mr-10 sm:mr-0 sm:text-5xl font-bold"> Modifier le projet </h1>
+            <h1 className="text-2xl mr-10 sm:mr-0 sm:text-2xl font-bold"> Modifier le projet </h1>
           ) : (
             <h1 className="text-2xl mr-10 sm:mr-0 sm:text-5xl font-bold"> Créer un projet</h1>
           )}
