@@ -15,6 +15,7 @@ import useModal from '../../hooks/useModal';
 interface ISettingsForm extends Omit<IUserForm, 'role' | 'password'> {
   oldPassword: string;
   newPassword: string;
+  confirmPassword: string;
 }
 
 interface IFormInput {
@@ -70,22 +71,27 @@ function ExportRecords(): JSX.Element {
       jobId: data.user.jobId,
     };
 
+    const { oldPassword, newPassword, confirmPassword } = data.user;
+
+    if (oldPassword === newPassword) {
+      setError('user.newPassword', { message: "Le nouveau mot de passe est simlaire à l'ancien" });
+    } else if (newPassword !== confirmPassword) {
+      setError('user.confirmPassword', { message: 'Les deux mots de passes sont identiques' });
+    } else {
+      await passwordMutate({
+        oldPassword: oldPassword,
+        newPassword: newPassword,
+      });
+      setMessage('Les données ont bien été modifiées');
+      setIsModal(true);
+    }
+
     await userMutate({
       user,
       id: userFromStore.id as string,
     });
-
-    if (data.user.oldPassword !== data.user.newPassword) {
-      await passwordMutate({
-        oldPassword: data.user.oldPassword,
-        newPassword: data.user.newPassword,
-      });
-    }
-
-    setMessage('Les données ont bien été modifiées');
-    setIsModal(true);
   };
-
+  console.log(errors);
   if (isLoading) {
     return <Spinner />;
   }
@@ -147,11 +153,12 @@ function ExportRecords(): JSX.Element {
             name="user.oldPassword"
             required={false}
             error={
-              errors?.user?.oldPassword
-                ? errors.user.oldPassword.type === 'required'
-                  ? 'Veuillez entrer votre ancien mot de passe'
-                  : errors.user.oldPassword.message
-                : undefined
+              (
+                {
+                  required: 'Veuillez entrer votre ancien mot de passe',
+                  pattern: 'Règle: une lettre majuscule, une lettre minuscule, un chiffre',
+                } as { [key: string]: string }
+              )[errors?.user?.oldPassword?.type] ?? errors?.user?.oldPassword?.message
             }
           />
           <div className="flex flex-col sm:flex-row w-full justify-between">
@@ -162,7 +169,11 @@ function ExportRecords(): JSX.Element {
                 register={register}
                 name="user.newPassword"
                 required={false}
-                error={errors?.user?.newPassword && 'Veuillez entrer un mot de passe'}
+                error={
+                  errors?.user?.newPassword?.type === 'pattern'
+                    ? 'Règle: une lettre majuscule, une lettre minuscule, un chiffre'
+                    : errors?.user?.newPassword?.message
+                }
               />
             </div>
             <div className="sm:w-6/12 w-full">
@@ -172,7 +183,11 @@ function ExportRecords(): JSX.Element {
                 register={register}
                 name="user.confirmPassword"
                 required={false}
-                error={errors?.user?.confirmPassword && 'Mot de passe different'}
+                error={
+                  errors?.user?.confirmPassword?.type === 'pattern'
+                    ? 'Règle: une lettre majuscule, une lettre minuscule, un chiffre'
+                    : errors?.user?.confirmPassword?.message
+                }
               />
             </div>
           </div>
