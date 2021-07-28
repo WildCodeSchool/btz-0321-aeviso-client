@@ -36,7 +36,7 @@ function JobsList(): JSX.Element {
   const { mutate: createJob } = useMutation(jobs.create, {
     onSuccess: () => {
       setIsModal(true);
-      setMessage('La nouvelle fonction a bien été crée');
+      setMessage('La nouvelle fonction a bien été créée');
       refetch();
     },
   });
@@ -46,7 +46,7 @@ function JobsList(): JSX.Element {
   return (
     <div className="dark:bg-component bg-white border-2 dark:border-componentBorder h-full w-full sm:w-full text-black dark:text-white font-roboto rounded-xl shadow-buttonShadow dark:shadow-mainShadow sm:mx-0 overflow-y-auto relative">
       {isModal && (
-        <Modal title="Tous c'est bien passé" buttons={[{ text: 'Valider', handleClick: () => setIsModal(false) }]}>
+        <Modal title="Tout s'est bien passé" buttons={[{ text: 'Valider', handleClick: () => setIsModal(false) }]}>
           {message}
         </Modal>
       )}
