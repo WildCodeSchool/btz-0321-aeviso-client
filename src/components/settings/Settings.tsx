@@ -36,8 +36,6 @@ function ExportRecords(): JSX.Element {
     setError,
   } = useForm();
 
-  console.log(errors);
-
   setValue('user.firstName', userFromStore.firstName);
   setValue('user.lastName', userFromStore.lastName);
   setValue('user.email', userFromStore.email);
@@ -73,22 +71,27 @@ function ExportRecords(): JSX.Element {
       jobId: data.user.jobId,
     };
 
+    const { oldPassword, newPassword, confirmPassword } = data.user;
+
+    if (oldPassword === newPassword) {
+      setError('user.newPassword', { message: "Le nouveau mot de passe est simlaire à l'ancien" });
+    } else if (newPassword !== confirmPassword) {
+      setError('user.confirmPassword', { message: 'Les deux mots de passes sont identiques' });
+    } else {
+      await passwordMutate({
+        oldPassword: oldPassword,
+        newPassword: newPassword,
+      });
+      setMessage('Les données ont bien été modifiées');
+      setIsModal(true);
+    }
+
     await userMutate({
       user,
       id: userFromStore.id as string,
     });
-
-    if (data.user.oldPassword !== data.user.newPassword && data.user.newPassword === data.user.confirmPassword) {
-      await passwordMutate({
-        oldPassword: data.user.oldPassword,
-        newPassword: data.user.newPassword,
-      });
-    }
-
-    setMessage('Les données ont bien été modifiées');
-    setIsModal(true);
   };
-
+  console.log(errors);
   if (isLoading) {
     return <Spinner />;
   }
@@ -150,11 +153,12 @@ function ExportRecords(): JSX.Element {
             name="user.oldPassword"
             required={false}
             error={
-              errors?.user?.oldPassword
-                ? errors.user.oldPassword.type === 'required'
-                  ? 'Veuillez entrer votre ancien mot de passe'
-                  : errors.user.oldPassword.message
-                : undefined
+              (
+                {
+                  required: 'Veuillez entrer votre ancien mot de passe',
+                  pattern: 'Règle: une lettre majuscule, une lettre minuscule, un chiffre',
+                } as { [key: string]: string }
+              )[errors?.user?.oldPassword?.type] ?? errors?.user?.oldPassword?.message
             }
           />
           <div className="flex flex-col sm:flex-row w-full justify-between">

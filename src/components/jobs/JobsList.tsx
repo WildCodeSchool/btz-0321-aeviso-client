@@ -3,25 +3,40 @@ import React, { useState } from 'react';
 import { useForm } from 'react-hook-form';
 import { useMutation, useQuery } from 'react-query';
 import { jobs } from '../../API/requests';
+import useModal from '../../hooks/useModal';
 import Button from '../formComponents/Button';
+import Modal from '../Modal';
 import JobsHeader from './JobsHeader';
 
 function JobsList(): JSX.Element {
   const [isModifying, setIsModifying] = useState('');
 
+  const { setIsModal, setMessage, isModal, message } = useModal();
+
   const { refetch, data } = useQuery<Job[], AxiosError>('jobs', () => jobs.getAll(true));
 
-  const { mutate: deleteJob } = useMutation(jobs.delete, { onSuccess: () => refetch() });
+  const { mutate: deleteJob } = useMutation(jobs.delete, {
+    onSuccess: () => {
+      setIsModal(true);
+      setMessage('La fonction a bien été supprimée');
+      refetch();
+    },
+  });
 
   const { mutate: modifyJob } = useMutation(jobs.update, {
     onSuccess: () => {
+      setIsModal(true);
+      setMessage('La nouvelle fonction a bien été modifiée');
       setIsModifying('');
       refetch();
     },
   });
+
   //createJob
   const { mutate: createJob } = useMutation(jobs.create, {
     onSuccess: () => {
+      setIsModal(true);
+      setMessage('La nouvelle fonction a bien été crée');
       refetch();
     },
   });
@@ -30,6 +45,14 @@ function JobsList(): JSX.Element {
 
   return (
     <div className="dark:bg-component bg-white border-2 dark:border-componentBorder h-full w-full sm:w-full text-black dark:text-white font-roboto rounded-xl shadow-buttonShadow dark:shadow-mainShadow sm:mx-0 overflow-y-auto relative">
+      {isModal && (
+        <Modal
+          title="Le client a bien été créé ou modifié"
+          buttons={[{ text: 'Valider', handleClick: () => setIsModal(false) }]}
+        >
+          {message}
+        </Modal>
+      )}
       <JobsHeader />
 
       <div className="p-2 px-4">
