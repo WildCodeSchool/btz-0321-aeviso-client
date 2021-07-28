@@ -91,7 +91,6 @@ function ExportRecords(): JSX.Element {
       id: userFromStore.id as string,
     });
   };
-  console.log(errors);
   if (isLoading) {
     return <Spinner />;
   }
